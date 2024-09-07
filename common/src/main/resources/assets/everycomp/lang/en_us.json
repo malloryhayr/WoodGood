@@ -102,6 +102,11 @@
   "block_type.bbb.ladder": "%s Ladder",
   "block_type.bbb.wall": "%s Wall",
 
+  "item_type.kubejs.plank": "%s Plank",
+  "item_type.kubejs.board": "%s Board",
+  "item_type.kubejs.rod": "%s Rod",
+  "item_type.kubejs.wedge": "%s Wedge",
+
   "block_type.buildersaddition.arcade": "%s Arcade",
   "block_type.buildersaddition.bench": "%s Bench",
   "block_type.buildersaddition.bedside_table": "%s Bedside Table",

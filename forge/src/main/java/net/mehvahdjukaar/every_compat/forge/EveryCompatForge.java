@@ -18,6 +18,7 @@ import net.mehvahdjukaar.every_compat.modules.forge.dramaticdoors.DramaticDoorsM
 import net.mehvahdjukaar.every_compat.modules.forge.dramaticdoors.DramaticDoorsModule;
 import net.mehvahdjukaar.every_compat.modules.farmersdelight.FarmersDelightModule;
 import net.mehvahdjukaar.every_compat.modules.forge.infinitybuttons.InfinityButtonsModule;
+import net.mehvahdjukaar.every_compat.modules.forge.kubejs.KubeJSModule;
 import net.mehvahdjukaar.every_compat.modules.forge.lauchs.LauchsShuttersModule;
 import net.mehvahdjukaar.every_compat.modules.forge.dawn_of_time.DawnOfTimeModule;
 import net.mehvahdjukaar.every_compat.modules.forge.lieonlion.MoreChestVariantsModule;
@@ -83,6 +84,7 @@ public class EveryCompatForge extends EveryCompat {
         addModule("dramaticdoors", () -> DramaticDoorsModule::new);
         addModule("farmersdelight", () -> FarmersDelightModule::new);
         addModule("infinitybuttons", () -> InfinityButtonsModule::new);
+        addModule("kubejs", () -> KubeJSModule::new);
         addModule("lolmcv", () -> MoreChestVariantsModule::new);
         addModule("mctb", () -> MoreCraftingTablesForForgeModule::new);
         addModule("mighty_mail", () -> MightyMailModule::new);
