@@ -14,6 +14,7 @@ import net.mehvahdjukaar.moonlight.api.set.wood.WoodTypeRegistry;
 import net.mehvahdjukaar.moonlight.api.util.Utils;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.core.registries.Registries;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.world.item.CreativeModeTabs;
 import net.minecraft.world.level.block.Block;
@@ -119,7 +120,7 @@ public class BuildingButBetterModule extends SimpleModule {
                 .addTag(BlockTags.SLABS, Registries.BLOCK)
                 .addTag(BlockTags.WOODEN_SLABS, Registries.BLOCK)
                 .addTag(BlockTags.MINEABLE_WITH_AXE, Registries.BLOCK)
-                .defaultRecipe()
+                .addRecipe(new ResourceLocation("bbb", "oak_beam_slab"))
                 .setTabKey(CreativeModeTabs.BUILDING_BLOCKS)
                 .setTabMode(TabAddMode.AFTER_SAME_WOOD)
                 .build();
@@ -171,7 +172,7 @@ public class BuildingButBetterModule extends SimpleModule {
                 .setTabKey(CreativeModeTabs.BUILDING_BLOCKS)
                 .setTabMode(TabAddMode.AFTER_SAME_WOOD)
                 .addCustomItem((wood, block, properties) -> new DescriptionBlockItem(block, properties))
-                .defaultRecipe()
+                .addRecipe(new ResourceLocation("bbb", "oak_pallet"))
                 .build();
 
         this.addEntry(pallets);
@@ -230,6 +231,7 @@ public class BuildingButBetterModule extends SimpleModule {
                 .addTag(BlockTags.WALLS, Registries.BLOCK)
                 .addTag(BlockTags.MINEABLE_WITH_AXE, Registries.BLOCK)
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
+                .requiresChildren("stripped_log")
                 .defaultRecipe()
                 .setTabKey(CreativeModeTabs.BUILDING_BLOCKS)
                 .setTabMode(TabAddMode.AFTER_SAME_WOOD)
