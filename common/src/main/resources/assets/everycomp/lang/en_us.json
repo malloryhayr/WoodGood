@@ -107,6 +107,8 @@
   "item_type.kubejs.rod": "%s Rod",
   "item_type.kubejs.wedge": "%s Wedge",
 
+  "block_type.bountifulfares.pickets": "%s Pickets",
+
   "block_type.buildersaddition.arcade": "%s Arcade",
   "block_type.buildersaddition.bench": "%s Bench",
   "block_type.buildersaddition.bedside_table": "%s Bedside Table",
