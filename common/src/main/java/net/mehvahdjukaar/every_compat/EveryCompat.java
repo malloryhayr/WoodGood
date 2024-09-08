@@ -10,6 +10,7 @@ import net.mehvahdjukaar.every_compat.dynamicpack.ServerDynamicResourcesHandler;
 import net.mehvahdjukaar.every_compat.misc.AllWoodItem;
 
 import net.mehvahdjukaar.every_compat.modules.another_furniture.AnotherFurnitureModule;
+import net.mehvahdjukaar.every_compat.modules.bountiful_fares.BountifulFaresModule;
 import net.mehvahdjukaar.every_compat.modules.camp_chair.CampChairModule;
 import net.mehvahdjukaar.every_compat.modules.chipped.ChippedModule;
 import net.mehvahdjukaar.every_compat.modules.mrcrayfish.RefurbishedFurnitureModule;
@@ -131,6 +132,7 @@ public abstract class EveryCompat {
         addModule("refurbished_furniture", () -> RefurbishedFurnitureModule::new);
         addModule("farmersdelight", () -> FarmersDelightModule::new);
         addModule("handcrafted", () -> HandcraftedModule::new);
+        addModule("bountifulfares", () -> BountifulFaresModule::new);
 
         // ========================================== WORK IN PROGRESS ============================================== \\
 
