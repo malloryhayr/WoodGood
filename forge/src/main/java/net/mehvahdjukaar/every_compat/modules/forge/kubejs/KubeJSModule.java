@@ -26,6 +26,8 @@ public class KubeJSModule extends SimpleModule {
                     w -> new Item(new Item.Properties())
                 ).addTexture(modRes("item/oak_plank"))
                 .createPaletteFromOak(SpriteUtils::extrapolateWoodItemPalette)
+                .addRecipe(new ResourceLocation("kubejs", "oak_plank"))
+                .addRecipe(new ResourceLocation("kubejs", "oak_plank_from_wood"))
                 .build();
         this.addEntry(planks);
 
@@ -34,6 +36,8 @@ public class KubeJSModule extends SimpleModule {
                         w -> new Item(new Item.Properties())
                 ).addTexture(modRes("item/oak_board"))
                 .createPaletteFromOak(SpriteUtils::extrapolateWoodItemPalette)
+                .addRecipe(new ResourceLocation("kubejs", "oak_board"))
+                .addRecipe(new ResourceLocation("kubejs", "oak_board_from_wood"))
                 .build();
         this.addEntry(boards);
 
@@ -42,6 +46,7 @@ public class KubeJSModule extends SimpleModule {
                         w -> new Item(new Item.Properties())
                 ).addTexture(modRes("item/oak_wedge"))
                 .createPaletteFromOak(SpriteUtils::extrapolateWoodItemPalette)
+                .addRecipe(new ResourceLocation("kubejs", "oak_wedge"))
                 .build();
         this.addEntry(wedges);
 
@@ -50,6 +55,7 @@ public class KubeJSModule extends SimpleModule {
                         w -> new Item(new Item.Properties())
                 ).addTexture(modRes("item/oak_rod"))
                 .createPaletteFromOak(SpriteUtils::extrapolateWoodItemPalette)
+                .addRecipe(new ResourceLocation("kubejs", "oak_rod"))
                 .build();
         this.addEntry(rods);
 
