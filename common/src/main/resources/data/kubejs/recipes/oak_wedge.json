@@ -1,0 +1,11 @@
+{
+	"type": "minecraft:crafting_shapeless",
+	"ingredients": [
+		{
+			"item": "kubejs:oak_rod"
+		}
+	],
+	"result": {
+		"item": "kubejs:oak_wedge"
+	}
+}

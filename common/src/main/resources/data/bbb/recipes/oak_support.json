@@ -1,0 +1,21 @@
+{
+  "category": "building",
+  "group": "bbb/supports",
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "##",
+    "#/"
+  ],
+  "key": {
+    "#": {
+      "item": "kubejs:oak_plank"
+    },
+    "/": {
+      "item": "kubejs:oak_rod"
+    }
+  },
+  "result": {
+    "item": "bbb:oak_support",
+    "count": 4
+  }
+}

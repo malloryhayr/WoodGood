@@ -1,0 +1,11 @@
+{
+	"type": "minecraft:crafting_shapeless",
+	"ingredients": [
+		{
+			"item": "kubejs:oak_plank"
+		}
+	],
+	"result": {
+		"item": "kubejs:oak_rod"
+	}
+}

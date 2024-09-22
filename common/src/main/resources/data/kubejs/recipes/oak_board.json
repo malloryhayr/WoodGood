@@ -1,0 +1,11 @@
+{
+	"type": "minecraft:crafting_shapeless",
+	"ingredients": [
+		{
+			"item": "minecraft:stripped_oak_log"
+		}
+	],
+	"result": {
+		"item": "kubejs:oak_board"
+	}
+}

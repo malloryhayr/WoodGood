@@ -1,0 +1,31 @@
+{
+  "type": "forge:conditional",
+  "recipes": [
+    {
+      "conditions": [
+        {
+          "type": "woodworks:config",
+          "value": "wooden_boards"
+        }
+      ],
+      "recipe": {
+        "type": "minecraft:crafting_shaped",
+        "category": "misc",
+        "group": "wooden_boards",
+        "key": {
+          "#": {
+            "item": "kubejs:oak_board"
+          }
+        },
+        "pattern": [
+          "#",
+          "#"
+        ],
+        "result": {
+          "item": "woodworks:oak_boards"
+        },
+        "show_notification": true
+      }
+    }
+  ]
+}

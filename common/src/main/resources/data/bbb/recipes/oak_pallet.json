@@ -1,0 +1,21 @@
+{
+  "category": "building",
+  "group": "bbb/pallets",
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "///",
+    "OOO"
+  ],
+  "key": {
+    "/": {
+      "item": "kubejs:oak_rod"
+    },
+    "O": {
+      "item": "kubejs:oak_plank"
+    }
+  },
+  "result": {
+    "item": "bbb:oak_pallet",
+    "count": 8
+  }
+}
