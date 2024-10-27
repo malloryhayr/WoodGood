@@ -81,8 +81,8 @@ public class RegionsUnexploredModule extends SimpleModule {
                                 .offsetType(BlockBehaviour.OffsetType.XZ))
                 )
                 .addCondition(l -> {
-                    boolean log = l.getWoodType() != null; // for textures   
-                    boolean sapling = l.getItemOfThis("sapling") != null; // for recipes
+                    boolean log = l.getWoodType() != null; //REASON: textures
+                    boolean sapling = l.getItemOfThis("sapling") != null; //REASON: recipes
                     return log && sapling;
                 })
                 .addTag(BlockTags.MINEABLE_WITH_AXE, Registries.BLOCK)
