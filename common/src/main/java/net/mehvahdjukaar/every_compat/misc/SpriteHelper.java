@@ -37,6 +37,22 @@ public class SpriteHelper {
         addOptional("minecraft:mushroom_stem", "_side", "minecraft:block/mushroom_stem");
         addOptional("minecraft:mushroom_stem", "_top", "minecraft:block/mushroom_stem");
 
+        // My Nether's Delight
+        addOptional("mynethersdelight:powdery_block", "_side", "mynethersdelight:block/powdery_block");
+        addOptional("mynethersdelight:stripped_powdery_block", "_side", "mynethersdelight:block/stripped_powdery_block");
+
+        // Piglin Ruins
+        addOptional("piglin_ruins:ominous_stalk_block", "_side", "piglin_ruins:block/ominous_stalk_block_side");
+        addOptional("piglin_ruins:ominous_stalk_block", "_top", "piglin_ruins:block/ominous_stalk_block_top");
+        addOptional("piglin_ruins:stripped_ominous_stalk_block", "_side", "piglin_ruins:block/stripped_ominous_stalk_block_side");
+        addOptional("piglin_ruins:stripped_ominous_stalk_block", "_top", "piglin_ruins:block/stripped_ominous_stalk_block_top");
+
+        // Unusual End
+        addOptional("unusualend:chorus_cane_block", "_side", "unusualend:block/chorus_cane_block_side");
+        addOptional("unusualend:chorus_cane_block", "_top", "unusualend:block/chorus_cane_block_top");
+        addOptional("unusualend:stripped_chorus_cane_block", "_side", "unusualend:block/stripped_chorus_cane_block_side");
+        addOptional("unusualend:stripped_chorus_cane_block", "_top", "unusualend:block/stripped_chorus_cane_block_top");
+
         // Ad Astra
         addOptional("ad_astra:strophar_stem", "_side", "ad_astra:block/strophar_stem");
         addOptional("ad_astra:strophar_stem", "_top", "ad_astra:block/strophar_stem");
