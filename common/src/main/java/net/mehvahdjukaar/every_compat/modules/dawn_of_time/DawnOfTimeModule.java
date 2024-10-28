@@ -33,7 +33,7 @@ import org.dawnoftimebuilder.registry.DoTBCreativeModeTabsRegistry;
 import org.dawnoftimebuilder.util.VoxelShapes;
 
 
-//SUPPORT v1.5.8+
+//SUPPORT v1.5.7+
 public class DawnOfTimeModule extends SimpleModule {
 
     public final SimpleEntrySet<WoodType, Block> BEAM;
@@ -52,14 +52,14 @@ public class DawnOfTimeModule extends SimpleModule {
 
     public DawnOfTimeModule(String modId) {
         super(modId, "dot");
-        var tab = DoTBCreativeModeTabsRegistry.INSTANCE.DOT_TAB;
+        var tab = modRes("dot_tab");
 
         PLATE = SimpleEntrySet.builder(WoodType.class, "planks_plate",
                         getModBlock("oak_planks_plate"), () -> WoodTypeRegistry.OAK_TYPE,
                         w -> new PlateBlock(Utils.copyPropertySafe(w.planks).ignitedByLava()))
                 .addTag(BlockTags.MINEABLE_WITH_AXE, Registries.BLOCK)
                 .defaultRecipe()
-                .setTab(tab)
+                .setTabKey(tab)
                 .build();
         this.addEntry(PLATE);
 
@@ -68,7 +68,7 @@ public class DawnOfTimeModule extends SimpleModule {
                         w -> new EdgeBlock(Utils.copyPropertySafe(w.planks).ignitedByLava()))
                 .addTag(BlockTags.MINEABLE_WITH_AXE, Registries.BLOCK)
                 .defaultRecipe()
-                .setTab(tab)
+                .setTabKey(tab)
                 .build();
         this.addEntry(EDGE);
 
@@ -80,7 +80,7 @@ public class DawnOfTimeModule extends SimpleModule {
                 .createPaletteFromOak(this::dullPalette)
                 .setRenderType(RenderLayer.CUTOUT_MIPPED)
                 .defaultRecipe()
-                .setTab(tab)
+                .setTabKey(tab)
                 .build();
         this.addEntry(PERGOLA);
 
@@ -91,7 +91,7 @@ public class DawnOfTimeModule extends SimpleModule {
                 .addTexture(modRes("block/oak_lattice"))
                 .setRenderType(RenderLayer.CUTOUT_MIPPED)
                 .defaultRecipe()
-                .setTab(tab)
+                .setTabKey(tab)
                 .build();
         this.addEntry(LATTICE);
 
@@ -103,7 +103,7 @@ public class DawnOfTimeModule extends SimpleModule {
                 .createPaletteFromOak(this::dullPalette)
                 .setRenderType(RenderLayer.CUTOUT_MIPPED)
                 .defaultRecipe()
-                .setTab(tab)
+                .setTabKey(tab)
                 .build();
         this.addEntry(BEAM);
 
@@ -117,7 +117,7 @@ public class DawnOfTimeModule extends SimpleModule {
                 .addTag(ItemTags.WALLS, Registries.ITEM)
                 .createPaletteFromOak(this::dullPalette)
                 .defaultRecipe()
-                .setTab(tab)
+                .setTabKey(tab)
                 .build();
         this.addEntry(WALL);
 
@@ -127,7 +127,7 @@ public class DawnOfTimeModule extends SimpleModule {
                 .addTag(BlockTags.MINEABLE_WITH_AXE, Registries.BLOCK)
                 .createPaletteFromOak(this::dullPalette)
                 .defaultRecipe()
-                .setTab(tab)
+                .setTabKey(tab)
                 .build();
         this.addEntry(SUPPORT_BEAM);
 
@@ -136,7 +136,7 @@ public class DawnOfTimeModule extends SimpleModule {
                         w -> new SupportSlabBlock(Utils.copyPropertySafe(w.planks).ignitedByLava()))
                 .addTag(BlockTags.MINEABLE_WITH_AXE, Registries.BLOCK)
                 .defaultRecipe()
-                .setTab(tab)
+                .setTabKey(tab)
                 .build();
         this.addEntry(SUPPORT_SLAB);
 
@@ -148,7 +148,7 @@ public class DawnOfTimeModule extends SimpleModule {
                 .addTag(BlockTags.MINEABLE_WITH_AXE, Registries.BLOCK)
                 .addTexture(modRes("block/birch_fancy_fence"))
                 .defaultRecipe()
-                .setTab(tab)
+                .setTabKey(tab)
                 .build();
         this.addEntry(FANCY_FENCE);
 
@@ -158,7 +158,7 @@ public class DawnOfTimeModule extends SimpleModule {
                 .addTextureM(modRes("block/birch_footstool"), EveryCompat.res("block/dot/birch_footstool_m"))
                 .addTag(BlockTags.MINEABLE_WITH_AXE, Registries.BLOCK)
                 .defaultRecipe()
-                .setTab(tab)
+                .setTabKey(tab)
                 .build();
         this.addEntry(FOOTSTOOL);
 
@@ -169,7 +169,7 @@ public class DawnOfTimeModule extends SimpleModule {
                 .addTextureM(modRes("block/birch_couch"), EveryCompat.res("block/dot/birch_couch_m"))
                 .addTag(BlockTags.MINEABLE_WITH_AXE, Registries.BLOCK)
                 .defaultRecipe()
-                .setTab(tab)
+                .setTabKey(tab)
                 .build();
         this.addEntry(COUCH);
 
@@ -179,10 +179,10 @@ public class DawnOfTimeModule extends SimpleModule {
                                 .strength(2.0F, 6.0F).lightLevel(litBlockEmission(14))))
                 .addTag(BlockTags.MINEABLE_WITH_AXE, Registries.BLOCK)
                 .addTexture(modRes("block/spruce_low_table"))
-                .addTile(DoTBBlockEntitiesRegistry.INSTANCE.DISPLAYER)
+                .addTile(getModTile("displayer"))
                 .createPaletteFromOak(this::dullPalette)
                 .defaultRecipe()
-                .setTab(tab)
+                .setTabKey(tab)
                 .build();
         this.addEntry(LOW_TABLE);
 
@@ -195,7 +195,7 @@ public class DawnOfTimeModule extends SimpleModule {
                 .addTag(BlockTags.MINEABLE_WITH_AXE, Registries.BLOCK)
                 .createPaletteFromOak(this::dullPalette)
                 .defaultRecipe()
-                .setTab(tab)
+                .setTabKey(tab)
                 .build();
         this.addEntry(LEGLESS_CHAIR);
     }
