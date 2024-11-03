@@ -67,7 +67,7 @@ public class DramaticDoorsModule extends SimpleModule {
                 "aurorasdeco", "automaticdoors", "bambooeverything", "betterarcheology",
                 "betterend", "betternether", "bewitchment", "biomancy",
                 "biomemakeover", "biomesoplenty", "blocksplus", "blockus",
-                "byg", "caupona", "ceilands", "charm",
+                "biomeswevegone", "caupona", "ceilands", "charm",
                 "chipped", "cinderscapes", "cobblemon", "colorfulazaleas",
                 "copperoverhaul", "couplings", "create_things_and_misc", "createdeco",
                 "darkerdepths", "deep_aether", "deeperdarker", "desolation",
