@@ -117,11 +117,11 @@ public abstract class EveryCompat {
 
         // Macaw's Addon
         addOtherCompatMod("macawsbridgesbop", "biomesoplenty", List.of("mcwbridges"));
-        addOtherCompatMod("macawbridgesbyg", "byg", List.of("mcwbridges"));
+        addOtherCompatMod("macawbridgesbyg", "biomeswevegone", List.of("mcwbridges"));
         addOtherCompatMod("mcwfencesbop", "biomesoplenty", List.of("mcwfences"));
-        addOtherCompatMod("mcwfencesbyg", "byg", List.of("mcwfences"));
+        addOtherCompatMod("mcwfencesbyg", "biomeswevegone", List.of("mcwfences"));
         addOtherCompatMod("macawsroofsbop", "biomesoplenty", List.of("mcwroofs"));
-        addOtherCompatMod("macawsroofsbyg", "byg", List.of("mcwroofs"));
+        addOtherCompatMod("macawsroofsbyg", "biomeswevegone", List.of("mcwroofs"));
 
         // Abnormals Delight
         addOtherCompatMod("abnormals_delight", List.of("autumnity", "upgrade_aquatic",
