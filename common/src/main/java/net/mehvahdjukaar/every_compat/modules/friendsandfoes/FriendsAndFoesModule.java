@@ -60,7 +60,7 @@ public class FriendsAndFoesModule extends SimpleModule {
     protected final ResourceLocation POI_ID = EveryCompat.res("faf_beehive");
 
     private final Supplier<PoiType> compatBeeHivePOI = RegHelper.registerPOI(POI_ID,
-            () -> new PoiType(getBeehives(), 0, 1));
+            () -> new PoiType(getBeehives(), 1, 1));
 
     private Set<BlockState> getBeehives() {
         var set = new ImmutableSet.Builder<BlockState>();
@@ -72,10 +72,17 @@ public class FriendsAndFoesModule extends SimpleModule {
     public void addDynamicServerResources(ServerDynamicResourcesHandler handler, ResourceManager manager) {
         super.addDynamicServerResources(handler, manager);
 
-        SimpleTagBuilder tb = SimpleTagBuilder.of(PoiTypeTags.BEE_HOME);
+        SimpleTagBuilder bee_home = SimpleTagBuilder.of(PoiTypeTags.BEE_HOME);
         //Bee.BeeGoToHiveGoal
-        tb.add(POI_ID);
+        bee_home.add(POI_ID);
 
-        handler.dynamicPack.addTag(tb, Registries.POINT_OF_INTEREST_TYPE);
+        handler.dynamicPack.addTag(bee_home, Registries.POINT_OF_INTEREST_TYPE);
+
+        SimpleTagBuilder acquirable_job_site = SimpleTagBuilder.of(PoiTypeTags.ACQUIRABLE_JOB_SITE);
+        // Villager.POI_MEMORIES map entry: MemoryModuleType.POTENTIAL_JOB_SITE,
+        //                                  (villager, holder) -> VillagerProfession.ALL_ACQUIRABLE_JOBS.test(holder),
+        acquirable_job_site.add(POI_ID);
+
+        handler.dynamicPack.addTag(acquirable_job_site, Registries.POINT_OF_INTEREST_TYPE);
     }
 }
