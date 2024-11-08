@@ -5,14 +5,10 @@ import net.fabricmc.fabric.api.registry.StrippableBlockRegistry;
 import net.frozenblock.lib.axe.api.AxeBehaviors;
 import net.frozenblock.wilderwild.block.HollowedLogBlock;
 import net.frozenblock.wilderwild.entity.ai.TermiteManager;
-import net.frozenblock.wilderwild.registry.RegisterBlocks;
-import net.frozenblock.wilderwild.tag.WilderBlockTags;
-import net.frozenblock.wilderwild.tag.WilderItemTags;
 import net.mehvahdjukaar.every_compat.EveryCompat;
 import net.mehvahdjukaar.every_compat.api.RenderLayer;
 import net.mehvahdjukaar.every_compat.api.SimpleEntrySet;
 import net.mehvahdjukaar.every_compat.api.SimpleModule;
-import net.mehvahdjukaar.every_compat.common_classes.TagUtility;
 import net.mehvahdjukaar.every_compat.dynamicpack.ServerDynamicResourcesHandler;
 import net.mehvahdjukaar.moonlight.api.resources.RPUtils;
 import net.mehvahdjukaar.moonlight.api.resources.ResType;
@@ -27,14 +23,18 @@ import net.minecraft.tags.BlockTags;
 import net.minecraft.tags.ItemTags;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.CreativeModeTabs;
+import net.minecraft.world.level.block.Block;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
 
 import static net.mehvahdjukaar.every_compat.common_classes.TagUtility.createAndAddCustomTags;
 
 //SUPPORT: v2.4.6+
+//NOTE: using methods to get ID as a string, this support 3.0.0+ without any issues
 public class WilderWildModule extends SimpleModule {
 
     public final SimpleEntrySet<WoodType, HollowedLogBlock> hollow_log;
@@ -45,22 +45,15 @@ public class WilderWildModule extends SimpleModule {
         ResourceKey<CreativeModeTab> tab = CreativeModeTabs.BUILDING_BLOCKS;
 
         hollow_log = SimpleEntrySet.builder(WoodType.class, "log", "hollowed",
-                        () -> RegisterBlocks.HOLLOWED_OAK_LOG, () -> WoodTypeRegistry.OAK_TYPE,
-                        w -> new HollowedLogBlock(Utils.copyPropertySafe(RegisterBlocks.HOLLOWED_OAK_LOG))
+                        getModBlock("hollowed_oak_log", HollowedLogBlock.class), () -> WoodTypeRegistry.OAK_TYPE,
+                        w -> new HollowedLogBlock(Utils.copyPropertySafe(getModBlock("hollowed_oak_log").get()))
                 )
                 .requiresChildren("stripped_log") // Textures
                 .createPaletteFromChild("log")
                 .addTexture(modRes("block/hollowed_oak_log"))
-                .addTexture(modRes("block/hollowed_oak_log_top"))
-                // TEXTURE: using stripped_hollowed_oak_log from below
+                //TEXTURES: stripped_hollowed_log, log_top
                 .setRenderType(RenderLayer.CUTOUT)
                 .setTabKey(tab)
-                .addTag(modRes("hollowed_logs"), Registries.ITEM)
-                .addTag(modRes("hollowed_logs_that_burn"), Registries.ITEM)
-                .addTag(ItemTags.LOGS_THAT_BURN, Registries.ITEM)
-                .addTag(ItemTags.LOGS, Registries.ITEM)
-                .addTag(ItemTags.COMPLETES_FIND_TREE_TUTORIAL, Registries.ITEM)
-                //TAG: wilderwild:hollowed_<type>_logs
                 .addTag(BlockTags.MINEABLE_WITH_AXE, Registries.BLOCK)
                 .addTag(BlockTags.LAVA_POOL_STONE_CANNOT_REPLACE, Registries.BLOCK)
                 .addTag(BlockTags.LOGS_THAT_BURN, Registries.BLOCK)
@@ -69,18 +62,26 @@ public class WilderWildModule extends SimpleModule {
                 .addTag(BlockTags.PARROTS_SPAWNABLE_ON, Registries.BLOCK)
                 .addTag(modRes("hollowed_logs"), Registries.BLOCK)
                 .addTag(modRes("splits_coconut"), Registries.BLOCK)
+                //TAG: wilderwild:hollowed_<type>_logs
+                .addTag(modRes("hollowed_logs"), Registries.ITEM)
+                .addTag(modRes("hollowed_logs_that_burn"), Registries.ITEM)
+                .addTag(ItemTags.LOGS_THAT_BURN, Registries.ITEM)
+                .addTag(ItemTags.LOGS, Registries.ITEM)
+                .addTag(ItemTags.COMPLETES_FIND_TREE_TUTORIAL, Registries.ITEM)
                 .addRecipe(modRes("oak_wood_from_hollowed"))
+                //REASON: The top texture is not a standard 16x16. Take a look, you'll see why
+                .addCondition(w -> !w.getId().toString().matches("terrestria:(yucca_palm|sakura)"))
                 .build();
         this.addEntry(hollow_log);
 
         stripped_hollow_log = SimpleEntrySet.builder(WoodType.class, "log", "stripped_hollowed",
-                        () -> RegisterBlocks.STRIPPED_HOLLOWED_OAK_LOG, () -> WoodTypeRegistry.OAK_TYPE,
-                        w -> new HollowedLogBlock(Utils.copyPropertySafe(RegisterBlocks.STRIPPED_HOLLOWED_OAK_LOG))
+                        getModBlock("stripped_hollowed_oak_log", HollowedLogBlock.class), () -> WoodTypeRegistry.OAK_TYPE,
+                        w -> new HollowedLogBlock(Utils.copyPropertySafe(getModBlock("stripped_hollowed_oak_log").get()))
                 )
                 .requiresChildren("stripped_log") // Textures
                 .createPaletteFromChild("stripped_log")
+                //TEXTURES: stripped_log, stripped_log_top
                 .addTexture(modRes("block/stripped_hollowed_oak_log"))
-                .addTexture(modRes("block/stripped_hollowed_oak_log_top"))
                 .addTexture(modRes("block/stripped_hollowed_oak_log"))
                 .setRenderType(RenderLayer.CUTOUT)
                 .setTabKey(tab)
@@ -90,16 +91,18 @@ public class WilderWildModule extends SimpleModule {
                 .addTag(BlockTags.LOGS, Registries.BLOCK)
                 .addTag(BlockTags.COMPLETES_FIND_TREE_TUTORIAL, Registries.BLOCK)
                 .addTag(BlockTags.PARROTS_SPAWNABLE_ON, Registries.BLOCK)
-                .addTag(WilderBlockTags.HOLLOWED_LOGS, Registries.BLOCK)
-                .addTag(WilderBlockTags.STRIPPED_HOLLOWED_LOGS, Registries.BLOCK)
-                .addTag(WilderBlockTags.SPLITS_COCONUT, Registries.BLOCK)
+                .addTag(modRes("hollowed_logs"), Registries.BLOCK)
+                .addTag(modRes("stripped_hollowed_logs"), Registries.BLOCK)
+                .addTag(modRes("splits_coconut"), Registries.BLOCK)
                 //TAG: wilderwild:hollowed_<type>_logs
-                .addTag(WilderItemTags.HOLLOWED_LOGS, Registries.ITEM)
-                .addTag(WilderItemTags.HOLLOWED_LOGS_THAT_BURN, Registries.ITEM)
+                .addTag(modRes("hollowed_logs"), Registries.ITEM)
+                .addTag(modRes("hollowed_logs_that_burn"), Registries.ITEM)
                 .addTag(ItemTags.LOGS_THAT_BURN, Registries.ITEM)
                 .addTag(ItemTags.LOGS, Registries.ITEM)
                 .addTag(ItemTags.COMPLETES_FIND_TREE_TUTORIAL, Registries.ITEM)
                 .addRecipe(modRes("stripped_oak_wood_from_hollowed"))
+                //REASON: The top texture is not a standard 16x16. Take a look, you'll see why
+                .addCondition(w -> !w.getId().toString().matches("terrestria:(yucca_palm|sakura)"))
                 .build();
         this.addEntry(stripped_hollow_log);
 
@@ -114,16 +117,19 @@ public class WilderWildModule extends SimpleModule {
 
             boolean isStem = Utils.getID(wood.log).toString().contains("stem");
 
-            AxeBehaviors.register(wood.log, (context, level, pos, state, face, horizontal) ->
-                    HollowedLogBlock.hollow(level, pos, state, face, hollow_log.blocks.get(wood), isStem));
+//            AxeBehaviors.register(wood.log, (context, level, pos, state, face, horizontal) ->
+//                    HollowedLogBlock.hollow(level, pos, state, face, hollow_log.blocks.get(wood), isStem));
+//
+//            AxeBehaviors.register(wood.getBlockOfThis("stripped_log"), (context, level, pos, state, face, horizontal) ->
+//                    HollowedLogBlock.hollow(level, pos, state, face, stripped_hollow_log.blocks.get(wood), isStem));
 
-            AxeBehaviors.register(wood.getBlockOfThis("stripped_log"), (context, level, pos, state, face, horizontal) ->
-                    HollowedLogBlock.hollow(level, pos, state, face, stripped_hollow_log.blocks.get(wood), isStem));
-
-            if (!isStem) {
-                TermiteManager.Termite.addDegradable(block, stripped_hollow_log.blocks.get(wood));
+            try {
+                Method axeBehavior = HollowedLogBlock.class.getMethod("registerAxeHollowBehavior", Block.class, Block.class);
+                axeBehavior.invoke(HollowedLogBlock.class, wood.log, hollow_log.blocks.get(wood));
             }
-
+            catch (NoSuchMethodException | IllegalAccessException | InvocationTargetException e) {
+                EveryCompat.LOGGER.error("Failed to use the method: ", e);
+            }
         });
     }
 
