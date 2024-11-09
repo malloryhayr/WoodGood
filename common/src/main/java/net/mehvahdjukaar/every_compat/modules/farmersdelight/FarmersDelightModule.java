@@ -1,6 +1,5 @@
 package net.mehvahdjukaar.every_compat.modules.farmersdelight;
 
-import com.google.common.base.Suppliers;
 import com.google.gson.JsonObject;
 import net.mehvahdjukaar.every_compat.EveryCompat;
 import net.mehvahdjukaar.every_compat.api.SimpleEntrySet;
@@ -14,7 +13,6 @@ import net.mehvahdjukaar.moonlight.api.set.wood.WoodType;
 import net.mehvahdjukaar.moonlight.api.set.wood.WoodTypeRegistry;
 import net.mehvahdjukaar.moonlight.api.util.Utils;
 import net.minecraft.core.registries.Registries;
-import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.packs.resources.ResourceManager;
 import net.minecraft.tags.BlockTags;
@@ -80,7 +78,7 @@ public class FarmersDelightModule extends SimpleModule {
 
                     handler.dynamicPack.addJson(EveryCompat.res(path), recipe, ResType.RECIPES);
                 } catch (IOException e) {
-                    handler.getLogger().error("{Farmer's Delight} Failed to generate recipe via " + e);
+                    handler.getLogger().error("Failed to generate recipe for {} : {}", woodType.getId().toString(), e);
                 }
             }
         }));
