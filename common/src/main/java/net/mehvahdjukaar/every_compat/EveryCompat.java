@@ -4,6 +4,7 @@ package net.mehvahdjukaar.every_compat;
 import it.unimi.dsi.fastutil.objects.Object2ObjectOpenHashMap;
 import net.mehvahdjukaar.every_compat.api.CompatModule;
 import net.mehvahdjukaar.every_compat.api.EveryCompatAPI;
+import net.mehvahdjukaar.every_compat.api.SimpleEntrySet;
 import net.mehvahdjukaar.every_compat.configs.ModConfigs;
 import net.mehvahdjukaar.every_compat.configs.ModEntriesConfigs;
 import net.mehvahdjukaar.every_compat.dynamicpack.ServerDynamicResourcesHandler;
@@ -294,5 +295,15 @@ public abstract class EveryCompat {
         } else {
             forAllModules(m -> m.registerItemsToExistingTabs(event));
         }
+    }
+
+    public static boolean doChildrenExistFor(WoodType w, String ... blockTypes) {
+        for (String type : blockTypes) {
+            if (w.getBlockOfThis(type) == null) return false;
+        }
+        return true;
+    }
+    public static boolean doChildrenExistFor(WoodType w, SimpleEntrySet<WoodType, ?> blockType) {
+        return (blockType.blocks.get(w) != null);
     }
 }
