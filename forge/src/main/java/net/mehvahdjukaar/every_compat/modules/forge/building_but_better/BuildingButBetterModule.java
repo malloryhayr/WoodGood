@@ -29,7 +29,7 @@ import java.util.Objects;
 // IMPORTANT:
 // FABRIC version of this module is already included in the mod.
 
-// The v1.1.1 is only available on
+// The v1.1.1 is only available on Modrinth
 
 //SUPPORT: v1.1.1+
 public class BuildingButBetterModule extends SimpleModule {
@@ -190,7 +190,8 @@ public class BuildingButBetterModule extends SimpleModule {
                         w -> new WoodenLanternBlock(Utils.copyPropertySafe(w.planks).lightLevel((blockStatex) -> 15))
                 )
                 .requiresChildren("slab") //REASON: recipes
-                .addTextureM(modRes("block/lantern/oak"), EveryCompat.res("block/bbb/oak_lantern_m"))
+                .addTexture(modRes("block/lantern/oak"))
+//                .addTextureM(modRes("block/lantern/oak"), EveryCompat.res("block/bbb/oak_lantern_m")) //REASON: the texture is 18x16, mask_texture had to be removed
                 .addTag(BlockTags.MINEABLE_WITH_AXE, Registries.BLOCK)
                 .addTag(modRes("wooden_lanterns"), Registries.BLOCK)
                 .addTag(modRes("wooden_blocks"), Registries.BLOCK)
