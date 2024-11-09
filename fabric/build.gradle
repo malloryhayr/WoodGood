@@ -43,7 +43,7 @@ dependencies {
 
     // ============================================== DEPENDENCIES ================================================== \\
 //    modImplementation("net.mehvahdjukaar:moonlight-fabric:${moonlight_version}") // LOCAL
-    modImplementation("curse.maven:selene-499980:5731104") // v2.13.0
+    modImplementation("curse.maven:selene-499980:5863541") // v2.13.0
 
 
     modCompileOnly("com.tterrag.registrate_fabric:Registrate:${registrate_fabric_version}")
@@ -119,7 +119,7 @@ dependencies {
     modCompileOnly("curse.maven:valhelsia-furniture-694349:5189603")
     modCompileOnly("curse.maven:variant-vanilla-blocks-866509:5150741") //v1.3.8
     modCompileOnly("curse.maven:villagersplus-fabric-809542:4996993")
-    modCompileOnly("maven.modrinth:wilder-wild:2.4-mc1.20.1")
+    modCompileOnly("maven.modrinth:wilder-wild:3.0.7-mc1.20.1")
     modCompileOnly("curse.maven:wooden-hoppers-406021:4796143")
 
     modCompileOnly("curse.maven:regions-unexplored-659110:5151837")

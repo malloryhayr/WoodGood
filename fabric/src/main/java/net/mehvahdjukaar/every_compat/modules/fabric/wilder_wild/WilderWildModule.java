@@ -2,9 +2,7 @@ package net.mehvahdjukaar.every_compat.modules.fabric.wilder_wild;
 
 import com.google.gson.JsonObject;
 import net.fabricmc.fabric.api.registry.StrippableBlockRegistry;
-import net.frozenblock.lib.axe.api.AxeBehaviors;
 import net.frozenblock.wilderwild.block.HollowedLogBlock;
-import net.frozenblock.wilderwild.entity.ai.TermiteManager;
 import net.mehvahdjukaar.every_compat.EveryCompat;
 import net.mehvahdjukaar.every_compat.api.RenderLayer;
 import net.mehvahdjukaar.every_compat.api.SimpleEntrySet;
@@ -23,13 +21,10 @@ import net.minecraft.tags.BlockTags;
 import net.minecraft.tags.ItemTags;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.CreativeModeTabs;
-import net.minecraft.world.level.block.Block;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
-import java.lang.reflect.InvocationTargetException;
-import java.lang.reflect.Method;
 
 import static net.mehvahdjukaar.every_compat.common_classes.TagUtility.createAndAddCustomTags;
 
@@ -115,21 +110,8 @@ public class WilderWildModule extends SimpleModule {
         hollow_log.blocks.forEach((wood, block) -> {
             StrippableBlockRegistry.register(block, stripped_hollow_log.blocks.get(wood));
 
-            boolean isStem = Utils.getID(wood.log).toString().contains("stem");
-
-//            AxeBehaviors.register(wood.log, (context, level, pos, state, face, horizontal) ->
-//                    HollowedLogBlock.hollow(level, pos, state, face, hollow_log.blocks.get(wood), isStem));
-//
-//            AxeBehaviors.register(wood.getBlockOfThis("stripped_log"), (context, level, pos, state, face, horizontal) ->
-//                    HollowedLogBlock.hollow(level, pos, state, face, stripped_hollow_log.blocks.get(wood), isStem));
-
-            try {
-                Method axeBehavior = HollowedLogBlock.class.getMethod("registerAxeHollowBehavior", Block.class, Block.class);
-                axeBehavior.invoke(HollowedLogBlock.class, wood.log, hollow_log.blocks.get(wood));
-            }
-            catch (NoSuchMethodException | IllegalAccessException | InvocationTargetException e) {
-                EveryCompat.LOGGER.error("Failed to use the method: ", e);
-            }
+            HollowedLogBlock.registerAxeHollowBehavior(wood.log, hollow_log.blocks.get(wood));
+            HollowedLogBlock.registerAxeHollowBehavior(wood.getBlockOfThis("stripped_log"), stripped_hollow_log.blocks.get(wood));
         });
     }
 
@@ -139,8 +121,8 @@ public class WilderWildModule extends SimpleModule {
         super.addDynamicServerResources(handler, manager);
 
         hollow_log.blocks.forEach((wood, block) -> {
-                // Variables
-            ResourceLocation recipeLoc = ResType.RECIPES.getPath( "wilderwild:oak_planks_from_hollowed");
+            // Variables
+            ResourceLocation recipeLoc = ResType.RECIPES.getPath("wilderwild:oak_planks_from_hollowed");
             ResourceLocation newRecipeLoc = EveryCompat.res(wood.getTypeName() + "_planks_from_hollowed");
             ResourceLocation tagRLoc = EveryCompat.res(shortenedId() + "/" + wood.getNamespace() + "/" + "hollowed_" +
                     wood.getTypeName() + "_logs");
