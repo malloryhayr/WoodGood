@@ -110,8 +110,7 @@ subprojects {
                         optionalDependency("more-crafting-tables-lieonlion")
                         optionalDependency("quark")
                         optionalDependency("regions-unexplored")
-//                        optionalDependency("the-twilight-forest") //NOT AVAILABLE
-                        optionalDependency("the-twilight-forest-unofficial")
+//                        optionalDependency("the-twilight-forest") //!! NOT AVAILABLE
                         optionalDependency("table-top-craft-fabric")
                         optionalDependency("twigs")
                         optionalDependency("valhelsia-furniture")
