@@ -26,10 +26,10 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 
+import static net.mehvahdjukaar.every_compat.EveryCompat.doChildrenExistFor;
 import static net.mehvahdjukaar.every_compat.common_classes.TagUtility.createAndAddCustomTags;
 
-//SUPPORT: v2.4.6+
-//NOTE: using methods to get ID as a string, this support 3.0.0+ without any issues
+//SUPPORT: v3.0.7+
 public class WilderWildModule extends SimpleModule {
 
     public final SimpleEntrySet<WoodType, HollowedLogBlock> hollow_log;
@@ -108,10 +108,21 @@ public class WilderWildModule extends SimpleModule {
         super.onModSetup();
 
         hollow_log.blocks.forEach((wood, block) -> {
-            StrippableBlockRegistry.register(block, stripped_hollow_log.blocks.get(wood));
+            if (doChildrenExistFor(wood, stripped_hollow_log)) // For stripping the logs
+                StrippableBlockRegistry.register(block, stripped_hollow_log.blocks.get(wood));
 
-            HollowedLogBlock.registerAxeHollowBehavior(wood.log, hollow_log.blocks.get(wood));
-            HollowedLogBlock.registerAxeHollowBehavior(wood.getBlockOfThis("stripped_log"), stripped_hollow_log.blocks.get(wood));
+            boolean isStem = Utils.getID(wood.log).toString().contains("stem");
+            if (isStem) {
+                HollowedLogBlock.registerAxeHollowBehaviorStem(wood.log, hollow_log.blocks.get(wood));
+                if (doChildrenExistFor(wood, "stripped_log"))
+                    HollowedLogBlock.registerAxeHollowBehaviorStem(wood.getBlockOfThis("stripped_log"), stripped_hollow_log.blocks.get(wood));
+            }
+            else {
+                HollowedLogBlock.registerAxeHollowBehavior(wood.log, hollow_log.blocks.get(wood));
+                if (doChildrenExistFor(wood, "stripped_log")) {
+                    HollowedLogBlock.registerAxeHollowBehavior(wood.getBlockOfThis("stripped_log"), stripped_hollow_log.blocks.get(wood));
+                }
+            }
         });
     }
 
