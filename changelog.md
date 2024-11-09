@@ -3,7 +3,7 @@
 - **ZN_CN**: Credited to ChujkYahus & taguima
 - **TEXTURES**: Moved the textures that supports **BYG** to a new folder to support **Biomes We've Gone** - Credited to taguima
 - **Building But Better** (FORGE): Removed lantern blocks' mask_texture blc it is a 18x16 which caused an issue to mip_mapping - [Issue#654](https://github.com/MehVahdJukaar/WoodGood/issues/654)
-- 
+
 
 ---
 
