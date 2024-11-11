@@ -9,7 +9,7 @@ body:
         BUG
 
   - type: checkboxes
-    id: pre-report-bug
+    id: pre-conditions
     attributes:
       label: "Before Continuing:"
       options:
@@ -23,29 +23,21 @@ body:
           required: true
 
   - type: dropdown
-    id: version
+    id: version-loader
     attributes:
-      label: Version
-      description: The Version of Minecraft?
+      label: Version - Loader
+      description: "What's the Minecraft version & loader"
       options:
-        - 1.21.1
-        - 1.21
-        - 1.20.1
-        - 1.19.2
-        - 1.18.2 
-      default: 0
-    validations:
-      required: true
-
-  - type: dropdown
-    id: loader
-    attributes:
-      label: Loader
-      description: "Which loader are you using?"
-      options:
-        - Neoforge
-        - Forge
-        - Fabric 
+        - Ensure the selected one is correct
+        - 1.21.1 - FABRIC
+        - 1.21.0 - FABRIC
+        - 1.20.1 - FABRIC
+        - 1.19.2 - FABRIC
+        - 1.21.1 - NEOFORGE
+        - 1.21.0 - NEOFORGE
+        - 1.20.1 - FORGE
+        - 1.19.2 - FORGE
+        - 1.18.2
       default: 0
     validations:
       required: true
