@@ -29,12 +29,10 @@ body:
       description: "What's the Minecraft version & loader"
       options:
         - Ensure the selected one is correct
-        - 1.21.1 - FABRIC
-        - 1.21.0 - FABRIC
+        - 1.21.X - FABRIC
         - 1.20.1 - FABRIC
         - 1.19.2 - FABRIC
-        - 1.21.1 - NEOFORGE
-        - 1.21.0 - NEOFORGE
+        - 1.21.X - NEOFORGE
         - 1.20.1 - FORGE
         - 1.19.2 - FORGE
         - 1.18.2
