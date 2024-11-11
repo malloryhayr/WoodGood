@@ -16,3 +16,4 @@ jobs:
           repo-token: ${{ secrets.AUTO_LABEL }}
           ignore-comments: true
           configuration-file: .github/workflows/issue_label.json5
+          labels-not-allowed: true
