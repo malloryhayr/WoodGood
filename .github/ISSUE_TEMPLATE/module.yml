@@ -40,9 +40,9 @@ body:
       label: FABRIC Version Availability
       description: "Multiple Selection: which version is the mod available in FABRIC?"
       options:
-        - label: 1.18.2
         - label: 1.19.2
         - label: 1.20.1
+        - label: 1.21.X
     validations:
       required: false
 
@@ -52,9 +52,9 @@ body:
       label: FORGE Version Availability
       description: "Multiple Selection: which version is the mod available in FORGE?"
       options:
-        - label: 1.18.2
         - label: 1.19.2
         - label: 1.20.1
+        - label: 1.21.X
     validations:
       required: false
 
