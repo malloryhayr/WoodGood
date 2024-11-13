@@ -9,11 +9,15 @@ body:
         MOD SUGGESTION
 
   - type: checkboxes
-    id: pre-report-bug
+    id: code-of-conduct
     attributes:
-      label: "Before Continuing:"
+      label: "Code Of Conduct"
       options:
         - label: "See [EC Backlog](https://github.com/users/MehVahdJukaar/projects/1/views/1) if someone already suggested a mod that you are going to suggest."
+          required: true
+        - label: "The mod MUST contain variant WoodType: OAK or other vanilla WoodTypes for ITEM or BLOCK"
+          required: true
+        - label: "The mod MUST contain variant StoneType: STONE or other vanilla StoneTypes for ITEM or BLOCK"
           required: true
 
   - type: input
@@ -33,6 +37,20 @@ body:
       placeholder: ex. https://www.curseforge.com/minecraft/mc-mods/giacomos-bookshelf
     validations:
       required: false
+
+  - type: dropdown
+    id: content-type
+    attributes:
+      label: Content Type: StoneType or WoodType
+      description: "What are the content added by the mod"
+      options:
+        - Ensure the selected one is correct
+        - WoodType
+        - StoneType
+        - Both
+      default: 0
+    validations:
+      required: true
 
   - type: checkboxes
     id: version-loader-availability
