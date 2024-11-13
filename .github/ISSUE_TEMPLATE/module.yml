@@ -42,7 +42,7 @@ body:
     id: content-type
     attributes:
       label: "Content Type: StoneType or WoodType"
-      description: "What are the content added by the mod"
+      description: "What are the contents added by the mod?"
       options:
         - Ensure the selected one is correct
         - WoodType
