@@ -35,26 +35,17 @@ body:
       required: false
 
   - type: checkboxes
-    id: fabric-version-availability
+    id: version-loader-availability
     attributes:
-      label: FABRIC Version Availability
-      description: "Multiple Selection: which version is the mod available in FABRIC?"
+      label: Version Loader Availability
+      description: "Multiple Selection: which version & loader is the mod available in?"
       options:
-        - label: 1.19.2
-        - label: 1.20.1
-        - label: 1.21.X
-    validations:
-      required: false
-
-  - type: checkboxes
-    id: forge-version-availability
-    attributes:
-      label: FORGE Version Availability
-      description: "Multiple Selection: which version is the mod available in FORGE?"
-      options:
-        - label: 1.19.2
-        - label: 1.20.1
-        - label: 1.21.X
+        - label: "1.19.2 - FABRIC"
+        - label: "1.20.1 - FABRIC"
+        - label: "1.21.X - FABRIC"
+        - label: "1.19.2 - FORGE"
+        - label: "1.20.1 - FORGE"
+        - label: "1.21.X - NEOFORGE"
     validations:
       required: false
 
