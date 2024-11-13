@@ -40,12 +40,12 @@ body:
       label: Version Loader Availability
       description: "Multiple Selection: which version & loader is the mod available in?"
       options:
-        - label: "1.19.2 - FABRIC"
-        - label: "1.20.1 - FABRIC"
-        - label: "1.21.X - FABRIC"
-        - label: "1.19.2 - FORGE"
-        - label: "1.20.1 - FORGE"
-        - label: "1.21.X - NEOFORGE"
+        - label: "1.19.2 | FABRIC"
+        - label: "1.20.1 | FABRIC"
+        - label: "1.21.X | FABRIC"
+        - label: "1.19.2 | FORGE"
+        - label: "1.20.1 | FORGE"
+        - label: "1.21.X | NEOFORGE"
     validations:
       required: false
 
