@@ -8,12 +8,21 @@ body:
       value: |
         Module Enhancement
 
-  - type: input
-    id: mcVersion
+  - type: dropdown
+    id: version-loader
     attributes:
-      label: Minecraft Version
-      description: "Which Minecraft Version are you on?"
-      placeholder: ex. 1.20.1
+      label: Version - Loader
+      description: "What's the Minecraft version & loader"
+      options:
+        - Ensure the selected one is correct
+        - 1.21.X - FABRIC
+        - 1.20.1 - FABRIC
+        - 1.19.2 - FABRIC
+        - 1.21.X - NEOFORGE
+        - 1.20.1 - FORGE
+        - 1.19.2 - FORGE
+        - 1.18.2
+      default: 0
     validations:
       required: true
 
