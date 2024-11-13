@@ -41,7 +41,7 @@ body:
   - type: dropdown
     id: content-type
     attributes:
-      label: Content Type: StoneType or WoodType
+      label: "Content Type: StoneType or WoodType"
       description: "What are the content added by the mod"
       options:
         - Ensure the selected one is correct
