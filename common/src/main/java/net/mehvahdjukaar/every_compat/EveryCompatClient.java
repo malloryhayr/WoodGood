@@ -13,6 +13,7 @@ import net.minecraft.ChatFormatting;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.Style;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.TooltipFlag;
@@ -83,7 +84,10 @@ public class EveryCompatClient {
         }
     }
 
-    public static <B extends Block> void registerRenderType(B b, Object type) {
+    public static <B extends Block> void registerRenderType(B b, BlockType bt, Object type) {
+        if(bt.id.equals(ResourceLocation.tryParse("rats:pirat"))){
+            type = RenderLayer.TRANSLUCENT;
+        }
         if (type == null) return;
         if (type instanceof RenderLayer rl) {
             switch (rl) {
