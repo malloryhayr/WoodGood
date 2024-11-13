@@ -1,11 +1,7 @@
 ### UPDATED:
-- **Wilder Wild** (FABRIC): Fixed the crash related to [Issue#664](https://github.com/MehVahdJukaar/WoodGood/issues/664)
-- **ZN_CN**: Credited to ChujkYahus & taguima
-- **TEXTURES**: Moved the textures that supports **BYG** to a new folder to support **Biomes We've Gone** - Credited to taguima
-- **Building But Better** (FORGE): Removed lantern blocks' mask_texture blc it is a 18x16 which caused an issue to mip_mapping - [Issue#654](https://github.com/MehVahdJukaar/WoodGood/issues/654)
-- **Friends And Foes** (COMMON): Fixed Beehives not getting recognized by villagers - Credited to _VoidLeech_
-- **NOTE** (COMMON): Corrected the version of mod to v2.6.88
-
+- **Storage Drawers** (FORGE): Add 3 tags to blocks related to [Issue#655](https://github.com/MehVahdJukaar/WoodGood/issues/665) - Credited to _22858_
+- **ENHANCEMENT** (FORGE): Fixed the textures of generated blocks from **EveryCompat** to have the same RenderType as _pirat_ from **Rats mod**
+  - NOTE: the _pirat_ log and planks are half-translucent. 
 
 ---
 
