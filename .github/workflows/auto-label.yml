@@ -19,4 +19,3 @@ jobs:
           configuration-file: .github/workflows/auto-label.json5
           repo-token: ${{ secrets.GITHUB_TOKEN }}
           ignore-comments: false
-          labels-synonyms: false
