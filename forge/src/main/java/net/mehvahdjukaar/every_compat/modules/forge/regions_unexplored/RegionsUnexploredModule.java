@@ -51,6 +51,8 @@ import java.util.Map;
 import java.util.Objects;
 import java.util.function.Function;
 
+import static net.mehvahdjukaar.every_compat.common_classes.TagUtility.createAndAddCustomTags;
+
 // SUPPORT: v0.5.5+
 public class RegionsUnexploredModule extends SimpleModule {
     public final SimpleEntrySet<WoodType, Block> branchs;
@@ -125,6 +127,21 @@ public class RegionsUnexploredModule extends SimpleModule {
     @Override
     public void onModSetup() {
         branchs.blocks.forEach((woodType, block) -> ComposterBlock.COMPOSTABLES.put(block, 0.3F));
+    }
+
+    @Override
+    // Tags
+    public void addDynamicServerResources(ServerDynamicResourcesHandler handler, ResourceManager manager) {
+        super.addDynamicServerResources(handler, manager);
+
+        for (WoodType woodType : WoodTypeRegistry.getTypes()) {
+            if (woodType.isVanilla() || woodType.getNamespace().equals("regions_unexplored")) continue;
+
+            //Tagging the planks as ingredient to get painted_planks
+            createAndAddCustomTags(new ResourceLocation("planks"), handler, woodType.planks);
+            createAndAddCustomTags(new ResourceLocation("forge:planks"), handler, woodType.planks);
+        }
+
     }
 
     @Override

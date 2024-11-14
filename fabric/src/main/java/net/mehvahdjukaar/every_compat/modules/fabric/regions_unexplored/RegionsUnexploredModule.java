@@ -36,6 +36,8 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.Map;
 
+import static net.mehvahdjukaar.every_compat.common_classes.TagUtility.createAndAddCustomTags;
+
 // SUPPORT: v0.5.5+
 public class RegionsUnexploredModule extends SimpleModule {
     public final SimpleEntrySet<WoodType, Block> branchs;
@@ -117,6 +119,10 @@ public class RegionsUnexploredModule extends SimpleModule {
             SimpleTagBuilder tagBuilder = SimpleTagBuilder.of(modRes("branches_can_survive_on"));
             tagBuilder.add(Utils.getID(wood.log));
             handler.dynamicPack.addTag(tagBuilder, Registries.BLOCK);
+
+            //Tagging the planks as ingredient to get painted_planks
+            createAndAddCustomTags(new ResourceLocation("planks"), handler, wood.planks);
+            createAndAddCustomTags(new ResourceLocation("c:planks"), handler, wood.planks);
         });
     }
 
