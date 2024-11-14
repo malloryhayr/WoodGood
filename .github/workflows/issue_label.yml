@@ -19,4 +19,4 @@ jobs:
           repo-token: ${{ secrets.GITHUB_TOKEN }}
           ignore-comments: false
           labels-synonyms: false
-          configuration-file: false
+          configurationPath: false
