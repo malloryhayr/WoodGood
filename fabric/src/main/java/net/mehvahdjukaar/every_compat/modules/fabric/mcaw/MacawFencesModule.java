@@ -42,7 +42,9 @@ public class MacawFencesModule extends SimpleModule {
         picketFences = SimpleEntrySet.builder(WoodType.class, "picket_fence",
                         () -> BlockInit.OAK_PICKET_FENCE, () -> WoodTypeRegistry.OAK_TYPE,
                         w -> new FenceBlock(Utils.copyPropertySafe(w.planks)
-                                .strength(1.4F, 2.0F).noOcclusion()))
+                                .strength(1.4F, 2.0F).noOcclusion())
+                )
+                //TEXTURES: logs, planks
                 .addTag(BlockTags.MINEABLE_WITH_AXE, Registries.BLOCK)
                 .addTag(BlockTags.FENCES, Registries.BLOCK)
                 .addTag(BlockTags.FENCES, Registries.ITEM)
@@ -54,7 +56,9 @@ public class MacawFencesModule extends SimpleModule {
         stockadeFences = SimpleEntrySet.builder(WoodType.class, "stockade_fence",
                         () -> BlockInit.OAK_STOCKADE_FENCE, () -> WoodTypeRegistry.OAK_TYPE,
                         w -> new FenceBlock(Utils.copyPropertySafe(w.planks)
-                                .strength(1.4F, 2.0F).noOcclusion()))
+                                .strength(1.4F, 2.0F).noOcclusion())
+                )
+                //TEXTURES: logs, planks
                 .addTag(BlockTags.MINEABLE_WITH_AXE, Registries.BLOCK)
                 .addTag(BlockTags.FENCES, Registries.BLOCK)
                 .addTag(BlockTags.FENCES, Registries.ITEM)
@@ -66,7 +70,9 @@ public class MacawFencesModule extends SimpleModule {
         horseFences = SimpleEntrySet.builder(WoodType.class, "horse_fence",
                         () -> BlockInit.OAK_HORSE_FENCE, () -> WoodTypeRegistry.OAK_TYPE,
                         w -> new FenceBlock(Utils.copyPropertySafe(w.planks)
-                                .strength(1.4F, 2.0F).noOcclusion()))
+                                .strength(1.4F, 2.0F).noOcclusion())
+                )
+                //TEXTURES: logs
                 .addTag(BlockTags.MINEABLE_WITH_AXE, Registries.BLOCK)
                 .addTag(BlockTags.FENCES, Registries.BLOCK)
                 .addTag(BlockTags.FENCES, Registries.ITEM)
@@ -78,7 +84,9 @@ public class MacawFencesModule extends SimpleModule {
         wiredFences = SimpleEntrySet.builder(WoodType.class, "wired_fence",
                         () -> BlockInit.OAK_WIRED_FENCE, () -> WoodTypeRegistry.OAK_TYPE,
                         w -> new WiredFence(Utils.copyPropertySafe(w.planks)
-                                .strength(1.5F, 2.5F).noOcclusion()))
+                                .strength(1.5F, 2.5F).noOcclusion())
+                )
+                //TEXTURES: logs
                 .addTag(BlockTags.MINEABLE_WITH_AXE, Registries.BLOCK)
                 .addTag(BlockTags.FENCES, Registries.BLOCK)
                 .addTag(BlockTags.FENCES, Registries.ITEM)
@@ -88,11 +96,12 @@ public class MacawFencesModule extends SimpleModule {
                 .build();
         this.addEntry(wiredFences);
 
-
         pyramidGates = SimpleEntrySet.builder(WoodType.class, "pyramid_gate",
                         () -> BlockInit.OAK_PYRAMID_GATE, () -> WoodTypeRegistry.OAK_TYPE,
                         w -> new FenceGateBlock(Utils.copyPropertySafe(w.planks)
-                                .strength(1.4F, 2.0F).noOcclusion(), w.toVanillaOrOak()))
+                                .strength(1.4F, 2.0F).noOcclusion(), w.toVanillaOrOak())
+                )
+                //TEXTURES: logs, planks
                 .addTag(BlockTags.FENCE_GATES, Registries.BLOCK)
                 .addTag(BlockTags.UNSTABLE_BOTTOM_CENTER, Registries.BLOCK)
                 .setTabKey(tab)
@@ -103,7 +112,9 @@ public class MacawFencesModule extends SimpleModule {
         highleyGates = SimpleEntrySet.builder(WoodType.class, "highley_gate",
                         () -> BlockInit.OAK_HIGHLEY_GATE, () -> WoodTypeRegistry.OAK_TYPE,
                         w -> new FenceGateBlock(Utils.copyPropertySafe(w.planks)
-                                .strength(1.4F, 2.0F).noOcclusion(), w.toVanillaOrOak()))
+                                .strength(1.4F, 2.0F).noOcclusion(), w.toVanillaOrOak())
+                )
+                //TEXTURES: logs
                 .addTag(BlockTags.FENCE_GATES, Registries.BLOCK)
                 .addTag(BlockTags.UNSTABLE_BOTTOM_CENTER, Registries.BLOCK)
                 .addTag(BlockTags.MINEABLE_WITH_AXE, Registries.BLOCK)
@@ -121,6 +132,7 @@ public class MacawFencesModule extends SimpleModule {
                                     .strength(0.2F, 0.3F).noOcclusion()
                                     .mapColor(l.leaves.defaultMapColor()));
                         })
+                //TEXTURES: leaves
                 .requiresChildren("leaves") // Reason: Recipes
                 .addTag(BlockTags.MINEABLE_WITH_HOE, Registries.BLOCK)
                 .addTag(BlockTags.FENCES, Registries.BLOCK)
@@ -138,6 +150,10 @@ public class MacawFencesModule extends SimpleModule {
                     String namespace = l.getNamespace();
                     String typeName = l.getTypeName();
                     switch (namespace) {
+                        case "betterend" -> {
+                            if (typeName.equals("lucernia"))
+                                return LeavesPath("lucernia_leaves_1", "", s, l);
+                        }
                         case "culturaldelights" -> {
                             if (typeName.equals("fruiting_avocado"))
                                 return LeavesPath("fruiting_avocado_leaves_0", "", s, l);
