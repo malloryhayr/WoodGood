@@ -2,12 +2,14 @@ package net.mehvahdjukaar.every_compat.modules.fabric.bewitchment;
 
 import com.google.gson.JsonObject;
 import moriyashiine.bewitchment.api.block.PoppetShelfBlock;
+import moriyashiine.bewitchment.common.Bewitchment;
 import moriyashiine.bewitchment.common.registry.BWBlockEntityTypes;
 import moriyashiine.bewitchment.common.registry.BWObjects;
 import moriyashiine.bewitchment.common.registry.BWTags;
 import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
 import net.mehvahdjukaar.every_compat.EveryCompat;
 import net.mehvahdjukaar.every_compat.api.ItemOnlyEntrySet;
+import net.mehvahdjukaar.every_compat.api.RenderLayer;
 import net.mehvahdjukaar.every_compat.api.SimpleEntrySet;
 import net.mehvahdjukaar.every_compat.api.SimpleModule;
 import net.mehvahdjukaar.every_compat.dynamicpack.ServerDynamicResourcesHandler;
@@ -18,6 +20,7 @@ import net.mehvahdjukaar.moonlight.api.set.wood.WoodType;
 import net.mehvahdjukaar.moonlight.api.set.wood.WoodTypeRegistry;
 import net.mehvahdjukaar.moonlight.api.util.Utils;
 import net.minecraft.core.registries.Registries;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.packs.resources.ResourceManager;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.world.item.Item;
@@ -36,16 +39,20 @@ public class BewitchmentModule extends SimpleModule {
 
     public BewitchmentModule(String modId) {
         super(modId, "bw");
+        ResourceLocation tab = modRes(Bewitchment.MOD_ID);
 
         poppet_shelf = SimpleEntrySet.builder(WoodType.class, "poppet_shelf",
                         getModBlock("oak_poppet_shelf"), () -> WoodTypeRegistry.OAK_TYPE,
                         w -> new PoppetShelfBlock(FabricBlockSettings.copyOf(w.planks)
-                                .pistonBehavior(PushReaction.BLOCK))
+                                .pistonBehavior(PushReaction.BLOCK)
+                                .nonOpaque()
+                        )
                 )
                 .requiresChildren("slab") // Recipes
                 .addTile(() -> BWBlockEntityTypes.POPPET_SHELF)
                 .addTag(BlockTags.MINEABLE_WITH_AXE, Registries.BLOCK)
                 .defaultRecipe()
+                .setTabKey(tab)
                 .build();
         this.addEntry(poppet_shelf);
 
@@ -57,6 +64,7 @@ public class BewitchmentModule extends SimpleModule {
                 .createPaletteFromChild("log", SpriteHelper.LOOKS_LIKE_SIDE_LOG_TEXTURE)
                 .addTexture(modRes("item/oak_bark"))
                 .addTag(BWTags.BARKS, Registries.ITEM)
+                .setTabKey(tab)
                 .build();
         this.addEntry(bark);
 
