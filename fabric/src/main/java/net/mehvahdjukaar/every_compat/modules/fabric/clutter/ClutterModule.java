@@ -68,7 +68,7 @@ public class ClutterModule extends SimpleModule {
                         )
                 )
                 .addTile(() -> ModBlockEntities.WALL_BOOKSHELF)
-                //TEXTURE: Using planks
+                //TEXTURES: Using planks
                 .addTag(ModBlockTags.FLAMMABLE, Registries.BLOCK)
                 .addTag(ModBlockTags.BOOKSHELVES, Registries.BLOCK)
                 .addTag(BlockTags.ENCHANTMENT_POWER_PROVIDER, Registries.BLOCK)
@@ -84,7 +84,7 @@ public class ClutterModule extends SimpleModule {
                         w -> new WindowSillBlock(Utils.copyPropertySafe(w.planks))
                 )
                 .setRenderType(RenderLayer.CUTOUT)
-                //TEXTURE: Using planks
+                //TEXTURES: Using planks
                 .addTag(ModBlockTags.FLAMMABLE, Registries.BLOCK)
                 .addTag(ModBlockTags.WINDOW_SILLS, Registries.BLOCK)
                 .addTag(BlockTags.MINEABLE_WITH_AXE, Registries.BLOCK)
@@ -97,16 +97,15 @@ public class ClutterModule extends SimpleModule {
                         getModBlock("oak_table"), () -> WoodTypeRegistry.OAK_TYPE,
                         w -> new CompatTableBlock(Utils.copyPropertySafe(w.planks))
                 )
-                //TEXTURE: Using log & planks
+                //TEXTURES: Using log & planks
                 .addTag(ModBlockTags.FLAMMABLE, Registries.BLOCK)
                 .addTag(ModBlockTags.TABLES, Registries.BLOCK)
                 .addTag(ModBlockTags.STRIPPABLE_TABLES, Registries.BLOCK)
                 .addTag(BlockTags.MINEABLE_WITH_AXE, Registries.BLOCK)
                 .setTabKey(tab)
                 .defaultRecipe()
-                //REASON: Take a look @ terrestria's logs|stripped_logs' non-standard 16x16 texture, you'll get why
-                //EXCLUDED: sakura & yucca_palm
-                .addCondition(w -> !w.getId().toString().matches("terrestria:(sakura|yucca_palm)"))
+                //REASON: Take a look at their //TEXTURES, you'll see why. Excluded!
+                .addCondition(w -> !w.getId().toString().matches("terrestria:(sakura|yucca_palm)|betternether:(nether_mushroom|nether_reed)"))
                 .build();
         this.addEntry(tables);
 
@@ -115,15 +114,14 @@ public class ClutterModule extends SimpleModule {
                         w -> new CompatTableBlock(Utils.copyPropertySafe(w.planks))
                 )
                 .requiresChildren("stripped_log") //REASON: recipes & textures
-                //TEXTURE: Using stripped_log & planks
+                //TEXTURES: Using stripped_log & planks
                 .addTag(ModBlockTags.FLAMMABLE, Registries.BLOCK)
                 .addTag(ModBlockTags.TABLES, Registries.BLOCK)
                 .addTag(BlockTags.MINEABLE_WITH_AXE, Registries.BLOCK)
                 .setTabKey(tab)
                 .defaultRecipe()
-                //REASON: Take a look @ terrestria's logs|stripped_logs' non-standard 16x16 texture, you'll get why
-                //EXCLUDED: sakura & yucca_palm
-                .addCondition(w -> !w.getId().toString().matches("terrestria:(sakura|yucca_palm)"))
+                //REASON: Take a look at their //TEXTURES, you'll see why. Excluded!
+                .addCondition(w -> !w.getId().toString().matches("terrestria:(sakura|yucca_palm)|betternether:(nether_mushroom|nether_reed)"))
                 .build();
         this.addEntry(stripped_tables);
 
@@ -132,16 +130,15 @@ public class ClutterModule extends SimpleModule {
                         getModBlock("oak_chair"), () -> WoodTypeRegistry.OAK_TYPE,
                         w -> new CompatChairBlock(Utils.copyPropertySafe(w.planks))
                 )
-                //TEXTURE: Using log & planks
+                //TEXTURES: Using log & planks
                 .addTag(ModBlockTags.FLAMMABLE, Registries.BLOCK)
                 .addTag(ModBlockTags.STRIPPABLE_CHAIRS, Registries.BLOCK)
                 .addTag(ModBlockTags.WOODEN_CHAIRS, Registries.BLOCK)
                 .addTag(BlockTags.MINEABLE_WITH_AXE, Registries.BLOCK)
                 .setTabKey(tab)
                 .defaultRecipe()
-                //REASON: Take a look @ terrestria's logs|stripped_logs' non-standard 16x16 texture, you'll get why
-                //EXCLUDED: sakura & yucca_palm
-                .addCondition(w -> !w.getId().toString().matches("terrestria:(sakura|yucca_palm)"))
+                //REASON: Take a look at their //TEXTURES, you'll see why. Excluded!
+                .addCondition(w -> !w.getId().toString().matches("terrestria:(sakura|yucca_palm)|betternether:(nether_mushroom|nether_reed)"))
                 .build();
         this.addEntry(chairs);
 
@@ -150,15 +147,14 @@ public class ClutterModule extends SimpleModule {
                         w -> new CompatChairBlock(Utils.copyPropertySafe(w.planks))
                 )
                 .requiresChildren("stripped_log") //REASON: recipes & textures
-                //TEXTURE: Using stripped_log & planks
+                //TEXTURES: Using stripped_log & planks
                 .addTag(ModBlockTags.FLAMMABLE, Registries.BLOCK)
                 .addTag(ModBlockTags.WOODEN_CHAIRS, Registries.BLOCK)
                 .addTag(BlockTags.MINEABLE_WITH_AXE, Registries.BLOCK)
                 .setTabKey(tab)
                 .defaultRecipe()
-                //REASON: Take a look @ terrestria's logs|stripped_logs' non-standard 16x16 texture, you'll get why
-                //EXCLUDED: sakura & yucca_palm
-                .addCondition(w -> !w.getId().toString().matches("terrestria:(sakura|yucca_palm)"))
+                //REASON: Take a look at their //TEXTURES, you'll see why. Excluded!
+                .addCondition(w -> !w.getId().toString().matches("terrestria:(sakura|yucca_palm)|betternether:(nether_mushroom|nether_reed)"))
                 .build();
         this.addEntry(stripped_chairs);
 
@@ -168,7 +164,7 @@ public class ClutterModule extends SimpleModule {
                         w -> new CupboardBlock(FabricBlockSettings.copyOf(w.planks).nonOpaque())
                 )
                 .addTile(() -> ModBlockEntities.CUPBOARD)
-                //TEXTURE: Using planks
+                //TEXTURES: Using planks
                 .addTag(ModBlockTags.FLAMMABLE, Registries.BLOCK)
                 .addTag(ModBlockTags.CUPBOARDS, Registries.BLOCK)
                 .addTag(BlockTags.MINEABLE_WITH_AXE, Registries.BLOCK)
@@ -184,7 +180,7 @@ public class ClutterModule extends SimpleModule {
                         w -> new WallCupboardBlock(FabricBlockSettings.copyOf(w.planks).nonOpaque())
                 )
                 .addTile(() -> ModBlockEntities.WALL_CUPBOARD)
-                //TEXTURE: using cupboards' above
+                //TEXTURES: using cupboards' above
                 .addTag(ModBlockTags.FLAMMABLE, Registries.BLOCK)
                 .addTag(ModBlockTags.CUPBOARDS, Registries.BLOCK)
                 .addTag(BlockTags.MINEABLE_WITH_AXE, Registries.BLOCK)
@@ -198,13 +194,12 @@ public class ClutterModule extends SimpleModule {
                         w -> new ShelfBlock(FabricBlockSettings.copyOf(w.planks).nonOpaque())
                 )
                 .addTile(() -> ModBlockEntities.SHELF)
-                //TEXTURE: Using log & planks
+                //TEXTURES: Using log & planks
                 .addTag(ModBlockTags.SHELVES, Registries.BLOCK)
                 .addTag(BlockTags.MINEABLE_WITH_AXE, Registries.BLOCK)
                 .setTabKey(tab)
                 .defaultRecipe()
-                //REASON: Take a look @ terrestria's logs|stripped_logs' non-standard 16x16 texture, you'll get why
-                //EXCLUDED: sakura & yucca_palm
+                //REASON: Take a look at their //TEXTURES, you'll see why. Excluded!
                 .addCondition(w -> !w.getId().toString().matches("terrestria:(sakura|yucca_palm)"))
                 .build();
         this.addEntry(shelves);
@@ -215,7 +210,7 @@ public class ClutterModule extends SimpleModule {
                                 .luminance(TrellisBlock.createLightLevelFromLitBlockState()))
                 )
                 .setRenderType(RenderLayer.CUTOUT_MIPPED)
-                //TEXTURE: Using log
+                //TEXTURES: Using log
                 .addTag(ModBlockTags.FLAMMABLE, Registries.BLOCK)
                 .addTag(ModBlockTags.TRELLISES, Registries.BLOCK)
                 .addTag(BlockTags.MINEABLE_WITH_AXE, Registries.BLOCK)
@@ -230,15 +225,14 @@ public class ClutterModule extends SimpleModule {
                         getModBlock("oak_bench"), () -> WoodTypeRegistry.OAK_TYPE,
                         w -> new CompatBenchBlock(Utils.copyPropertySafe(w.planks))
                 )
-                //TEXTURE: Using log & planks
+                //TEXTURES: Using log & planks
                 .addTag(ModBlockTags.FLAMMABLE, Registries.BLOCK)
                 .addTag(ModBlockTags.BENCHES, Registries.BLOCK)
                 .addTag(ModBlockTags.STRIPPABLE_BENCHES, Registries.BLOCK)
                 .addTag(BlockTags.MINEABLE_WITH_AXE, Registries.BLOCK)
                 .setTabKey(tab)
                 .defaultRecipe()
-                //REASON: Take a look @ terrestria's logs|stripped_logs' non-standard 16x16 texture, you'll get why
-                //EXCLUDED: sakura & yucca_palm
+                //REASON: Take a look at their //TEXTURES, you'll see why. Excluded!
                 .addCondition(w -> !w.getId().toString().matches("terrestria:(sakura|yucca_palm)"))
                 .build();
         this.addEntry(benches);
@@ -248,14 +242,13 @@ public class ClutterModule extends SimpleModule {
                         w -> new CompatBenchBlock(Utils.copyPropertySafe(w.planks))
                 )
                 .requiresChildren("stripped_log") //REASON: recipes & textures
-                //TEXTURE: Using stripped_log & planks
+                //TEXTURES: Using stripped_log & planks
                 .addTag(ModBlockTags.FLAMMABLE, Registries.BLOCK)
                 .addTag(ModBlockTags.BENCHES, Registries.BLOCK)
                 .addTag(BlockTags.MINEABLE_WITH_AXE, Registries.BLOCK)
                 .setTabKey(tab)
                 .defaultRecipe()
-                //REASON: Take a look @ terrestria's logs|stripped_logs' non-standard 16x16 texture, you'll get why
-                //EXCLUDED: sakura & yucca_palm
+                //REASON: Take a look at their //TEXTURES, you'll see why. Excluded!
                 .addCondition(w -> !w.getId().toString().matches("terrestria:(sakura|yucca_palm)"))
                 .build();
         this.addEntry(stripped_benches);
@@ -279,7 +272,7 @@ public class ClutterModule extends SimpleModule {
                                 Utils.copyPropertySafe(w.planks))
                 )
                 .setRenderType(RenderLayer.CUTOUT)
-                //TEXTURE: using mosaic_planks' above
+                //TEXTURES: using mosaic_planks' above
                 .addTag(ModBlockTags.FLAMMABLE, Registries.BLOCK)
                 .addTag(ModBlockTags.WOODEN_MOSAICS, Registries.BLOCK)
                 .addTag(BlockTags.MINEABLE_WITH_AXE, Registries.BLOCK)
@@ -294,7 +287,7 @@ public class ClutterModule extends SimpleModule {
                         w -> new SlabBlock(copySlabs(w))
                 )
                 .setRenderType(RenderLayer.CUTOUT)
-                //TEXTURE: using mosaic_planks' above
+                //TEXTURES: using mosaic_planks' above
                 .addTag(ModBlockTags.FLAMMABLE, Registries.BLOCK)
                 .addTag(ModBlockTags.WOODEN_MOSAICS, Registries.BLOCK)
                 .addTag(BlockTags.MINEABLE_WITH_AXE, Registries.BLOCK)
