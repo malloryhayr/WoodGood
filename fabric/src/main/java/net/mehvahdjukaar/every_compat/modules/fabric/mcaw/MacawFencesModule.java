@@ -50,6 +50,8 @@ public class MacawFencesModule extends SimpleModule {
                 .addTag(BlockTags.FENCES, Registries.ITEM)
                 .setTabKey(tab)
                 .defaultRecipe()
+                //REASON: take a look at their //TEXTURES, you'll see why. Excluded!
+                .addCondition(w -> !w.getId().toString().matches("terrestria:(sakura|yucca_palm)|betternether:(nether_mushroom|nether_reed)"))
                 .build();
         this.addEntry(picketFences);
 
@@ -64,6 +66,8 @@ public class MacawFencesModule extends SimpleModule {
                 .addTag(BlockTags.FENCES, Registries.ITEM)
                 .setTabKey(tab)
                 .defaultRecipe()
+                //REASON: take a look at their //TEXTURES, you'll see why. Excluded!
+                .addCondition(w -> !w.getId().toString().matches("terrestria:(sakura|yucca_palm)|betternether:(nether_mushroom|nether_reed)"))
                 .build();
         this.addEntry(stockadeFences);
 
@@ -78,6 +82,8 @@ public class MacawFencesModule extends SimpleModule {
                 .addTag(BlockTags.FENCES, Registries.ITEM)
                 .setTabKey(tab)
                 .defaultRecipe()
+                //REASON: take a look at their //TEXTURES, you'll see why. Excluded!
+                .addCondition(w -> !w.getId().toString().matches("terrestria:(sakura|yucca_palm)|betternether:(nether_mushroom|nether_reed)"))
                 .build();
         this.addEntry(horseFences);
 
@@ -93,6 +99,8 @@ public class MacawFencesModule extends SimpleModule {
                 .setTabKey(tab)
                 .defaultRecipe()
                 .setRenderType(RenderLayer.CUTOUT)
+                //REASON: take a look at their //TEXTURES, you'll see why. Excluded!
+                .addCondition(w -> !w.getId().toString().matches("terrestria:(sakura|yucca_palm)|betternether:(nether_mushroom|nether_reed)"))
                 .build();
         this.addEntry(wiredFences);
 
@@ -106,6 +114,8 @@ public class MacawFencesModule extends SimpleModule {
                 .addTag(BlockTags.UNSTABLE_BOTTOM_CENTER, Registries.BLOCK)
                 .setTabKey(tab)
                 .defaultRecipe()
+                //REASON: take a look at their //TEXTURES, you'll see why. Excluded!
+                .addCondition(w -> !w.getId().toString().matches("terrestria:(sakura|yucca_palm)|betternether:(nether_mushroom|nether_reed)"))
                 .build();
         this.addEntry(pyramidGates);
 
@@ -120,6 +130,8 @@ public class MacawFencesModule extends SimpleModule {
                 .addTag(BlockTags.MINEABLE_WITH_AXE, Registries.BLOCK)
                 .setTabKey(tab)
                 .defaultRecipe()
+                //REASON: take a look at their //TEXTURES, you'll see why. Excluded!
+                .addCondition(w -> !w.getId().toString().matches("terrestria:(sakura|yucca_palm)|betternether:(nether_mushroom|nether_reed)"))
                 .build();
         this.addEntry(highleyGates);
 
@@ -133,7 +145,7 @@ public class MacawFencesModule extends SimpleModule {
                                     .mapColor(l.leaves.defaultMapColor()));
                         })
                 //TEXTURES: leaves
-                .requiresChildren("leaves") // Reason: Recipes
+                .requiresChildren("leaves") //REASON: recipes
                 .addTag(BlockTags.MINEABLE_WITH_HOE, Registries.BLOCK)
                 .addTag(BlockTags.FENCES, Registries.BLOCK)
                 .addTag(BlockTags.WALLS, Registries.BLOCK)
