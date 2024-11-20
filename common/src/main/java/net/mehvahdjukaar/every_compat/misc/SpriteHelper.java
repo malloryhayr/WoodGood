@@ -37,6 +37,12 @@ public class SpriteHelper {
         addOptional("minecraft:mushroom_stem", "_side", "minecraft:block/mushroom_stem");
         addOptional("minecraft:mushroom_stem", "_top", "minecraft:block/mushroom_stem");
 
+        // Better End
+        addOptional("betterend:lucernia_leaves", "_leaves", "betterend:block/lucernia_leaves_1");
+
+        // Better Nether
+        addOptional("betternether:nether_mushroom", "_side", "betternether:block/nether_mushroom_stem_side");
+
         // My Nether's Delight
         addOptional("mynethersdelight:powdery_block", "_side", "mynethersdelight:block/powdery_block");
         addOptional("mynethersdelight:stripped_powdery_block", "_side", "mynethersdelight:block/stripped_powdery_block");
