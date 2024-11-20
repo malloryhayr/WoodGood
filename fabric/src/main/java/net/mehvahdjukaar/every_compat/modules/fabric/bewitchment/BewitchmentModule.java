@@ -9,7 +9,6 @@ import moriyashiine.bewitchment.common.registry.BWTags;
 import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
 import net.mehvahdjukaar.every_compat.EveryCompat;
 import net.mehvahdjukaar.every_compat.api.ItemOnlyEntrySet;
-import net.mehvahdjukaar.every_compat.api.RenderLayer;
 import net.mehvahdjukaar.every_compat.api.SimpleEntrySet;
 import net.mehvahdjukaar.every_compat.api.SimpleModule;
 import net.mehvahdjukaar.every_compat.dynamicpack.ServerDynamicResourcesHandler;
@@ -30,6 +29,7 @@ import net.minecraft.world.level.material.PushReaction;
 import java.io.IOException;
 import java.io.InputStream;
 import java.nio.file.FileSystemNotFoundException;
+import java.util.Objects;
 
 //SUPPORT: v1.20-8
 public class BewitchmentModule extends SimpleModule {
@@ -108,7 +108,7 @@ public class BewitchmentModule extends SimpleModule {
                 handler.dynamicPack.addJson(EveryCompat.res(newPath_1), recipe_1, ResType.RECIPES);
 
                 // Null check for wood - some wood mods doesn't include <type>_wood
-                if (wood.getBlockOfThis("wood") != null) {
+                if (Objects.nonNull(wood.getBlockOfThis("wood"))) {
                     // Editing recipe_2
                     recipe_2.addProperty("log",
                             Utils.getID(wood.getBlockOfThis("wood")).toString());
