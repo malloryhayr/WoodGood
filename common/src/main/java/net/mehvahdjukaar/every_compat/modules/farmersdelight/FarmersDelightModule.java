@@ -58,30 +58,41 @@ public class FarmersDelightModule extends SimpleModule {
     public void addDynamicServerResources(ServerDynamicResourcesHandler handler, ResourceManager manager) {
         super.addDynamicServerResources(handler, manager);
 
-        // Creating cutting_board recipes for wood_log variants
+        // Creating cutting_board recipes
         cabinets.items.forEach(((woodType, item) -> {
-            ResourceLocation recipeLocation = modRes("recipes/cutting/oak_log.json");
 
-            if (Objects.nonNull(woodType.getBlockOfThis("stripped_log"))) {
-                try (InputStream recipeStream = manager.getResource(recipeLocation).orElseThrow().open()) {
-                    JsonObject recipe = RPUtils.deserializeJson(recipeStream);
+            createCuttingRecipe("door", woodType.getBlockOfThis("door"), woodType.planks, woodType, handler, manager);
+            createCuttingRecipe("hanging_sign", woodType.getBlockOfThis("hanging_sign"), woodType.planks, woodType, handler, manager);
+            createCuttingRecipe("sign", woodType.getBlockOfThis("sign"), woodType.planks, woodType, handler, manager);
+            createCuttingRecipe("trapdoor", woodType.getBlockOfThis("trapdoor"), woodType.planks, woodType, handler, manager);
+            createCuttingRecipe("log", woodType.log, woodType.getBlockOfThis("stripped_log"), woodType, handler, manager);
+            createCuttingRecipe("wood", woodType.getBlockOfThis("wood"), woodType.getBlockOfThis("stripped_wood"), woodType, handler, manager);
 
-                    // EDITING RECIPE
-                    JsonObject getItem = recipe.getAsJsonArray("ingredients").get(0).getAsJsonObject();
-                    getItem.addProperty("item", Utils.getID(woodType.log).toString());
-
-                    JsonObject getResult = recipe.getAsJsonArray("result").get(0).getAsJsonObject();
-                    getResult.addProperty("item", Utils.getID(woodType.getBlockOfThis("stripped_log")).toString());
-
-                    // Adding to ResourceLocation
-                    String path = this.shortenedId() + "/cutting/" + woodType.getAppendableId() + "_log";
-
-                    handler.dynamicPack.addJson(EveryCompat.res(path), recipe, ResType.RECIPES);
-                } catch (IOException e) {
-                    handler.getLogger().error("Failed to generate recipe for {} : {}", woodType.getId().toString(), e);
-                }
-            }
         }));
     }
 
+    public void createCuttingRecipe(String recipeType, Block input, Block output,
+                                    WoodType woodType, ServerDynamicResourcesHandler handler, ResourceManager manager) {
+        ResourceLocation recipeLocation = modRes("recipes/cutting/oak_"+recipeType+".json");
+
+        if (Objects.nonNull(input) && Objects.nonNull(output)) {
+            try (InputStream recipeStream = manager.getResource(recipeLocation).orElseThrow().open()) {
+                JsonObject recipe = RPUtils.deserializeJson(recipeStream);
+
+                // EDITING RECIPE
+                JsonObject getItem = recipe.getAsJsonArray("ingredients").get(0).getAsJsonObject();
+                getItem.addProperty("item", Utils.getID(input).toString());
+
+                JsonObject getResult = recipe.getAsJsonArray("result").get(0).getAsJsonObject();
+                getResult.addProperty("item", Utils.getID(output).toString());
+
+                // Adding to ResourceLocation
+                String path = this.shortenedId() + "/cutting/" + woodType.getAppendableId() +"_"+recipeType;
+
+                handler.dynamicPack.addJson(EveryCompat.res(path), recipe, ResType.RECIPES);
+            } catch (IOException e) {
+                handler.getLogger().error("Failed to generate the cutting recipe for {} : {}", Utils.getID(output), e);
+            }
+        }
+    }
 }
