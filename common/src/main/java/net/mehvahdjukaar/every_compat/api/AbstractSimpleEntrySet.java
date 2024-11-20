@@ -555,6 +555,7 @@ public abstract class AbstractSimpleEntrySet<T extends BlockType, B extends Bloc
     }
 
 
+    @SuppressWarnings("unchecked")
     protected static class Builder<BL extends Builder<BL, T, B, I>, T extends BlockType, B extends Block, I extends Item> {
         protected final Class<T> type;
         protected final Supplier<T> baseType;
@@ -598,8 +599,9 @@ public abstract class AbstractSimpleEntrySet<T extends BlockType, B extends Bloc
             return (BL) this;
         }
 
-        public BL addCondition(Predicate<T> condition) {
-            this.condition = condition;
+        public BL addCondition(Predicate<T> newCondition) {
+            this.condition = this.condition == null ? newCondition :
+                    this.condition.and(newCondition);
             return (BL) this;
         }
 
@@ -635,6 +637,7 @@ public abstract class AbstractSimpleEntrySet<T extends BlockType, B extends Bloc
         }
 
         @Deprecated(forRemoval = true)
+        @SuppressWarnings("OptionalGetWithoutIsPresent")
         public BL setTab(Supplier<CreativeModeTab> tab) {
             this.tab = Suppliers.memoize(() -> BuiltInRegistries.CREATIVE_MODE_TAB.getResourceKey(tab.get()).get());
             return (BL) this;
