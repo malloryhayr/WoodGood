@@ -1,6 +1,5 @@
 package net.mehvahdjukaar.every_compat.modules.fabric.beautify_decorate;
 
-import io.github.suel_ki.beautify.Beautify;
 import io.github.suel_ki.beautify.common.block.Blinds;
 import io.github.suel_ki.beautify.common.block.PictureFrame;
 import io.github.suel_ki.beautify.common.block.Trellis;
@@ -13,6 +12,8 @@ import net.mehvahdjukaar.moonlight.api.util.Utils;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.world.level.block.SoundType;
+import net.minecraft.world.level.block.state.BlockBehaviour;
+import net.minecraft.world.level.material.MapColor;
 import net.minecraft.world.level.material.PushReaction;
 
 //SUPPORT: v1.2.0+
@@ -28,14 +29,19 @@ public class BeautifyRefabricatedModule extends SimpleModule {
 
         tellis = SimpleEntrySet.builder(WoodType.class, "trellis",
                         () -> BlockInit.OAK_TRELLIS, () -> WoodTypeRegistry.OAK_TYPE,
-                        w -> new Trellis(Utils.copyPropertySafe(w.planks)
+                        w -> new Trellis(BlockBehaviour.Properties.of()
+                                .mapColor(MapColor.WOOD)
                                 .strength(0.3F, 0.3F)
-                                .sound(SoundType.BAMBOO).noOcclusion()
+                                .sound(SoundType.BAMBOO)
+                                .noOcclusion()
                         )
                 )
+                //TEXTURES: logs
                 .addTag(BlockTags.MINEABLE_WITH_AXE, Registries.BLOCK)
                 .defaultRecipe()
                 .setTabKey(tab)
+                //REASON: take a look at their //TEXTURES, you'll see why. Excluded!
+                .addCondition(w -> !w.getId().toString().matches("terrestria:(sakura|yucca_palm)|betternether:(nether_mushroom|nether_reed)"))
                 .build();
         this.addEntry(tellis);
 
@@ -46,7 +52,8 @@ public class BeautifyRefabricatedModule extends SimpleModule {
                                 .sound(SoundType.WOOD)
                         )
                 )
-                .requiresChildren("slab") // Recipes
+                //TEXTURES: planks
+                .requiresChildren("slab") //REASON: recipes
                 .addTag(BlockTags.MINEABLE_WITH_AXE, Registries.BLOCK)
                 .defaultRecipe()
                 .setTabKey(tab)
@@ -61,7 +68,7 @@ public class BeautifyRefabricatedModule extends SimpleModule {
                                 .pushReaction(PushReaction.DESTROY)
                         )
                 )
-                .requiresChildren("slab") // Recipes
+                .requiresChildren("slab") //REASON: recipes
                 .addTexture(modRes("block/oak_frame_texture"))
                 .defaultRecipe()
                 .setTabKey(tab)
