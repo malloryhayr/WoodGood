@@ -129,7 +129,7 @@ dependencies {
     modCompileOnly("curse.maven:framework-549225:5680064") // v0.7.7 | Refurbished Furniture, Mighty Mail, Backpacked
     modCompileOnly("curse.maven:quad-932715:5340148") // More Chest Variants, More Crafting Table
 //    modRuntimeOnly("curse.maven:flib-661261:5495793") // Absent-By-Design
-    modCompileOnly("curse.maven:titanium-287342:5468426") // Functional-Storage
+    modCompileOnly("curse.maven:titanium-287342:5468426") // v3.8.32 | Functional-Storage
 //    modImplementation("curse.maven:supermartijn642s-core-lib-454372:5668859") // Rechiseled
 //    modImplementation("curse.maven:supermartijn642s-config-lib-438332:4715408") // Rechiseled
 //    modRuntimeOnly("curse.maven:curios-309927:5680164") // Malum
@@ -190,7 +190,7 @@ dependencies {
     modCompileOnly("curse.maven:redeco-897377:5603009")
     modCompileOnly("curse.maven:exlines-bark-carpets-527296:4094399")
     modCompileOnly("curse.maven:farmersdelight-398521:4679319")
-    modCompileOnly("curse.maven:functional-storage-556861:5169765")
+    modCompileOnly("curse.maven:functional-storage-556861:5373105")
     modCompileOnly("curse.maven:furnish-547069:4821511")
     modCompileOnly("curse.maven:friends-and-foes-forge-602059:4712044")
     modCompileOnly("curse.maven:handcrafted-538214:5118729")

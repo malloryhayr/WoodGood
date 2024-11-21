@@ -25,20 +25,22 @@ import org.apache.commons.lang3.tuple.Pair;
 import java.util.HashMap;
 import java.util.Map;
 
+//SUPPORT: v1.2.11+
 public class FunctionalStorageModule extends SimpleModule {
 
-    public final SimpleEntrySet<WoodType, Block> drawer_1;
-    public final SimpleEntrySet<WoodType, Block> drawer_2;
-    public final SimpleEntrySet<WoodType, Block> drawer_4;
+    public final SimpleEntrySet<WoodType, DrawerBlock> drawer_1;
+    public final SimpleEntrySet<WoodType, DrawerBlock> drawer_2;
+    public final SimpleEntrySet<WoodType, DrawerBlock> drawer_4;
 
     public FunctionalStorageModule(String modId) {
         super(modId, "fs");
 
         drawer_1 = SimpleEntrySet.builder(WoodType.class, "1",
-                        getModBlock("oak_1"), () -> WoodTypeRegistry.OAK_TYPE,
+                        getModBlock("oak_1", DrawerBlock.class), () -> WoodTypeRegistry.OAK_TYPE,
                         w -> new DrawerBlock(wrap(w), FunctionalStorage.DrawerType.X_1, Utils.copyPropertySafe(w.planks))
                 )
                 .addTile(getModTile("oak_1"))
+                .addCustomItem((wood, block, properties) -> new DrawerBlock.DrawerItem(block, properties, FunctionalStorage.TAB))
                 .addTexture(modRes("block/oak_front_1"))
                 .addTextureM(modRes("block/oak_side"), EveryCompat.res("block/fs/oak_side_m"))
                 .addTexture(TextureInfo.of(modRes("block/oak_front_1"))
@@ -46,39 +48,41 @@ public class FunctionalStorageModule extends SimpleModule {
                         .keepNamespace())
                 .addTag(BlockTags.MINEABLE_WITH_AXE, Registries.BLOCK)
                 .addTag(modRes("drawer"), Registries.ITEM)
-                .setTab(getModTab("main"))
+                .setTabKey(modRes("main"))
                 .defaultRecipe()
                 .build();
         this.addEntry(drawer_1);
 
         drawer_2 = SimpleEntrySet.builder(WoodType.class, "2",
-                        getModBlock("oak_2"), () -> WoodTypeRegistry.OAK_TYPE,
+                        getModBlock("oak_2", DrawerBlock.class), () -> WoodTypeRegistry.OAK_TYPE,
                         w -> new DrawerBlock(wrap(w), FunctionalStorage.DrawerType.X_2, Utils.copyPropertySafe(w.planks))
                 )
                 .addTile(getModTile("oak_2"))
+                .addCustomItem((wood, block, properties) -> new DrawerBlock.DrawerItem(block, properties, FunctionalStorage.TAB))
                 .addTexture(modRes("block/oak_front_2"))
                 .addTexture(TextureInfo.of(modRes("block/oak_front_2"))
                         .forEntityOrGui()
                         .keepNamespace())
                 .addTag(BlockTags.MINEABLE_WITH_AXE, Registries.BLOCK)
                 .addTag(modRes("drawer"), Registries.ITEM)
-                .setTab(getModTab("main"))
+                .setTabKey(modRes("main"))
                 .defaultRecipe()
                 .build();
         this.addEntry(drawer_2);
 
         drawer_4 = SimpleEntrySet.builder(WoodType.class, "4",
-                        getModBlock("oak_4"), () -> WoodTypeRegistry.OAK_TYPE,
+                        getModBlock("oak_4", DrawerBlock.class), () -> WoodTypeRegistry.OAK_TYPE,
                         w -> new DrawerBlock(wrap(w), FunctionalStorage.DrawerType.X_4, Utils.copyPropertySafe(w.planks))
                 )
                 .addTile(getModTile("oak_4"))
+                .addCustomItem((wood, block, properties) -> new DrawerBlock.DrawerItem(block, properties, FunctionalStorage.TAB))
                 .addTexture(modRes("block/oak_front_4"))
                 .addTexture(TextureInfo.of(modRes("block/oak_front_4"))
                         .forEntityOrGui()
                         .keepNamespace())
                 .addTag(BlockTags.MINEABLE_WITH_AXE, Registries.BLOCK)
                 .addTag(modRes("drawer"), Registries.ITEM)
-                .setTab(getModTab("main"))
+                .setTabKey(modRes("main"))
                 .defaultRecipe()
                 .build();
         this.addEntry(drawer_4);
@@ -91,7 +95,7 @@ public class FunctionalStorageModule extends SimpleModule {
         super.registerBlockEntityRenderers(event);
         event.register(drawer_1.getTile(DrawerTile.class), c -> new DrawerRenderer());
         event.register(drawer_2.getTile(DrawerTile.class), c -> new DrawerRenderer());
-        event.register(drawer_4.getTile(DrawerTile.class), c -> new DrawerRenderer());
+//        event.register(drawer_4.getTile(DrawerTile.class), c -> new DrawerRenderer());
     }
 
     @Override
