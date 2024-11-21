@@ -117,12 +117,15 @@ public abstract class CompatModule {
 
         if (this.getAlreadySupportedMods().contains(woodFrom)) return true;
 
+        // Better Nether & Better End have stripped_bark as stripped_wood but bark from Bewitchment caused EC to skip
+        if (woodFrom.matches("betternether|betterend") && shortenedId().equals("bw")) return false;
+
         // Discarding Dynamic Trees and its addons
         if (woodFrom.contains("dynamictrees") || woodFrom.contains("dt")) return true;
 
         // Garden-Of-The-dead's whistle must be skipped for branches from Regions-Unexplored
         // Nether's Exoticism & Snifferent already has branches, branches from Regions-Unexplored is not needed
-        if ((woodFrom.equals("gardens_of_the_dead") || woodFrom.equals("snifferent") ||
+        if ((woodFrom.matches("gardens_of_the_dead|snifferent") ||
                 woodType.getId().toString().equals("nethers_exoticism:jabuticaba")) && name.contains("branch"))
             return true;
 
