@@ -87,7 +87,7 @@ body:
 
   - type: textarea
     attributes:
-      label: Optional Details
+      label: Optional Information
       description: |
         A note that we should keep in mind regarding the mod
       placeholder: "ex: Giacomo's Bookshelf can store books and, configurably, other items. Updates front texture\nthrough 4 stages (empty, slightly full, more full, completely full) depending on if 0, 1, 2, or 3+ books are stored"
