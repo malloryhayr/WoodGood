@@ -241,13 +241,12 @@ public class SimpleEntrySet<T extends BlockType, B extends Block> extends Abstra
 
     @Override
     public void setRenderLayer() {
-        if (renderType != null) {
             for (var e : blocks.entrySet()) {
                 var w = e.getKey();
                 var v = e.getValue();
-                EveryCompatClient.registerRenderType(v, w, renderType);
+                if (renderType != null || w.toString().equals("rats:pirat"))
+                    EveryCompatClient.registerRenderType(v, w, renderType);
             }
-        }
     }
 
     @Override
