@@ -40,11 +40,12 @@ dependencies {
         modImplementation("io.github.fabricators_of_create.Porting-Lib:$module:$port_lib_version")
     }
 
+//!! MOONLIGHT LIB -------------------------------------------------------------------------------------------------- \\
 
-    // ============================================== DEPENDENCIES ================================================== \\
 //    modImplementation("net.mehvahdjukaar:moonlight-fabric:${moonlight_version}") // LOCAL
-    modImplementation("curse.maven:selene-499980:5863541") // v2.13.0
+    modImplementation("curse.maven:selene-499980:5928996") // v2.13.30
 
+//!! ================================================ DEPENDENCIES ================================================== \\
 
     modCompileOnly("com.tterrag.registrate_fabric:Registrate:${registrate_fabric_version}")
     modCompileOnly("curse.maven:athena-841890:5176880") // Chipped
@@ -66,7 +67,7 @@ dependencies {
     modCompileOnly("com.arcanc.bc:Beautiful-Campfires-fabric-1.20.1-1.0.3")
     modCompileOnly("net.darktree.redbits:redbits-1.20.1-1.16.1")
 
-    // ================================================ IMPORTS ===================================================== \\
+//!! ================================================== IMPORTS ===================================================== \\
     // IMPORTANT: RLM: "REQUIRED LOCAL MOD" - You need to get the mod and put it in ~/fabric/run/mods/....
 
         // Tools
@@ -124,14 +125,16 @@ dependencies {
 
     modCompileOnly("curse.maven:regions-unexplored-659110:5151837")
 
-    // ======================================== DISABLED FOR A REASON =============================================== \\
+//!! ========================================== DISABLED FOR A REASON =============================================== \\
+
 //    modCompileOnly("curse.maven:the-twilight-forest-227639:4389094") // Not available & Currently "The Twilight Forest Unofficial" is available
     modCompileOnly("curse.maven:architects-palette-fabric-487364:3845046") // Not available
 
-    // ============================================ FOR TESTING ===================================================== \\
+//!! ============================================== FOR TESTING ===================================================== \\
+
 //    modRuntimeOnly("curse.maven:gardens-of-the-dead-683174:4784268")
 
-        // Dependencies
+        //!! Dependencies
 //    modRuntimeOnly("curse.maven:forge-config-api-port-fabric-547434:4583000") // Required: unknown
 }
 

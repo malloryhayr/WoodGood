@@ -10,8 +10,6 @@ dependencies {
     modImplementation "net.fabricmc:fabric-loader:${fabric_loader_version}"
     modApi "net.fabricmc.fabric-api:fabric-api:${rootProject.fabric_api_version}"
 
-//    modImplementation("net.mehvahdjukaar:moonlight:${moonlight_version}")
-    modImplementation("curse.maven:selene-499980:5731104") // v2.13.0
 
     annotationProcessor 'net.fabricmc:sponge-mixin:0.12.5+mixin.0.8.5'
 
@@ -19,7 +17,12 @@ dependencies {
     modCompileOnly("curse.maven:resourceful-lib-570073:5659872") // v2.1.29
     modCompileOnly("curse.maven:architectury-api-419699:5137936") // v9.2.14
 
-// =============================================== DEPENDENCIES ========================================================
+//!! MOONLIGHT LIB -------------------------------------------------------------------------------------------------- \\
+
+//    modImplementation("net.mehvahdjukaar:moonlight:${moonlight_version}")
+    modImplementation("curse.maven:selene-499980:5928996") // v2.13.30
+
+//!! ============================================ DEPENDENCIES ====================================================== \\
     modCompileOnly("curse.maven:framework-549225:5680025") // Furniture Refurbished
     modCompileOnly("curse.maven:valhelsia-core-416935:5376599") // Valhelsia-Furniture
 
@@ -28,7 +31,7 @@ dependencies {
     modCompileOnly("com.mrcrayfish.furniture.refurbished:refurbished_furniture-fabric-1.20.1-1.0.0-beta.4")
     modCompileOnly("com.arcanc.bc:Beautiful-Campfires-fabric-1.20.1-1.0.3")
 
-// ================================================== IMPORTS ==========================================================
+//!! ================================================== IMPORTS ===================================================== \\
     modCompileOnly("curse.maven:another-furniture-610492:4815126")
     modCompileOnly("curse.maven:backpacked-352835:5401968")
     modCompileOnly("curse.maven:camp-chair-531744:4579679")
@@ -53,8 +56,10 @@ dependencies {
     modCompileOnly("maven.modrinth:stylish-stiles:zLlRqz68")
     modCompileOnly("curse.maven:table-top-craft-fabric-729535:5319819")
 
-// ======================================== DISABLED FOR A REASON =============================================== \\
+//!! ========================================== DISABLED FOR A REASON =============================================== \\
+
 //     modCompileOnly("curse.maven:missing-wilds-622590:3891602")
+
 }
 
 publishing {

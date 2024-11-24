@@ -109,11 +109,12 @@ dependencies {
     implementation(include("io.github.llamalad7:mixinextras-forge:${mixin_extras_version}"))
     annotationProcessor 'net.fabricmc:sponge-mixin:0.12.5+mixin.0.8.5'
 
-    // ============================================== DEPENDENCIES ================================================== \\
+//!! MOONLIGHT LIB -------------------------------------------------------------------------------------------------- \\
+
 //    modImplementation("net.mehvahdjukaar:moonlight:${project.moonlight_version}-forge") // LOCAL
-    modImplementation("curse.maven:selene-499980:5731106") // v2.13.0
+    modImplementation("curse.maven:selene-499980:5928998") // v2.13.30
 
-
+//!! ================================================ DEPENDENCIES ================================================== \\
     modImplementation("com.tterrag.registrate:Registrate:${registrate_version}")
     modCompileOnly("com.jozufozu.flywheel:flywheel-forge-${flywheel_version}") // Create
 //    modRuntimeOnly("curse.maven:architectury-api-419699:5137938") // v9.2.14 | Required by: REI, Furnish
@@ -154,7 +155,7 @@ dependencies {
     modRuntimeOnly("curse.maven:jade-324717:5672013")
     modRuntimeOnly("curse.maven:emi-580555:5704396")
 
-    // ================================================ IMPORTS ===================================================== \\
+//!! ================================================== IMPORTS ===================================================== \\
 
         // MACAW's
     modCompileOnly("curse.maven:macaws-bridges-351725:5240521")
@@ -238,7 +239,8 @@ dependencies {
 
 //     modRuntimeOnly("curse.maven:malum-484064:5718038") // MAGIC MOD & use BBModel
 
-    // =========================================== FOR TESTING ===================================================== \\
+//!! ============================================== FOR TESTING ===================================================== \\
+
 //    modRuntimeOnly("curse.maven:strata-forge-edition-387296:4989643") // STONE-TYPES
 //    modRuntimeOnly("curse.maven:endless-biomes-667688:5109705")
 //    modRuntimeOnly("curse.maven:blue-skies-312918:5010316") // structure-gel-api
@@ -252,7 +254,7 @@ dependencies {
 //    modRuntimeOnly("curse.maven:terrafirmacraft-302973:4862659") // patchouli
 
 
-    // Dependencies
+    //!! Dependencies
 //    modRuntimeOnly("curse.maven:citadel-331936:5633260") // Alex's Cave, Rats
 //    modRuntimeOnly("curse.maven:structure-gel-api-378802:5188368") // Blue-Skies
 }
