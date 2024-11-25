@@ -6,7 +6,6 @@ import com.teamabnormals.boatload.core.api.BoatloadBoatType;
 import net.mehvahdjukaar.every_compat.EveryCompat;
 import net.mehvahdjukaar.every_compat.api.ItemOnlyEntrySet;
 import net.mehvahdjukaar.every_compat.api.SimpleModule;
-import net.mehvahdjukaar.moonlight.api.misc.Registrator;
 import net.mehvahdjukaar.moonlight.api.set.wood.WoodType;
 import net.mehvahdjukaar.moonlight.api.set.wood.WoodTypeRegistry;
 import net.minecraft.core.registries.Registries;
@@ -54,7 +53,6 @@ public class BoatLoadModule extends SimpleModule {
                 .addRecipe(modRes("oak_furnace_boat"))
                 .addTexture(modRes("item/large_oak_boat"))
                 .addTextureM(modRes("item/oak_furnace_boat"), EveryCompat.res("item/furnace_boat_mask"))
-                .createPaletteFromChild("boat")
                 .build();
         this.addEntry(furnaceBoats);
     }
