@@ -1,7 +1,7 @@
 name: Suggest Mod
 description: Suggest mods to be added to Every Compat
 title: "[📦]: "
-labels: "Module"
+labels: ["Module"]
 body:
   - type: markdown
     attributes:
@@ -64,8 +64,6 @@ body:
         - label: "1.19.2 | FORGE"
         - label: "1.20.1 | FORGE"
         - label: "1.21.1 | NEOFORGE"
-    validations:
-      required: false
 
   - type: input
     id: modid
