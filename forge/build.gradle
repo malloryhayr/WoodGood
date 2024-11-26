@@ -136,9 +136,9 @@ dependencies {
 //    modRuntimeOnly("curse.maven:curios-309927:5680164") // Malum
 //    modRuntimeOnly("curse.maven:lodestone-616457:5712854") // Malum
 //    modRuntimeOnly("maven.modrinth:midnightlib:UhRAdyzr") // Building-But-Better
-
+//    modRuntimeOnly("curse.maven:geckolib-388172:5460309") //
     modRuntimeOnly("curse.maven:configured-457570:5180902")
-    modRuntimeOnly("curse.maven:patchouli-306770:4636277") // TFC, Timber-Frames
+    modRuntimeOnly("curse.maven:patchouli-306770:4636277") // v81 | TFC, Timber-Frames
 
         // LOCAL
 //    modImplementation("com.teamresourceful.bytecodecs:bytecodecs-1.0.2")
@@ -230,7 +230,6 @@ dependencies {
     modCompileOnly("curse.maven:regions-unexplored-659110:5151869")
 
     // ======================================== DISABLED FOR A REASON =============================================== \\
-//     modRuntimeOnly("curse.maven:geckolib-388172:5460309") //
     // implementation fg.deobf("curse.maven:marg-324494:3723497") // LIBRARY
     // implementation fg.deobf("curse.maven:ortuslib-616457:3768197") // LIBRARY
     // implementation fg.deobf("curse.maven:project-brazier-238326:3835038")
