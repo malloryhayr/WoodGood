@@ -25,7 +25,7 @@ body:
   - type: dropdown
     id: version-loader
     attributes:
-      label: "Version - Loader (DO NOT FORGOT TO SELECT THE CORRECT VERSION)"
+      label: "Version - Loader (DO NOT FORGET TO SELECT THE CORRECT VERSION)"
       description: "What's the Minecraft version & loader"
       options:
         - DO NOT FORGET the selected one is correct
