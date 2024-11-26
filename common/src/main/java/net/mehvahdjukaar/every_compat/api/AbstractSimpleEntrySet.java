@@ -9,6 +9,7 @@ import net.mehvahdjukaar.every_compat.configs.ModEntriesConfigs;
 import net.mehvahdjukaar.every_compat.dynamicpack.ClientDynamicResourcesHandler;
 import net.mehvahdjukaar.every_compat.misc.ColoringUtils;
 import net.mehvahdjukaar.every_compat.misc.ResourcesUtils;
+import net.mehvahdjukaar.every_compat.misc.SpriteHelper;
 import net.mehvahdjukaar.moonlight.api.platform.ClientHelper;
 import net.mehvahdjukaar.moonlight.api.platform.PlatHelper;
 import net.mehvahdjukaar.moonlight.api.platform.RegHelper;
@@ -411,20 +412,35 @@ public abstract class AbstractSimpleEntrySet<T extends BlockType, B extends Bloc
     }
 
 
-    //post process some textures. currently only ecologics azalea
+    //post process some textures.
     public void addWoodTexture(WoodType wood, DynClientResourcesGenerator handler, ResourceManager manager,
                                String relativePath, Supplier<TextureImage> textureSupplier, boolean isOnAtlas) {
-        handler.addTextureIfNotPresent(manager, relativePath, () -> {
-            var t = textureSupplier.get();
-            maybeFlowerAzalea(t, manager, wood);
-            return t;
-        }, isOnAtlas);
+        // Ecologics
+        if (wood.getNamespace().equals("ecologics")) {
+            handler.addTextureIfNotPresent(manager, relativePath, () -> {
+                var t = textureSupplier.get();
+                maybeFlowerAzalea(t, manager, wood);
+                return t;
+            }, isOnAtlas);
+        }
 
-        handler.addTextureIfNotPresent(manager, relativePath, () -> {
-            var t = textureSupplier.get();
-            maybeBrimwood(t, manager, relativePath, wood);
-            return t;
-        }, isOnAtlas);
+        // Regions Unexplored
+        if (wood.getNamespace().equals("regions_unexplored")) {
+            handler.addTextureIfNotPresent(manager, relativePath, () -> {
+                var t = textureSupplier.get();
+                maybeBrimwood(t, manager, relativePath, wood);
+                return t;
+            }, isOnAtlas);
+        }
+
+        // Advent of Ascension
+        if (wood.getNamespace().equals("aoa3")) {
+            handler.addTextureIfNotPresent(manager, relativePath, () -> {
+                var t = textureSupplier.get();
+                maybeStrangewood(t, manager, wood);
+                return t;
+            }, isOnAtlas);
+        }
     }
 
     //for ecologics
@@ -546,14 +562,35 @@ public abstract class AbstractSimpleEntrySet<T extends BlockType, B extends Bloc
 
                     temp.close();
 
-
                 } catch (Exception e) {
-                    EveryCompat.LOGGER.error("failed to open the texture for: {1}", e);
+                    EveryCompat.LOGGER.error("failed to open the texture for: ", e);
                 }
             }
         }
     }
 
+    //for Advent-Of-Ascension's stranglewood
+    protected void maybeStrangewood(TextureImage image, ResourceManager manager, WoodType woodType) {
+        if (woodType.getId().toString().equals("aoa3:strangewood")) {
+            WoodType strangewood = WoodTypeRegistry.getValue(new ResourceLocation("aoa3:strangewood"));
+            if (strangewood != null) {
+                try (TextureImage vineOverlay = TextureImage.open(manager,
+                        new ResourceLocation("aoa3:block/stranglewood_log_vine"));
+                     TextureImage logTexture = TextureImage.open(manager,
+                             RPUtils.findFirstBlockTextureLocation(manager, strangewood.log, SpriteHelper.LOOKS_LIKE_SIDE_LOG_TEXTURE))) {
+
+                    Respriter respriter = Respriter.of(image);
+                    var temp = respriter.recolorWithAnimationOf(logTexture);
+
+                    image.applyOverlayOnExisting(temp, vineOverlay);
+                    temp.close();
+
+                } catch (Exception e) {
+                    EveryCompat.LOGGER.warn("failed to apply vine for strangewood: {} and image {}", woodType, image);
+                }
+            }
+        }
+    }
 
     @SuppressWarnings("unchecked")
     protected static class Builder<BL extends Builder<BL, T, B, I>, T extends BlockType, B extends Block, I extends Item> {
