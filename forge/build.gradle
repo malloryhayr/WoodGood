@@ -112,7 +112,7 @@ dependencies {
 //!! MOONLIGHT LIB -------------------------------------------------------------------------------------------------- \\
 
 //    modImplementation("net.mehvahdjukaar:moonlight:${project.moonlight_version}-forge") // LOCAL
-    modImplementation("curse.maven:selene-499980:5928998") // v2.13.30
+    modImplementation("curse.maven:selene-499980:5942980") // v2.13.33
 
 //!! ================================================ DEPENDENCIES ================================================== \\
     modImplementation("com.tterrag.registrate:Registrate:${registrate_version}")
