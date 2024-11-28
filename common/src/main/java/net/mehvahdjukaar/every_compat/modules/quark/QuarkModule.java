@@ -58,12 +58,14 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
+import java.util.function.Supplier;
 
 import static net.mehvahdjukaar.every_compat.common_classes.TagUtility.*;
 
 //SUPPORT: v4.0-435+
 public class QuarkModule extends SimpleModule {
 
+    public final SimpleEntrySet<WoodType, Block> verticalSlabs;
     public final SimpleEntrySet<WoodType, Block> bookshelves;
     public final SimpleEntrySet<WoodType, Block> posts;
     public final SimpleEntrySet<WoodType, Block> strippedPosts;
@@ -80,6 +82,28 @@ public class QuarkModule extends SimpleModule {
 
     public QuarkModule(String modId) {
         super(modId, "q");
+
+        verticalSlabs = QuarkSimpleEntrySet.builder(WoodType.class, "vertical_slab",
+                        VerticalSlabsModule.class,
+                        getModBlock("oak_vertical_slab"),
+                        () -> WoodTypeRegistry.OAK_TYPE,
+                        (w) -> new VerticalSlabBlock(() -> w.getBlockOfThis("slab"), Utils.copyPropertySafe(w.planks))
+                )
+                .requiresChildren("slab")
+                .addTag(BlockTags.MINEABLE_WITH_AXE, Registries.BLOCK)
+                .addTag(modRes("wooden_vertical_slabs"), Registries.BLOCK)
+                .addTag(modRes("vertical_slabs"), Registries.BLOCK)
+                .addTag(modRes("vertical_slab"), Registries.BLOCK)
+                .addTag(modRes("wooden_vertical_slabs"), Registries.ITEM)
+                .addTag(modRes("vertical_slabs"), Registries.ITEM)
+                .addTag(modRes("vertical_slab"), Registries.ITEM)
+                .setTabKey(CreativeModeTabs.BUILDING_BLOCKS)
+                .setTabMode(TabAddMode.AFTER_SAME_WOOD)
+                .addRecipe(modRes("building/crafting/vertslabs/oak_vertical_slab"))
+                .addRecipe(modRes("building/crafting/vertslabs/oak_vertical_slab_revert"))
+                .addCondition(woodType -> !PlatHelper.isModLoaded("v_slab_compat"))
+                .build();
+        this.addEntry(verticalSlabs);
 
         bookshelves = QuarkSimpleEntrySet.builder(WoodType.class, "bookshelf",
                         VariantBookshelvesModule.class,
