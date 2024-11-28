@@ -43,7 +43,7 @@ dependencies {
 //!! MOONLIGHT LIB -------------------------------------------------------------------------------------------------- \\
 
 //    modImplementation("net.mehvahdjukaar:moonlight-fabric:${moonlight_version}") // LOCAL
-    modImplementation("curse.maven:selene-499980:5928996") // v2.13.30
+    modImplementation("curse.maven:selene-499980:5942982") // v2.13.33
 
 //!! ================================================ DEPENDENCIES ================================================== \\
 
@@ -54,11 +54,10 @@ dependencies {
     modCompileOnly("curse.maven:framework-549225:5680025") // v0.7.7 | Refurbished Furniture, Mighty Mail, Backpacked
     modCompileOnly("curse.maven:quad-932715:5146132") // More Crafting Tables
     modCompileOnly("curse.maven:resourceful-lib-570073:5659872") //v2.1.29 | Chipped, Handcrafted, Cozy
-    modRuntimeOnly("curse.maven:terrablender-fabric-565956:5068219") // v3.0.1.4 | Required by: Regions-Unexplored
+    modRuntimeOnly("curse.maven:terrablender-fabric-565956:5378181") // v3.0.1.7 | BOP, Regions-Unexplored
     modCompileOnly("maven.modrinth:frozenlib:1.7.4-mc1.20.1") // Wilder-Wild
     modCompileOnly("curse.maven:valhelsia-core-416935:5376599") // Valhelsia-Furniture
 //    modRuntimeOnly("curse.maven:trinkets-341284:5173501") // Backpacked
-//    modImplementation("net.moddingplayground.frame:frame-fabric:0.22.2+1.19") // is no longer maintained
 
         // LOCAL
 //     modImplementation("net.mehvahdjukaar:supplementaries-fabric:${project.supplementaries_version}")
