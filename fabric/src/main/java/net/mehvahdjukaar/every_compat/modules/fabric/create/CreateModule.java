@@ -22,7 +22,7 @@ import net.minecraft.world.item.CreativeModeTabs;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 
-// SUPPORT: v0.5.1+
+// SUPPORT: v0.5.1f +
 public class CreateModule extends SimpleModule {
 
     public final SimpleEntrySet<WoodType, Block> windows;
