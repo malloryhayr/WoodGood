@@ -43,7 +43,7 @@ public class EveryCompatCommon {
 
     protected void addModules() {
 
-// ================================================= Add Other Compat Mods ========================================== \\
+//!! =============================================== Add Other Compat Mods ========================================== \\
         addOtherCompatMod("compatoplenty", "biomesoplenty", List.of("twigs", "farmersdelight", "quark", "woodworks"));
         addOtherCompatMod("compat_makeover", "biomemakeover", List.of("habitat", "farmersdelight", "quark", "decorative_blocks"));
         addOtherCompatMod("decorative_compat", "biomesoplenty", List.of("decorative_blocks"));
@@ -65,7 +65,7 @@ public class EveryCompatCommon {
         addOtherCompatMod("abnormals_delight", List.of("autumnity", "upgrade_aquatic",
                 "environmental", "atmospheric", "endergetic", "caves_and_chasms"), List.of("farmersdelight"));
 
-        // ============================================= Add Modules ==================================================== \\
+    //!! =========================================== Add Modules ==================================================== \\
         addIfLoaded("another_furniture", () -> AnotherFurnitureModule::new);
         addIfLoaded("dawnoftimebuilder", () -> DawnOfTimeModule::new);
         addIfLoaded("backpacked", () -> BackpackedModule::new);
@@ -87,7 +87,7 @@ public class EveryCompatCommon {
         addIfLoaded("table_top_craft", () -> TableTopCraftModule::new);
         addIfLoaded("storagedrawers", () -> StorageDrawersModule::new);
 
-// ===================================================== OTHERS ===================================================== \\
+//!! =================================================== OTHERS ===================================================== \\
         forAllModules(m -> EveryCompat.LOGGER.info("Loaded {}", m.toString()));
     }
 }

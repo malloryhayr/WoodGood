@@ -85,7 +85,7 @@ public class EveryCompatForge extends EveryCompatCommon {
     protected void addModules() {
         super.addModules();
 
-// ================================================= Add Modules ==================================================== \\
+//!! =============================================== Add Modules ==================================================== \\
         addIfLoaded("absentbydesign", () -> AbsentByDesignModule::new);
         addIfLoaded("architects_palette", () -> ArchitectsPaletteModule::new);
         addIfLoaded("beautify", () -> BeautifyDecorateModule::new);
@@ -146,7 +146,7 @@ public class EveryCompatForge extends EveryCompatCommon {
 //        addIfLoaded("graveyard", () -> GraveyardModule::new); // Disabled until custom block models work
 //        addIfLoaded("productivebees", () -> ProductiveBeesModule::new); //WIP: class for both beehive have major changes
 
-// ================================================== OTHERS ======================================================== \
+//!! ================================================ OTHERS ======================================================== \\
     }
 
 

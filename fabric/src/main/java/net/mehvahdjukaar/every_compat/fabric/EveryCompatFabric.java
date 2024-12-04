@@ -44,7 +44,7 @@ public class EveryCompatFabric extends EveryCompatCommon implements ModInitializ
     protected void addModules() {
         super.addModules();
 
-// ================================================= Macaw's ======================================================== \\
+//!! =============================================== Macaw's ======================================================== \\
         addIfLoaded("mcwbridges", () -> MacawBridgesModule::new);
         addIfLoaded("mcwdoors", () -> MacawDoorsModule::new);
         addIfLoaded("mcwfences", () -> MacawFencesModule::new);
@@ -56,7 +56,7 @@ public class EveryCompatFabric extends EveryCompatCommon implements ModInitializ
         addIfLoaded("mcwfurnitures", () -> MacawFurnitureModule::new);
         addIfLoaded("mcwstairs", () -> MacawStairsModule::new);
 
-// ================================================= Add Modules ==================================================== \\
+//!!================================================ Add Modules ==================================================== \\
         addIfLoaded("beautify", () -> BeautifyRefabricatedModule::new);
         addIfLoaded("bewitchment", () -> BewitchmentModule::new);
         addIfLoaded("clutter", () -> ClutterModule::new);
@@ -79,7 +79,7 @@ public class EveryCompatFabric extends EveryCompatCommon implements ModInitializ
 //        addModule("twilightforest", () -> TwilightForestModule::new); //!! NOT AVAILABLE
 //        addModule("architects_palette", () -> ArchitectsPaletteModule::new); //!! NOT AVAILABLE
 
-// ===================================================== OTHERS ===================================================== \\
+//!!==================================================== OTHERS ===================================================== \\
         if (EveryCompat.OLD_FD) EveryCompatAPI.registerModule(new FarmersDelightModuleOld("farmersdelight"));
     }
 }
