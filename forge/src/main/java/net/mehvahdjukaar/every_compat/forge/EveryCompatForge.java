@@ -146,7 +146,6 @@ public class EveryCompatForge extends EveryCompatCommon {
 //        addIfLoaded("graveyard", () -> GraveyardModule::new); // Disabled until custom block models work
 //        addIfLoaded("productivebees", () -> ProductiveBeesModule::new); //WIP: class for both beehive have major changes
 
-//!! ================================================ OTHERS ======================================================== \\
     }
 
 
