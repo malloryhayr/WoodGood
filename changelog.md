@@ -1,10 +1,11 @@
 ### UPDATED:
-- **TEXTURES**: Fixed the textures not being generated for blocks via everycomp
+- **StorageDrawers** (FORGE): Updated
+- **EveryComp** (COMMON): Major Updated for an addon: **Every Compat: Stone Zone**. 
 
 ---
 
 ### NEW:
-- N/A
+- **StorageDrawers** (FABRIC) - Added for FABRIC
 
 ---
 
