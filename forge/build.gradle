@@ -210,7 +210,7 @@ dependencies {
     modCompileOnly("curse.maven:premium-wood-353515:3905203")
     modCompileOnly("curse.maven:productivebees-377897:5304827") //v12.5.1 | WIP
     modCompileOnly("curse.maven:quark-243121:5093415")
-    modCompileOnly("curse.maven:storage-drawers-223852:4668552")
+    modCompileOnly("curse.maven:storage-drawers-223852:5915486")
     modCompileOnly("maven.modrinth:stylish-stiles:l9FFA4BK")
     modCompileOnly("curse.maven:table-top-craft-467136:5318681")
     modCompileOnly("curse.maven:timber-frames-606011:5372390")
@@ -243,7 +243,7 @@ dependencies {
 //    modRuntimeOnly("curse.maven:strata-forge-edition-387296:4989643") // STONE-TYPES
 //    modRuntimeOnly("curse.maven:endless-biomes-667688:5109705")
 //    modRuntimeOnly("curse.maven:blue-skies-312918:5010316") // structure-gel-api
-//    modRuntimeOnly("curse.maven:biomes-o-plenty-220318:4764804") // Terrablender
+    modRuntimeOnly("curse.maven:biomes-o-plenty-220318:4764804") // Terrablender
 //    modRuntimeOnly("curse.maven:upgrade-aquatic-326895:5296565") // Blueprint
 //    modRuntimeOnly("curse.maven:autumnity-365045:5292346") // Blueprint
 //    modRuntimeOnly("curse.maven:the-outer-end-430404:5043937") // Blueprint
