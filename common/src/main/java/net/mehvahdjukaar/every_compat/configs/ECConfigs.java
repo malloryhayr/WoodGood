@@ -4,16 +4,11 @@ import net.mehvahdjukaar.every_compat.EveryCompat;
 import net.mehvahdjukaar.moonlight.api.platform.configs.ConfigBuilder;
 import net.mehvahdjukaar.moonlight.api.platform.configs.ConfigSpec;
 import net.mehvahdjukaar.moonlight.api.platform.configs.ConfigType;
-import net.mehvahdjukaar.moonlight.api.set.BlockSetAPI;
-import net.mehvahdjukaar.moonlight.api.set.BlockType;
-import net.minecraft.world.item.BlockItem;
-import net.minecraft.world.level.ItemLike;
-import org.jetbrains.annotations.Nullable;
 
 import java.util.function.Supplier;
 
 //loaded after registry
-public class ModConfigs {
+public class ECConfigs {
 
     public static ConfigSpec SPEC;
 

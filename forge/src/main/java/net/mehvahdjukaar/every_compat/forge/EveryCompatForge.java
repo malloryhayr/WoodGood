@@ -3,8 +3,8 @@ package net.mehvahdjukaar.every_compat.forge;
 import net.mehvahdjukaar.every_compat.ECNetworking;
 import net.mehvahdjukaar.every_compat.EveryCompat;
 import net.mehvahdjukaar.every_compat.EveryCompatClient;
-import net.mehvahdjukaar.every_compat.api.CompatModule;
-import net.mehvahdjukaar.every_compat.configs.ModConfigs;
+import net.mehvahdjukaar.every_compat.EveryCompatCommon;
+import net.mehvahdjukaar.every_compat.configs.ECConfigs;
 import net.mehvahdjukaar.every_compat.modules.forge.abnormal.BoatLoadModule;
 import net.mehvahdjukaar.every_compat.modules.forge.abnormal.WoodworksModule;
 import net.mehvahdjukaar.every_compat.modules.forge.absent_by_design.AbsentByDesignModule;
@@ -67,123 +67,117 @@ import net.minecraftforge.registries.MissingMappingsEvent;
 
 import java.util.Optional;
 
+import static net.mehvahdjukaar.every_compat.EveryCompat.addIfLoaded;
+import static net.mehvahdjukaar.every_compat.EveryCompat.forAllModules;
+
 /**
  * Author: MehVahdJukaar
  */
 @Mod(EveryCompat.MOD_ID)
-public class EveryCompatForge extends EveryCompat {
-    public static final String MOD_ID = EveryCompat.MOD_ID;
+public class EveryCompatForge extends EveryCompatCommon {
 
     public EveryCompatForge() {
-        this.commonInit();
+        this.initialize();
 
         CraftingHelper.register(new BlockTypeEnabledCondition.Serializer());
+        MinecraftForge.EVENT_BUS.register(this);
+    }
+
+    @Override
+    protected void addModules() {
+        super.addModules();
 
 // ================================================= Add Modules ==================================================== \\
-        addModule("absentbydesign", () -> AbsentByDesignModule::new);
-        addModule("architects_palette", () -> ArchitectsPaletteModule::new);
-        addModule("beautify", () -> BeautifyDecorateModule::new);
-        addModule("boatload", () -> BoatLoadModule::new);
-        addModule("buildersaddition", () -> BuildersAdditionModule::new);
-        addModule("bbb", () -> BuildingButBetterModule::new);
-        addModule("buildersdelight", () -> BuildersDelightModule::new);
-        addModule("cfm", () -> MrCrayfishFurnitureModule::new);
-        addModule("corail_pillar", () -> CorailPillarModule::new);
-        addModule("create", () -> CreateModule::new);
-        addModule("decoration_delight", () -> DecorationDelightModule::new);
-        addModule("dramaticdoors", () -> DramaticDoorsModule::new);
-        addModule("farmersdelight", () -> FarmersDelightModule::new);
-        addModule("functionalstorage", () -> FunctionalStorageModule::new);
-        addModule("infinitybuttons", () -> InfinityButtonsModule::new);
-        addModule("justaraftmod", () -> JustARaftModule::new);
-        addModule("lolmcv", () -> MoreChestVariantsModule::new);
-        addModule("mctb", () -> MoreCraftingTablesForForgeModule::new);
-        addModule("mighty_mail", () -> MightyMailModule::new);
-        addModule("missingwilds", () -> MissingWildModule::new);
-        addModule("mosaic_carpentry", () -> MosaicCarpentryModule::new);
-        addModule("oreberriesreplanted", () -> OreberriesReplantedModule::new);
-        addModule("lightmanscurrency", () -> LightmansCurrencyModule::new);
-        addModule("pokecube_legends", () -> PokecubeLegendsModule::new);
-        addModule("premium_wood", () -> PremiumWoodModule::new);
-        addModule("redeco", () -> ReDecoModule::new);
-        addModule("regions_unexplored", () -> RegionsUnexploredModule::new);
-        addModule("shutter", () -> LauchsShuttersModule::new);
-        addModule("storagedrawers", () -> StorageDrawersModule::new);
-        addModule("stylishstiles", () -> StylishStilesModule::new);
-        addModule("timber_frames", () -> TimberFramesModule::new);
-        addModule("tropicraft", () -> TropicraftModule::new);
-        addModule("twilightforest", () -> TwilightForestModule::new);
-        addModule("valhelsia_structures", () -> ValhelsiaStructuresModule::new);
-        addModule("variantvanillablocks", () -> VariantVanillaBlocksModule::new);
-        addModule("vct", () -> VariantCraftingTablesModule::new);
-        addModule("woodster", () -> WoodsterModule::new);
-        addModule("woodworks", () -> WoodworksModule::new);
-        addModule("workshop_for_handsome_adventurer", () -> WorkshopForHandsomeAdventurerModule::new);
-        addModule("xercamod", () -> XercaModule::new);
+        addIfLoaded("absentbydesign", () -> AbsentByDesignModule::new);
+        addIfLoaded("architects_palette", () -> ArchitectsPaletteModule::new);
+        addIfLoaded("beautify", () -> BeautifyDecorateModule::new);
+        addIfLoaded("boatload", () -> BoatLoadModule::new);
+        addIfLoaded("buildersaddition", () -> BuildersAdditionModule::new);
+        addIfLoaded("bbb", () -> BuildingButBetterModule::new);
+        addIfLoaded("buildersdelight", () -> BuildersDelightModule::new);
+        addIfLoaded("cfm", () -> MrCrayfishFurnitureModule::new);
+        addIfLoaded("corail_pillar", () -> CorailPillarModule::new);
+        addIfLoaded("create", () -> CreateModule::new);
+        addIfLoaded("decoration_delight", () -> DecorationDelightModule::new);
+        addIfLoaded("dramaticdoors", () -> DramaticDoorsModule::new);
+        addIfLoaded("farmersdelight", () -> FarmersDelightModule::new);
+        addIfLoaded("functionalstorage", () -> FunctionalStorageModule::new);
+        addIfLoaded("infinitybuttons", () -> InfinityButtonsModule::new);
+        addIfLoaded("justaraftmod", () -> JustARaftModule::new);
+        addIfLoaded("lolmcv", () -> MoreChestVariantsModule::new);
+        addIfLoaded("mctb", () -> MoreCraftingTablesForForgeModule::new);
+        addIfLoaded("mighty_mail", () -> MightyMailModule::new);
+        addIfLoaded("missingwilds", () -> MissingWildModule::new);
+        addIfLoaded("mosaic_carpentry", () -> MosaicCarpentryModule::new);
+        addIfLoaded("oreberriesreplanted", () -> OreberriesReplantedModule::new);
+        addIfLoaded("lightmanscurrency", () -> LightmansCurrencyModule::new);
+        addIfLoaded("pokecube_legends", () -> PokecubeLegendsModule::new);
+        addIfLoaded("premium_wood", () -> PremiumWoodModule::new);
+        addIfLoaded("redeco", () -> ReDecoModule::new);
+        addIfLoaded("regions_unexplored", () -> RegionsUnexploredModule::new);
+        addIfLoaded("shutter", () -> LauchsShuttersModule::new);
+        addIfLoaded("storagedrawers", () -> StorageDrawersModule::new);
+        addIfLoaded("stylishstiles", () -> StylishStilesModule::new);
+        addIfLoaded("timber_frames", () -> TimberFramesModule::new);
+        addIfLoaded("tropicraft", () -> TropicraftModule::new);
+        addIfLoaded("twilightforest", () -> TwilightForestModule::new);
+        addIfLoaded("valhelsia_structures", () -> ValhelsiaStructuresModule::new);
+        addIfLoaded("variantvanillablocks", () -> VariantVanillaBlocksModule::new);
+        addIfLoaded("vct", () -> VariantCraftingTablesModule::new);
+        addIfLoaded("woodster", () -> WoodsterModule::new);
+        addIfLoaded("woodworks", () -> WoodworksModule::new);
+        addIfLoaded("workshop_for_handsome_adventurer", () -> WorkshopForHandsomeAdventurerModule::new);
+        addIfLoaded("xercamod", () -> XercaModule::new);
         if (PlatHelper.isModLoaded("mcwdoors")) {
-            addModule("dramaticdoors", () -> DramaticDoorsMacawModule::new);
+            addIfLoaded("dramaticdoors", () -> DramaticDoorsMacawModule::new);
         }
-        addModule("lolmct", () -> MoreCraftingTablesModule::new);
+        addIfLoaded("lolmct", () -> MoreCraftingTablesModule::new);
 
         // ========================================= Macaw's ======================================================== \\
-        addModule("mcwbridges", () -> MacawBridgesModule::new);
-        addModule("mcwdoors", () -> MacawDoorsModule::new);
-        addModule("mcwfences", () -> MacawFencesModule::new);
-        addModule("mcwfurnitures", () -> MacawFurnitureModule::new);
-        addModule("mcwlights", () -> MacawLightsModule::new);
-        addModule("mcwpaths", () -> MacawPathsModule::new);
-        addModule("mcwroofs", () -> MacawRoofsModule::new);
-        addModule("mcwtrpdoors", () -> MacawTrapdoorsModule::new);
-        addModule("mcwwindows", () -> MacawWindowsModule::new);
-        addModule("mcwstairs", () -> MacawStairsModule::new);
+        addIfLoaded("mcwbridges", () -> MacawBridgesModule::new);
+        addIfLoaded("mcwdoors", () -> MacawDoorsModule::new);
+        addIfLoaded("mcwfences", () -> MacawFencesModule::new);
+        addIfLoaded("mcwfurnitures", () -> MacawFurnitureModule::new);
+        addIfLoaded("mcwlights", () -> MacawLightsModule::new);
+        addIfLoaded("mcwpaths", () -> MacawPathsModule::new);
+        addIfLoaded("mcwroofs", () -> MacawRoofsModule::new);
+        addIfLoaded("mcwtrpdoors", () -> MacawTrapdoorsModule::new);
+        addIfLoaded("mcwwindows", () -> MacawWindowsModule::new);
+        addIfLoaded("mcwstairs", () -> MacawStairsModule::new);
 
 // ============================================== DISABLED FOR A REASON ============================================= \\
-//        addModule("graveyard", () -> GraveyardModule::new); // Disabled until custom block models work
-//        addModule("productivebees", () -> ProductiveBeesModule::new); //WIP: class for both beehive have major changes
+//        addIfLoaded("graveyard", () -> GraveyardModule::new); // Disabled until custom block models work
+//        addIfLoaded("productivebees", () -> ProductiveBeesModule::new); //WIP: class for both beehive have major changes
 
-// ================================================== OTHERS ======================================================== \\
-        MinecraftForge.EVENT_BUS.register(this);
-
-        forAllModules(CompatModule::onModInit);
-
-        if (PlatHelper.getPhysicalSide().isClient()) {
-            EveryCompatClient.init();
-        }
+// ================================================== OTHERS ======================================================== \
     }
 
 
     @SubscribeEvent(priority = EventPriority.LOWEST)
     public void itemTooltipEvent(ItemTooltipEvent event) {
         EveryCompatClient.onItemTooltip(event.getItemStack(),event.getFlags(), event.getToolTip());
-
     }
-
-    //public static void onDataSync(PlayerEvent.PlayerLoggedInEvent event) {
-    //    if (event.getEntity() instanceof ServerPlayer s)EveryCompat.sendPacket(s);
-//
-    //  }
 
     @SubscribeEvent
     public void onRemap(MissingMappingsEvent event) {
         for (var mapping : event.getMappings(Registries.BLOCK_ENTITY_TYPE, EveryCompat.MOD_ID)) {
             ResourceLocation key = mapping.getKey();
             String path = key.getPath();
-            for (var m : EveryCompat.ACTIVE_MODULES) {
+            forAllModules(m -> {
                 if (path.startsWith(m.shortenedId() + "_")) {
                     String newPath = path.substring((m.shortenedId() + "_").length());
                     ResourceLocation newId = new ResourceLocation(m.getModId(), newPath);
                     Optional<BlockEntityType<?>> optional = BuiltInRegistries.BLOCK_ENTITY_TYPE.getOptional(newId);
                     optional.ifPresent(mapping::remap);
-                    break;
                 }
-            }
+            });
         }
     }
 
 
     @SubscribeEvent
     public void onPlayerNegotiation(PlayerNegotiationEvent playerNegotiationEvent) {
-        if(ModConfigs.CHECK_PACKET.get()) {
+        if(ECConfigs.CHECK_PACKET.get()) {
             ((ChannelHandlerImpl) ECNetworking.CHANNEL).channel.sendTo(new ECNetworking.S2CModVersionCheckMessage(),
                     playerNegotiationEvent.getConnection(),
                     NetworkDirection.LOGIN_TO_CLIENT

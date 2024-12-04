@@ -3,53 +3,26 @@ package net.mehvahdjukaar.every_compat;
 
 import it.unimi.dsi.fastutil.objects.Object2ObjectOpenHashMap;
 import net.mehvahdjukaar.every_compat.api.CompatModule;
-import net.mehvahdjukaar.every_compat.api.EveryCompatAPI;
 import net.mehvahdjukaar.every_compat.api.SimpleEntrySet;
-import net.mehvahdjukaar.every_compat.configs.ModConfigs;
+import net.mehvahdjukaar.every_compat.configs.ECConfigs;
 import net.mehvahdjukaar.every_compat.configs.ModEntriesConfigs;
 import net.mehvahdjukaar.every_compat.dynamicpack.ServerDynamicResourcesHandler;
-import net.mehvahdjukaar.every_compat.misc.AllWoodItem;
-import net.mehvahdjukaar.every_compat.modules.another_furniture.AnotherFurnitureModule;
-import net.mehvahdjukaar.every_compat.modules.beautiful_campfires.BeautifulCampfiresModule;
-import net.mehvahdjukaar.every_compat.modules.camp_chair.CampChairModule;
-import net.mehvahdjukaar.every_compat.modules.chipped.ChippedModule;
-import net.mehvahdjukaar.every_compat.modules.dawn_of_time.DawnOfTimeModule;
-import net.mehvahdjukaar.every_compat.modules.decorative_blocks.DecorativeBlocksModule;
-import net.mehvahdjukaar.every_compat.modules.exlines.BarkCarpetsModule;
-import net.mehvahdjukaar.every_compat.modules.farmersdelight.FarmersDelightModule;
-import net.mehvahdjukaar.every_compat.modules.friendsandfoes.FriendsAndFoesModule;
-import net.mehvahdjukaar.every_compat.modules.furnish.FurnishModule;
-import net.mehvahdjukaar.every_compat.modules.handcrafted.HandcraftedModule;
-import net.mehvahdjukaar.every_compat.modules.hearth_and_home.HearthAndHomeModule;
-import net.mehvahdjukaar.every_compat.modules.mrcrayfish.BackpackedModule;
-import net.mehvahdjukaar.every_compat.modules.mrcrayfish.RefurbishedFurnitureModule;
-import net.mehvahdjukaar.every_compat.modules.quark.QuarkModule;
-import net.mehvahdjukaar.every_compat.modules.table_top_craft.TableTopCraftModule;
-import net.mehvahdjukaar.every_compat.modules.twigs.TwigsModule;
-import net.mehvahdjukaar.every_compat.modules.valhelsia_furniture.ValhelsiaFurnitureModule;
-import net.mehvahdjukaar.every_compat.modules.villagers_plus.VillagersPlusModule;
-import net.mehvahdjukaar.every_compat.type.StoneType;
-import net.mehvahdjukaar.every_compat.type.StoneTypeRegistry;
-import net.mehvahdjukaar.moonlight.api.misc.RegSupplier;
 import net.mehvahdjukaar.moonlight.api.misc.Registrator;
 import net.mehvahdjukaar.moonlight.api.platform.PlatHelper;
 import net.mehvahdjukaar.moonlight.api.platform.RegHelper;
 import net.mehvahdjukaar.moonlight.api.set.BlockSetAPI;
 import net.mehvahdjukaar.moonlight.api.set.BlockType;
-import net.mehvahdjukaar.moonlight.api.set.leaves.LeavesType;
 import net.mehvahdjukaar.moonlight.api.set.wood.WoodType;
 import net.minecraft.core.registries.BuiltInRegistries;
-import net.minecraft.network.chat.Component;
+import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.ItemLike;
-import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import org.jetbrains.annotations.Nullable;
 
 import java.util.*;
 import java.util.function.Consumer;
@@ -60,121 +33,64 @@ import java.util.function.Supplier;
  * Author: MehVahdJukaar
  */
 public abstract class EveryCompat {
+
     public static final String MOD_ID = "everycomp";
+    public static final Logger LOGGER = LogManager.getLogger("Every Compat");
+
+    private static final List<CompatModule> ACTIVE_MODULES = new ArrayList<>();
+    private static final List<CompatMod> COMPAT_MODS = new ArrayList<>();
+    // all mod that EC directly or indirectly depends on
+    private static final Set<String> DEPENDENCIES = new HashSet<>();
+
+    //these are the names of the block types we add wooden variants for
+    private static final Map<Class<? extends BlockType>, Set<String>> TYPES_TO_CHILD_KEYS = new Object2ObjectOpenHashMap<>();
+    private static final Map<Object, CompatModule> ITEMS_TO_MODULES = new Object2ObjectOpenHashMap<>();
+    private static final Set<Class<? extends BlockType>> AFFECTED_TYPES = new HashSet<>();
+
+    private static final UnsafeModuleDisabler MODULE_DISABLER = new UnsafeModuleDisabler();
 
     public static ResourceLocation res(String name) {
         return new ResourceLocation(MOD_ID, name);
     }
 
-    public static final Logger LOGGER = LogManager.getLogger("Every Compat");
-
-    public static final List<CompatModule> ACTIVE_MODULES = new ArrayList<>();
-
-    public static final List<CompatMod> COMPAT_MODS = new ArrayList<>();
-    // all mod that EC directly or indirectly depends on
-    public static final Set<String> DEPENDENCIES = new HashSet<>();
-
-    //these are the names of the block types we add wooden variants for
-    public static final Map<Class<? extends BlockType>, Set<String>> ENTRY_TYPES = new Object2ObjectOpenHashMap<>();
-    public static final Map<Object, CompatModule> ITEMS_TO_MODULES = new Object2ObjectOpenHashMap<>();
-
-
-    public static final UnsafeModuleDisabler MODULE_DISABLER = new UnsafeModuleDisabler();
-
     public static void forAllModules(Consumer<CompatModule> action) {
         ACTIVE_MODULES.forEach(action);
     }
 
-
-    protected void commonInit() {
-        StoneTypeRegistry.init();
-
-        ModConfigs.init();
-        //TODO: this class is a mess. Should be split and cleaned up
-        ECNetworking.init();
-
-        ServerDynamicResourcesHandler.INSTANCE.register();
-        RegHelper.addItemsToTabsRegistration(this::registerItemsToTabs);
-        PlatHelper.addCommonSetup(this::commonSetup);
-
-        BlockSetAPI.addDynamicBlockRegistration(this::registerWoodStuff, WoodType.class);
-        BlockSetAPI.addDynamicBlockRegistration(this::registerLeavesStuff, LeavesType.class);
-        BlockSetAPI.addDynamicBlockRegistration(this::registerStonesStuff, StoneType.class);
-
-        BlockSetAPI.addDynamicRegistration((r, c) -> this.registerItems(r), WoodType.class, BuiltInRegistries.ITEM);
-        BlockSetAPI.addDynamicRegistration((r, c) -> this.registerTiles(r), WoodType.class, BuiltInRegistries.BLOCK_ENTITY_TYPE);
-        BlockSetAPI.addDynamicRegistration((r, c) -> this.registerEntities(r), WoodType.class, BuiltInRegistries.ENTITY_TYPE);
-
-
-// ================================================= Add Other Compat Mods ========================================== \\
-        addOtherCompatMod("compatoplenty", "biomesoplenty", List.of("twigs", "farmersdelight", "quark", "woodworks"));
-        addOtherCompatMod("compat_makeover", "biomemakeover", List.of("habitat", "farmersdelight", "quark", "decorative_blocks"));
-        addOtherCompatMod("decorative_compat", "biomesoplenty", List.of("decorative_blocks"));
-        addOtherCompatMod("storagedrawersunlimited", "biomesoplenty", List.of("storagedrawers"));
-        addOtherCompatMod("lolmcvbop", "biomesoplenty", List.of("lolmcv"));
-        addOtherCompatMod("lolmcvbmo", "biomemakeover", List.of("lolmcv"));
-        addOtherCompatMod("natures_delight", "natures_spirit", List.of("farmersdelight"));
-        addOtherCompatMod("arts_and_crafts_compat", "arts_and_crafts", List.of("twigs", "decorative_blocks", "farmersdelight", "dramaticdoors"));
-
-        // Macaw's Addon
-        addOtherCompatMod("macawsbridgesbop", "biomesoplenty", List.of("mcwbridges"));
-        addOtherCompatMod("macawbridgesbyg", "biomeswevegone", List.of("mcwbridges"));
-        addOtherCompatMod("mcwfencesbop", "biomesoplenty", List.of("mcwfences"));
-        addOtherCompatMod("mcwfencesbyg", "biomeswevegone", List.of("mcwfences"));
-        addOtherCompatMod("macawsroofsbop", "biomesoplenty", List.of("mcwroofs"));
-        addOtherCompatMod("macawsroofsbyg", "biomeswevegone", List.of("mcwroofs"));
-
-        // Abnormals Delight
-        addOtherCompatMod("abnormals_delight", List.of("autumnity", "upgrade_aquatic",
-                "environmental", "atmospheric", "endergetic", "caves_and_chasms"), List.of("farmersdelight"));
-
-        // ============================================= Add Modules ==================================================== \\
-        addIfLoaded("another_furniture", () -> AnotherFurnitureModule::new);
-        addIfLoaded("dawnoftimebuilder", () -> DawnOfTimeModule::new);
-        addIfLoaded("backpacked", () -> BackpackedModule::new);
-        addIfLoaded("barkcarpets", () -> BarkCarpetsModule::new); // Exline's
-        addIfLoaded("bc", () -> BeautifulCampfiresModule::new);
-        addIfLoaded("campchair", () -> CampChairModule::new);
-        addIfLoaded("chipped", () -> ChippedModule::new);
-        addIfLoaded("decorative_blocks", () -> DecorativeBlocksModule::new);
-        addIfLoaded("friendsandfoes", () -> FriendsAndFoesModule::new);
-        addIfLoaded("furnish", () -> FurnishModule::new);
-        addIfLoaded("hearth_and_home", () -> HearthAndHomeModule::new);
-        addIfLoaded("quark", () -> QuarkModule::new);
-        addIfLoaded("twigs", () -> TwigsModule::new);
-        addIfLoaded("refurbished_furniture", () -> RefurbishedFurnitureModule::new);
-        addIfLoaded("farmersdelight", () -> FarmersDelightModule::new);
-        addIfLoaded("handcrafted", () -> HandcraftedModule::new);
-        addIfLoaded("valhelsia_furniture", () -> ValhelsiaFurnitureModule::new);
-        addIfLoaded("villagersplus", () -> VillagersPlusModule::new);
-        addIfLoaded("table_top_craft", () -> TableTopCraftModule::new);
-
-// ===================================================== OTHERS ===================================================== \\
-        forAllModules(m -> EveryCompat.LOGGER.info("Loaded {}", m.toString()));
-
-
-        MODULE_DISABLER.save();
-
+    public static CompatModule getModuleOfItem(Item item) {
+        return ITEMS_TO_MODULES.get(item);
     }
 
-    public static <T extends BlockType> void addEntryType(Class<T> type, String childId) {
-        ENTRY_TYPES.computeIfAbsent(type, t -> new HashSet<>()).add(childId);
+    public static <T extends BlockType> void trackChildType(Class<T> type, String childId) {
+        TYPES_TO_CHILD_KEYS.computeIfAbsent(type, t -> new HashSet<>()).add(childId);
     }
 
-    private void addOtherCompatMod(String modId, String woodFrom, List<String> blocksFrom) {
+    public static void addOtherCompatMod(String modId, String woodFrom, List<String> blocksFrom) {
         addOtherCompatMod(modId, List.of(woodFrom), blocksFrom);
     }
 
-    private void addOtherCompatMod(String modId, List<String> woodFrom, List<String> blocksFrom) {
+    public static void addOtherCompatMod(String modId, List<String> woodFrom, List<String> blocksFrom) {
         COMPAT_MODS.add(new CompatMod(modId, woodFrom, blocksFrom));
         DEPENDENCIES.add(modId);
         DEPENDENCIES.addAll(woodFrom);
         DEPENDENCIES.addAll(blocksFrom);
     }
 
+    public static void addModule(CompatModule module) {
+        if (MODULE_DISABLER.isModuleOn(module.getModId())) { //maybe turn into supplier
+            ACTIVE_MODULES.add(module);
+            DEPENDENCIES.add(module.getModId());
+            DEPENDENCIES.addAll(module.getAlreadySupportedMods());
+            ServerDynamicResourcesHandler.INSTANCE.getPack().addNamespaces(module.getModId());
+            for (var t : module.getAffectedTypes()) {
+                addDynamicRegistrationFor(t);
+            }
+        }
+    }
+
     public static boolean OLD_FD = false;
 
-    protected void addIfLoaded(String modId, Supplier<Function<String, CompatModule>> moduleFactory) {
+    public static void addIfLoaded(String modId, Supplier<Function<String, CompatModule>> moduleFactory) {
         if (PlatHelper.isModLoaded(modId)) {
 
             if (modId.equals("farmersdelight")) {
@@ -187,7 +103,7 @@ public abstract class EveryCompat {
                 }
             }
             CompatModule module = moduleFactory.get().apply(modId);
-            EveryCompatAPI.registerModule(module);
+            addModule(module);
         }
     }
 
@@ -195,20 +111,27 @@ public abstract class EveryCompat {
         return COMPAT_MODS;
     }
 
-    public static final Supplier<AllWoodItem> ALL_WOODS = RegHelper.registerItem(res("all_woods"), AllWoodItem::new);
+    public static Collection<String> getDependencies() {
+        return DEPENDENCIES;
+    }
 
-    @Nullable
-    public static final RegSupplier<CreativeModeTab> MOD_TAB =
-            ModConfigs.TAB_ENABLED.get() ?
-                    RegHelper.registerCreativeModeTab(res(MOD_ID),
-                            true,
-                            builder -> builder.icon(() -> ALL_WOODS.get().getDefaultInstance())
-                                    .backgroundSuffix("item_search.png")
-                                    .title(Component.translatable("itemGroup.everycomp.everycomp"))
-                                    .build()) : null;
+    public static void init() {
+        ECConfigs.init();
+        ECNetworking.init();
+        ECRegistry.init();
 
+        ServerDynamicResourcesHandler.INSTANCE.register();
+        RegHelper.addItemsToTabsRegistration(EveryCompat::registerItemsToTabs);
+        PlatHelper.addCommonSetup(EveryCompat::setup);
 
-    public void commonSetup() {
+        BlockSetAPI.addDynamicRegistration((r, c) -> registerItems(r), WoodType.class, BuiltInRegistries.ITEM);
+        BlockSetAPI.addDynamicRegistration((r, c) -> registerTiles(r), WoodType.class, BuiltInRegistries.BLOCK_ENTITY_TYPE);
+        BlockSetAPI.addDynamicRegistration((r, c) -> registerEntities(r), WoodType.class, BuiltInRegistries.ENTITY_TYPE);
+
+        MODULE_DISABLER.save();
+    }
+
+    public static void setup() {
         if (PlatHelper.isModLoaded("chipped")) {
             EveryCompat.LOGGER.warn("Chipped is installed. The mod on its own adds a ludicrous amount of blocks. With Every Compat this can easily explode. You have been warned");
         }
@@ -216,7 +139,11 @@ public abstract class EveryCompat {
         int newSize = BuiltInRegistries.BLOCK.size();
         int am = newSize - prevRegSize;
         float p = (am / (float) newSize) * 100f;
-        EveryCompat.LOGGER.info("Registered {} compat blocks making up {}% of total blocks registered", am, String.format("%.2f", p));
+        if (p > 25) {
+            EveryCompat.LOGGER.warn("Registered {} compat blocks making up {}% of total blocks registered", am, String.format("%.2f", p));
+        } else {
+            EveryCompat.LOGGER.info("Registered {} compat blocks making up {}% of total blocks registered", am, String.format("%.2f", p));
+        }
         if (p > 33) {
             CompatModule bloated = ACTIVE_MODULES.stream()
                     .max(Comparator.comparing(CompatModule::bloatAmount)).get();
@@ -231,35 +158,31 @@ public abstract class EveryCompat {
 
     }
 
-    private int prevRegSize;
+    private static int prevRegSize = 0;
 
-    public void registerWoodStuff(Registrator<Block> event, Collection<WoodType> woods) {
-        ModEntriesConfigs.initEarlyButNotSuperEarly(); // add wood stuff once its ready
-        prevRegSize = BuiltInRegistries.BLOCK.size();
-        LOGGER.info("Registering Compat Wood Blocks");
-        forAllModules(m -> m.registerWoodBlocks(event, woods));
+    public static <T extends BlockType> void addDynamicRegistrationFor(Class<T> t) {
+        if (AFFECTED_TYPES.add(t)) {
+            BlockSetAPI.addDynamicBlockRegistration((r, c) -> {
+                if (prevRegSize == 0) prevRegSize = BuiltInRegistries.BLOCK.size();
+                ModEntriesConfigs.initEarlyButNotSuperEarly(); // assure configs are loaded since they depend on wood stuff being init
+                LOGGER.info("Registering Compat {} Blocks", t.getSimpleName());
+                forAllModules(m -> m.registerBlocks(t, r, c));
+            }, t);
+        }
     }
 
-
-    public void registerLeavesStuff(Registrator<Block> event, Collection<LeavesType> leaves) {
-        LOGGER.info("Registering Compat Leaves Blocks");
-        forAllModules(m -> m.registerLeavesBlocks(event, leaves));
+    protected static void registerItems(Registrator<Item> event) {
+        forAllModules(m -> m.registerItems((id, o) -> {
+            event.register(id, o);
+            EveryCompat.ITEMS_TO_MODULES.put(o, m);
+        }));
     }
 
-    public void registerStonesStuff(Registrator<Block> event, Collection<StoneType> stones) {
-        LOGGER.info("Registering Compat Stones Blocks");
-        forAllModules(m -> m.registerStonesBlocks(event, stones));
-    }
-
-    protected void registerItems(Registrator<Item> event) {
-        forAllModules(m -> m.registerItems(event));
-    }
-
-    protected void registerTiles(Registrator<BlockEntityType<?>> event) {
+    protected static void registerTiles(Registrator<BlockEntityType<?>> event) {
         forAllModules(m -> m.registerTiles(event));
     }
 
-    protected void registerEntities(Registrator<EntityType<?>> event) {
+    protected static void registerEntities(Registrator<EntityType<?>> event) {
         forAllModules(m -> m.registerEntities(event));
     }
 
@@ -272,32 +195,35 @@ public abstract class EveryCompat {
 
     }
 
-    private void registerItemsToTabs(RegHelper.ItemToTabEvent event) {
-        if (ModConfigs.TAB_ENABLED.get()) {
-            var tab = EveryCompat.MOD_TAB.getKey();
-            Map<BlockType, List<Item>> typeToEntrySet = new LinkedHashMap<>();
+    private static void registerItemsToTabs(RegHelper.ItemToTabEvent event) {
+        if (ECConfigs.TAB_ENABLED.get()) {
+            Map<ResourceKey<CreativeModeTab>, Map<BlockType, List<Item>>> typeToEntrySet = new LinkedHashMap<>();
             for (var r : BlockSetAPI.getRegistries()) {
                 for (var type : r.getValues()) {
                     forAllModules(m -> {
-                        typeToEntrySet.computeIfAbsent(type, j -> new ArrayList<>())
+                        typeToEntrySet.computeIfAbsent(m.getDedicatedTab(), j -> new LinkedHashMap<>())
+                                .computeIfAbsent(type, j -> new ArrayList<>())
                                 .addAll(m.getAllItemsOfType(type));
                     });
                 }
             }
-            for (var e : typeToEntrySet.values()) {
-                event.add(tab, e.toArray(ItemLike[]::new));
+            for (var e : typeToEntrySet.entrySet()) {
+                for (var ee : e.getValue().values()) {
+                    event.add(e.getKey(), ee.toArray(ItemLike[]::new));
+                }
             }
         } else {
             forAllModules(m -> m.registerItemsToExistingTabs(event));
         }
     }
 
-    public static boolean doChildrenExistFor(WoodType w, String ... blockTypes) {
+    public static boolean doChildrenExistFor(WoodType w, String... blockTypes) {
         for (String type : blockTypes) {
             if (w.getBlockOfThis(type) == null) return false;
         }
         return true;
     }
+
     public static boolean doChildrenExistFor(WoodType w, SimpleEntrySet<WoodType, ?> blockType) {
         return (blockType.blocks.get(w) != null);
     }

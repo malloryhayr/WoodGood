@@ -5,7 +5,6 @@ import com.mojang.datafixers.util.Pair;
 import lilypuree.decorative_blocks.blocks.types.VanillaWoodTypes;
 import lilypuree.decorative_blocks.blocks.types.WoodDecorativeBlockTypes;
 import lilypuree.decorative_blocks.core.DBBlocks;
-import lilypuree.decorative_blocks.core.DBItems;
 import lilypuree.decorative_blocks.items.SeatItem;
 import lilypuree.decorative_blocks.items.SupportItem;
 import net.mehvahdjukaar.every_compat.api.SimpleEntrySet;
@@ -15,15 +14,13 @@ import net.mehvahdjukaar.moonlight.api.resources.RPUtils;
 import net.mehvahdjukaar.moonlight.api.resources.textures.Palette;
 import net.mehvahdjukaar.moonlight.api.resources.textures.SpriteUtils;
 import net.mehvahdjukaar.moonlight.api.resources.textures.TextureImage;
+import net.mehvahdjukaar.moonlight.api.set.BlockType;
 import net.mehvahdjukaar.moonlight.api.set.wood.WoodType;
 import net.mehvahdjukaar.moonlight.api.set.wood.WoodTypeRegistry;
 import net.minecraft.client.resources.metadata.animation.AnimationMetadataSection;
-import net.minecraft.core.Registry;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.packs.resources.ResourceManager;
-import net.minecraft.tags.BlockTags;
-import net.minecraft.tags.ItemTags;
 import net.minecraft.world.level.block.Block;
 
 import java.util.Collection;
@@ -123,9 +120,12 @@ public class DecorativeBlocksModule extends SimpleModule {
     }
 
     @Override
-    public void registerWoodBlocks(Registrator<Block> registry, Collection<WoodType> woodTypes) {
-        woodTypes.forEach(w -> wtConversion.put(w, new DBWoodType(w)));
-        super.registerWoodBlocks(registry, woodTypes);
+    public <T extends BlockType> void registerBlocks(Class<T> typeClass,
+                                                     Registrator<Block> registry, Collection<T> types) {
+        if (typeClass == WoodType.class) {
+            types.forEach(w -> wtConversion.put((WoodType) w, new DBWoodType((WoodType) w)));
+        }
+        super.registerBlocks(typeClass, registry, types);
     }
 
 }

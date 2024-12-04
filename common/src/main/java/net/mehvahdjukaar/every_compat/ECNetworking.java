@@ -1,7 +1,7 @@
 package net.mehvahdjukaar.every_compat;
 
 import io.netty.buffer.Unpooled;
-import net.mehvahdjukaar.every_compat.configs.ModConfigs;
+import net.mehvahdjukaar.every_compat.configs.ECConfigs;
 import net.mehvahdjukaar.moonlight.api.platform.PlatHelper;
 import net.mehvahdjukaar.moonlight.api.platform.network.ChannelHandler;
 import net.mehvahdjukaar.moonlight.api.platform.network.Message;
@@ -34,7 +34,7 @@ public class ECNetworking {
         private final Map<String, String> mods = new HashMap<>();
 
         public S2CModVersionCheckMessage() {
-            for (var m : EveryCompat.DEPENDENCIES) {
+            for (var m : EveryCompat.getDependencies()) {
                 var v = PlatHelper.getModVersion(m);
                 if (v != null) {
                     mods.put(m, v);
@@ -130,7 +130,7 @@ public class ECNetworking {
     private static int lastInd = 0;
 
     public static void sendPacket(ServerPlayer s) {
-        if (ModConfigs.DEBUG_PACKET.get() || PlatHelper.isDev()) {
+        if (ECConfigs.DEBUG_PACKET.get() || PlatHelper.isDev()) {
             lastInd = 0;
             EveryCompat.LOGGER.warn("Starting Blockstate Map validity check:");
             while (lastInd < Block.BLOCK_STATE_REGISTRY.size()) {

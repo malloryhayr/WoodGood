@@ -56,13 +56,13 @@ public class ItemOnlyEntrySet<T extends BlockType, I extends Item> extends Abstr
         return baseItem.get();
     }
 
-
-    public void addTranslations(CompatModule module, AfterLanguageLoadEvent lang) {
+    @Override
+    public void addTranslations(SimpleModule module, AfterLanguageLoadEvent lang) {
         items.forEach((w, v) -> LangBuilder.addDynamicEntry(lang, "item_type." + module.getModId() + "." + typeName, w, v));
     }
 
     @Override
-    public void registerBlocks(CompatModule module, Registrator<Block> registry, Collection<T> woodTypes) {
+    public void registerBlocks(SimpleModule module, Registrator<Block> registry, Collection<T> woodTypes) {
 
     }
 
@@ -79,7 +79,7 @@ public class ItemOnlyEntrySet<T extends BlockType, I extends Item> extends Abstr
     }
 
     @Override
-    public void registerItems(CompatModule module, Registrator<Item> registry) {
+    public void registerItems(SimpleModule module, Registrator<Item> registry) {
         BlockTypeRegistry<T> typeRegistry = BlockSetAPI.getTypeRegistry(this.type);
         for (T w : typeRegistry.getValues()) {
             String name = getItemName(w);
@@ -94,7 +94,6 @@ public class ItemOnlyEntrySet<T extends BlockType, I extends Item> extends Abstr
 
                     registry.register(EveryCompat.res(fullName), item);
                     w.addChild(getChildKey(module), item);
-                    EveryCompat.ITEMS_TO_MODULES.put(item, module);
                 }
             }
         }
@@ -102,7 +101,7 @@ public class ItemOnlyEntrySet<T extends BlockType, I extends Item> extends Abstr
     }
 
     @Override
-    public void registerTiles(CompatModule module, Registrator<BlockEntityType<?>> registry) {
+    public void registerTiles(SimpleModule module, Registrator<BlockEntityType<?>> registry) {
         Item base = getBaseItem();
         if (base == null || base == Items.AIR)
             //?? wtf im using disabled to allow for null??
@@ -144,18 +143,13 @@ public class ItemOnlyEntrySet<T extends BlockType, I extends Item> extends Abstr
     }
 
     @Override
-    public void generateLootTables(CompatModule module, DynamicDataPack pack, ResourceManager manager) {
+    public void generateLootTables(SimpleModule module, DynamicDataPack pack, ResourceManager manager) {
 
     }
 
     @Override
-    public void generateModels(CompatModule module, DynClientResourcesGenerator handler, ResourceManager manager) {
+    public void generateModels(SimpleModule module, DynClientResourcesGenerator handler, ResourceManager manager) {
         ResourcesUtils.addItemModels(module.getModId(), manager, handler, items, baseType.get(), extraTransform);
-    }
-
-    @Override
-    public void registerEntityRenderers(CompatModule simpleModule, ClientHelper.BlockEntityRendererEvent event) {
-
     }
 
     @Override

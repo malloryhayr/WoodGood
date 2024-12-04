@@ -1,12 +1,11 @@
 package net.mehvahdjukaar.every_compat.dynamicpack;
 
 import net.mehvahdjukaar.every_compat.EveryCompat;
-import net.mehvahdjukaar.every_compat.configs.ModConfigs;
+import net.mehvahdjukaar.every_compat.configs.ECConfigs;
 import net.mehvahdjukaar.moonlight.api.platform.PlatHelper;
 import net.mehvahdjukaar.moonlight.api.resources.pack.DynServerResourcesGenerator;
 import net.mehvahdjukaar.moonlight.api.resources.pack.DynamicDataPack;
 import net.minecraft.server.packs.resources.ResourceManager;
-import net.minecraft.world.item.crafting.RecipeManager;
 import org.apache.logging.log4j.Logger;
 
 public class ServerDynamicResourcesHandler extends DynServerResourcesGenerator {
@@ -28,12 +27,12 @@ public class ServerDynamicResourcesHandler extends DynServerResourcesGenerator {
 
     @Override
     public boolean dependsOnLoadedPacks() {
-        return  ModConfigs.SPEC == null || ModConfigs.DEPEND_ON_PACKS.get();
+        return  ECConfigs.SPEC == null || ECConfigs.DEPEND_ON_PACKS.get();
     }
 
     @Override
     public void regenerateDynamicAssets(ResourceManager manager) {
-        this.dynamicPack.setGenerateDebugResources(PlatHelper.isDev() || ModConfigs.DEBUG_RESOURCES.get());
+        this.dynamicPack.setGenerateDebugResources(PlatHelper.isDev() || ECConfigs.DEBUG_RESOURCES.get());
 
         EveryCompat.forAllModules(m -> {
             try {

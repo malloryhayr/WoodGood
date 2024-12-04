@@ -50,9 +50,9 @@ public class StorageDrawersModule extends SimpleModule {
                         w -> new CompatStandardDrawers(1, false, Utils.copyPropertySafe(ModBlocks.OAK_FULL_DRAWERS_1.get())))
                 .addTag(BlockTags.MINEABLE_WITH_AXE, Registries.BLOCK)
                 .addTag(modRes("drawers"), Registries.BLOCK)
-                .addTag(modRes("full_drawers"),Registries.BLOCK)
+                .addTag(modRes("full_drawers"), Registries.BLOCK)
                 .addTag(modRes("drawers"), Registries.ITEM)
-                .addTag(modRes("full_drawers"),Registries.ITEM)
+                .addTag(modRes("full_drawers"), Registries.ITEM)
                 .setTabKey(tab)
                 .defaultRecipe()
                 .addTile(CompatStandardDrawersEntity1::new)
@@ -71,9 +71,9 @@ public class StorageDrawersModule extends SimpleModule {
                         w -> new CompatStandardDrawers(2, false, Utils.copyPropertySafe(ModBlocks.OAK_FULL_DRAWERS_2.get())))
                 .addTag(BlockTags.MINEABLE_WITH_AXE, Registries.BLOCK)
                 .addTag(modRes("drawers"), Registries.BLOCK)
-                .addTag(modRes("full_drawers"),Registries.BLOCK)
+                .addTag(modRes("full_drawers"), Registries.BLOCK)
                 .addTag(modRes("drawers"), Registries.ITEM)
-                .addTag(modRes("full_drawers"),Registries.ITEM)
+                .addTag(modRes("full_drawers"), Registries.ITEM)
                 .setTabKey(tab)
                 .defaultRecipe()
                 .addTile(CompatStandardDrawersEntity2::new)
@@ -92,9 +92,9 @@ public class StorageDrawersModule extends SimpleModule {
                         w -> new CompatStandardDrawers(4, false, Utils.copyPropertySafe(ModBlocks.OAK_FULL_DRAWERS_4.get())))
                 .addTag(BlockTags.MINEABLE_WITH_AXE, Registries.BLOCK)
                 .addTag(modRes("drawers"), Registries.BLOCK)
-                .addTag(modRes("full_drawers"),Registries.BLOCK)
+                .addTag(modRes("full_drawers"), Registries.BLOCK)
                 .addTag(modRes("drawers"), Registries.ITEM)
-                .addTag(modRes("full_drawers"),Registries.ITEM)
+                .addTag(modRes("full_drawers"), Registries.ITEM)
                 .setTabKey(tab)
                 .defaultRecipe()
                 .addTile(CompatStandardDrawersEntity4::new)
@@ -113,9 +113,9 @@ public class StorageDrawersModule extends SimpleModule {
                         w -> new CompatStandardDrawers(1, true, Utils.copyPropertySafe(ModBlocks.OAK_HALF_DRAWERS_1.get())))
                 .addTag(BlockTags.MINEABLE_WITH_AXE, Registries.BLOCK)
                 .addTag(modRes("drawers"), Registries.BLOCK)
-                .addTag(modRes("half_drawers"),Registries.BLOCK)
+                .addTag(modRes("half_drawers"), Registries.BLOCK)
                 .addTag(modRes("drawers"), Registries.ITEM)
-                .addTag(modRes("half_drawers"),Registries.ITEM)
+                .addTag(modRes("half_drawers"), Registries.ITEM)
                 .setTabKey(tab)
                 .defaultRecipe()
                 .addTile(CompatHalfDrawersEntity1::new)
@@ -136,9 +136,9 @@ public class StorageDrawersModule extends SimpleModule {
                         w -> new CompatStandardDrawers(2, true, Utils.copyPropertySafe(ModBlocks.OAK_HALF_DRAWERS_2.get())))
                 .addTag(BlockTags.MINEABLE_WITH_AXE, Registries.BLOCK)
                 .addTag(modRes("drawers"), Registries.BLOCK)
-                .addTag(modRes("half_drawers"),Registries.BLOCK)
+                .addTag(modRes("half_drawers"), Registries.BLOCK)
                 .addTag(modRes("drawers"), Registries.ITEM)
-                .addTag(modRes("half_drawers"),Registries.ITEM)
+                .addTag(modRes("half_drawers"), Registries.ITEM)
                 .setTabKey(tab)
                 .defaultRecipe()
                 .addTile(CompatHalfDrawersEntity2::new)
@@ -159,9 +159,9 @@ public class StorageDrawersModule extends SimpleModule {
                         w -> new CompatStandardDrawers(4, true, Utils.copyPropertySafe(ModBlocks.OAK_HALF_DRAWERS_4.get())))
                 .addTag(BlockTags.MINEABLE_WITH_AXE, Registries.BLOCK)
                 .addTag(modRes("drawers"), Registries.BLOCK)
-                .addTag(modRes("half_drawers"),Registries.BLOCK)
+                .addTag(modRes("half_drawers"), Registries.BLOCK)
                 .addTag(modRes("drawers"), Registries.ITEM)
-                .addTag(modRes("half_drawers"),Registries.ITEM)
+                .addTag(modRes("half_drawers"), Registries.ITEM)
                 .setTabKey(tab)
                 .defaultRecipe()
                 .addTile(CompatHalfDrawersEntity4::new)
@@ -181,8 +181,8 @@ public class StorageDrawersModule extends SimpleModule {
                         ModBlocks.OAK_TRIM, () -> WoodTypeRegistry.OAK_TYPE,
                         w -> new BlockTrim(Utils.copyPropertySafe(ModBlocks.OAK_TRIM.get())))
                 .addTag(BlockTags.MINEABLE_WITH_AXE, Registries.BLOCK)
-                .addTag(modRes("trim"),Registries.BLOCK)
-                .addTag(modRes("trim"),Registries.ITEM)
+                .addTag(modRes("trim"), Registries.BLOCK)
+                .addTag(modRes("trim"), Registries.ITEM)
                 .setTabKey(tab)
                 .defaultRecipe()
                 .createPaletteFromOak(this::trimPalette)
@@ -233,11 +233,11 @@ public class StorageDrawersModule extends SimpleModule {
     public void registerBlockEntityRenderers(ClientHelper.BlockEntityRendererEvent event) {
         //TODO: somehow put this in builder instead
         FULL_DRAWERS_1.registerTileRenderer(event, BlockEntityDrawersRenderer::new);
-        event.register(FULL_DRAWERS_2.getTile(BlockEntityDrawers.class), BlockEntityDrawersRenderer::new);
-        event.register(FULL_DRAWERS_4.getTile(BlockEntityDrawers.class), BlockEntityDrawersRenderer::new);
-        event.register(HALF_DRAWERS_1.getTile(BlockEntityDrawers.class), BlockEntityDrawersRenderer::new);
-        event.register(HALF_DRAWERS_2.getTile(BlockEntityDrawers.class), BlockEntityDrawersRenderer::new);
-        event.register(HALF_DRAWERS_4.getTile(BlockEntityDrawers.class), BlockEntityDrawersRenderer::new);
+        FULL_DRAWERS_2.registerTileRenderer(event, BlockEntityDrawersRenderer::new);
+        FULL_DRAWERS_4.registerTileRenderer(event, BlockEntityDrawersRenderer::new);
+        HALF_DRAWERS_1.registerTileRenderer(event, BlockEntityDrawersRenderer::new);
+        HALF_DRAWERS_2.registerTileRenderer(event, BlockEntityDrawersRenderer::new);
+        HALF_DRAWERS_4.registerTileRenderer(event, BlockEntityDrawersRenderer::new);
     }
 
     private class CompatStandardDrawers extends BlockStandardDrawers {

@@ -20,8 +20,6 @@ import net.mehvahdjukaar.moonlight.api.resources.pack.DynamicDataPack;
 import net.mehvahdjukaar.moonlight.api.resources.textures.Palette;
 import net.mehvahdjukaar.moonlight.api.set.BlockSetAPI;
 import net.mehvahdjukaar.moonlight.api.set.BlockType;
-import net.mehvahdjukaar.moonlight.api.set.leaves.LeavesType;
-import net.mehvahdjukaar.moonlight.api.set.wood.WoodType;
 import net.mehvahdjukaar.moonlight.api.util.Utils;
 import net.minecraft.client.renderer.blockentity.BlockEntityRendererProvider;
 import net.minecraft.client.resources.metadata.animation.AnimationMetadataSection;
@@ -109,31 +107,19 @@ public class SimpleEntrySet<T extends BlockType, B extends Block> extends Abstra
         return baseBlock.get();
     }
 
-    public void addTranslations(CompatModule module, AfterLanguageLoadEvent lang) {
+    public void addTranslations(SimpleModule module, AfterLanguageLoadEvent lang) {
         blocks.forEach((w, v) -> LangBuilder.addDynamicEntry(lang, "block_type." + module.getModId() + "." + typeName, w, v));
     }
 
-    public void registerWoodBlocks(CompatModule module, Registrator<Block> registry, Collection<WoodType> woodTypes) {
-        if (WoodType.class == getTypeClass()) {
-            registerBlocks(module, registry, (Collection<T>) woodTypes);
-        }
-    }
-
-    public void registerLeavesBlocks(CompatModule module, Registrator<Block> registry, Collection<LeavesType> leavesTypes) {
-        if (LeavesType.class == getTypeClass()) {
-            registerBlocks(module, registry, (Collection<T>) leavesTypes);
-        }
-    }
-
     @Override
-    public void registerBlocks(CompatModule module, Registrator<Block> registry, Collection<T> woodTypes) {
+    public void registerBlocks(SimpleModule module, Registrator<Block> registry, Collection<T> types) {
         Block base = getBaseBlock();
         if (base == null || base == Blocks.AIR)
             //?? wtf im using disabled to allow for null??
             throw new UnsupportedOperationException("Base block cant be null (" + this.typeName + " for " + module.modId + " module)");
 
         String childKey = getChildKey(module);
-        for (T w : woodTypes) {
+        for (T w : types) {
             String name = getBlockName(w);
             String fullName = module.shortenedId() + "/" + w.getNamespace() + "/" + name;
             if (w.isVanilla() || module.isEntryAlreadyRegistered(name, w, BuiltInRegistries.BLOCK)) continue;
@@ -205,7 +191,7 @@ public class SimpleEntrySet<T extends BlockType, B extends Block> extends Abstra
     }
 
     @Override
-    public void registerItems(CompatModule module, Registrator<Item> registry) {
+    public void registerItems(SimpleModule module, Registrator<Item> registry) {
         blocks.forEach((w, value) -> {
             Item i;
 
@@ -218,13 +204,12 @@ public class SimpleEntrySet<T extends BlockType, B extends Block> extends Abstra
             if (i != null) {
                 this.items.put(w, i);
                 registry.register(Utils.getID(value), i);
-                EveryCompat.ITEMS_TO_MODULES.put(i, module);
             }
         });
     }
 
     @Override
-    public void registerTiles(CompatModule module, Registrator<BlockEntityType<?>> registry) {
+    public void registerTiles(SimpleModule module, Registrator<BlockEntityType<?>> registry) {
         if (tileHolder instanceof NewTileHolder<?> nt) {
             var tile = nt.createInstance(blocks.values().toArray(Block[]::new));
             registry.register(EveryCompat.res(module.shortenedId() + "_" + this.getName()), tile);
@@ -241,16 +226,16 @@ public class SimpleEntrySet<T extends BlockType, B extends Block> extends Abstra
 
     @Override
     public void setRenderLayer() {
-            for (var e : blocks.entrySet()) {
-                var w = e.getKey();
-                var v = e.getValue();
-                if (renderType != null || w.toString().equals("rats:pirat"))
-                    EveryCompatClient.registerRenderType(v, w, renderType);
-            }
+        for (var e : blocks.entrySet()) {
+            var w = e.getKey();
+            var v = e.getValue();
+            if (renderType != null || w.toString().equals("rats:pirat"))
+                EveryCompatClient.registerRenderType(v, w, renderType);
+        }
     }
 
     @Override
-    public void generateLootTables(CompatModule module, DynamicDataPack pack, ResourceManager manager) {
+    public void generateLootTables(SimpleModule module, DynamicDataPack pack, ResourceManager manager) {
         if (lootMode == LootTableMode.COPY_FROM_PARENT) {
             ResourceLocation reg = Utils.getID(getBaseBlock());
             ResourcesUtils.addBlockResources(module.getModId(), manager, pack, blocks, baseType.get().getTypeName(),
@@ -265,7 +250,7 @@ public class SimpleEntrySet<T extends BlockType, B extends Block> extends Abstra
     }
 
     @Override
-    public void generateModels(CompatModule module, DynClientResourcesGenerator handler, ResourceManager manager) {
+    public void generateModels(SimpleModule module, DynClientResourcesGenerator handler, ResourceManager manager) {
         ResourcesUtils.addStandardResources(module.getModId(), manager, handler, blocks, baseType.get(), extraTransform);
     }
 
@@ -285,16 +270,8 @@ public class SimpleEntrySet<T extends BlockType, B extends Block> extends Abstra
     @Environment(EnvType.CLIENT)
     @SuppressWarnings({"rawtypes"})
     public void registerTileRenderer(ClientHelper.BlockEntityRendererEvent event, BlockEntityRendererProvider aNew) {
-        var tile = getTileHolder();
-        if (tile != null) {
-            tile.registerRenderer(event, aNew);
-        }
-    }
-
-    @Override
-    public void registerEntityRenderers(CompatModule simpleModule, ClientHelper.BlockEntityRendererEvent event) {
-        if (this.tileHolder != null) {
-            //this.tileHolder.registerRenderer(event);
+        if (tileHolder != null) {
+            tileHolder.registerRenderer(event, aNew);
         }
     }
 

@@ -2,7 +2,7 @@ package net.mehvahdjukaar.every_compat;
 
 import net.mehvahdjukaar.every_compat.api.CompatModule;
 import net.mehvahdjukaar.every_compat.api.RenderLayer;
-import net.mehvahdjukaar.every_compat.configs.ModConfigs;
+import net.mehvahdjukaar.every_compat.configs.ECConfigs;
 import net.mehvahdjukaar.every_compat.dynamicpack.ClientDynamicResourcesHandler;
 import net.mehvahdjukaar.moonlight.api.platform.ClientHelper;
 import net.mehvahdjukaar.moonlight.api.platform.PlatHelper;
@@ -52,12 +52,12 @@ public class EveryCompatClient {
     }
 
     public static void onItemTooltip(ItemStack stack, TooltipFlag tooltipFlag, List<Component> components) {
-        boolean mod = ModConfigs.MOD_TOOPTIP.get();
-        boolean block = ModConfigs.BLOCK_TYPE_TOOLTIP.get();
+        boolean mod = ECConfigs.MOD_TOOPTIP.get();
+        boolean block = ECConfigs.BLOCK_TYPE_TOOLTIP.get();
 
-        if (mod || block && (tooltipFlag.isAdvanced() || !ModConfigs.TOOLTIPS_ADVANCED.get())) {
+        if (mod || block && (tooltipFlag.isAdvanced() || !ECConfigs.TOOLTIPS_ADVANCED.get())) {
             Item item = stack.getItem();
-            var m = EveryCompat.ITEMS_TO_MODULES.get(item);
+            var m = EveryCompat.getModuleOfItem(item);
             if (m != null) {
                 if (mod)
                     components.add(Component.translatable("tooltip.everycomp.mod", m.getModName()).withStyle(ChatFormatting.BLUE));

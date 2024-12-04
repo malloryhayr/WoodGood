@@ -1,15 +1,12 @@
 package net.mehvahdjukaar.every_compat.dynamicpack;
 
 import net.mehvahdjukaar.every_compat.EveryCompat;
-import net.mehvahdjukaar.every_compat.configs.ModConfigs;
-import net.mehvahdjukaar.every_compat.misc.ResourcesUtils;
+import net.mehvahdjukaar.every_compat.configs.ECConfigs;
 import net.mehvahdjukaar.every_compat.misc.SpriteHelper;
 import net.mehvahdjukaar.moonlight.api.events.AfterLanguageLoadEvent;
 import net.mehvahdjukaar.moonlight.api.platform.PlatHelper;
 import net.mehvahdjukaar.moonlight.api.resources.pack.DynClientResourcesGenerator;
 import net.mehvahdjukaar.moonlight.api.resources.pack.DynamicTexturePack;
-import net.mehvahdjukaar.moonlight.api.set.wood.WoodType;
-import net.mehvahdjukaar.moonlight.api.set.wood.WoodTypeRegistry;
 import net.minecraft.server.packs.resources.ResourceManager;
 import org.apache.logging.log4j.Logger;
 
@@ -33,7 +30,7 @@ public class ClientDynamicResourcesHandler extends DynClientResourcesGenerator {
 
     @Override
     public boolean dependsOnLoadedPacks() {
-        return ModConfigs.SPEC == null || ModConfigs.DEPEND_ON_PACKS.get();
+        return ECConfigs.SPEC == null || ECConfigs.DEPEND_ON_PACKS.get();
     }
 
     @Override
@@ -49,7 +46,7 @@ public class ClientDynamicResourcesHandler extends DynClientResourcesGenerator {
             SpriteHelper.addHardcodedSprites();
             init = true;
         }
-        this.dynamicPack.setGenerateDebugResources(PlatHelper.isDev() || ModConfigs.DEBUG_RESOURCES.get());
+        this.dynamicPack.setGenerateDebugResources(PlatHelper.isDev() || ECConfigs.DEBUG_RESOURCES.get());
         EveryCompat.forAllModules(m -> {
             try {
                 m.addDynamicClientResources(this, manager);
