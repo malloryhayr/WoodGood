@@ -3,6 +3,8 @@ package net.mehvahdjukaar.every_compat.api;
 import net.mehvahdjukaar.every_compat.EveryCompat;
 import net.mehvahdjukaar.every_compat.dynamicpack.ServerDynamicResourcesHandler;
 
+import static net.mehvahdjukaar.every_compat.EveryCompat.MODULE_DISABLER;
+
 /**
  * Use this to register new wood type blocks and module
  * To register wood types that aren't detected reference net.mehvahdjukaar.moonlight.api.set.BlockSetAPI;
@@ -15,10 +17,12 @@ public class EveryCompatAPI {
      * @param module your module instance. Can be a custom implementation
      */
     public static synchronized void registerModule(CompatModule module) {
-        EveryCompat.ACTIVE_MODULES.add(module);
-        EveryCompat.DEPENDENCIES.add(module.modId);
-        EveryCompat.DEPENDENCIES.addAll(module.getAlreadySupportedMods());
-        ServerDynamicResourcesHandler.INSTANCE.getPack().addNamespaces(module.getModId());
+        if (MODULE_DISABLER.isModuleOn(module.modId)) { //maybe turn into supplier
+            EveryCompat.ACTIVE_MODULES.add(module);
+            EveryCompat.DEPENDENCIES.add(module.modId);
+            EveryCompat.DEPENDENCIES.addAll(module.getAlreadySupportedMods());
+            ServerDynamicResourcesHandler.INSTANCE.getPack().addNamespaces(module.getModId());
+        }
     }
 
     //for each entry that you register you will need to add "block_type.everycomp.your_type" translation string to your lang file
