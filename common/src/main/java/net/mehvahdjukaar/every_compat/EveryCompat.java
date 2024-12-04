@@ -9,6 +9,7 @@ import net.mehvahdjukaar.every_compat.configs.ModConfigs;
 import net.mehvahdjukaar.every_compat.configs.ModEntriesConfigs;
 import net.mehvahdjukaar.every_compat.dynamicpack.ServerDynamicResourcesHandler;
 import net.mehvahdjukaar.every_compat.misc.AllWoodItem;
+
 import net.mehvahdjukaar.every_compat.modules.another_furniture.AnotherFurnitureModule;
 import net.mehvahdjukaar.every_compat.modules.beautiful_campfires.BeautifulCampfiresModule;
 import net.mehvahdjukaar.every_compat.modules.camp_chair.CampChairModule;
@@ -24,10 +25,12 @@ import net.mehvahdjukaar.every_compat.modules.hearth_and_home.HearthAndHomeModul
 import net.mehvahdjukaar.every_compat.modules.mrcrayfish.BackpackedModule;
 import net.mehvahdjukaar.every_compat.modules.mrcrayfish.RefurbishedFurnitureModule;
 import net.mehvahdjukaar.every_compat.modules.quark.QuarkModule;
+import net.mehvahdjukaar.every_compat.modules.storagedrawers.StorageDrawersModule;
 import net.mehvahdjukaar.every_compat.modules.table_top_craft.TableTopCraftModule;
 import net.mehvahdjukaar.every_compat.modules.twigs.TwigsModule;
 import net.mehvahdjukaar.every_compat.modules.valhelsia_furniture.ValhelsiaFurnitureModule;
 import net.mehvahdjukaar.every_compat.modules.villagers_plus.VillagersPlusModule;
+
 import net.mehvahdjukaar.every_compat.type.StoneType;
 import net.mehvahdjukaar.every_compat.type.StoneTypeRegistry;
 import net.mehvahdjukaar.moonlight.api.misc.RegSupplier;
@@ -148,6 +151,7 @@ public abstract class EveryCompat {
         addIfLoaded("valhelsia_furniture", () -> ValhelsiaFurnitureModule::new);
         addIfLoaded("villagersplus", () -> VillagersPlusModule::new);
         addIfLoaded("table_top_craft", () -> TableTopCraftModule::new);
+        addIfLoaded("storagedrawers", () -> StorageDrawersModule::new);
 
 // ===================================================== OTHERS ===================================================== \\
         forAllModules(m -> EveryCompat.LOGGER.info("Loaded {}", m.toString()));
