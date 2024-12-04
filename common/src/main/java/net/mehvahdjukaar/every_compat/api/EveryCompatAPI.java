@@ -14,8 +14,8 @@ public class EveryCompatAPI {
      *
      * @param module your module instance. Can be a custom implementation
      */
-    public static void registerModule(CompatModule module) {
-        EveryCompat.ACTIVE_MODULES.put(module.getModId(), module);
+    public static synchronized void registerModule(CompatModule module) {
+        EveryCompat.ACTIVE_MODULES.add(module);
         ServerDynamicResourcesHandler.INSTANCE.getPack().addNamespaces(module.getModId());
     }
 

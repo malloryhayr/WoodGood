@@ -68,7 +68,7 @@ public abstract class EveryCompat {
 
     public static final Logger LOGGER = LogManager.getLogger("Every Compat");
 
-    public static final Map<String, CompatModule> ACTIVE_MODULES = new TreeMap<>();
+    public static final List<CompatModule> ACTIVE_MODULES = new ArrayList<>();
 
     public static final List<CompatMod> COMPAT_MODS = new ArrayList<>();
     // all mod that EC directly or indirectly depends on
@@ -82,7 +82,7 @@ public abstract class EveryCompat {
     private static final UnsafeModuleDisabler MODULE_DISABLER = new UnsafeModuleDisabler();
 
     public static void forAllModules(Consumer<CompatModule> action) {
-        ACTIVE_MODULES.values().forEach(action);
+        ACTIVE_MODULES.forEach(action);
     }
 
 
@@ -223,7 +223,7 @@ public abstract class EveryCompat {
         float p = (am / (float) newSize) * 100f;
         EveryCompat.LOGGER.info("Registered {} compat blocks making up {}% of total blocks registered", am, String.format("%.2f", p));
         if (p > 33) {
-            CompatModule bloated = ACTIVE_MODULES.values().stream()
+            CompatModule bloated = ACTIVE_MODULES.stream()
                     .max(Comparator.comparing(CompatModule::bloatAmount)).get();
             EveryCompat.LOGGER.error("Every Compat registered blocks make up more than one third of your registered blocks, taking up memory and load time.");
             EveryCompat.LOGGER.error("You might want to uninstall some mods, biggest offender was {} ({} blocks)", bloated.getModName().toUpperCase(Locale.ROOT), bloated.bloatAmount());

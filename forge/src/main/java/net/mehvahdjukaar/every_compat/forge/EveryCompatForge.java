@@ -168,7 +168,7 @@ public class EveryCompatForge extends EveryCompat {
         for (var mapping : event.getMappings(Registries.BLOCK_ENTITY_TYPE, EveryCompat.MOD_ID)) {
             ResourceLocation key = mapping.getKey();
             String path = key.getPath();
-            for (var m : EveryCompat.ACTIVE_MODULES.values()) {
+            for (var m : EveryCompat.ACTIVE_MODULES) {
                 if (path.startsWith(m.shortenedId() + "_")) {
                     String newPath = path.substring((m.shortenedId() + "_").length());
                     ResourceLocation newId = new ResourceLocation(m.getModId(), newPath);
