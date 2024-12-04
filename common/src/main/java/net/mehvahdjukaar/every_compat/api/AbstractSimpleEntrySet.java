@@ -423,24 +423,24 @@ public abstract class AbstractSimpleEntrySet<T extends BlockType, B extends Bloc
                 return t;
             }, isOnAtlas);
         }
-
         // Regions Unexplored
-        if (wood.getNamespace().equals("regions_unexplored")) {
+        else if (wood.getNamespace().equals("regions_unexplored")) {
             handler.addTextureIfNotPresent(manager, relativePath, () -> {
                 var t = textureSupplier.get();
                 maybeBrimwood(t, manager, relativePath, wood);
                 return t;
             }, isOnAtlas);
         }
-
         // Advent of Ascension
-        if (wood.getNamespace().equals("aoa3")) {
+        else if (wood.getNamespace().equals("aoa3")) {
             handler.addTextureIfNotPresent(manager, relativePath, () -> {
                 var t = textureSupplier.get();
                 maybeStrangewood(t, manager, wood);
                 return t;
             }, isOnAtlas);
         }
+        else
+            handler.addTextureIfNotPresent(manager, relativePath, textureSupplier);
     }
 
     //for ecologics
