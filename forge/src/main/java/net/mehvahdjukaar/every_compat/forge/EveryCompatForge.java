@@ -116,7 +116,6 @@ public class EveryCompatForge extends EveryCompatCommon {
         addIfLoaded("redeco", () -> ReDecoModule::new);
         addIfLoaded("regions_unexplored", () -> RegionsUnexploredModule::new);
         addIfLoaded("shutter", () -> LauchsShuttersModule::new);
-        addIfLoaded("storagedrawers", () -> StorageDrawersModule::new);
         addIfLoaded("stylishstiles", () -> StylishStilesModule::new);
         addIfLoaded("timber_frames", () -> TimberFramesModule::new);
         addIfLoaded("tropicraft", () -> TropicraftModule::new);

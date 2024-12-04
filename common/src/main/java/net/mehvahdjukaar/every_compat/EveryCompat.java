@@ -46,7 +46,6 @@ public abstract class EveryCompat {
     private static final Map<Class<? extends BlockType>, Set<String>> TYPES_TO_CHILD_KEYS = new Object2ObjectOpenHashMap<>();
     private static final Map<Object, CompatModule> ITEMS_TO_MODULES = new Object2ObjectOpenHashMap<>();
     private static final Set<Class<? extends BlockType>> AFFECTED_TYPES = new HashSet<>();
-
     private static final UnsafeModuleDisabler MODULE_DISABLER = new UnsafeModuleDisabler();
 
     public static ResourceLocation res(String name) {
@@ -188,11 +187,6 @@ public abstract class EveryCompat {
 
 
     public record CompatMod(String modId, List<String> woodsFrom, List<String> blocksFrom) {
-
-        public CompatMod(String modId, String woodFrom, List<String> blocksFrom) {
-            this(modId, List.of(woodFrom), blocksFrom);
-        }
-
     }
 
     private static void registerItemsToTabs(RegHelper.ItemToTabEvent event) {
