@@ -16,6 +16,8 @@ public class EveryCompatAPI {
      */
     public static synchronized void registerModule(CompatModule module) {
         EveryCompat.ACTIVE_MODULES.add(module);
+        EveryCompat.DEPENDENCIES.add(module.modId);
+        EveryCompat.DEPENDENCIES.addAll(module.getAlreadySupportedMods());
         ServerDynamicResourcesHandler.INSTANCE.getPack().addNamespaces(module.getModId());
     }
 
