@@ -3,6 +3,7 @@ package net.mehvahdjukaar.every_compat.api;
 import com.google.common.base.Suppliers;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
+import net.mehvahdjukaar.every_compat.ECRegistry;
 import net.mehvahdjukaar.every_compat.EveryCompat;
 import net.mehvahdjukaar.every_compat.dynamicpack.ClientDynamicResourcesHandler;
 import net.mehvahdjukaar.every_compat.dynamicpack.ServerDynamicResourcesHandler;
@@ -165,7 +166,7 @@ public abstract class CompatModule {
 
     // Ec tab
     public ResourceKey<CreativeModeTab> getDedicatedTab() {
-        return EveryCompat.MOD_TAB.getKey();
+        return ECRegistry.MOD_TAB.getKey();
     }
 
     public abstract Collection<Class<? extends BlockType>> getAffectedTypes();

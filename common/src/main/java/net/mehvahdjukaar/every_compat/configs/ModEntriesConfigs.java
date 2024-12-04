@@ -54,7 +54,7 @@ public class ModEntriesConfigs {
         for (var reg : BlockSetAPI.getRegistries()) {
             if (reg.getType() == WoodType.class || reg.getType() == LeavesType.class) {
                 builder.push(reg.typeName().replace(" ", "_"));
-                for (var c : EveryCompat.TYPES_TO_CHILD_KEYS.getOrDefault(reg.getType(), Set.of())) {
+                for (var c : EveryCompat.getChildKeys(reg.getType())) {
                     String key = c.replace(":", ".");
                     var config = builder.define(key, true);
                     var map = CHILD_CONFIGS.computeIfAbsent(reg.getType(), s -> new HashMap<>());

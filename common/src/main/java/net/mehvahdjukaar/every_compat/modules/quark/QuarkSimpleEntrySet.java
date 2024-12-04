@@ -5,6 +5,7 @@ import com.google.common.base.Suppliers;
 import com.mojang.datafixers.util.Pair;
 import net.mehvahdjukaar.every_compat.api.CompatModule;
 import net.mehvahdjukaar.every_compat.api.SimpleEntrySet;
+import net.mehvahdjukaar.every_compat.api.SimpleModule;
 import net.mehvahdjukaar.every_compat.api.TabAddMode;
 import net.mehvahdjukaar.moonlight.api.resources.BlockTypeResTransformer;
 import net.mehvahdjukaar.moonlight.api.resources.pack.DynamicDataPack;
@@ -55,7 +56,7 @@ public class QuarkSimpleEntrySet<T extends BlockType, B extends Block> extends S
     }
 
     @Override
-    public void generateRecipes(CompatModule module, DynamicDataPack pack, ResourceManager manager) {
+    public void generateRecipes(SimpleModule module, DynamicDataPack pack, ResourceManager manager) {
         ZetaModule mod = zetaModule.get();
         if (mod == null || mod.enabled) {
             super.generateRecipes(module, pack, manager);

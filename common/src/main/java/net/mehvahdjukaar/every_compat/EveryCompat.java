@@ -64,6 +64,10 @@ public abstract class EveryCompat {
         TYPES_TO_CHILD_KEYS.computeIfAbsent(type, t -> new HashSet<>()).add(childId);
     }
 
+    public static Collection<String> getChildKeys(Class<? extends BlockType> type) {
+        return TYPES_TO_CHILD_KEYS.getOrDefault(type, Set.of());
+    }
+
     public static void addOtherCompatMod(String modId, String woodFrom, List<String> blocksFrom) {
         addOtherCompatMod(modId, List.of(woodFrom), blocksFrom);
     }
