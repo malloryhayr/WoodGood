@@ -3,8 +3,9 @@ package net.mehvahdjukaar.every_compat.misc;
 import com.mojang.blaze3d.platform.Lighting;
 import com.mojang.blaze3d.vertex.PoseStack;
 import net.mehvahdjukaar.moonlight.api.client.ItemStackRenderer;
-import net.mehvahdjukaar.moonlight.api.set.wood.WoodType;
-import net.mehvahdjukaar.moonlight.api.set.wood.WoodTypeRegistry;
+import net.mehvahdjukaar.moonlight.api.set.BlockSetAPI;
+import net.mehvahdjukaar.moonlight.api.set.BlockType;
+import net.mehvahdjukaar.moonlight.api.set.BlockTypeRegistry;
 import net.minecraft.Util;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.MultiBufferSource;
@@ -18,31 +19,35 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-public class AllWoodItemRenderer extends ItemStackRenderer {
+public class BlockTypeCycleItemRenderer<T extends BlockType> extends ItemStackRenderer {
 
-    private final List<String> CHILD_KEYS = new ArrayList<>();
-    private final List<WoodType> MODDED_WOOD_TYPES = new ArrayList<>();
-    private ItemStack currentStack = Items.OAK_WOOD.getDefaultInstance();
+    private final List<String> childKeys = new ArrayList<>();
+    private final List<T> moddedTypes = new ArrayList<>();
+    private final Class<T> typeClass;
+    private ItemStack currentStack = Items.BARRIER.getDefaultInstance();
     private int lastIndex = 0;
     private int lastTime = 0;
-    private int woodIndex = 0;
+    private int typeIndex = 0;
     private boolean initialized;
 
-    public AllWoodItemRenderer() {
+    public BlockTypeCycleItemRenderer(Class<T> tClass) {
         super();
+        this.typeClass = tClass;
     }
 
     private void initialize() {
-        for (var c : WoodTypeRegistry.OAK_TYPE.getChildren()) {
-            if (c.getKey().contains(":") && !CHILD_KEYS.contains(c.getKey()) && c.getValue() instanceof ItemLike) {
-                CHILD_KEYS.add(c.getKey());
+        BlockTypeRegistry<T> reg = BlockSetAPI.getTypeRegistry(typeClass);
+        if (reg == null) return;
+        for (var c : reg.getDefaultType().getChildren()) {
+            if (c.getKey().contains(":") && !childKeys.contains(c.getKey()) && c.getValue() instanceof ItemLike) {
+                childKeys.add(c.getKey());
             }
         }
-        for (var w : WoodTypeRegistry.getTypes()) {
-            if (!w.isVanilla()) MODDED_WOOD_TYPES.add(w);
+        for (var w : reg.getValues()) {
+            if (!w.isVanilla()) moddedTypes.add(w);
         }
-        if (MODDED_WOOD_TYPES.size() == 0) CHILD_KEYS.clear();
-        Collections.shuffle(MODDED_WOOD_TYPES);
+        if (moddedTypes.isEmpty()) childKeys.clear();
+        Collections.shuffle(moddedTypes);
     }
 
     @Override
@@ -73,8 +78,8 @@ public class AllWoodItemRenderer extends ItemStackRenderer {
 
 
     public ItemStack getAnyItem() {
-        int size = CHILD_KEYS.size();
-        if (size == 0) return Items.OAK_PLANKS.getDefaultInstance();
+        int size = childKeys.size();
+        if (size == 0) return Items.BARRIER.getDefaultInstance();
         int time = (int) (Util.getMillis() / 350L);
         int tm = time % size;
         if (tm != lastTime) {
@@ -83,10 +88,10 @@ public class AllWoodItemRenderer extends ItemStackRenderer {
             do {
                 var l = (this.lastIndex + 1) % size;
                 // this.woodIndex = (this.woodIndex + 1);
-                if (l < lastIndex) this.woodIndex = (this.woodIndex + 1) % MODDED_WOOD_TYPES.size();
+                if (l < lastIndex) this.typeIndex = (this.typeIndex + 1) % moddedTypes.size();
                 this.lastIndex = l;
-                String key = CHILD_KEYS.get(lastIndex);
-                var vv = MODDED_WOOD_TYPES.get(woodIndex % MODDED_WOOD_TYPES.size()).getChild(key);
+                String key = childKeys.get(lastIndex);
+                var vv = moddedTypes.get(typeIndex % moddedTypes.size()).getChild(key);
                 if (vv instanceof ItemLike il) {
                     v = il;
                 }
