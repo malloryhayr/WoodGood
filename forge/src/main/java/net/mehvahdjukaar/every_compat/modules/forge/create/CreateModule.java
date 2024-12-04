@@ -8,16 +8,12 @@ import net.mehvahdjukaar.every_compat.EveryCompat;
 import net.mehvahdjukaar.every_compat.api.RenderLayer;
 import net.mehvahdjukaar.every_compat.api.SimpleEntrySet;
 import net.mehvahdjukaar.every_compat.api.SimpleModule;
-import net.mehvahdjukaar.every_compat.dynamicpack.ClientDynamicResourcesHandler;
 import net.mehvahdjukaar.every_compat.dynamicpack.ServerDynamicResourcesHandler;
-import net.mehvahdjukaar.every_compat.type.StoneType;
-import net.mehvahdjukaar.every_compat.type.StoneTypeRegistry;
 import net.mehvahdjukaar.moonlight.api.platform.PlatHelper;
 import net.mehvahdjukaar.moonlight.api.resources.ResType;
 import net.mehvahdjukaar.moonlight.api.set.wood.WoodType;
 import net.mehvahdjukaar.moonlight.api.set.wood.WoodTypeRegistry;
 import net.mehvahdjukaar.moonlight.api.util.Utils;
-import net.minecraft.client.Minecraft;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.packs.resources.ResourceManager;
@@ -26,11 +22,8 @@ import net.minecraft.world.item.CreativeModeTabs;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
-import net.minecraft.world.level.block.SlabBlock;
-import net.minecraft.world.level.block.StairBlock;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
-import net.minecraftforge.common.Tags;
 
 import java.util.Objects;
 
@@ -136,10 +129,10 @@ public class CreateModule extends SimpleModule {
         if (!PlatHelper.isModLoaded("sawmill")) {
             for (WoodType w : WoodTypeRegistry.getTypes()) {
                 if (w.getBlockOfThis("slab") != null)
-                    sawRecipe(2, w.planks.asItem(), Objects.requireNonNull(w.getBlockOfThis("slab")).asItem(),null,  w, handler);
+                    sawRecipe(2, w.planks.asItem(), Objects.requireNonNull(w.getBlockOfThis("slab")).asItem(), null, w, handler);
 
                 if (w.getBlockOfThis("stairs") != null)
-                    sawRecipe(1, w.planks.asItem(), Objects.requireNonNull(w.getBlockOfThis("stairs")).asItem(),null,  w, handler);
+                    sawRecipe(1, w.planks.asItem(), Objects.requireNonNull(w.getBlockOfThis("stairs")).asItem(), null, w, handler);
 
                 sawRecipe(6, w.planks.asItem(), null, new ResourceLocation("minecraft", "stick"), w, handler);
             }
@@ -149,15 +142,15 @@ public class CreateModule extends SimpleModule {
 
     public void sawRecipe(int amount, Item input, Item output, ResourceLocation item, WoodType woodType, ServerDynamicResourcesHandler handler) {
         String blank = """
-            {
-                "type": "minecraft:stonecutting",
-                "count": [amount],
-                "ingredient": {
-                    "item": "[input]"
-                },
-                "result": "[output]"
-            }
-            """;
+                {
+                    "type": "minecraft:stonecutting",
+                    "count": [amount],
+                    "ingredient": {
+                        "item": "[input]"
+                    },
+                    "result": "[output]"
+                }
+                """;
 
         ResourceLocation resloc;
         String recipe;
@@ -167,8 +160,7 @@ public class CreateModule extends SimpleModule {
                     .replace("[output]", Utils.getID(output).toString());
             resloc = EveryCompat.res(
                     shortenedId() + "/" + woodType.getNamespace() + "/" + output + "_from_" + input + "_stonecutting");
-        }
-        else { // item != null
+        } else { // item != null
             recipe = blank.replace("[amount]", String.valueOf(amount))
                     .replace("[input]", Utils.getID(input).toString())
                     .replace("[output]", item.toString());

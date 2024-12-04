@@ -141,7 +141,13 @@ public abstract class EveryCompat {
         //log registered stuff size
         int newSize = BuiltInRegistries.BLOCK.size();
         int am = newSize - prevRegSize;
+
         float p = (am / (float) newSize) * 100f;
+        if (am == 0) {
+            EveryCompat.LOGGER.error("EVERY COMPAT REGISTERED 0 BLOCKS! This means that you dont need the mod and should remove it!");
+            return;
+        }
+
         if (p > 25) {
             EveryCompat.LOGGER.warn("Registered {} compat blocks making up {}% of total blocks registered", am, String.format("%.2f", p));
         } else {
@@ -154,9 +160,7 @@ public abstract class EveryCompat {
             EveryCompat.LOGGER.error("You might want to uninstall some mods, biggest offender was {} ({} blocks)", bloated.getModName().toUpperCase(Locale.ROOT), bloated.bloatAmount());
         }
 
-        if (am == 0) {
-            EveryCompat.LOGGER.error("EVERY COMPAT REGISTERED 0 BLOCKS! This means that you dont need the mod and should remove it!");
-        }
+
         forAllModules(CompatModule::onModSetup);
 
     }

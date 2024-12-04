@@ -37,7 +37,6 @@ import net.mehvahdjukaar.every_compat.modules.forge.pokecube.PokecubeLegendsModu
 import net.mehvahdjukaar.every_compat.modules.forge.premium_wood.PremiumWoodModule;
 import net.mehvahdjukaar.every_compat.modules.forge.redeco.ReDecoModule;
 import net.mehvahdjukaar.every_compat.modules.forge.regions_unexplored.RegionsUnexploredModule;
-import net.mehvahdjukaar.every_compat.modules.forge.storagedrawers.StorageDrawersModule;
 import net.mehvahdjukaar.every_compat.modules.forge.timber_frames.TimberFramesModule;
 import net.mehvahdjukaar.every_compat.modules.forge.tropicraft.TropicraftModule;
 import net.mehvahdjukaar.every_compat.modules.forge.twilightforest.TwilightForestModule;
@@ -67,8 +66,7 @@ import net.minecraftforge.registries.MissingMappingsEvent;
 
 import java.util.Optional;
 
-import static net.mehvahdjukaar.every_compat.EveryCompat.addIfLoaded;
-import static net.mehvahdjukaar.every_compat.EveryCompat.forAllModules;
+import static net.mehvahdjukaar.every_compat.EveryCompat.*;
 
 /**
  * Author: MehVahdJukaar
