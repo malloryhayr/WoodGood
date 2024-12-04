@@ -66,9 +66,9 @@ public class EveryCompatFabric extends EveryCompat implements ModInitializer {
         addIfLoaded("variantvanillablocks", () -> VariantVanillaBlocksModule::new);
         addIfLoaded("wilderwild", () -> WilderWildModule::new);
         addIfLoaded("woodenhoppers", () -> WoodenHoppersModule::new);
-//        addModule("twilightforest", () -> TwilightForestModule::new); //!! NOT AVAILABLE
 
 // ============================================== DISABLED FOR A REASON ============================================= \\
+//        addModule("twilightforest", () -> TwilightForestModule::new); //!! NOT AVAILABLE
 //        addModule("architects_palette", () -> ArchitectsPaletteModule::new); //!! NOT AVAILABLE
 
 // ===================================================== OTHERS ===================================================== \\
