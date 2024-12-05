@@ -12,38 +12,13 @@ import net.minecraft.core.registries.Registries;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.world.level.block.Block;
 
+//SUPPORT: v3.1.1+
 public class TwigsModule extends SimpleModule {
 
     public final SimpleEntrySet<WoodType, Block> tables;
-    //public final SimpleEntrySet<StoneType, Block> columns;
 
     public TwigsModule(String modId) {
         super(modId, "tw");
-
-        /*
-        //noinspection DataFlowIssue
-        columns = addEntry(SimpleEntrySet.builder(StoneType.class, "column",
-                        getModBlock("stone_column"), () -> StoneTypeRegistry.getValue(new ResourceLocation("stone")),
-                        stoneType -> new ColumnBlock(Utils.copyPropertySafe(
-                                        (stoneType.getBlockOfThis("bricks") != null)
-                                        ? stoneType.getBlockOfThis("bricks")
-                                        : Blocks.STONE_BRICKS)
-                                )
-                        )
-                .createPaletteFromChild(
-                        "bricks")
-                .addTexture(modRes("block/stone_column"))
-                .addTexture(modRes("block/stone_column_bottom"))
-                .addTexture(modRes("block/stone_column_tip"))
-                .addTexture(modRes("block/stone_column_top"))
-                .setTabKey(modRes("twig"))
-                .setRenderType(RenderLayer.CUTOUT_MIPPED)
-                .defaultRecipe()
-                .addRecipe(modRes("stone_column_stonecutting"))
-                .build()
-        );
-        */
-
 
         tables = SimpleEntrySet.builder(WoodType.class, "table",
                         getModBlock("oak_table"), () -> WoodTypeRegistry.OAK_TYPE,
