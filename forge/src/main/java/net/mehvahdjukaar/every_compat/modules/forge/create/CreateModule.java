@@ -32,10 +32,6 @@ public class CreateModule extends SimpleModule {
 
     public final SimpleEntrySet<WoodType, Block> windows;
     public final SimpleEntrySet<WoodType, Block> windowPanes;
-    //public final SimpleEntrySet<StoneType, Block> cut_andesite;
-    //public final SimpleEntrySet<StoneType, Block> cut_andesite_stairs;
-    //public final SimpleEntrySet<StoneType, Block> cut_andesite_slab;
-
 
     public CreateModule(String modId) {
         super(modId, "c");
@@ -64,38 +60,6 @@ public class CreateModule extends SimpleModule {
                 .setRenderType(RenderLayer.CUTOUT_MIPPED)
                 .build();
         this.addEntry(windowPanes);
-
-/*
-        cut_andesite = SimpleEntrySet.builder(StoneType.class, "", "cut",
-                        getModBlock("cut_andesite"), () -> StoneTypeRegistry.getValue(new ResourceLocation("andesite")),
-                        stoneType -> new Block(Utils.copyPropertySafe(stoneType.stone)))
-                .addTexture(modRes("block/palettes/stone_types/cut/andesite_cut"))
-//                .setTabKey(() -> CreativeModeTabs.BUILDING_BLOCKS)
-//                .defaultRecipe()
-                .build();
-        this.addEntry(cut_andesite);
-
-        cut_andesite_stairs = SimpleEntrySet.builder(StoneType.class, "slab", "cut",
-                        getModBlock("cut_andesite_slab"), () -> StoneTypeRegistry.getValue(new ResourceLocation("andesite")),
-                        stoneType -> new StairBlock(stoneType.stone.defaultBlockState(), Utils.copyPropertySafe(stoneType.stone)))
-                //TEXTURES: Using cut_andesite's from above
-//                .setTabKey(() -> CreativeModeTabs.BUILDING_BLOCKS)
-                .setRenderType(RenderLayer.CUTOUT_MIPPED)
-//                .defaultRecipe()
-                .build();
-
-        this.addEntry(cut_andesite_stairs);
-
-        cut_andesite_slab = SimpleEntrySet.builder(StoneType.class, "stairs", "cut",
-                        getModBlock("cut_andesite_stairs"), () -> StoneTypeRegistry.getValue(new ResourceLocation("andesite")),
-                        stoneType -> new SlabBlock(Utils.copyPropertySafe(stoneType.stone)))
-                //TEXTURES: Using cut_andesite's from above
-//                .setTabKey(() -> CreativeModeTabs.BUILDING_BLOCKS)
-                .setRenderType(RenderLayer.CUTOUT_MIPPED)
-//                .defaultRecipe()
-                .build();
-        this.addEntry(cut_andesite_slab);
-*/
 
     }
 
