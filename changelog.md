@@ -1,12 +1,11 @@
 ### UPDATED:
-- **StorageDrawers** (FORGE): Updated
-- **EveryComp** (COMMON): Major Updated for an addon: **Every Compat: Stone Zone**.
-NOTE: **Stone Zone** is currently WIP (it will support all of StoneTypes instead of WoodTypes)
+- **EveryComp** (COMMON): Fixed the crash with **Farmer's Delight** related to #705
+- **VariantVanillaBlocks** (FABRIC): Fixed the crash related to #707
 
 ---
 
 ### NEW:
-- **StorageDrawers** (FABRIC) - Added for FABRIC
+- N/A
 
 ---
 
