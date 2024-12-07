@@ -43,7 +43,7 @@ dependencies {
 //!! MOONLIGHT LIB -------------------------------------------------------------------------------------------------- \\
 
 //    modImplementation("net.mehvahdjukaar:moonlight-fabric:${moonlight_version}") // LOCAL
-    modImplementation("curse.maven:selene-499980:5942982") // v2.13.33
+    modImplementation("curse.maven:selene-499980:5968826") // v2.13.34
 
 //!! ================================================ DEPENDENCIES ================================================== \\
 
