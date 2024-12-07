@@ -29,9 +29,6 @@ import java.util.function.Consumer;
 import java.util.function.Function;
 import java.util.function.Supplier;
 
-/**
- * Author: MehVahdJukaar
- */
 public abstract class EveryCompat {
 
     public static final String MOD_ID = "everycomp";

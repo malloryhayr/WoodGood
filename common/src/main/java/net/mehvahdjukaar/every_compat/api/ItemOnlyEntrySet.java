@@ -1,11 +1,9 @@
 package net.mehvahdjukaar.every_compat.api;
 
 import com.mojang.datafixers.util.Pair;
-import net.mehvahdjukaar.every_compat.EveryCompat;
 import net.mehvahdjukaar.every_compat.misc.ResourcesUtils;
 import net.mehvahdjukaar.moonlight.api.events.AfterLanguageLoadEvent;
 import net.mehvahdjukaar.moonlight.api.misc.Registrator;
-import net.mehvahdjukaar.moonlight.api.platform.ClientHelper;
 import net.mehvahdjukaar.moonlight.api.resources.BlockTypeResTransformer;
 import net.mehvahdjukaar.moonlight.api.resources.assets.LangBuilder;
 import net.mehvahdjukaar.moonlight.api.resources.pack.DynClientResourcesGenerator;
@@ -92,7 +90,7 @@ public class ItemOnlyEntrySet<T extends BlockType, I extends Item> extends Abstr
                 if (item != null) {
                     this.items.put(w, item);
 
-                    registry.register(EveryCompat.res(fullName), item);
+                    registry.register(module.makeRes(fullName), item);
                     w.addChild(getChildKey(module), item);
                 }
             }

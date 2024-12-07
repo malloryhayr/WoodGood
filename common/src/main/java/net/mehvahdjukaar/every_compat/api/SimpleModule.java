@@ -31,6 +31,10 @@ public class SimpleModule extends CompatModule {
         this.shortId = shortId;
     }
 
+    public ResourceLocation makeRes(String name) {
+        return EveryCompat.res(name);
+    }
+
     @Override
     public Collection<Class<? extends BlockType>> getAffectedTypes() {
         return affectedTypes;
