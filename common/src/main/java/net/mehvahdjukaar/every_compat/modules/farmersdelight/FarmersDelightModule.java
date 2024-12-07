@@ -34,7 +34,9 @@ public class FarmersDelightModule extends SimpleModule {
 
         cabinets = SimpleEntrySet.builder(WoodType.class, "cabinet",
                         getModBlock("oak_cabinet"), () -> WoodTypeRegistry.OAK_TYPE,
-                        w -> new CabinetBlock(Utils.copyPropertySafe(w.planks)))
+                        w -> new CabinetBlock(Utils.copyPropertySafe(w.planks))
+                )
+                .requiresChildren("trapdoor", "slab") //REASON: recipes
                 .addTag(modRes("cabinets"), Registries.BLOCK)
                 .addTag(modRes("cabinets"), Registries.ITEM)
                 .addTag(modRes("cabinets/wooden"), Registries.ITEM)
@@ -43,13 +45,12 @@ public class FarmersDelightModule extends SimpleModule {
                 .addTile(getModTile("cabinet"))
                 .setTabKey(modRes( "farmersdelight"))
                 .setTabMode(TabAddMode.AFTER_SAME_TYPE)
-                .createPaletteFromOak(Palette::increaseDown)
-                .addTexture(EveryCompat.res("block/oak_cabinet_front"))
-                .addTexture(EveryCompat.res("block/oak_cabinet_side"))
-                .addTexture(EveryCompat.res("block/oak_cabinet_top"))
-                .addTextureM(EveryCompat.res("block/oak_cabinet_front_open"), EveryCompat.res("block/oak_cabinet_front_open_m"))
+                .createPaletteFromOak(p -> { p.reduceDown(); p.matchSize(9); })
+                .addTextureM(modRes("block/oak_cabinet_front"), EveryCompat.res("block/fd/oak_cabinet_front_m"))
+                .addTexture(modRes("block/oak_cabinet_side"))
+                .addTexture(modRes("block/oak_cabinet_top"))
+                .addTexture(modRes("block/oak_cabinet_front_open"))
                 .build();
-
         this.addEntry(cabinets);
     }
 
@@ -61,12 +62,18 @@ public class FarmersDelightModule extends SimpleModule {
         // Creating cutting_board recipes
         cabinets.items.forEach(((woodType, item) -> {
 
-            createCuttingRecipe("door", woodType.getBlockOfThis("door"), woodType.planks, woodType, handler, manager);
-            createCuttingRecipe("hanging_sign", woodType.getBlockOfThis("hanging_sign"), woodType.planks, woodType, handler, manager);
-            createCuttingRecipe("sign", woodType.getBlockOfThis("sign"), woodType.planks, woodType, handler, manager);
-            createCuttingRecipe("trapdoor", woodType.getBlockOfThis("trapdoor"), woodType.planks, woodType, handler, manager);
-            createCuttingRecipe("log", woodType.log, woodType.getBlockOfThis("stripped_log"), woodType, handler, manager);
-            createCuttingRecipe("wood", woodType.getBlockOfThis("wood"), woodType.getBlockOfThis("stripped_wood"), woodType, handler, manager);
+            createCuttingRecipe("door", woodType.getBlockOfThis("door"), woodType.planks,
+                    woodType, handler, manager);
+            createCuttingRecipe("hanging_sign", woodType.getBlockOfThis("hanging_sign"), woodType.planks,
+                    woodType, handler, manager);
+            createCuttingRecipe("sign", woodType.getBlockOfThis("sign"), woodType.planks,
+                    woodType, handler, manager);
+            createCuttingRecipe("trapdoor", woodType.getBlockOfThis("trapdoor"), woodType.planks,
+                    woodType, handler, manager);
+            createCuttingRecipe("log", woodType.log, woodType.getBlockOfThis("stripped_log"),
+                    woodType, handler, manager);
+            createCuttingRecipe("wood", woodType.getBlockOfThis("wood"), woodType.getBlockOfThis("stripped_wood"),
+                    woodType, handler, manager);
 
         }));
     }

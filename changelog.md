@@ -1,5 +1,6 @@
 ### UPDATED:
-- **TEXTURES**: Fixed the textures not being generated for blocks via everycomp
+- **EveryComp** (COMMON): Fixed the crash with **Farmer's Delight** related to #705
+- **VariantVanillaBlocks** (FABRIC): Fixed the crash related to #707
 
 ---
 

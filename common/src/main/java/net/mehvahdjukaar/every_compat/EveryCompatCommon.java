@@ -17,6 +17,7 @@ import net.mehvahdjukaar.every_compat.modules.mrcrayfish.BackpackedModule;
 import net.mehvahdjukaar.every_compat.modules.mrcrayfish.RefurbishedFurnitureModule;
 import net.mehvahdjukaar.every_compat.modules.quark.QuarkModule;
 import net.mehvahdjukaar.every_compat.modules.storagedrawers.StorageDrawersModule;
+import net.mehvahdjukaar.every_compat.modules.stylish_stiles.StylishStilesModule;
 import net.mehvahdjukaar.every_compat.modules.table_top_craft.TableTopCraftModule;
 import net.mehvahdjukaar.every_compat.modules.twigs.TwigsModule;
 import net.mehvahdjukaar.every_compat.modules.valhelsia_furniture.ValhelsiaFurnitureModule;
@@ -43,7 +44,7 @@ public class EveryCompatCommon {
 
     protected void addModules() {
 
-// ================================================= Add Other Compat Mods ========================================== \\
+//!! =============================================== Add Other Compat Mods ========================================== \\
         addOtherCompatMod("compatoplenty", "biomesoplenty", List.of("twigs", "farmersdelight", "quark", "woodworks"));
         addOtherCompatMod("compat_makeover", "biomemakeover", List.of("habitat", "farmersdelight", "quark", "decorative_blocks"));
         addOtherCompatMod("decorative_compat", "biomesoplenty", List.of("decorative_blocks"));
@@ -65,7 +66,7 @@ public class EveryCompatCommon {
         addOtherCompatMod("abnormals_delight", List.of("autumnity", "upgrade_aquatic",
                 "environmental", "atmospheric", "endergetic", "caves_and_chasms"), List.of("farmersdelight"));
 
-        // ============================================= Add Modules ==================================================== \\
+    //!! =========================================== Add Modules ==================================================== \\
         addIfLoaded("another_furniture", () -> AnotherFurnitureModule::new);
         addIfLoaded("dawnoftimebuilder", () -> DawnOfTimeModule::new);
         addIfLoaded("backpacked", () -> BackpackedModule::new);
@@ -86,8 +87,9 @@ public class EveryCompatCommon {
         addIfLoaded("villagersplus", () -> VillagersPlusModule::new);
         addIfLoaded("table_top_craft", () -> TableTopCraftModule::new);
         addIfLoaded("storagedrawers", () -> StorageDrawersModule::new);
+        addIfLoaded("stylishstiles", () -> StylishStilesModule::new);
 
-// ===================================================== OTHERS ===================================================== \\
+//!! =================================================== OTHERS ===================================================== \\
         forAllModules(m -> EveryCompat.LOGGER.info("Loaded {}", m.toString()));
     }
 }

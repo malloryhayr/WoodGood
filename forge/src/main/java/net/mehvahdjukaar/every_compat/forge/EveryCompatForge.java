@@ -18,7 +18,6 @@ import net.mehvahdjukaar.every_compat.modules.forge.create.CreateModule;
 import net.mehvahdjukaar.every_compat.modules.forge.decoration_delight.DecorationDelightModule;
 import net.mehvahdjukaar.every_compat.modules.forge.dramaticdoors.DramaticDoorsMacawModule;
 import net.mehvahdjukaar.every_compat.modules.forge.dramaticdoors.DramaticDoorsModule;
-import net.mehvahdjukaar.every_compat.modules.farmersdelight.FarmersDelightModule;
 import net.mehvahdjukaar.every_compat.modules.forge.functional_storage.FunctionalStorageModule;
 import net.mehvahdjukaar.every_compat.modules.forge.infinitybuttons.InfinityButtonsModule;
 import net.mehvahdjukaar.every_compat.modules.forge.just_a_raft.JustARaftModule;
@@ -46,7 +45,6 @@ import net.mehvahdjukaar.every_compat.modules.forge.variants.VariantVanillaBlock
 import net.mehvahdjukaar.every_compat.modules.forge.woodster.WoodsterModule;
 import net.mehvahdjukaar.every_compat.modules.forge.workshop.WorkshopForHandsomeAdventurerModule;
 import net.mehvahdjukaar.every_compat.modules.forge.xerca.XercaModule;
-import net.mehvahdjukaar.every_compat.modules.stylish_stiles.StylishStilesModule;
 
 import net.mehvahdjukaar.moonlight.api.platform.PlatHelper;
 import net.mehvahdjukaar.moonlight.api.platform.network.forge.ChannelHandlerImpl;
@@ -85,7 +83,7 @@ public class EveryCompatForge extends EveryCompatCommon {
     protected void addModules() {
         super.addModules();
 
-// ================================================= Add Modules ==================================================== \\
+//!! =============================================== Add Modules ==================================================== \\
         addIfLoaded("absentbydesign", () -> AbsentByDesignModule::new);
         addIfLoaded("architects_palette", () -> ArchitectsPaletteModule::new);
         addIfLoaded("beautify", () -> BeautifyDecorateModule::new);
@@ -98,7 +96,6 @@ public class EveryCompatForge extends EveryCompatCommon {
         addIfLoaded("create", () -> CreateModule::new);
         addIfLoaded("decoration_delight", () -> DecorationDelightModule::new);
         addIfLoaded("dramaticdoors", () -> DramaticDoorsModule::new);
-        addIfLoaded("farmersdelight", () -> FarmersDelightModule::new);
         addIfLoaded("functionalstorage", () -> FunctionalStorageModule::new);
         addIfLoaded("infinitybuttons", () -> InfinityButtonsModule::new);
         addIfLoaded("justaraftmod", () -> JustARaftModule::new);
@@ -114,7 +111,6 @@ public class EveryCompatForge extends EveryCompatCommon {
         addIfLoaded("redeco", () -> ReDecoModule::new);
         addIfLoaded("regions_unexplored", () -> RegionsUnexploredModule::new);
         addIfLoaded("shutter", () -> LauchsShuttersModule::new);
-        addIfLoaded("stylishstiles", () -> StylishStilesModule::new);
         addIfLoaded("timber_frames", () -> TimberFramesModule::new);
         addIfLoaded("tropicraft", () -> TropicraftModule::new);
         addIfLoaded("twilightforest", () -> TwilightForestModule::new);
@@ -146,7 +142,6 @@ public class EveryCompatForge extends EveryCompatCommon {
 //        addIfLoaded("graveyard", () -> GraveyardModule::new); // Disabled until custom block models work
 //        addIfLoaded("productivebees", () -> ProductiveBeesModule::new); //WIP: class for both beehive have major changes
 
-// ================================================== OTHERS ======================================================== \
     }
 
 

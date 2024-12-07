@@ -88,20 +88,8 @@ public abstract class EveryCompat {
         }
     }
 
-    public static boolean OLD_FD = false;
-
     public static void addIfLoaded(String modId, Supplier<Function<String, CompatModule>> moduleFactory) {
         if (PlatHelper.isModLoaded(modId)) {
-
-            if (modId.equals("farmersdelight")) {
-                try {
-                    Class.forName("vectorwing.farmersdelight.FarmersDelight");
-                } catch (Exception e) {
-                    EveryCompat.LOGGER.error("Farmers Delight Refabricated is not installed. Disabling Farmers Delight Module");
-                    OLD_FD = true;
-                    return;
-                }
-            }
             CompatModule module = moduleFactory.get().apply(modId);
             addModule(module);
         }
@@ -141,7 +129,7 @@ public abstract class EveryCompat {
 
         float p = (am / (float) newSize) * 100f;
         if (am == 0) {
-            EveryCompat.LOGGER.error("EVERY COMPAT REGISTERED 0 BLOCKS! This means that you dont need the mod and should remove it!");
+            EveryCompat.LOGGER.error("\n\nATTENTION: EVERY COMPAT REGISTERED 0 BLOCKS! No Wood mods (Biomes O' Plenty or others) are installed.\nYou dont need EveryCompat and should remove it.\n");
             return;
         }
 
@@ -151,10 +139,14 @@ public abstract class EveryCompat {
             EveryCompat.LOGGER.info("Registered {} compat blocks making up {}% of total blocks registered", am, String.format("%.2f", p));
         }
         if (p > 33) {
-            CompatModule bloated = ACTIVE_MODULES.stream()
-                    .max(Comparator.comparing(CompatModule::bloatAmount)).get();
-            EveryCompat.LOGGER.error("Every Compat registered blocks make up more than one third of your registered blocks, taking up memory and load time.");
-            EveryCompat.LOGGER.error("You might want to uninstall some mods, biggest offender was {} ({} blocks)", bloated.getModName().toUpperCase(Locale.ROOT), bloated.bloatAmount());
+            Optional<CompatModule> compatbloated = ACTIVE_MODULES.stream().max(Comparator.comparing(CompatModule::bloatAmount));
+            if (compatbloated.isPresent()) {
+                CompatModule bloated = compatbloated.get();
+                EveryCompat.LOGGER.error("Every Compat registered blocks make up more than one third of your registered blocks, taking up memory and load time.");
+                EveryCompat.LOGGER.error("You might want to uninstall some mods, biggest offender was {} ({} blocks)", bloated.getModName().toUpperCase(Locale.ROOT), bloated.bloatAmount());
+            }
+            else
+                EveryCompat.LOGGER.error("\n\nATTENION: No supported mods are installed. You don't need Every Compat and should remove it.\n");
         }
 
 

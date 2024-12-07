@@ -240,7 +240,6 @@ dependencies {
 
 //!! ============================================== FOR TESTING ===================================================== \\
 
-//    modRuntimeOnly("curse.maven:strata-forge-edition-387296:4989643") // STONE-TYPES
 //    modRuntimeOnly("curse.maven:endless-biomes-667688:5109705")
 //    modRuntimeOnly("curse.maven:blue-skies-312918:5010316") // structure-gel-api
     modRuntimeOnly("curse.maven:biomes-o-plenty-220318:4764804") // Terrablender
@@ -251,7 +250,6 @@ dependencies {
 //    modRuntimeOnly("curse.maven:rats-323596:5904296")
 
 //    modRuntimeOnly("curse.maven:terrafirmacraft-302973:4862659") // patchouli
-
 
     //!! Dependencies
 //    modRuntimeOnly("curse.maven:citadel-331936:5633260") // Alex's Cave, Rats
