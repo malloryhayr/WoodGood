@@ -112,7 +112,7 @@ dependencies {
 //!! MOONLIGHT LIB -------------------------------------------------------------------------------------------------- \\
 
 //    modImplementation("net.mehvahdjukaar:moonlight:${project.moonlight_version}-forge") // LOCAL
-    modImplementation("curse.maven:selene-499980:5942980") // v2.13.33
+    modImplementation("curse.maven:selene-499980:5968828") // v2.13.34
 
 //!! ================================================ DEPENDENCIES ================================================== \\
     modImplementation("com.tterrag.registrate:Registrate:${registrate_version}")
@@ -190,7 +190,7 @@ dependencies {
     modCompileOnly("curse.maven:domum-ornamentum-527361:4174257")
     modCompileOnly("curse.maven:redeco-897377:5603009")
     modCompileOnly("curse.maven:exlines-bark-carpets-527296:4094399")
-    modImplementation("curse.maven:farmersdelight-398521:4679319")
+    modCompileOnly("curse.maven:farmersdelight-398521:4679319")
     modCompileOnly("curse.maven:functional-storage-556861:5373105")
     modCompileOnly("curse.maven:furnish-547069:4821511")
     modCompileOnly("curse.maven:friends-and-foes-forge-602059:4712044")
@@ -225,7 +225,7 @@ dependencies {
     modCompileOnly("curse.maven:woodster-869951:4670471")
     modCompileOnly("curse.maven:woodworks-543610:5228779")
     modCompileOnly("curse.maven:workshop-for-handsome-adventurer-875843:5713529")
-    modImplementation("curse.maven:xercamod-341575:4667995")
+    modCompileOnly("curse.maven:xercamod-341575:4667995")
 
     modCompileOnly("curse.maven:regions-unexplored-659110:5151869")
 
