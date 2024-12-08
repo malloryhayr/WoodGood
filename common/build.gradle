@@ -20,7 +20,7 @@ dependencies {
 //!! MOONLIGHT LIB -------------------------------------------------------------------------------------------------- \\
 
 //    modImplementation("net.mehvahdjukaar:moonlight:${moonlight_version}")
-    modImplementation("curse.maven:selene-499980:5968826") // v2.13.34
+    modImplementation("curse.maven:selene-499980:5973714") // v2.13.36
 
 //!! ============================================ DEPENDENCIES ====================================================== \\
     modCompileOnly("curse.maven:framework-549225:5680025") // Furniture Refurbished
