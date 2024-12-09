@@ -21,7 +21,7 @@ import java.util.Collections;
 import java.util.List;
 
 @Environment(net.fabricmc.api.EnvType.CLIENT)
-public class BlockTypeCycleItemRenderer<T extends BlockType> extends ItemStackRenderer {
+public abstract class BlockTypeCycleItemRenderer<T extends BlockType> extends ItemStackRenderer {
 
     private final List<String> childKeys = new ArrayList<>();
     private final List<T> moddedTypes = new ArrayList<>();
