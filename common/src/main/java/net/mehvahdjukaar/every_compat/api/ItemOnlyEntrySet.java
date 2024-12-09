@@ -90,7 +90,7 @@ public class ItemOnlyEntrySet<T extends BlockType, I extends Item> extends Abstr
                 if (item != null) {
                     this.items.put(w, item);
 
-                    registry.register(module.makeRes(fullName), item);
+                    registry.register(module.makeMyRes(fullName), item);
                     w.addChild(getChildKey(module), item);
                 }
             }

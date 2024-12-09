@@ -31,8 +31,8 @@ public class SimpleModule extends CompatModule {
         this.shortId = shortId;
     }
 
-    public ResourceLocation makeRes(String name) {
-        return EveryCompat.res(name);
+    public ResourceLocation makeMyRes(String name) {
+        return new ResourceLocation(getMyNamespace(), name);
     }
 
     @Override

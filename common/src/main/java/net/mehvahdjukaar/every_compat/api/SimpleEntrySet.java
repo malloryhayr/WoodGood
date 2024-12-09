@@ -4,7 +4,6 @@ import com.google.common.base.Preconditions;
 import com.mojang.datafixers.util.Pair;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
-import net.mehvahdjukaar.every_compat.EveryCompat;
 import net.mehvahdjukaar.every_compat.EveryCompatClient;
 import net.mehvahdjukaar.every_compat.misc.ResourcesUtils;
 import net.mehvahdjukaar.moonlight.api.events.AfterLanguageLoadEvent;
@@ -130,7 +129,7 @@ public class SimpleEntrySet<T extends BlockType, B extends Block> extends Abstra
                 if (block != null) {
                     this.blocks.put(w, block);
 
-                    registry.register(module.makeRes(fullName), block);
+                    registry.register(module.makeMyRes(fullName), block);
                     w.addChild(childKey, block);
 
                     if (lootMode == LootTableMode.DROP_SELF && YEET_JSONS) {
@@ -212,7 +211,7 @@ public class SimpleEntrySet<T extends BlockType, B extends Block> extends Abstra
     public void registerTiles(SimpleModule module, Registrator<BlockEntityType<?>> registry) {
         if (tileHolder instanceof NewTileHolder<?> nt) {
             var tile = nt.createInstance(blocks.values().toArray(Block[]::new));
-            registry.register(module.makeRes(module.shortenedId() + "_" + this.getName()), tile);
+            registry.register(module.makeMyRes(module.shortenedId() + "_" + this.getName()), tile);
         }
     }
 

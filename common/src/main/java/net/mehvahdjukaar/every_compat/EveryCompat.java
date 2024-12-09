@@ -6,6 +6,7 @@ import net.mehvahdjukaar.every_compat.api.CompatModule;
 import net.mehvahdjukaar.every_compat.api.SimpleEntrySet;
 import net.mehvahdjukaar.every_compat.configs.ECConfigs;
 import net.mehvahdjukaar.every_compat.configs.ModEntriesConfigs;
+import net.mehvahdjukaar.every_compat.dynamicpack.ClientDynamicResourcesHandler;
 import net.mehvahdjukaar.every_compat.dynamicpack.ServerDynamicResourcesHandler;
 import net.mehvahdjukaar.moonlight.api.misc.Registrator;
 import net.mehvahdjukaar.moonlight.api.platform.PlatHelper;
@@ -81,7 +82,14 @@ public abstract class EveryCompat {
             ACTIVE_MODULES.add(module);
             DEPENDENCIES.add(module.getModId());
             DEPENDENCIES.addAll(module.getAlreadySupportedMods());
-            ServerDynamicResourcesHandler.INSTANCE.getPack().addNamespaces(module.getModId());
+
+            ServerDynamicResourcesHandler.INSTANCE.getPack()
+                    .addNamespaces(module.getServerResourcesNamespaces());
+            if (PlatHelper.getPhysicalSide().isClient()) {
+                ClientDynamicResourcesHandler.INSTANCE.getPack()
+                        .addNamespaces(module.getClientResourcesNamespaces());
+            }
+
             for (var t : module.getAffectedTypes()) {
                 addDynamicRegistrationFor(t);
             }
@@ -144,8 +152,7 @@ public abstract class EveryCompat {
                 CompatModule bloated = compatbloated.get();
                 EveryCompat.LOGGER.error("Every Compat registered blocks make up more than one third of your registered blocks, taking up memory and load time.");
                 EveryCompat.LOGGER.error("You might want to uninstall some mods, biggest offender was {} ({} blocks)", bloated.getModName().toUpperCase(Locale.ROOT), bloated.bloatAmount());
-            }
-            else
+            } else
                 EveryCompat.LOGGER.error("\n\nATTENION: No supported mods are installed. You don't need Every Compat and should remove it.\n");
         }
 
