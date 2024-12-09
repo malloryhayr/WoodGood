@@ -1,6 +1,5 @@
 ### UPDATED:
-- **EveryComp** (COMMON): Fixed the crash with **Farmer's Delight** related to #705
-- **VariantVanillaBlocks** (FABRIC): Fixed the crash related to #707
+- **EveryComp** (COMMON): Fixed the SERVER crash related to [#710](https://github.com/MehVahdJukaar/WoodGood/issues/710#issuecomment-2525282502)
 
 ---
 

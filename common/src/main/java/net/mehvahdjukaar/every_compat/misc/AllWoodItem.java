@@ -16,8 +16,8 @@ public class AllWoodItem extends Item implements ICustomItemRendererProvider {
         super(new Properties());
     }
 
-    @Environment(EnvType.CLIENT)
     @Override
+    @Environment(EnvType.CLIENT)
     public Supplier<ItemStackRenderer> getRendererFactory() {
         return () -> new BlockTypeCycleItemRenderer<>(WoodType.class);
     }

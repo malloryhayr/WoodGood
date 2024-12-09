@@ -91,8 +91,6 @@ publishing {
 repositories{
     // Built mods
     mavenCentral()
-    mavenLocal()
-
     maven {
         name "tterrag maven"
         url "https://maven.tterrag.com/"
@@ -113,15 +111,16 @@ dependencies {
 
 //!! MOONLIGHT LIB -------------------------------------------------------------------------------------------------- \\
 
-    modImplementation("net.mehvahdjukaar:moonlight-forge:${project.moonlight_version}") // LOCAL
-    //modImplementation("curse.maven:selene-499980:5973716") // v2.13.34
+//    modImplementation("net.mehvahdjukaar:moonlight:${project.moonlight_version}-forge") // LOCAL
+    modImplementation("curse.maven:selene-499980:5973716") // v2.13.36
 
 //!! ================================================ DEPENDENCIES ================================================== \\
     modImplementation("com.tterrag.registrate:Registrate:${registrate_version}")
     modCompileOnly("com.jozufozu.flywheel:flywheel-forge-${flywheel_version}") // Create
 //    modRuntimeOnly("curse.maven:architectury-api-419699:5137938") // v9.2.14 | Required by: REI, Furnish
 //    modRuntimeOnly("curse.maven:cloth-config-348521:4973441") // v11.1.118 | Required by: REI
-    modRuntimeOnly("curse.maven:terrablender-563928:5068218") // v3.0.1.4 | Required by: BOP, Regions-Unexplored
+    modRuntimeOnly("curse.maven:terrablender-563928:5378180") // v3.0.1.7 | Required by: BOP, Regions-Unexplored
+    modRuntimeOnly("curse.maven:glitchcore-955399:5787839") // v0.0.1.1 | Required by: BOP
 //    modImplementation("curse.maven:resourceful-lib-570073:5659871")  // v2.1.29 | Chipped, Handcrafted, Cozy
     modCompileOnly("curse.maven:athena-841890:5176879") // Chipped
 //    modRuntimeOnly("curse.maven:fusion-connected-textures-854949:5129294") // Dawn of Time, Timber-Frame, Rechiseled
@@ -219,7 +218,7 @@ dependencies {
     modCompileOnly("curse.maven:the-graveyard-forge-531188:4025847")
     modCompileOnly("curse.maven:the-twilight-forest-227639:5468648")
     modCompileOnly("curse.maven:tropicraft-254794:4811116")
-    modImplementation("curse.maven:twigs-496913:4605097")
+    modCompileOnly("curse.maven:twigs-496913:4605097")
     modCompileOnly("curse.maven:valhelsia-furniture-694349:5189602")
     modCompileOnly("curse.maven:variant-crafting-tables-565095:4585921")
     modCompileOnly("curse.maven:variant-vanilla-blocks-866509:4997060") //v1.3.6
@@ -244,7 +243,7 @@ dependencies {
 
 //    modRuntimeOnly("curse.maven:endless-biomes-667688:5109705")
 //    modRuntimeOnly("curse.maven:blue-skies-312918:5010316") // structure-gel-api
-    modRuntimeOnly("curse.maven:biomes-o-plenty-220318:4764804") // Terrablender
+    modRuntimeOnly("curse.maven:biomes-o-plenty-220318:5773031") // Terrablender
 //    modRuntimeOnly("curse.maven:upgrade-aquatic-326895:5296565") // Blueprint
 //    modRuntimeOnly("curse.maven:autumnity-365045:5292346") // Blueprint
 //    modRuntimeOnly("curse.maven:the-outer-end-430404:5043937") // Blueprint
