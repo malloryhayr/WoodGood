@@ -373,15 +373,16 @@ public abstract class AbstractSimpleEntrySet<T extends BlockType, B extends Bloc
                     ResourceLocation oldTextureId = re.getKey();
                     String oldPath = oldTextureId.getPath();
 
-                    String newId = BlockTypeResTransformer.replaceTypeNoNamespace(oldPath, w,
+                    String newPath = BlockTypeResTransformer.replaceTypeNoNamespace(oldPath, w,
                             blockId, baseType.get().getTypeName());
+                    String newId = new ResourceLocation(blockId.getNamespace(), newPath).toString();
 
                     boolean isOnAtlas = true;
 
                     for (var info : infoPerTextures.get(oldTextureId)) {
                         if (info != null) {
                             if (info.keepNamespace()) {
-                                newId = oldTextureId.withPath(newId).toString();
+                                newId = oldTextureId.withPath(newPath).toString();
                             }
                             isOnAtlas = info.onAtlas();
                         }
@@ -389,7 +390,7 @@ public abstract class AbstractSimpleEntrySet<T extends BlockType, B extends Bloc
                         Respriter respriter = re.getValue();
 
                         Supplier<TextureImage> textureSupplier = () -> respriter.recolorWithAnimation(finalTargetPalette, finalAnimation);
-                        textureSupplier = addTexturePostProcessing(w, newId, manager, textureSupplier);
+                        textureSupplier = postProcessTexture(w, newId, manager, textureSupplier);
 
                         handler.addTextureIfNotPresent(manager, newId, textureSupplier, isOnAtlas);
                     }
@@ -407,8 +408,8 @@ public abstract class AbstractSimpleEntrySet<T extends BlockType, B extends Bloc
     }
 
     //post process some textures.
-    public Supplier<TextureImage> addTexturePostProcessing(T wood, String newId, ResourceManager manager,
-                                                           Supplier<TextureImage> textureSupplier) {
+    public Supplier<TextureImage> postProcessTexture(T wood, String newId, ResourceManager manager,
+                                                     Supplier<TextureImage> textureSupplier) {
         if (wood.getClass() == WoodType.class) {
             var changed = SpriteHelper.maybePostProcessWoodTexture((WoodType) wood, newId, manager, textureSupplier);
             if (changed != null) {

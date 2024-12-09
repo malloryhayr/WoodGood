@@ -52,12 +52,12 @@ public class ClientDynamicResourcesHandler extends DynClientResourcesGenerator {
                 m.addDynamicClientResources(this, manager);
             } catch (Exception e) {
                 getLogger().error("Failed to generate client dynamic assets for module {}:", m, e);
-                if(PlatHelper.isDev()) throw e;
+                if (PlatHelper.isDev()) throw e;
             }
         });
 
         ExtraTextureGenerator.generateExtraTextures(this, manager);
-        
+
     }
 
 }

@@ -39,6 +39,7 @@ public abstract class EveryCompat {
     private static final List<CompatMod> COMPAT_MODS = new ArrayList<>();
     // all mod that EC directly or indirectly depends on
     private static final Set<String> DEPENDENCIES = new HashSet<>();
+    private static final Set<String> ADDON_IDS = new HashSet<>();
 
     //these are the names of the block types we add wooden variants for
     private static final Map<Class<? extends BlockType>, Set<String>> TYPES_TO_CHILD_KEYS = new Object2ObjectOpenHashMap<>();
@@ -93,6 +94,7 @@ public abstract class EveryCompat {
             for (var t : module.getAffectedTypes()) {
                 addDynamicRegistrationFor(t);
             }
+            ADDON_IDS.add(module.getMyNamespace());
         }
     }
 
@@ -187,6 +189,10 @@ public abstract class EveryCompat {
 
     protected static void registerEntities(Registrator<EntityType<?>> event) {
         forAllModules(m -> m.registerEntities(event));
+    }
+
+    public static boolean isMyIdOrAddon(String namespace) {
+        return ADDON_IDS.contains(namespace);
     }
 
 
