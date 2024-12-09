@@ -31,6 +31,11 @@ public class SimpleModule extends CompatModule {
         this.shortId = shortId;
     }
 
+    public SimpleModule(String modId, String shortId, String myNamespace) {
+        super(modId, myNamespace);
+        this.shortId = shortId;
+    }
+
     public ResourceLocation makeMyRes(String name) {
         return new ResourceLocation(getMyNamespace(), name);
     }
