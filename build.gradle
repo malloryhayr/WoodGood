@@ -47,6 +47,7 @@ subprojects {
             changelog = changelogText
 
             if (modLoader == "fabric") {
+                versionName = mod_version + '-fabric'
                 dependencies {
                     required.project "fabric-api"
                     required.project "moonlight"
