@@ -118,7 +118,7 @@ dependencies {
 //    modImplementation("net.mehvahdjukaar:moonlight:${moonlight_testVersion}-forge")
 
     //!! MAVEN
-    modImplementation("maven.modrinth:moonlight:forge_${moonlight_version}") // v2.13.37
+    modImplementation("maven.modrinth:moonlight:forge_${moonlight_mavenVersion}") // v2.13.37
 
 //!! ================================================ DEPENDENCIES ================================================== \\
     modImplementation("com.tterrag.registrate:Registrate:${registrate_version}")
