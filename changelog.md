@@ -1,5 +1,5 @@
 ### UPDATED:
-- **EveryComp** (COMMON): Fixed the SERVER crash related to [#710](https://github.com/MehVahdJukaar/WoodGood/issues/710#issuecomment-2525282502)
+- **EveryComp** (COMMON): Fixed the crash server (AGAIN) related to [#710](https://github.com/MehVahdJukaar/WoodGood/issues/711)
 
 ---
 
