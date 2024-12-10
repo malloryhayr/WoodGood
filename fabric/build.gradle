@@ -40,10 +40,16 @@ dependencies {
         modImplementation("io.github.fabricators_of_create.Porting-Lib:$module:$port_lib_version")
     }
 
-//!! MOONLIGHT LIB -------------------------------------------------------------------------------------------------- \\
+//!! MOONLIGHT LIB (REQUIRED) --------------------------------------------------------------------------------------- \\
+    //!! Repository LOCAL
+    String path = System.getenv('REPOS20_1')
+//    modImplementation(files(path  + "\\Moonlight\\fabric\\build\\libs\\moonlight-${moonlight_testVersion}-fabric.jar"))
 
-//    modImplementation("net.mehvahdjukaar:moonlight-fabric:${moonlight_version}") // LOCAL
-    modImplementation("curse.maven:selene-499980:5975796") // v2.13.37
+    //!! ~/fabric/mods LOCAL
+//    modImplementation("net.mehvahdjukaar:moonlight-fabric:${moonlight_testVersion}")
+
+    //!! MAVEN
+    modImplementation("maven.modrinth:moonlight:fabric_${moonlight_version}") // v2.13.37
 
 //!! ================================================ DEPENDENCIES ================================================== \\
 
