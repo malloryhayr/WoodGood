@@ -152,13 +152,20 @@ public class BuildingButBetterModule extends SimpleModule {
                 .build();
         this.addEntry(supports);
 
+        ResourceLocation frameTexture = (Objects.equals(PlatHelper.getModVersion("bbb"), "1.1.1"))
+                ? modRes("block/frame/oak")
+                : modRes("block/frame/oak_frame");
+        ResourceLocation stickTexture = (Objects.equals(PlatHelper.getModVersion("bbb"), "1.1.1"))
+                ? modRes("block/frame/oak_sticks")
+                : modRes("block/frame/oak_frame_sticks");
+
         frames = SimpleEntrySet.builder(WoodType.class, "frame",
                         getModBlock("oak_frame"), () -> WoodTypeRegistry.OAK_TYPE,
                         w -> new FrameBlock(Utils.copyPropertySafe(w.planks).noOcclusion().noCollission().pushReaction(PushReaction.DESTROY))
                 )
                 .requiresChildren("slab") //REASON: recipes
-                .addTexture(modRes("block/frame/oak"))
-                .addTexture(modRes("block/frame/oak_sticks"))
+                .addTexture(frameTexture)
+                .addTexture(stickTexture)
                 .addTag(BlockTags.MINEABLE_WITH_AXE, Registries.BLOCK)
                 .addTag(new ResourceLocation("create", "movable_empty_collider"), Registries.BLOCK)
                 .addTag(modRes("wooden_blocks"), Registries.BLOCK)
