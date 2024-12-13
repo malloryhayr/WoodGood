@@ -42,12 +42,12 @@ public class SpriteHelper {
 //            TextureCache.registerSpecialTextureForBlock(Blocks.CACTUS, "stripped_cactus_log", res("block/stripped_cactus_side"));
 //            TextureCache.registerSpecialTextureForBlock(Blocks.CACTUS, "stripped_cactus_log_top", res("block/stripped_cactus_top"));
 
+        addOptional("minecraft:mushroom_stem", "_side", "minecraft:block/mushroom_stem");
+        addOptional("minecraft:mushroom_stem", "_top", "minecraft:block/mushroom_stem");
+
         // Advent Of Ascension
         addOptional("aoa3:stranglewood_log", "_side", "aoa3:block/stranglewood_log");
         addOptional("aoa3:stranglewood_log", "_top", "aoa3:block/stranglewood_log_top");
-
-        addOptional("minecraft:mushroom_stem", "_side", "minecraft:block/mushroom_stem");
-        addOptional("minecraft:mushroom_stem", "_top", "minecraft:block/mushroom_stem");
 
         // Better End
         addOptional("betterend:lucernia_leaves", "_leaves", "betterend:block/lucernia_leaves_1");
