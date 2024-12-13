@@ -8,7 +8,6 @@ import net.mehvahdjukaar.every_compat.api.TabAddMode;
 import net.mehvahdjukaar.every_compat.dynamicpack.ServerDynamicResourcesHandler;
 import net.mehvahdjukaar.moonlight.api.resources.RPUtils;
 import net.mehvahdjukaar.moonlight.api.resources.ResType;
-import net.mehvahdjukaar.moonlight.api.resources.textures.Palette;
 import net.mehvahdjukaar.moonlight.api.set.wood.WoodType;
 import net.mehvahdjukaar.moonlight.api.set.wood.WoodTypeRegistry;
 import net.mehvahdjukaar.moonlight.api.util.Utils;
@@ -19,6 +18,7 @@ import net.minecraft.tags.BlockTags;
 import net.minecraft.world.level.block.Block;
 import vectorwing.farmersdelight.common.block.CabinetBlock;
 
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.Objects;
@@ -80,10 +80,12 @@ public class FarmersDelightModule extends SimpleModule {
 
     public void createCuttingRecipe(String recipeType, Block input, Block output,
                                     WoodType woodType, ServerDynamicResourcesHandler handler, ResourceManager manager) {
-        ResourceLocation recipeLocation = modRes("recipes/cutting/oak_"+recipeType+".json");
 
         if (Objects.nonNull(input) && Objects.nonNull(output)) {
-            try (InputStream recipeStream = manager.getResource(recipeLocation).orElseThrow().open()) {
+        ResourceLocation recipeLocation = modRes("recipes/cutting/oak_"+recipeType+".json");
+
+            try (InputStream recipeStream = manager.getResource(recipeLocation)
+                    .orElseThrow(() -> new FileNotFoundException(recipeLocation.toString())).open()) {
                 JsonObject recipe = RPUtils.deserializeJson(recipeStream);
 
                 // EDITING RECIPE
@@ -98,7 +100,7 @@ public class FarmersDelightModule extends SimpleModule {
 
                 handler.dynamicPack.addJson(EveryCompat.res(path), recipe, ResType.RECIPES);
             } catch (IOException e) {
-                handler.getLogger().error("Failed to generate the cutting recipe for {} : {}", Utils.getID(output), e);
+                handler.getLogger().error("Failed to generate the cutting recipe for {} - {}", Utils.getID(output), e);
             }
         }
     }
