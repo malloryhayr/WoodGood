@@ -52,6 +52,7 @@ public class ResourcesUtils {
             EveryCompat.LOGGER.error("Failed to generate some assets");
             return;
         }
+
         ResourceLocation oakId = Utils.getID(oakBlock);
 
         Set<String> modelsLoc = new HashSet<>();
