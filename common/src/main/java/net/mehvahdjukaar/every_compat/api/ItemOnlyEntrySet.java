@@ -147,7 +147,18 @@ public class ItemOnlyEntrySet<T extends BlockType, I extends Item> extends Abstr
 
     @Override
     public void generateModels(SimpleModule module, DynClientResourcesGenerator handler, ResourceManager manager) {
-        ResourcesUtils.addItemModels(module.getModId(), manager, handler, items, baseType.get(), extraTransform);
+        ResourcesUtils.generateStandardItemModels(manager, handler, items, baseType.get(),
+                makeModelTransformer(module, manager));
+    }
+
+    // items models
+    protected BlockTypeResTransformer<T> makeModelTransformer(SimpleModule module, ResourceManager manager) {
+        BlockTypeResTransformer<T> modelTransformer = BlockTypeResTransformer.create(module.modId, manager);
+        if (extraModelTransform != null) extraModelTransform.accept(modelTransformer);
+
+        ResourcesUtils.addBuiltinModelTransformer(modelTransformer, baseType.get());
+
+        return modelTransformer;
     }
 
     @Override

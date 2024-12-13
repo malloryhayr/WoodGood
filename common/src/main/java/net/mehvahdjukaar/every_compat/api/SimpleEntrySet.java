@@ -237,7 +237,8 @@ public class SimpleEntrySet<T extends BlockType, B extends Block> extends Abstra
     public void generateLootTables(SimpleModule module, DynamicDataPack pack, ResourceManager manager) {
         if (lootMode == LootTableMode.COPY_FROM_PARENT) {
             ResourceLocation reg = Utils.getID(getBaseBlock());
-            ResourcesUtils.addBlockResources(module.getModId(), manager, pack, blocks, baseType.get().getTypeName(),
+            ResourcesUtils.addBlockResources(manager, pack, blocks,
+                    makeLootTableTransformer(module, manager),
                     ResType.BLOCK_LOOT_TABLES.getPath(reg));
 
         } else if (lootMode == LootTableMode.DROP_SELF) {
@@ -250,7 +251,34 @@ public class SimpleEntrySet<T extends BlockType, B extends Block> extends Abstra
 
     @Override
     public void generateModels(SimpleModule module, DynClientResourcesGenerator handler, ResourceManager manager) {
-        ResourcesUtils.addStandardResources(module.getModId(), manager, handler, blocks, baseType.get(), extraTransform);
+        ResourcesUtils.generateStandardBlockModels(manager, handler, blocks, baseType.get(),
+                makeModelTransformer(module, manager), makeBlockStateTransformer(module, manager));
+        ResourcesUtils.generateStandardItemModels(manager, handler, items, baseType.get(),
+                makeModelTransformer(module, manager));
+    }
+
+    // items and blocks
+    protected BlockTypeResTransformer<T> makeModelTransformer(SimpleModule module, ResourceManager manager) {
+        BlockTypeResTransformer<T> modelTransformer = BlockTypeResTransformer.create(module.modId, manager);
+        if (extraModelTransform != null) extraModelTransform.accept(modelTransformer);
+
+        ResourcesUtils.addBuiltinModelTransformer(modelTransformer, baseType.get());
+
+        return modelTransformer;
+    }
+
+    protected BlockTypeResTransformer<T> makeBlockStateTransformer(SimpleModule module, ResourceManager manager) {
+        String baseBlockName = baseType.get().getTypeName();
+        return BlockTypeResTransformer.<T>create(module.modId, manager)
+                .replaceBlockType(baseBlockName)
+                .IDReplaceType(baseBlockName);
+    }
+
+    protected BlockTypeResTransformer<T> makeLootTableTransformer(SimpleModule module, ResourceManager manager) {
+        String baseBlockName = baseType.get().getTypeName();
+        return BlockTypeResTransformer.<T>create(module.modId, manager)
+                .replaceSimpleType(baseBlockName)
+                .IDReplaceType(baseBlockName);
     }
 
     //ok...

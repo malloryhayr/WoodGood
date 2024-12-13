@@ -77,7 +77,7 @@ public abstract class AbstractSimpleEntrySet<T extends BlockType, B extends Bloc
     @Nullable
     protected final BiFunction<T, ResourceManager, Pair<List<Palette>, @Nullable AnimationMetadataSection>> paletteSupplier;
     @Nullable
-    protected final Consumer<BlockTypeResTransformer<T>> extraTransform;
+    protected final Consumer<BlockTypeResTransformer<T>> extraModelTransform;
 
     protected final Predicate<T> condition;
 
@@ -101,7 +101,7 @@ public abstract class AbstractSimpleEntrySet<T extends BlockType, B extends Bloc
         this.type = type;
         this.copyTint = copyTint;
 
-        this.extraTransform = extraTransform;
+        this.extraModelTransform = extraTransform;
         this.paletteSupplier = paletteSupplier;
         this.mergePalette = mergePalette;
 
