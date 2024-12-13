@@ -72,17 +72,24 @@ public class CreateModule extends SimpleModule {
     @OnlyIn(Dist.CLIENT)
     public void onClientSetup() {
         super.onClientSetup();
-        windows.blocks.forEach((w, b) -> {
-            String path = "block/" + shortenedId() + "/" + w.getNamespace() + "/palettes/" + w.getTypeName() + "_window";
+        CreateClientModule.clientStuff(this);
+    }
 
-            CTSpriteShiftEntry spriteShift = CTSpriteShifter.getCT(AllCTTypes.VERTICAL,
-                    EveryCompat.res(path), EveryCompat.res(path + "_connected"));
+    @OnlyIn(Dist.CLIENT)
+    private static class CreateClientModule {
+        private static void clientStuff(CreateModule module) {
+            module.windows.blocks.forEach((w, b) -> {
+                String path = "block/" + module.shortenedId() + "/" + w.getNamespace() + "/palettes/" + w.getTypeName() + "_window";
 
-            CreateClient.MODEL_SWAPPER.getCustomBlockModels().register(Utils.getID(b),
-                    (model) -> new CTModel(model, new HorizontalCTBehaviour(spriteShift)));
-            CreateClient.MODEL_SWAPPER.getCustomBlockModels().register(Utils.getID(windowPanes.blocks.get(w)),
-                    (model) -> new CTModel(model, new GlassPaneCTBehaviour(spriteShift)));
-        });
+                CTSpriteShiftEntry spriteShift = CTSpriteShifter.getCT(AllCTTypes.VERTICAL,
+                        EveryCompat.res(path), EveryCompat.res(path + "_connected"));
+
+                CreateClient.MODEL_SWAPPER.getCustomBlockModels().register(Utils.getID(b),
+                        (model) -> new CTModel(model, new HorizontalCTBehaviour(spriteShift)));
+                CreateClient.MODEL_SWAPPER.getCustomBlockModels().register(Utils.getID(module.windowPanes.blocks.get(w)),
+                        (model) -> new CTModel(model, new GlassPaneCTBehaviour(spriteShift)));
+            });
+        }
     }
 
     @Override
