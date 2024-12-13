@@ -18,7 +18,6 @@ import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.packs.resources.ResourceManager;
 import net.minecraft.tags.BlockTags;
-import net.minecraft.world.item.CreativeModeTabs;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
@@ -35,7 +34,7 @@ public class CreateModule extends SimpleModule {
 
     public CreateModule(String modId) {
         super(modId, "c");
-        var tab = CreativeModeTabs.BUILDING_BLOCKS;
+        var tab = modRes("palettes");
 
         windows = SimpleEntrySet.builder(WoodType.class, "window",
                         getModBlock("oak_window"), () -> WoodTypeRegistry.OAK_TYPE, //AllPaletteBlocks.OAK_WINDOW
@@ -69,8 +68,8 @@ public class CreateModule extends SimpleModule {
                 .isSuffocating((s, l, ps) -> false).isViewBlocking((s, l, ps) -> false), false);
     }
 
-    @OnlyIn(Dist.CLIENT)
     @Override
+    @OnlyIn(Dist.CLIENT)
     public void onClientSetup() {
         super.onClientSetup();
         windows.blocks.forEach((w, b) -> {
