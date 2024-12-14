@@ -2,6 +2,7 @@ package net.mehvahdjukaar.every_compat.misc;
 
 import com.mojang.blaze3d.platform.Lighting;
 import com.mojang.blaze3d.vertex.PoseStack;
+import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.mehvahdjukaar.moonlight.api.client.ItemStackRenderer;
 import net.mehvahdjukaar.moonlight.api.set.BlockSetAPI;
@@ -20,7 +21,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-@Environment(net.fabricmc.api.EnvType.CLIENT)
+@Environment(EnvType.CLIENT)
 public abstract class BlockTypeCycleItemRenderer<T extends BlockType> extends ItemStackRenderer {
 
     private final List<String> childKeys = new ArrayList<>();
