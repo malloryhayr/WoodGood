@@ -195,10 +195,11 @@ public class SimpleModule extends CompatModule {
         String woodFrom = woodType.getNamespace();
 
         String slashConvention = woodFrom + "/" + name; //quark/blossom_chair
-        String understoreConvention = woodFrom + "_" + name; //quark_blossom_chair
+        String underscoreConvention = woodFrom + "_" + name; //quark_blossom_chair
 
         if (this.getAlreadySupportedMods().contains(woodFrom)) return true;
 
+        // ugly hardcoded stuff
         if (woodType instanceof WoodType wt) {
             Boolean hardcoded = HardcodedStuff.isWoodBlockAlreadyRegistered(name, wt, modId, shortenedId());
             if (hardcoded != null) return hardcoded;
@@ -211,7 +212,7 @@ public class SimpleModule extends CompatModule {
         if (woodFrom.equals(modId)) return true; //quark, blossom
 
         if (registry.containsKey(new ResourceLocation(modId, name)) || //ones from the mod they are from. usually include vanilla types
-                registry.containsKey(new ResourceLocation(modId, understoreConvention))) return true;
+                registry.containsKey(new ResourceLocation(modId, underscoreConvention))) return true;
 
         if (registry.containsKey(new ResourceLocation(woodFrom, name))) return true;
 
@@ -221,7 +222,7 @@ public class SimpleModule extends CompatModule {
             if (c.woodsFrom().contains(woodFrom) && c.blocksFrom().contains(modId)) {
                 if (registry.containsKey(new ResourceLocation(compatModId, name))) return true;
                 if (registry.containsKey(new ResourceLocation(compatModId, slashConvention))) return true;
-                if (registry.containsKey(new ResourceLocation(compatModId, understoreConvention))) return true;
+                if (registry.containsKey(new ResourceLocation(compatModId, underscoreConvention))) return true;
             }
         }
         return false;
