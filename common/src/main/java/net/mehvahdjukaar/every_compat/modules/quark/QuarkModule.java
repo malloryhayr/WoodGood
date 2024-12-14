@@ -31,9 +31,11 @@ import net.mehvahdjukaar.moonlight.api.util.Utils;
 import net.mehvahdjukaar.moonlight.api.util.math.colors.HCLColor;
 import net.minecraft.client.resources.metadata.animation.AnimationMetadataSection;
 import net.minecraft.core.registries.Registries;
+import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.packs.resources.ResourceManager;
 import net.minecraft.tags.BlockTags;
+import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.CreativeModeTabs;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
@@ -82,6 +84,7 @@ public class QuarkModule extends SimpleModule {
 
     public QuarkModule(String modId) {
         super(modId, "q");
+        ResourceKey<CreativeModeTab> tab = CreativeModeTabs.BUILDING_BLOCKS;
 
         verticalSlabs = QuarkSimpleEntrySet.builder(WoodType.class, "vertical_slab",
                         VerticalSlabsModule.class,
@@ -97,7 +100,7 @@ public class QuarkModule extends SimpleModule {
                 .addTag(modRes("wooden_vertical_slabs"), Registries.ITEM)
                 .addTag(modRes("vertical_slabs"), Registries.ITEM)
                 .addTag(modRes("vertical_slab"), Registries.ITEM)
-                .setTabKey(CreativeModeTabs.BUILDING_BLOCKS)
+                .setTabKey(tab)
                 .setTabMode(TabAddMode.AFTER_SAME_WOOD)
                 .addRecipe(modRes("building/crafting/vertslabs/oak_vertical_slab"))
                 .addRecipe(modRes("building/crafting/vertslabs/oak_vertical_slab_revert"))
@@ -111,7 +114,7 @@ public class QuarkModule extends SimpleModule {
                         () -> WoodTypeRegistry.getValue(new ResourceLocation("acacia")),
                         (w) -> new VariantBookshelfBlock(shortenedId() + "/" + w.getAppendableId(),
                                 null, w.canBurn(), w.getSound()))
-                .setTabKey(CreativeModeTabs.BUILDING_BLOCKS)
+                .setTabKey(tab)
                 .setTabMode(TabAddMode.AFTER_SAME_WOOD)
                 .copyParentDrop()
                 .addTag(BlockTags.MINEABLE_WITH_AXE, Registries.BLOCK)
@@ -136,7 +139,7 @@ public class QuarkModule extends SimpleModule {
                 .addTag(modRes("posts"), Registries.BLOCK)
                 .addTag(modRes("posts"), Registries.ITEM)
                 .requiresChildren("fence")
-                .setTabKey(CreativeModeTabs.BUILDING_BLOCKS)
+                .setTabKey(tab)
                 .setTabMode(TabAddMode.AFTER_SAME_WOOD)
                 .addRecipe(modRes("building/crafting/oak_post"))
                 .setRenderType(RenderLayer.CUTOUT)
@@ -158,7 +161,7 @@ public class QuarkModule extends SimpleModule {
                 .addTag(modRes("posts"), Registries.BLOCK)
                 .addTag(modRes("posts"), Registries.ITEM)
                 .requiresChildren("fence", "stripped_log")
-                .setTabKey(CreativeModeTabs.BUILDING_BLOCKS)
+                .setTabKey(tab)
                 .setTabMode(TabAddMode.AFTER_SAME_WOOD)
                 .addRecipe(modRes("building/crafting/stripped_oak_post"))
                 .setRenderType(RenderLayer.CUTOUT_MIPPED)
@@ -182,7 +185,7 @@ public class QuarkModule extends SimpleModule {
                         }
                 )
                 .addCondition(w -> !w.getId().toString().equals("gardens_of_the_dead:whistle_planks")) //REASON: The look is no different from a normal plank
-                .setTabKey(CreativeModeTabs.BUILDING_BLOCKS)
+                .setTabKey(tab)
                 .setTabMode(TabAddMode.AFTER_SAME_WOOD)
                 .addTag(BlockTags.MINEABLE_WITH_AXE, Registries.BLOCK)
                 .addTag(BlockTags.PLANKS, Registries.BLOCK)
@@ -197,7 +200,7 @@ public class QuarkModule extends SimpleModule {
                         () -> WoodTypeRegistry.getValue(new ResourceLocation("spruce")),
                         (w) -> new VariantLadderBlock(shortenedId() + "/" + w.getAppendableId(),
                                 null, BlockBehaviour.Properties.copy(Blocks.LADDER).sound(w.getSound()), w.canBurn()))
-                .setTabKey(CreativeModeTabs.BUILDING_BLOCKS)
+                .setTabKey(tab)
                 .setTabMode(TabAddMode.AFTER_SAME_WOOD)
                 .addTag(BlockTags.CLIMBABLE, Registries.BLOCK)
                 .addTag(modRes("ladders"), Registries.BLOCK)
@@ -215,7 +218,7 @@ public class QuarkModule extends SimpleModule {
                         (w) -> new HollowLogBlock(shortenedId() + "/" + w.getAppendableId(),
                                 w.log, null, w.canBurn()))
                 .requiresChildren("stripped_log") // Texture
-                .setTabKey(CreativeModeTabs.BUILDING_BLOCKS)
+                .setTabKey(tab)
                 .setTabMode(TabAddMode.AFTER_SAME_WOOD)
                 .addTag(BlockTags.MINEABLE_WITH_AXE, Registries.BLOCK)
                 .addTag(modRes("hollow_logs"), Registries.BLOCK)
@@ -231,7 +234,7 @@ public class QuarkModule extends SimpleModule {
                         (w) -> new CompatChestBlock(w,
                                 shortenedId() + "/" + w.getAppendableId(),
                                 Utils.copyPropertySafe(w.planks)))
-                .setTabKey(CreativeModeTabs.BUILDING_BLOCKS)
+                .setTabKey(tab)
                 .setTabMode(TabAddMode.AFTER_SAME_WOOD)
                 .addTag(new ResourceLocation("forge:chests/wooden"), Registries.BLOCK)
                 .addTag(new ResourceLocation("forge:chests/wooden"), Registries.ITEM)
@@ -255,7 +258,7 @@ public class QuarkModule extends SimpleModule {
                             String name = shortenedId() + "/" + w.getAppendableId();
                             return new CompatTrappedChestBlock(w, name, Utils.copyPropertySafe(w.planks));
                         })
-                .setTabKey(CreativeModeTabs.BUILDING_BLOCKS)
+                .setTabKey(tab)
                 .setTabMode(TabAddMode.AFTER_SAME_WOOD)
                 .addTag(new ResourceLocation("forge:chests/trapped"), Registries.BLOCK)
                 .addTag(new ResourceLocation("forge:chests/trapped"), Registries.ITEM)
@@ -281,7 +284,7 @@ public class QuarkModule extends SimpleModule {
                 .addTag(BlockTags.MINEABLE_WITH_AXE, Registries.BLOCK)
                 .addTag(modRes("hedges"), Registries.BLOCK)
                 .addTag(modRes("hedges"), Registries.ITEM)
-                .setTabKey(CreativeModeTabs.BUILDING_BLOCKS)
+                .setTabKey(tab)
                 .setTabMode(TabAddMode.AFTER_SAME_WOOD)
                 .copyParentTint()
 //              Recipe being created below blc the recipe has a tag as an ingredient
@@ -305,7 +308,7 @@ public class QuarkModule extends SimpleModule {
                         "leaves", s -> !s.contains("/snow") && !s.contains("_snow")))
                 .addTag(modRes("leaf_carpets"), Registries.BLOCK)
                 .addTag(modRes("leaf_carpets"), Registries.ITEM)
-                .setTabKey(CreativeModeTabs.BUILDING_BLOCKS)
+                .setTabKey(tab)
                 .setTabMode(TabAddMode.AFTER_SAME_WOOD)
                 .addRecipe(modRes("building/crafting/oak_leaf_carpet"))
                 .setRenderType(RenderLayer.CUTOUT_MIPPED)
