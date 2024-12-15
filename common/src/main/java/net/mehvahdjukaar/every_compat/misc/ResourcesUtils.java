@@ -34,8 +34,6 @@ import org.jetbrains.annotations.NotNull;
 import java.io.ByteArrayInputStream;
 import java.util.*;
 
-import static net.mehvahdjukaar.moonlight.api.resources.BlockTypeResTransformer.replaceFullGenericType;
-
 public class ResourcesUtils {
 
     public static <B extends Block, T extends BlockType> void generateStandardBlockModels(
@@ -200,7 +198,8 @@ public class ResourcesUtils {
             BlockTypeResTransformer<T> transformer, T baseType) {
         String oldTypeName = baseType.getTypeName();
 
-        transformer.IDReplaceType(oldTypeName);
+        transformer.setIDModifier((text, id, w) ->
+                BlockTypeResTransformer.replaceFullGenericType(text, w, id, oldTypeName, null, 2));
 
         if (baseType instanceof LeavesType leavesType) {
             transformer.replaceLeavesTextures(leavesType);
@@ -213,9 +212,6 @@ public class ResourcesUtils {
         }
 
         transformer.replaceGenericType(oldTypeName, "block");
-        //replace vanilla textures. same as above but with vanilla namespace
-        transformer.addModifier((s, id, w) -> replaceFullGenericType(s, w, id, oldTypeName, "minecraft",
-                "block"));
 
         return transformer;
     }
