@@ -135,27 +135,29 @@ public abstract class EveryCompat {
         }
         //log registered stuff size
         int newSize = BuiltInRegistries.BLOCK.size();
-        int am = newSize - prevRegSize;
+        int myBlocksSize = newSize - prevRegSize;
 
-        float p = (am / (float) newSize) * 100f;
-        if (am == 0) {
+        float p = (myBlocksSize / (float) newSize) * 100f;
+        if (myBlocksSize == 0) {
             EveryCompat.LOGGER.error("\n\nATTENTION: EVERY COMPAT REGISTERED 0 BLOCKS! No Wood mods (Biomes O' Plenty or others) are installed.\nYou dont need EveryCompat and should remove it.\n");
             return;
         }
 
         if (p > 25) {
-            EveryCompat.LOGGER.warn("Registered {} compat blocks making up {}% of total blocks registered", am, String.format("%.2f", p));
+            EveryCompat.LOGGER.warn("Registered {} compat blocks making up {}% of total blocks registered", myBlocksSize, String.format("%.2f", p));
         } else {
-            EveryCompat.LOGGER.info("Registered {} compat blocks making up {}% of total blocks registered", am, String.format("%.2f", p));
+            EveryCompat.LOGGER.info("Registered {} compat blocks making up {}% of total blocks registered", myBlocksSize, String.format("%.2f", p));
         }
         if (p > 33) {
             Optional<CompatModule> compatbloated = ACTIVE_MODULES.stream().max(Comparator.comparing(CompatModule::bloatAmount));
             if (compatbloated.isPresent()) {
                 CompatModule bloated = compatbloated.get();
+                //no freaking clue why this was returned as null once
                 EveryCompat.LOGGER.error("Every Compat registered blocks make up more than one third of your registered blocks, taking up memory and load time.");
                 EveryCompat.LOGGER.error("You might want to uninstall some mods, biggest offender was {} ({} blocks)", bloated.getModName().toUpperCase(Locale.ROOT), bloated.bloatAmount());
-            } else
+            } else {
                 EveryCompat.LOGGER.error("\n\nATTENION: No supported mods are installed. You don't need Every Compat and should remove it.\n");
+            }
         }
 
 

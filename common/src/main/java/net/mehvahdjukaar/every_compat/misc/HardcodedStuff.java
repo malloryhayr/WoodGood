@@ -2,7 +2,6 @@ package net.mehvahdjukaar.every_compat.misc;
 
 import net.mehvahdjukaar.moonlight.api.set.leaves.LeavesType;
 import net.mehvahdjukaar.moonlight.api.set.wood.WoodType;
-import net.minecraft.resources.ResourceLocation;
 import org.jetbrains.annotations.Nullable;
 
 // ugly mess. Too coupled with wood types and too many hardcoded exceptions
@@ -46,29 +45,14 @@ public class HardcodedStuff {
         if (woodID.equals("ecologics:azalea")) {
             if (modId.equals("quark")) return false; //ecologics and quark azalea. tbh not sure why needed
         }
-        if (woodID.equals("twilightforest:mangrove")) {
-            return name.equals("mangrove_chest");//mangrove waaa so much pain
+        //also this is wrong
+        if (woodID.equals("twilightforest:mangrove") && name.equals("mangrove_chest")) {
+            return false;//mangrove waaa so much pain
         }
 
         //whats all this code repetition?
-        if (woodID.equals("architects_palette:twisted")) {
-            return name.equals("vct:twisted_crafting_table");
-        }
-        if (woodID.equals("biomesoplenty:fir")) {
-            return name.equals("vct:fir_crafting_table");
-        }
-        if (woodID.equals("biomesoplenty:jacaranda")) {
-            return name.equals("vct:jacaranda_crafting_table");
-        }
-        if (woodID.equals("biomesoplenty:maple")) {
-            return name.equals("vct:maple_crafting_table");
-        }
-        if (woodID.equals("ecologics:azalea")) {
-            return name.equals("vct:azalea_crafting_table");
-        }
-        if (woodID.equals("ecologics:walnut")) {
-            return name.equals("vct:walnut_crafting_table");
-        }
+        //also this is terrible. it will make all stuff made with biomesoplenty:fir return as NOT registered
+
         if (shortenedId.equals("af")) return false; //hardcoding
         // if (this.shortenedId().equals("ap")) return false; //hardcoding dont remember why i had this. Incase you want o
         if (shortenedId.equals("vs")) return false; //we always register everything for these
