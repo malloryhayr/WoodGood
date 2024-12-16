@@ -4,10 +4,10 @@ import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.client.item.v1.ItemTooltipCallback;
 import net.mehvahdjukaar.every_compat.EveryCompatClient;
 import net.mehvahdjukaar.every_compat.EveryCompatCommon;
+
 import net.mehvahdjukaar.every_compat.modules.fabric.beautify_decorate.BeautifyRefabricatedModule;
 import net.mehvahdjukaar.every_compat.modules.fabric.bewitchment.BewitchmentModule;
 import net.mehvahdjukaar.every_compat.modules.fabric.clutter.ClutterModule;
-import net.mehvahdjukaar.every_compat.modules.fabric.create.CreateModule;
 import net.mehvahdjukaar.every_compat.modules.fabric.dramatic_doors.DramaticDoorsModule;
 import net.mehvahdjukaar.every_compat.modules.fabric.exlines.AwningModule;
 import net.mehvahdjukaar.every_compat.modules.fabric.infinitybuttons.InfinityButtonsModule;
@@ -22,6 +22,7 @@ import net.mehvahdjukaar.every_compat.modules.fabric.regions_unexplored.RegionsU
 import net.mehvahdjukaar.every_compat.modules.fabric.variants.VariantVanillaBlocksModule;
 import net.mehvahdjukaar.every_compat.modules.fabric.wilder_wild.WilderWildModule;
 import net.mehvahdjukaar.every_compat.modules.fabric.wooden_hoppers.WoodenHoppersModule;
+
 import net.mehvahdjukaar.moonlight.api.platform.PlatHelper;
 
 import static net.mehvahdjukaar.every_compat.EveryCompat.addIfLoaded;
@@ -57,7 +58,6 @@ public class EveryCompatFabric extends EveryCompatCommon implements ModInitializ
         addIfLoaded("beautify", () -> BeautifyRefabricatedModule::new);
         addIfLoaded("bewitchment", () -> BewitchmentModule::new);
         addIfLoaded("clutter", () -> ClutterModule::new);
-        addIfLoaded("create", () -> CreateModule::new);
         addIfLoaded("dramaticdoors", () -> DramaticDoorsModule::new);
         addIfLoaded("exlineawnings", () -> AwningModule::new);
         addIfLoaded("infinitybuttons", () -> InfinityButtonsModule::new);

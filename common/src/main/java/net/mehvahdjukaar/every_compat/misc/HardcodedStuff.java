@@ -50,9 +50,6 @@ public class HardcodedStuff {
             return false;//mangrove waaa so much pain
         }
 
-        //whats all this code repetition?
-        //also this is terrible. it will make all stuff made with biomesoplenty:fir return as NOT registered
-
         if (shortenedId.equals("af")) return false; //hardcoding
         // if (this.shortenedId().equals("ap")) return false; //hardcoding dont remember why i had this. Incase you want o
         if (shortenedId.equals("vs")) return false; //we always register everything for these

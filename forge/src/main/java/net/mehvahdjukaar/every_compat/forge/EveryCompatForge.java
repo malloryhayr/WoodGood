@@ -5,6 +5,7 @@ import net.mehvahdjukaar.every_compat.EveryCompat;
 import net.mehvahdjukaar.every_compat.EveryCompatClient;
 import net.mehvahdjukaar.every_compat.EveryCompatCommon;
 import net.mehvahdjukaar.every_compat.configs.ECConfigs;
+
 import net.mehvahdjukaar.every_compat.modules.forge.abnormal.BoatLoadModule;
 import net.mehvahdjukaar.every_compat.modules.forge.abnormal.WoodworksModule;
 import net.mehvahdjukaar.every_compat.modules.forge.absent_by_design.AbsentByDesignModule;
@@ -14,7 +15,6 @@ import net.mehvahdjukaar.every_compat.modules.forge.builders_delight.BuildersDel
 import net.mehvahdjukaar.every_compat.modules.forge.buildersaddition.BuildersAdditionModule;
 import net.mehvahdjukaar.every_compat.modules.forge.building_but_better.BuildingButBetterModule;
 import net.mehvahdjukaar.every_compat.modules.forge.corail_pillar.CorailPillarModule;
-import net.mehvahdjukaar.every_compat.modules.forge.create.CreateModule;
 import net.mehvahdjukaar.every_compat.modules.forge.decoration_delight.DecorationDelightModule;
 import net.mehvahdjukaar.every_compat.modules.forge.dramaticdoors.DramaticDoorsMacawModule;
 import net.mehvahdjukaar.every_compat.modules.forge.dramaticdoors.DramaticDoorsModule;
@@ -64,7 +64,8 @@ import net.minecraftforge.registries.MissingMappingsEvent;
 
 import java.util.Optional;
 
-import static net.mehvahdjukaar.every_compat.EveryCompat.*;
+import static net.mehvahdjukaar.every_compat.EveryCompat.addIfLoaded;
+import static net.mehvahdjukaar.every_compat.EveryCompat.forAllModules;
 
 /**
  * Author: MehVahdJukaar
@@ -93,7 +94,6 @@ public class EveryCompatForge extends EveryCompatCommon {
         addIfLoaded("buildersdelight", () -> BuildersDelightModule::new);
         addIfLoaded("cfm", () -> MrCrayfishFurnitureModule::new);
         addIfLoaded("corail_pillar", () -> CorailPillarModule::new);
-        addIfLoaded("create", () -> CreateModule::new);
         addIfLoaded("decoration_delight", () -> DecorationDelightModule::new);
         addIfLoaded("dramaticdoors", () -> DramaticDoorsModule::new);
         addIfLoaded("functionalstorage", () -> FunctionalStorageModule::new);

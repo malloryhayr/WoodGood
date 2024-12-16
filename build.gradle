@@ -42,6 +42,7 @@ subprojects {
         modrinth {
             projectId = "every-compat"
             uploadFile = tasks.remapJar
+            additionalFiles.add(tasks.remapSourcesJar)
             gameVersions = [rootProject.minecraft_version]
             loaders = [modLoader]
             changelog = changelogText
@@ -53,6 +54,7 @@ subprojects {
                     required.project "moonlight"
                 }
             } else {
+                versionName = mod_version + '-forge'
                 dependencies {
                     required.project "moonlight"
                 }
