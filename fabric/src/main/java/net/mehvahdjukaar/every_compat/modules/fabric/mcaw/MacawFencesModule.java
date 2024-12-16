@@ -23,6 +23,7 @@ import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.FenceBlock;
 import net.minecraft.world.level.block.FenceGateBlock;
 import net.minecraft.world.level.block.state.BlockState;
+import org.jetbrains.annotations.NotNull;
 
 //SUPPORT v1.1.1+
 public class MacawFencesModule extends SimpleModule {
@@ -257,14 +258,13 @@ public class MacawFencesModule extends SimpleModule {
 
     public static class WiredFence extends FenceBlock {
 
-
         public WiredFence(Properties properties) {
             super(properties);
         }
 
         //changed. I couldn't help myself
         @Override
-        public void entityInside(BlockState state, Level level, BlockPos blockPos, Entity entityIn) {
+        public void entityInside(BlockState state, @NotNull Level level, @NotNull BlockPos blockPos, @NotNull Entity entityIn) {
             if (state.getValue(NORTH) || state.getValue(SOUTH) || state.getValue(EAST) || state.getValue(WEST))
                 entityIn.hurt(level.damageSources().generic(), 2.0F);
         }

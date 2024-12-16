@@ -1,7 +1,6 @@
 package net.mehvahdjukaar.every_compat.modules.forge.mcaw;
 
 import com.mcwfences.kikoz.init.BlockInit;
-import com.mcwfences.kikoz.init.TabInit;
 import com.mcwfences.kikoz.objects.FenceHitbox;
 import com.mcwfences.kikoz.objects.WiredFence;
 import net.mehvahdjukaar.every_compat.api.RenderLayer;
@@ -123,6 +122,7 @@ public class MacawFencesModule extends SimpleModule {
                 )
                 //TEXTURES: leaves
                 .requiresChildren("leaves") // Reason: Recipes
+//                .addCondition(l -> !l.getId().toString().equals("regions_unexplored:apple_oak")) // there should be a way to fix the color of the leave being grey
                 .addTag(BlockTags.MINEABLE_WITH_HOE, Registries.BLOCK)
                 .addTag(BlockTags.FENCES, Registries.BLOCK)
                 .addTag(BlockTags.WALLS, Registries.BLOCK)
