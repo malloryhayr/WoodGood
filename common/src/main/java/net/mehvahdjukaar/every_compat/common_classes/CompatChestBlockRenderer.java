@@ -19,6 +19,7 @@ import net.minecraft.client.renderer.blockentity.BrightnessCombiner;
 import net.minecraft.client.renderer.blockentity.ChestRenderer;
 import net.minecraft.client.resources.model.Material;
 import net.minecraft.core.Direction;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.entity.BlockEntityType;
@@ -32,6 +33,7 @@ import java.util.Map;
 
 @Environment(EnvType.CLIENT)
 public class CompatChestBlockRenderer extends ChestRenderer<CompatChestBlockEntity> {
+    public static final ResourceLocation CHEST_SHEET = new ResourceLocation("textures/atlas/chest.png");
     private final Map<WoodType, Material> single = new HashMap<>();
     private final Map<WoodType, Material> left = new HashMap<>();
     private final Map<WoodType, Material> right = new HashMap<>();
@@ -47,12 +49,12 @@ public class CompatChestBlockRenderer extends ChestRenderer<CompatChestBlockEnti
             String path = "entity/chest/" + shortenedId + "/" + w.getAppendableId() + "_chest";
             String trapped_path = "entity/chest/" + shortenedId + "/" + w.getAppendableId() + "_trapped_chest";
             if (!w.isVanilla()) {
-                single.put(w, new Material(Sheets.CHEST_SHEET, EveryCompat.res(path)));
-                left.put(w, new Material(Sheets.CHEST_SHEET, EveryCompat.res(path + "_left")));
-                right.put(w, new Material(Sheets.CHEST_SHEET, EveryCompat.res(path + "_right")));
-                trapped.put(w, new Material(Sheets.CHEST_SHEET, EveryCompat.res(trapped_path)));
-                trapped_left.put(w, new Material(Sheets.CHEST_SHEET, EveryCompat.res(trapped_path + "_left")));
-                trapped_right.put(w, new Material(Sheets.CHEST_SHEET, EveryCompat.res(trapped_path + "_right")));
+                single.put(w, new Material(CHEST_SHEET, EveryCompat.res(path)));
+                left.put(w, new Material(CHEST_SHEET, EveryCompat.res(path + "_left")));
+                right.put(w, new Material(CHEST_SHEET, EveryCompat.res(path + "_right")));
+                trapped.put(w, new Material(CHEST_SHEET, EveryCompat.res(trapped_path)));
+                trapped_left.put(w, new Material(CHEST_SHEET, EveryCompat.res(trapped_path + "_left")));
+                trapped_right.put(w, new Material(CHEST_SHEET, EveryCompat.res(trapped_path + "_right")));
             }
         }
     }
