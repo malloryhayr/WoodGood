@@ -5,6 +5,7 @@ import net.mehvahdjukaar.every_compat.modules.another_furniture.AnotherFurniture
 import net.mehvahdjukaar.every_compat.modules.beautiful_campfires.BeautifulCampfiresModule;
 import net.mehvahdjukaar.every_compat.modules.camp_chair.CampChairModule;
 import net.mehvahdjukaar.every_compat.modules.chipped.ChippedModule;
+import net.mehvahdjukaar.every_compat.modules.create.CreateModule;
 import net.mehvahdjukaar.every_compat.modules.dawn_of_time.DawnOfTimeModule;
 import net.mehvahdjukaar.every_compat.modules.decorative_blocks.DecorativeBlocksModule;
 import net.mehvahdjukaar.every_compat.modules.exlines.BarkCarpetsModule;
@@ -74,6 +75,7 @@ public class EveryCompatCommon {
         addIfLoaded("bc", () -> BeautifulCampfiresModule::new);
         addIfLoaded("campchair", () -> CampChairModule::new);
         addIfLoaded("chipped", () -> ChippedModule::new);
+        addIfLoaded("create", () -> CreateModule::new);
         addIfLoaded("decorative_blocks", () -> DecorativeBlocksModule::new);
         addIfLoaded("friendsandfoes", () -> FriendsAndFoesModule::new);
         addIfLoaded("furnish", () -> FurnishModule::new);
