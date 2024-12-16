@@ -142,12 +142,12 @@ dependencies {
 //    modRuntimeOnly("curse.maven:geckolib-388172:5460309") //
 
     //!! REQUIRED - The modules access libaries from the mod - ONLY IN FORGE
+    modCompileOnly("curse.maven:zeta-968868:5597406") // v1.0-24 | Quark
     modCompileOnly("com.tterrag.registrate:Registrate:${registrate_version}") // Create
     modCompileOnly("com.jozufozu.flywheel:flywheel-forge-${flywheel_version}") // Create
     modRuntimeOnly("curse.maven:terrablender-563928:5378180") // v3.0.1.7 | Required by: BOP, Regions-Unexplored
     modRuntimeOnly("curse.maven:glitchcore-955399:5787839") // v0.0.1.1 | Required by: BOP
     modCompileOnly("curse.maven:athena-841890:5176879") // Chipped
-    modCompileOnly("curse.maven:zeta-968868:5078215") // Quark
     modCompileOnly("curse.maven:autoreglib-250363:3857246")
     modCompileOnly("curse.maven:blueprint-382216:5292242") // The-Outer-End, Woodworks, Boatload
     modCompileOnly("curse.maven:valhelsia-core-416935:5189548") // Valhelsia Structure, Valhelsia Furniture
@@ -180,7 +180,6 @@ dependencies {
 //    modRuntimeOnly("curse.maven:handcrafted-538214:5118729")
 //    modRuntimeOnly("curse.maven:friends-and-foes-forge-602059:4712044")
 //    modRuntimeOnly("maven.modrinth:stylish-stiles:l9FFA4BK")
-//    modRuntimeOnly("curse.maven:quark-243121:5093415")
 //    modRuntimeOnly("curse.maven:storage-drawers-223852:5915486")
 //    modRuntimeOnly("curse.maven:valhelsia-furniture-694349:5189602")
 //    modRuntimeOnly("curse.maven:table-top-craft-467136:5318681")
@@ -235,6 +234,7 @@ dependencies {
     modCompileOnly("curse.maven:tropicraft-254794:4811116")
     modCompileOnly("curse.maven:variant-crafting-tables-565095:4585921")
     modCompileOnly("curse.maven:variant-vanilla-blocks-866509:4997060") //v1.3.6
+    modCompileOnly("curse.maven:quark-243121:5093415")
     modCompileOnly("curse.maven:woodster-869951:4670471")
     modCompileOnly("curse.maven:woodworks-543610:5228779")
     modCompileOnly("curse.maven:workshop-for-handsome-adventurer-875843:5713529")

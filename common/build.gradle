@@ -35,13 +35,13 @@ dependencies {
     modCompileOnly("com.tterrag.registrate_fabric:Registrate:${registrate_fabric_version}") // Create
     modCompileOnly("curse.maven:framework-549225:5680025") // Furniture Refurbished
     modCompileOnly("curse.maven:valhelsia-core-416935:5376599") // Valhelsia-Furniture
-    modCompileOnly("curse.maven:zeta-968868:5078215") // Quark
+    modCompileOnly("curse.maven:zeta-968868:5078215") // v1.0-13 | Quark
 
     //!! ~/common/mods LOCAL
 //    modCompileOnly("net.stehschnitzel.shutter:shutter-2.0.2-1.20.1")
     modCompileOnly("com.mrcrayfish.furniture.refurbished:refurbished_furniture-fabric-1.20.1-1.0.0-beta.4")
     modCompileOnly("com.arcanc.bc:Beautiful-Campfires-fabric-1.20.1-1.0.3")
-0
+
 //!! ================================================== IMPORTS ===================================================== \\
 
     //!! REQUIRED - The modules access libaries from the mod
