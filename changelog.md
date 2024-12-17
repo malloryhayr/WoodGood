@@ -1,8 +1,6 @@
 ### UPDATED:
-- **More Crafting Table (LieOnLion)** (FABRIC): Updated to support v1.2.7
-- **Create** (COMMON): Fixed the crash because a method in CreateModule should be only on CLIENT side
-- **LANG** (COMMON): zn_ch - @ChuijkYahus
-- **Building But Better** (FORGE): **EveryComp** can work with either v1.0.1 or v1.1.1 of **Building But Better**
+- **Quark** (FORGE): Fixed the [crash](https://github.com/MehVahdJukaar/WoodGood/issues/721)
+- **EveryCompat** (COMMON): Updated CompatChestBlockRenderer (Used by **More Variant Chests (LieOnLion**, **Variant Vanilla Blocks**, **Woodworks**)
 
 ---
 
