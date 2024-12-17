@@ -118,7 +118,7 @@ dependencies {
 //    modImplementation("net.mehvahdjukaar:moonlight:${moonlight_testVersion}-forge")
 
     //!! MAVEN
-    modImplementation("maven.modrinth:moonlight:forge_${moonlight_mavenVersion}") // v2.13.38
+    modImplementation("maven.modrinth:moonlight:forge_${moonlight_mavenVersion}") // v2.13.39
 
 //!! TOOLS ========================================================================================================== \\
     modRuntimeOnly("curse.maven:worldedit-225608:4586218")
@@ -142,7 +142,6 @@ dependencies {
 //    modRuntimeOnly("curse.maven:geckolib-388172:5460309") //
 
     //!! REQUIRED - The modules access libaries from the mod - ONLY IN FORGE
-    modCompileOnly("curse.maven:zeta-968868:5597406") // v1.0-24 | Quark
     modCompileOnly("com.tterrag.registrate:Registrate:${registrate_version}") // Create
     modCompileOnly("com.jozufozu.flywheel:flywheel-forge-${flywheel_version}") // Create
     modRuntimeOnly("curse.maven:terrablender-563928:5378180") // v3.0.1.7 | Required by: BOP, Regions-Unexplored
@@ -155,6 +154,7 @@ dependencies {
     modCompileOnly("curse.maven:quad-932715:5340148") // More Chest Variants, More Crafting Table
     modCompileOnly("curse.maven:titanium-287342:5468426") // v3.8.32 | Functional-Storage
     modRuntimeOnly("curse.maven:patchouli-306770:4636277") // v81 | TFC, Timber-Frames
+    modCompileOnly("curse.maven:zeta-968868:5597406") // v1.0-24 | Quark
 
     //!! ~/forge/mods LOCAL
 //    modImplementation("com.teamresourceful.bytecodecs:bytecodecs-1.0.2")

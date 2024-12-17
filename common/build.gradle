@@ -26,7 +26,7 @@ dependencies {
 //    modImplementation("net.mehvahdjukaar:moonlight:${moonlight_testVersion}")
 
     //!! MAVEN
-    modImplementation("maven.modrinth:moonlight:fabric_${moonlight_mavenVersion}") // v2.13.38
+    modImplementation("maven.modrinth:moonlight:fabric_${moonlight_mavenVersion}") // v2.13.39
 
 //!! ============================================ DEPENDENCIES ====================================================== \\
     //!! ONLY FOR TESTING - These modules are in COMMON
