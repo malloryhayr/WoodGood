@@ -129,7 +129,7 @@ public class MacawStairsModule extends SimpleModule {
                         w -> new StairRailing(copyProperties())
                 )
                 .requiresChildren("stripped_log") //REASON: textures
-                .addCondition(w -> Objects.nonNull(balconies.blocks.get(w))) //REASON: recipes
+                .requiresFromMap(balconies.blocks) //REASON: recipes
                 .setRenderType(RenderLayer.CUTOUT_MIPPED)
                 //TEXTURES: logs
                 .addTag(BlockTags.MINEABLE_WITH_AXE, Registries.BLOCK)
