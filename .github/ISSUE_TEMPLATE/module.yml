@@ -17,8 +17,6 @@ body:
           required: true
         - label: "The mod MUST contain variant WoodType: OAK or other vanilla WoodTypes for ITEM or BLOCK"
           required: true
-        - label: "The mod MUST contain variant StoneType: STONE or other vanilla StoneTypes for ITEM or BLOCK"
-          required: true
 
   - type: input
     id: curseforge-normal
@@ -37,20 +35,6 @@ body:
       placeholder: ex. https://www.curseforge.com/minecraft/mc-mods/giacomos-bookshelf
     validations:
       required: false
-
-  - type: dropdown
-    id: content-type
-    attributes:
-      label: "Content Type: StoneType or WoodType"
-      description: "What are the contents added by the mod?"
-      options:
-        - Ensure the selected one is correct
-        - WoodType
-        - StoneType
-        - Both
-      default: 0
-    validations:
-      required: true
 
   - type: checkboxes
     id: version-loader-availability
