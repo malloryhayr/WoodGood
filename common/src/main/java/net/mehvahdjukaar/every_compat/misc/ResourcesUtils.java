@@ -20,6 +20,7 @@ import net.mehvahdjukaar.moonlight.api.set.leaves.LeavesTypeRegistry;
 import net.mehvahdjukaar.moonlight.api.set.wood.WoodType;
 import net.mehvahdjukaar.moonlight.api.set.wood.WoodTypeRegistry;
 import net.mehvahdjukaar.moonlight.api.util.Utils;
+import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.data.recipes.FinishedRecipe;
 import net.minecraft.data.recipes.RecipeBuilder;
 import net.minecraft.resources.ResourceLocation;
@@ -33,6 +34,8 @@ import org.jetbrains.annotations.NotNull;
 
 import java.io.ByteArrayInputStream;
 import java.util.*;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class ResourcesUtils {
 
@@ -326,5 +329,16 @@ public class ResourcesUtils {
             }
         }
         return newIng;
+    }
+
+    public static String convertItemIDinText(String text, BlockType fromType, BlockType toType) {
+        String chars = "[a-z,A-Z,\\-,_./]*";
+        Pattern pattern = Pattern.compile("\"" + fromType.getTypeName() + ":(" + chars + fromType.getTypeName() + chars + ")\"");
+        Matcher matcher = pattern.matcher(text);
+        return matcher.replaceAll(m -> {
+            var item = BuiltInRegistries.ITEM.getOptional(ResourceLocation.tryParse(m.group(1)));
+            return item.map(value -> "\"" + Utils.getID(BlockType.changeItemType(value, fromType, toType)).toString() + "\"")
+                    .orElseGet(() -> m.group(0));
+        });
     }
 }
