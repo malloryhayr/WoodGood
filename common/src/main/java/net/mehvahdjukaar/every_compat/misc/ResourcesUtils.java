@@ -39,6 +39,7 @@ import java.util.regex.Pattern;
 
 public class ResourcesUtils {
 
+
     public static <B extends Block, T extends BlockType> void generateStandardBlockModels(
             ResourceManager manager, DynClientResourcesGenerator d,
             Map<T, B> blocks, T baseType,
@@ -333,10 +334,11 @@ public class ResourcesUtils {
         return newIng;
     }
 
+    protected static final String RES_CHARS = "[a-z,A-Z,\\-,_./]*";
+    protected static final Pattern RES_PATTERN = Pattern.compile("\"" + RES_CHARS + ":(" + RES_CHARS + ")\"");
+
     public static String convertItemIDinText(String text, BlockType fromType, BlockType toType) {
-        String chars = "[a-z,A-Z,\\-,_./]*";
-        Pattern pattern = Pattern.compile("\"" + fromType.getTypeName() + ":(" + chars + fromType.getTypeName() + chars + ")\"");
-        Matcher matcher = pattern.matcher(text);
+        Matcher matcher = RES_PATTERN.matcher(text);
         return matcher.replaceAll(m -> {
             var item = BuiltInRegistries.ITEM.getOptional(ResourceLocation.tryParse(m.group(1)));
             return item.map(value -> "\"" + Utils.getID(BlockType.changeItemType(value, fromType, toType)).toString() + "\"")

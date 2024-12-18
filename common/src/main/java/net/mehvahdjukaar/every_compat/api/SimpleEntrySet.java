@@ -277,7 +277,8 @@ public class SimpleEntrySet<T extends BlockType, B extends Block> extends Abstra
     protected BlockTypeResTransformer<T> makeLootTableTransformer(SimpleModule module, ResourceManager manager) {
         String baseBlockName = baseType.get().getTypeName();
         return BlockTypeResTransformer.<T>create(module.modId, manager)
-                .replaceSimpleType(baseBlockName)
+                .addModifier((text, id, type) ->
+                        ResourcesUtils.convertItemIDinText(text, baseType.get(), type))
                 .IDReplaceType(baseBlockName);
     }
 
