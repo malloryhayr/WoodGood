@@ -48,6 +48,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 //contrary to popular belief this class is indeed not simple. Its usage however is
+@SuppressWarnings("unused")
 public abstract class AbstractSimpleEntrySet<T extends BlockType, B extends Block, I extends Item> implements EntrySet<T> {
 
     protected static final ResourceLocation NO_TAB_MARKER = new ResourceLocation("none");
