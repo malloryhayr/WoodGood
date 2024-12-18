@@ -232,7 +232,7 @@ allprojects {
             name = 'Ladysnake Mods'
             url = 'https://maven.ladysnake.org/releases'
         }
-        maven { url = "https://jitpack.io/" } // for Porting Lib: Mixin Extras, Fabric ASM
+        maven { url = "https://mvn.devos.one/releases/" } // for Porting Lib: Mixin Extras, Fabric ASM
     }
 
     tasks.withType(JavaCompile) {

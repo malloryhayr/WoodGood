@@ -30,8 +30,7 @@ public class BoatLoadModule extends SimpleModule {
                         () -> WoodTypeRegistry.OAK_TYPE,
                         w -> new LargeBoatItem(getBoatType(w)))
                 .setTabKey(tab)
-                .requiresChildren("chest_boat")
-                .requiresChildren("boat")
+                .requiresChildren("boat") //REASON: recipes
                 .addTag(ItemTags.BOATS, Registries.ITEM)
                 .addTag(modRes("large_boats"), Registries.ITEM)
                 .addRecipe(modRes("large_oak_boat"))
@@ -46,8 +45,7 @@ public class BoatLoadModule extends SimpleModule {
                         () -> WoodTypeRegistry.OAK_TYPE,
                         w -> new FurnaceBoatItem(getBoatType(w)))
                 .setTabKey(tab)
-                .requiresChildren("chest_boat")
-                .requiresChildren("boat")
+                .requiresChildren("boat") //REASON: recipes
                 .addTag(ItemTags.BOATS, Registries.ITEM)
                 .addTag(modRes("furnace_boats"), Registries.ITEM)
                 .addRecipe(modRes("oak_furnace_boat"))

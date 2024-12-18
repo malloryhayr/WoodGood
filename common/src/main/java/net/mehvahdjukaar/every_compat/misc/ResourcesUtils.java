@@ -52,7 +52,7 @@ public class ResourcesUtils {
         Block oakBlock = BlockType.changeBlockType(first.getValue(), first.getKey(), baseType);
 
         if (oakBlock == null) {
-            EveryCompat.LOGGER.error("Failed to generate some assets");
+            EveryCompat.LOGGER.error("Failed to generate some block assets");
             return;
         }
 
@@ -133,7 +133,7 @@ public class ResourcesUtils {
         Item oakItem = BlockType.changeItemType(first.getValue(), first.getKey(), baseType);
 
         if (oakItem == null) {
-            EveryCompat.LOGGER.error("Failed to generate some assets");
+            EveryCompat.LOGGER.error("Failed to generate some item assets");
             return;
         }
         String baseItemName = baseType.getTypeName();
@@ -201,9 +201,11 @@ public class ResourcesUtils {
             BlockTypeResTransformer<T> transformer, T baseType) {
         String oldTypeName = baseType.getTypeName();
 
+        // Modifying the filename of model files and its ResourceLocation
         transformer.setIDModifier((text, id, w) ->
                 BlockTypeResTransformer.replaceFullGenericType(text, w, id, oldTypeName, null, 2));
 
+        // Modifying the model files' content
         if (baseType instanceof LeavesType leavesType) {
             transformer.replaceLeavesTextures(leavesType);
             var woodT = leavesType.getWoodType();
