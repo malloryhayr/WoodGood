@@ -464,6 +464,28 @@ public abstract class AbstractSimpleEntrySet<T extends BlockType, B extends Bloc
             return (BL) this;
         }
 
+        //exclusive with addCondition
+        public BL requiresFromMap(Map<T, ?> entrySet) {
+            this.addCondition(blockType -> Objects.nonNull(entrySet.get(blockType)));
+            return (BL) this;
+        }
+
+        // Exclude Leaves | Wood | Stone - exclusive with addCondition
+        public BL excludeBlockTypes(String modId, String... ids) {
+            StringBuilder regexBuilder = new StringBuilder();
+
+            // create "biomesoplenty:(fir)" or "biomesoplenty:(fir|dead|...)
+            regexBuilder.append(modId).append(":(");
+            for (int i = 0; i < ids.length; i++) {
+                regexBuilder.append(ids[i]);
+                if ( i != (ids.length - 1) ) regexBuilder.append("|"); // Don't append "|" to the last word's
+            }
+            regexBuilder.append(")");
+
+            this.addCondition(blockType -> !blockType.getId().toString().matches(regexBuilder.toString()));
+            return (BL) this;
+        }
+
         public BL addCondition(Predicate<T> newCondition) {
             this.condition = this.condition == null ? newCondition :
                     this.condition.and(newCondition);
