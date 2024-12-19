@@ -62,30 +62,26 @@ dependencies {
 
 //!! ================================================ DEPENDENCIES ================================================== \\
     //!! ONLY FOR TESTING - These modules are in COMMON
-//    modRuntimeOnly("curse.maven:cloth-config-348521:4973440") // v11.1.118 | Required by: REI
-//    modRuntimeOnly("curse.maven:architectury-api-419699:5137936") // v9.2.14 | Required by: REI, Garden-Of-The-Dead
+//    modRuntimeOnly("curse.maven:cloth-config-348521:4973440") // v11.1.118 | REI
+//    modRuntimeOnly("curse.maven:architectury-api-419699:5137936") // v9.2.14 | REI, Garden-Of-The-Dead
 //    modRuntimeOnly("curse.maven:trinkets-341284:5173501") // Backpacked
 
-    //!! REQUIRED - The modules access libaries from the mod - ONLY IN FORGE
+    //!! REQUIRED - The modules access libaries from below - ONLY IN fABRIC
     modCompileOnly("com.tterrag.registrate_fabric:Registrate:${registrate_fabric_version}")
     modCompileOnly("curse.maven:athena-841890:5176880") // Chipped
     modCompileOnly("curse.maven:framework-549225:5680025") // v0.7.7 | Refurbished Furniture, Mighty Mail, Backpacked
     modCompileOnly("curse.maven:quad-932715:5146132") // More Crafting Tables
     modCompileOnly("curse.maven:resourceful-lib-570073:5659872") //v2.1.29 | Chipped, Handcrafted, Cozy
-    modRuntimeOnly("curse.maven:terrablender-fabric-565956:5378181") // v3.0.1.7 | BOP, Regions-Unexplored
     modCompileOnly("maven.modrinth:frozenlib:1.7.4-mc1.20.1") // Wilder-Wild
     modCompileOnly("curse.maven:valhelsia-core-416935:5376599") // Valhelsia-Furniture
 
-    //!! ~/fabric/mods LOCAL
-    modCompileOnly("net.stehschnitzel.shutter:shutter-2.0.2-1.20.1")
-    modCompileOnly("com.mrcrayfish.furniture.refurbished:refurbished_furniture-fabric-1.20.1-1.0.0-beta.4")
-    modCompileOnly("com.arcanc.bc:Beautiful-Campfires-fabric-1.20.1-1.0.3")
-    modCompileOnly("net.darktree.redbits:redbits-1.20.1-1.16.1")
+    // REQUIRED - but ONLY FOR TESTING
+    modRuntimeOnly("curse.maven:terrablender-fabric-565956:5378181") // v3.0.1.7 | BOP, Regions-Unexplored
+    modRuntimeOnly("curse.maven:glitchcore-955399:5787838") // v0.0.1.1 | BOP
 
-//!! ================================================== IMPORTS ===================================================== \\
     // IMPORTANT: RLM: "REQUIRED LOCAL MOD" - You need to get the mod and put it in ~/fabric/run/mods/....
-
-    //!! ONLY FOR TESTING - These modules are in COMMON
+//!! ================================================== IMPORTS ===================================================== \\
+    //!! ONLY FOR TESTING - These mods are in COMMON & can be commented out or enabled
 //    modRuntimeOnly("curse.maven:another-furniture-610492:4815126")
 //    modRuntimeOnly("curse.maven:backpacked-352835:5401968")
 //    modRuntimeOnly("curse.maven:camp-chair-531744:4579676")
@@ -105,7 +101,13 @@ dependencies {
 //    modRuntimeOnly("curse.maven:twigs-496913:4603805")
 //    modRuntimeOnly("curse.maven:valhelsia-furniture-694349:5189603")
 
-    //!! REQUIRED - The modules access libaries from the mod - ONLY IN FORGE
+    //!! REQUIRED - The modules access libaries from below - ONLY IN FABRIC
+        // ~/fabric/mods LOCAL
+    modCompileOnly("net.stehschnitzel.shutter:shutter-2.0.2-1.20.1")
+    modCompileOnly("com.mrcrayfish.furniture.refurbished:refurbished_furniture-fabric-1.20.1-1.0.0-beta.4")
+    modCompileOnly("com.arcanc.bc:Beautiful-Campfires-fabric-1.20.1-1.0.3")
+    modCompileOnly("net.darktree.redbits:redbits-1.20.1-1.16.1")
+
         // MACAW's
     modCompileOnly("curse.maven:macaws-bridges-351725:5240495")
     modCompileOnly("curse.maven:macaws-doors-378646:4649888")
@@ -125,7 +127,6 @@ dependencies {
     modCompileOnly("curse.maven:building-but-better-989479:5362379")
     modCompileOnly("curse.maven:clutter-826060:5776595") //RML: Geckolib
     modCompileOnly("curse.maven:create-fabric-624165:5245234") //v0.5.1f
-//    modCompileOnly("curse.maven:cozy-625281:4728202")
     modCompileOnly("curse.maven:dramatic-doors-380617:4815647")
     modCompileOnly("curse.maven:exlines-awnings-526698:4668406")
     modCompileOnly("curse.maven:farmers-delight-fabric-482834:4939709") // legacy
@@ -141,14 +142,15 @@ dependencies {
 
     modCompileOnly("curse.maven:regions-unexplored-659110:5151837")
 
-//!! ========================================== DISABLED FOR A REASON =============================================== \\
+    // ======================================== DISABLED FOR A REASON =============================================== \\
 
+//    modCompileOnly("curse.maven:cozy-625281:4728202")
 
 //!! ============================================== FOR TESTING ===================================================== \\
 
 //    modRuntimeOnly("curse.maven:gardens-of-the-dead-683174:4784268")
 
-        //!! Dependencies
+        // Dependencies
 //    modRuntimeOnly("curse.maven:forge-config-api-port-fabric-547434:4583000") // Required: unknown
 }
 
