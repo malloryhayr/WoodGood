@@ -53,7 +53,7 @@ public class HandcraftedModule extends SimpleModule {
 
     public HandcraftedModule(String modId) {
         super(modId, "hc");
-        Supplier<CreativeModeTab> tab = ModItems.TAB;
+        ResourceLocation tab = modRes("main");
 
         chair = SimpleEntrySet.builder(WoodType.class, "chair",
                         ModBlocks.OAK_CHAIR, () -> WoodTypeRegistry.OAK_TYPE,
@@ -64,7 +64,7 @@ public class HandcraftedModule extends SimpleModule {
                 .addTag(BlockTags.MINEABLE_WITH_AXE, Registries.BLOCK)
                 .addTag(modRes("chairs"), Registries.BLOCK)
                 .addTag(modRes("chairs"), Registries.ITEM)
-                .setTab(tab)
+                .setTabKey(tab)
                 .addCustomItem((w, b, p) -> new BlockItem(b, p))
                 .defaultRecipe()
                 .build();
@@ -74,14 +74,13 @@ public class HandcraftedModule extends SimpleModule {
                         ModBlocks.OAK_TABLE, () -> WoodTypeRegistry.OAK_TYPE,
                         w -> new TableBlock(Utils.copyPropertySafe(w.planks).noOcclusion())
                 )
-                .addTile(ContainerBlockEntity::new)
                 .setRenderType(RenderLayer.CUTOUT)
                 .addTexture(modRes("block/table/table/oak_table"))
                 .addTag(BlockTags.MINEABLE_WITH_AXE, Registries.BLOCK)
                 .addTag(ModBlockTags.TABLE_CONNECTABLE, Registries.BLOCK)
                 .addTag(modRes("tables"), Registries.BLOCK)
                 .addTag(modRes("tables"), Registries.ITEM)
-                .setTab(tab)
+                .setTabKey(tab)
                 .addCustomItem((w, b, p) -> new BlockItem(b, p))
                 .defaultRecipe()
                 .build();
@@ -91,7 +90,6 @@ public class HandcraftedModule extends SimpleModule {
                         ModBlocks.OAK_BENCH, () -> WoodTypeRegistry.OAK_TYPE,
                         w -> new BenchBlock(Utils.copyPropertySafe(w.planks).noOcclusion())
                 )
-                .addTile(ContainerBlockEntity::new)
                 .setRenderType(RenderLayer.CUTOUT)
                 .addTexture(modRes("block/bench/oak_bench"))
                 .addTag(BlockTags.MINEABLE_WITH_AXE, Registries.BLOCK)
@@ -99,7 +97,7 @@ public class HandcraftedModule extends SimpleModule {
                 .addTag(modRes("benches"), Registries.BLOCK)
                 .addTag(modRes("wooden_benches"), Registries.ITEM)
                 .addTag(modRes("benches"), Registries.ITEM)
-                .setTab(tab)
+                .setTabKey(tab)
                 .addCustomItem((w, b, p) -> new BlockItem(b, p))
                 .defaultRecipe()
                 .build();
@@ -109,13 +107,12 @@ public class HandcraftedModule extends SimpleModule {
                         ModBlocks.OAK_COUCH, () -> WoodTypeRegistry.OAK_TYPE,
                         w -> new CouchBlock(Utils.copyPropertySafe(w.planks).noOcclusion())
                 )
-                .addTile(ContainerBlockEntity::new)
                 .setRenderType(RenderLayer.CUTOUT)
                 .addTexture(modRes("block/couch/oak_couch"))
                 .addTag(BlockTags.MINEABLE_WITH_AXE, Registries.BLOCK)
                 .addTag(modRes("couches"), Registries.BLOCK)
                 .addTag(modRes("couches"), Registries.ITEM)
-                .setTab(tab)
+                .setTabKey(tab)
                 .addCustomItem((w, b, p) -> new BlockItem(b, p))
                 .defaultRecipe()
                 .build();
@@ -133,7 +130,7 @@ public class HandcraftedModule extends SimpleModule {
                 .addTag(BlockTags.BEDS, Registries.BLOCK)
                 .addTag(modRes("fancy_beds"), Registries.ITEM)
                 .addTag(BlockTags.BEDS, Registries.ITEM)
-                .setTab(tab)
+                .setTabKey(tab)
                 .addCustomItem((w, b, p) -> new BlockItem(b, p))
                 .defaultRecipe()
                 .copyParentDrop()
@@ -149,7 +146,7 @@ public class HandcraftedModule extends SimpleModule {
                 .addTag(BlockTags.MINEABLE_WITH_AXE, Registries.BLOCK)
                 .addTag(modRes("dining_benches"), Registries.BLOCK)
                 .addTag(modRes("dining_benches"), Registries.ITEM)
-                .setTab(tab)
+                .setTabKey(tab)
                 .addCustomItem((w, b, p) -> new BlockItem(b, p))
                 .defaultRecipe()
                 .build();
@@ -159,14 +156,14 @@ public class HandcraftedModule extends SimpleModule {
                         ModBlocks.OAK_NIGHTSTAND, () -> WoodTypeRegistry.OAK_TYPE,
                         w -> new NightstandBlock(Utils.copyPropertySafe(w.planks).noOcclusion())
                 )
-                .addTile(ContainerBlockEntity::new)
+                .addTile(getModTile("container"))
                 .setRenderType(RenderLayer.CUTOUT)
                 .addTextureM(modRes("block/table/nightstand/oak_nightstand"), EveryCompat.res("block/hc/table/oak_nightstand_m"))
                 .addTag(BlockTags.MINEABLE_WITH_AXE, Registries.BLOCK)
                 .addTag(ModBlockTags.TABLE_CONNECTABLE, Registries.BLOCK)
                 .addTag(modRes("nightstands"), Registries.BLOCK)
                 .addTag(modRes("nightstands"), Registries.ITEM)
-                .setTab(tab)
+                .setTabKey(tab)
                 .defaultRecipe()
                 .addCustomItem((w, b, p) -> new BlockItem(b, p))
                 .build();
@@ -176,14 +173,14 @@ public class HandcraftedModule extends SimpleModule {
                         ModBlocks.OAK_DESK, () -> WoodTypeRegistry.OAK_TYPE,
                         w -> new DeskBlock(Utils.copyPropertySafe(w.planks).noOcclusion())
                 )
-                .addTile(ContainerBlockEntity::new)
+                .addTile(getModTile("container"))
                 .setRenderType(RenderLayer.CUTOUT_MIPPED)
                 .addTextureM(modRes("block/table/desk/oak_desk"), EveryCompat.res("block/hc/table/oak_desk_m"))
                 .addTag(BlockTags.MINEABLE_WITH_AXE, Registries.BLOCK)
                 .addTag(ModBlockTags.TABLE_CONNECTABLE, Registries.BLOCK)
                 .addTag(modRes("desks"), Registries.BLOCK)
                 .addTag(modRes("desks"), Registries.ITEM)
-                .setTab(tab)
+                .setTabKey(tab)
                 .defaultRecipe()
                 .addCustomItem((w, b, p) -> new BlockItem(b, p))
                 .build();
@@ -193,13 +190,13 @@ public class HandcraftedModule extends SimpleModule {
                         ModBlocks.OAK_SIDE_TABLE, () -> WoodTypeRegistry.OAK_TYPE,
                         w -> new SideTableBlock(Utils.copyPropertySafe(w.planks).noOcclusion())
                 )
-                .addTile(ContainerBlockEntity::new)
+                .addTile(getModTile("container"))
                 .setRenderType(RenderLayer.CUTOUT)
                 .addTextureM(modRes("block/table/side_table/oak_side_table"), EveryCompat.res("block/hc/table/oak_side_table_m"))
                 .addTag(BlockTags.MINEABLE_WITH_AXE, Registries.BLOCK)
                 .addTag(modRes("side_tables"), Registries.BLOCK)
                 .addTag(modRes("side_tables"), Registries.ITEM)
-                .setTab(tab)
+                .setTabKey(tab)
                 .addCustomItem((w, b, p) -> new BlockItem(b, p))
                 .defaultRecipe()
                 .build();
@@ -209,14 +206,14 @@ public class HandcraftedModule extends SimpleModule {
                         ModBlocks.OAK_COUNTER, () -> WoodTypeRegistry.OAK_TYPE,
                         w -> new CounterBlock(Utils.copyPropertySafe(w.planks))
                 )
-                .addTile(ContainerBlockEntity::new)
+                .addTile(getModTile("container"))
                 .addTextureM(modRes("block/counter/oak_counter_1"), EveryCompat.res("block/hc/counter/oak_counter_1_m"))
                 .addTextureM(modRes("block/counter/oak_counter_2"), EveryCompat.res("block/hc/counter/oak_counter_2_m"))
                 .addTextureM(modRes("block/counter/oak_counter_3"), EveryCompat.res("block/hc/counter/oak_counter_3_m"))
                 .addTag(BlockTags.MINEABLE_WITH_AXE, Registries.BLOCK)
                 .addTag(modRes("counters"), Registries.BLOCK)
                 .addTag(modRes("counters"), Registries.ITEM)
-                .setTab(tab)
+                .setTabKey(tab)
                 .addCustomItem((w, b, p) -> new BlockItem(b, p))
                 .defaultRecipe()
                 .addModelTransform( // to prevent the changing of "oak_planks"
@@ -231,7 +228,7 @@ public class HandcraftedModule extends SimpleModule {
                         ModBlocks.OAK_CUPBOARD, () -> WoodTypeRegistry.OAK_TYPE,
                         w -> new CupboardBlock(Utils.copyPropertySafe(w.planks))
                 )
-                .addTile(ContainerBlockEntity::new)
+                .addTile(getModTile("container"))
                 .addTextureM(modRes("block/cupboard/oak/cupboard_1"), EveryCompat.res("block/hc/cupboard/cupboard_1_m"))
                 .addTextureM(modRes("block/cupboard/oak/cupboard_2"), EveryCompat.res("block/hc/cupboard/cupboard_2_m"))
                 .addTexture(modRes("block/cupboard/oak/cupboard_back"))
@@ -240,7 +237,7 @@ public class HandcraftedModule extends SimpleModule {
                 .addTag(BlockTags.MINEABLE_WITH_AXE, Registries.BLOCK)
                 .addTag(modRes("cupboards"), Registries.BLOCK)
                 .addTag(modRes("cupboards"), Registries.ITEM)
-                .setTab(tab)
+                .setTabKey(tab)
                 .addCustomItem((w, b, p) -> new BlockItem(b, p))
                 .defaultRecipe()
                 .build();
@@ -250,7 +247,7 @@ public class HandcraftedModule extends SimpleModule {
                         ModBlocks.OAK_DRAWER, () -> WoodTypeRegistry.OAK_TYPE,
                         w -> new DrawerBlock(Utils.copyPropertySafe(w.planks).noOcclusion())
                 )
-                .addTile(ContainerBlockEntity::new)
+                .addTile(getModTile("container"))
                 .addTextureM(modRes("block/drawer/oak/front_1/drawer_left"), EveryCompat.res("block/hc/drawer/front_1/drawer_left_m"))
                 .addTextureM(modRes("block/drawer/oak/front_1/drawer_middle"), EveryCompat.res("block/hc/drawer/front_1/drawer_middle_m"))
                 .addTextureM(modRes("block/drawer/oak/front_1/drawer_right"), EveryCompat.res("block/hc/drawer/front_1/drawer_right_m"))
@@ -272,7 +269,7 @@ public class HandcraftedModule extends SimpleModule {
                 .addTag(BlockTags.MINEABLE_WITH_AXE, Registries.BLOCK)
                 .addTag(modRes("drawers"), Registries.BLOCK)
                 .addTag(modRes("drawers"), Registries.ITEM)
-                .setTab(tab)
+                .setTabKey(tab)
                 .addCustomItem((w, b, p) -> new BlockItem(b, p))
                 .defaultRecipe()
                 .build();
@@ -282,7 +279,7 @@ public class HandcraftedModule extends SimpleModule {
                         ModBlocks.OAK_SHELF, () -> WoodTypeRegistry.OAK_TYPE,
                         w -> new ShelfBlock(Utils.copyPropertySafe(w.planks))
                 )
-                .addTile(ContainerBlockEntity::new)
+                .addTile(getModTile("container"))
                 .addTexture(modRes("block/shelf/oak/shelf_back"))
                 .addTexture(modRes("block/shelf/oak/shelf_left"))
                 .addTexture(modRes("block/shelf/oak/shelf_middle"))
@@ -294,7 +291,7 @@ public class HandcraftedModule extends SimpleModule {
                 .addTag(BlockTags.MINEABLE_WITH_AXE, Registries.BLOCK)
                 .addTag(modRes("shelves"), Registries.BLOCK)
                 .addTag(modRes("shelves"), Registries.ITEM)
-                .setTab(tab)
+                .setTabKey(tab)
                 .addCustomItem((w, b, p) -> new BlockItem(b, p))
                 .defaultRecipe()
                 .build();
@@ -316,7 +313,7 @@ public class HandcraftedModule extends SimpleModule {
                                 .addTag(modRes("trims"), Registries.BLOCK)
                 .addTag(modRes("pillar_trims"), Registries.ITEM)
                                 .addTag(modRes("trims"), Registries.ITEM)
-                .setTab(tab)
+                .setTabKey(tab)
                 .addCustomItem((w, b, p) -> new BlockItem(b, p))
                 .defaultRecipe()
                 .build();
@@ -335,7 +332,7 @@ public class HandcraftedModule extends SimpleModule {
                                 .addTag(modRes("trims"), Registries.BLOCK)
                 .addTag(modRes("corner_trims"), Registries.ITEM)
                                 .addTag(modRes("trims"), Registries.ITEM)
-                .setTab(tab)
+                .setTabKey(tab)
                 .addCustomItem((w, b, p) -> new BlockItem(b, p))
                 .defaultRecipe()
                 .build();
