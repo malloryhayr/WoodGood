@@ -128,7 +128,7 @@ dependencies {
 //    modRuntimeOnly("curse.maven:jei-238222:5718385")
 
 //!! ================================================ DEPENDENCIES ================================================== \\
-    //!! ONLY FOR TESTING - These mods are in COMMON & can be commented out or enabled
+    //!! ONLY FOR TESTING - can be commented out or enabled
 //    modRuntimeOnly("curse.maven:cloth-config-348521:4973441") // v11.1.118 | REI
 //    modRuntimeOnly("curse.maven:architectury-api-419699:5137938") // v9.2.14 | REI, Furnish
 //    modRuntimeOnly("curse.maven:resourceful-lib-570073:5659871")  // v2.1.29 | Chipped, Handcrafted, Cozy
@@ -141,7 +141,7 @@ dependencies {
 //    modRuntimeOnly("maven.modrinth:midnightlib:UhRAdyzr") // Building-But-Better
 //    modRuntimeOnly("curse.maven:geckolib-388172:5460309") //
 
-    //!! REQUIRED - The modules access libaries from below - ONLY IN FORGE
+    //!! REQUIRED - The modules access libraries from below - ONLY IN FORGE
     modCompileOnly("com.tterrag.registrate:Registrate:${registrate_version}") // Create, The-Twilight-Forest
     modCompileOnly("com.jozufozu.flywheel:flywheel-forge-${flywheel_version}") // Create
     modCompileOnly("curse.maven:athena-841890:5176879") // Chipped
@@ -178,7 +178,7 @@ dependencies {
 //    modRuntimeOnly("curse.maven:twigs-496913:4605097")
 //    modRuntimeOnly("curse.maven:villagersplus-forge-817272:4996995")
 
-    //!! REQUIRED - The modules access libaries from below - ONLY IN FORGE
+    //!! REQUIRED - The modules access libraries from below - ONLY IN FORGE
         // ~/forge/mods LOCAL
     modCompileOnly("com.stal111.valhelsia_structures:valhelsia_structures-forge-1.20.1-1.1.0")
     modCompileOnly("net.stehschnitzel.shutter:shutters-2.0.2-1.20.1")

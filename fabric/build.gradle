@@ -61,12 +61,12 @@ dependencies {
 //    modRuntimeOnly("curse.maven:jade-324717:5666690")
 
 //!! ================================================ DEPENDENCIES ================================================== \\
-    //!! ONLY FOR TESTING - These modules are in COMMON
+    //!! ONLY FOR TESTING - can be commented out or enabled
 //    modRuntimeOnly("curse.maven:cloth-config-348521:4973440") // v11.1.118 | REI
 //    modRuntimeOnly("curse.maven:architectury-api-419699:5137936") // v9.2.14 | REI, Garden-Of-The-Dead
 //    modRuntimeOnly("curse.maven:trinkets-341284:5173501") // Backpacked
 
-    //!! REQUIRED - The modules access libaries from below - ONLY IN fABRIC
+    //!! REQUIRED - The modules access libraries from below - ONLY IN fABRIC
     modCompileOnly("com.tterrag.registrate_fabric:Registrate:${registrate_fabric_version}")
     modCompileOnly("curse.maven:athena-841890:5176880") // Chipped
     modCompileOnly("curse.maven:framework-549225:5680025") // v0.7.7 | Refurbished Furniture, Mighty Mail, Backpacked
@@ -81,7 +81,7 @@ dependencies {
 
     // IMPORTANT: RLM: "REQUIRED LOCAL MOD" - You need to get the mod and put it in ~/fabric/run/mods/....
 //!! ================================================== IMPORTS ===================================================== \\
-    //!! ONLY FOR TESTING - These mods are in COMMON & can be commented out or enabled
+    //!! ONLY FOR TESTING - can be commented out or enabled
 //    modRuntimeOnly("curse.maven:another-furniture-610492:4815126")
 //    modRuntimeOnly("curse.maven:backpacked-352835:5401968")
 //    modRuntimeOnly("curse.maven:camp-chair-531744:4579676")
@@ -150,7 +150,7 @@ dependencies {
 
 //    modRuntimeOnly("curse.maven:gardens-of-the-dead-683174:4784268")
 
-        // Dependencies
+        //!! Dependencies
 //    modRuntimeOnly("curse.maven:forge-config-api-port-fabric-547434:4583000") // Required: unknown
 }
 
