@@ -121,7 +121,7 @@ public class SimpleEntrySet<T extends BlockType, B extends Block> extends Abstra
         for (T w : types) {
             String name = getBlockName(w);
             String fullName = module.shortenedId() + "/" + w.getNamespace() + "/" + name;
-            if (module.isEntryAlreadyRegistered(name, w, BuiltInRegistries.BLOCK) || w.isVanilla()) continue;
+            if (module.isEntryAlreadyRegistered(name, w, BuiltInRegistries.BLOCK)) continue;
 
             if (condition.test(w)) {
                 B block = blockFactory.apply(w);
