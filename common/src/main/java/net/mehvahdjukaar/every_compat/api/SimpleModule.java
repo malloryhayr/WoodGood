@@ -186,19 +186,21 @@ public class SimpleModule extends CompatModule {
         return l;
     }
 
-    // Default
-    public boolean isEntryAlreadyRegistered(String name, BlockType woodType, Registry<?> registry, boolean skipVanilla) {
-        // isAlreadyRegistered is only used by other addons like StoneZone
-        return isEntryAlreadyRegistered(name, woodType, registry, skipVanilla, false);
+    @Deprecated(forRemoval = true)
+    public boolean isEntryAlreadyRegistered(String name, BlockType woodType, Registry<?> registry, boolean isVanilla) {
+        return isEntryAlreadyRegistered(name, woodType, registry);
     }
 
+    @Deprecated(forRemoval = true)
+    public boolean isEntryAlreadyRegistered(String name, BlockType woodType, Registry<?> registry, boolean isVanilla, boolean wrong) {
+        return isEntryAlreadyRegistered(name, woodType, registry);
+    }
+
+    // Default
     //TODO: improve
-    public boolean isEntryAlreadyRegistered(String name, BlockType woodType, Registry<?> registry, boolean skipVanilla, boolean shouldBeRegistered) {
+    public boolean isEntryAlreadyRegistered(String name, BlockType woodType, Registry<?> registry) {
 
-        if (skipVanilla) return true;
-
-        // shouldBeRegistered is being carry over from StoneZone
-        if (shouldBeRegistered) return false;
+        if (woodType.isVanilla()) return true;
 
         //ec:twigs/bop/willow_table
         name = name.substring(name.lastIndexOf("/") + 1); //gets the base name

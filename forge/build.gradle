@@ -131,7 +131,7 @@ dependencies {
     //!! ONLY FOR TESTING - These modules are in COMMON
 //    modRuntimeOnly("curse.maven:cloth-config-348521:4973441") // v11.1.118 | Required by: REI
 //    modRuntimeOnly("curse.maven:architectury-api-419699:5137938") // v9.2.14 | Required by: REI, Furnish
-//    modRuntimeOnly("curse.maven:resourceful-lib-570073:5659871")  // v2.1.29 | Chipped, Handcrafted, Cozy
+    modRuntimeOnly("curse.maven:resourceful-lib-570073:5659871")  // v2.1.29 | Chipped, Handcrafted, Cozy
 //    modRuntimeOnly("curse.maven:fusion-connected-textures-854949:5129294") // Dawn of Time, Timber-Frame, Rechiseled
 //    modRuntimeOnly("curse.maven:flib-661261:5495793") // Absent-By-Design
 //    modRuntimeOnly("curse.maven:supermartijn642s-core-lib-454372:5668859") // Rechiseled
@@ -144,7 +144,7 @@ dependencies {
     //!! REQUIRED - The modules access libaries from the mod - ONLY IN FORGE
     modCompileOnly("com.tterrag.registrate:Registrate:${registrate_version}") // Create
     modCompileOnly("com.jozufozu.flywheel:flywheel-forge-${flywheel_version}") // Create
-    modCompileOnly("curse.maven:athena-841890:5176879") // Chipped
+    modImplementation("curse.maven:athena-841890:5176879") // Chipped
     modCompileOnly("curse.maven:autoreglib-250363:3857246")
     modCompileOnly("curse.maven:blueprint-382216:5292242") // The-Outer-End, Woodworks, Boatload
     modCompileOnly("curse.maven:valhelsia-core-416935:5189548") // Valhelsia Structure, Valhelsia Furniture
@@ -173,7 +173,7 @@ dependencies {
 //    modRuntimeOnly("curse.maven:another-furniture-610492:4034009") //WARNING: version 2.1.2-1.19.2
 //    modRuntimeOnly("curse.maven:backpacked-352835:5401965")
 //    modRuntimeOnly("curse.maven:camp-chair-531744:4579679")
-//    modRuntimeOnly("curse.maven:chipped-456956:4634856") // v3.0.1
+      modRuntimeOnly("curse.maven:chipped-456956:4634856") // v3.0.1
 //    modRuntimeOnly("curse.maven:dawn-of-time-312359:5651249")
 //    modRuntimeOnly("curse.maven:decorative-blocks-362528:3941638")
 //    modRuntimeOnly("curse.maven:exlines-bark-carpets-527296:4094399")
@@ -241,7 +241,7 @@ dependencies {
     modCompileOnly("curse.maven:woodworks-543610:5228779")
     modCompileOnly("curse.maven:workshop-for-handsome-adventurer-875843:5713529")
     modCompileOnly("curse.maven:xercamod-341575:4667995")
-    modCompileOnly("maven.modrinth:building-but-better:zGMhmLYb") // v1.1.1 | MidnightLib
+    modImplementation("maven.modrinth:building-but-better:zGMhmLYb") // v1.1.1 | MidnightLib
 
 
     // ======================================== DISABLED FOR A REASON =============================================== \\
