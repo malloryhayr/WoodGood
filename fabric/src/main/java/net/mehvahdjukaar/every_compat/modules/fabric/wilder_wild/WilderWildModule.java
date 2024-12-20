@@ -26,7 +26,7 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 
-import static net.mehvahdjukaar.every_compat.EveryCompat.doChildrenExistFor;
+import static net.mehvahdjukaar.every_compat.common_classes.Utilities.doChildrenExistFor;
 import static net.mehvahdjukaar.every_compat.common_classes.TagUtility.createAndAddCustomTags;
 
 //SUPPORT: v3.0.7+
