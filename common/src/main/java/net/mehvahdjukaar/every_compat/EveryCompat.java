@@ -222,15 +222,4 @@ public abstract class EveryCompat {
             forAllModules(m -> m.registerItemsToExistingTabs(event));
         }
     }
-
-    public static boolean doChildrenExistFor(WoodType w, String... blockTypes) {
-        for (String type : blockTypes) {
-            if (w.getBlockOfThis(type) == null) return false;
-        }
-        return true;
-    }
-
-    public static boolean doChildrenExistFor(WoodType w, SimpleEntrySet<WoodType, ?> blockType) {
-        return (blockType.blocks.get(w) != null);
-    }
 }
