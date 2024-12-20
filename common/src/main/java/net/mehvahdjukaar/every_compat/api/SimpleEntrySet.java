@@ -121,7 +121,7 @@ public class SimpleEntrySet<T extends BlockType, B extends Block> extends Abstra
         for (T w : types) {
             String name = getBlockName(w);
             String fullName = module.shortenedId() + "/" + w.getNamespace() + "/" + name;
-            if (module.isEntryAlreadyRegistered(name, w, BuiltInRegistries.BLOCK, w.isVanilla())) continue;
+            if (module.isEntryAlreadyRegistered(name, w, BuiltInRegistries.BLOCK) || w.isVanilla()) continue;
 
             if (condition.test(w)) {
                 B block = blockFactory.apply(w);
@@ -275,11 +275,13 @@ public class SimpleEntrySet<T extends BlockType, B extends Block> extends Abstra
     }
 
     protected BlockTypeResTransformer<T> makeLootTableTransformer(SimpleModule module, ResourceManager manager) {
-        String baseBlockName = baseType.get().getTypeName();
+        String oldTypeName = baseType.get().getTypeName();
         return BlockTypeResTransformer.<T>create(module.modId, manager)
-                .addModifier((text, id, type) ->
+                .addModifier((text, blockId, type) ->
+                        BlockTypeResTransformer.replaceFullGenericType(text, type, blockId, oldTypeName, module.modId, 2))
+                .addModifier((text, blockId, type) ->
                         ResourcesUtils.convertItemIDinText(text, baseType.get(), type))
-                .IDReplaceType(baseBlockName);
+                .IDReplaceType(oldTypeName);
     }
 
     //ok...
