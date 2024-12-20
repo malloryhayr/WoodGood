@@ -199,7 +199,6 @@ public class SimpleModule extends CompatModule {
     // Default
     //TODO: improve
     public boolean isEntryAlreadyRegistered(String name, BlockType woodType, Registry<?> registry) {
-
         if (woodType.isVanilla()) return true;
 
         //ec:twigs/bop/willow_table
