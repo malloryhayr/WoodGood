@@ -128,10 +128,10 @@ dependencies {
 //    modRuntimeOnly("curse.maven:jei-238222:5718385")
 
 //!! ================================================ DEPENDENCIES ================================================== \\
-    //!! ONLY FOR TESTING - These modules are in COMMON
-//    modRuntimeOnly("curse.maven:cloth-config-348521:4973441") // v11.1.118 | Required by: REI
-//    modRuntimeOnly("curse.maven:architectury-api-419699:5137938") // v9.2.14 | Required by: REI, Furnish
-    modRuntimeOnly("curse.maven:resourceful-lib-570073:5659871")  // v2.1.29 | Chipped, Handcrafted, Cozy
+    //!! ONLY FOR TESTING - can be commented out or enabled
+//    modRuntimeOnly("curse.maven:cloth-config-348521:4973441") // v11.1.118 | REI
+//    modRuntimeOnly("curse.maven:architectury-api-419699:5137938") // v9.2.14 | REI, Furnish
+//    modRuntimeOnly("curse.maven:resourceful-lib-570073:5659871")  // v2.1.29 | Chipped, Handcrafted, Cozy
 //    modRuntimeOnly("curse.maven:fusion-connected-textures-854949:5129294") // Dawn of Time, Timber-Frame, Rechiseled
 //    modRuntimeOnly("curse.maven:flib-661261:5495793") // Absent-By-Design
 //    modRuntimeOnly("curse.maven:supermartijn642s-core-lib-454372:5668859") // Rechiseled
@@ -141,10 +141,10 @@ dependencies {
 //    modRuntimeOnly("maven.modrinth:midnightlib:UhRAdyzr") // Building-But-Better
 //    modRuntimeOnly("curse.maven:geckolib-388172:5460309") //
 
-    //!! REQUIRED - The modules access libaries from the mod - ONLY IN FORGE
-    modCompileOnly("com.tterrag.registrate:Registrate:${registrate_version}") // Create
+    //!! REQUIRED - The modules access libraries from below - ONLY IN FORGE
+    modCompileOnly("com.tterrag.registrate:Registrate:${registrate_version}") // Create, The-Twilight-Forest
     modCompileOnly("com.jozufozu.flywheel:flywheel-forge-${flywheel_version}") // Create
-    modImplementation("curse.maven:athena-841890:5176879") // Chipped
+    modCompileOnly("curse.maven:athena-841890:5176879") // Chipped
     modCompileOnly("curse.maven:autoreglib-250363:3857246")
     modCompileOnly("curse.maven:blueprint-382216:5292242") // The-Outer-End, Woodworks, Boatload
     modCompileOnly("curse.maven:valhelsia-core-416935:5189548") // Valhelsia Structure, Valhelsia Furniture
@@ -154,26 +154,16 @@ dependencies {
     modCompileOnly("curse.maven:zeta-968868:5597406") // v1.0-24 | Quark
 
     // REQUIRED - but ONLY FOR TESTING
-    modRuntimeOnly("curse.maven:terrablender-563928:5378180") // v3.0.1.7 | Required by: BOP, Regions-Unexplored
-    modRuntimeOnly("curse.maven:glitchcore-955399:5787839") // v0.0.1.1 | Required by: BOP
+    modRuntimeOnly("curse.maven:terrablender-563928:5378180") // v3.0.1.7 | BOP, Regions-Unexplored
+    modRuntimeOnly("curse.maven:glitchcore-955399:5787839") // v0.0.1.1 | BOP
     modRuntimeOnly("curse.maven:patchouli-306770:4636277") // v81 | TFC, Timber-Frames
 
-    //!! ~/forge/mods LOCAL
-//    modImplementation("com.teamresourceful.bytecodecs:bytecodecs-1.0.2")
-    modCompileOnly("com.stal111.valhelsia_structures:valhelsia_structures-forge-1.20.1-1.1.0")
-    modCompileOnly("net.stehschnitzel.shutter:shutters-2.0.2-1.20.1")
-    modCompileOnly("com.mrcrayfish.furniture.refurbished:refurbished_furniture-forge-1.20.1-1.0.0-beta.4")
-    modCompileOnly("com.tynoxs.buildersdelight:BuildersDelight-1.20.1-v.1.3")
-    modCompileOnly("com.arcanc.bc:Beautiful-Campfires-forge-1.20.1-1.0.2")
-    //modCompileOnly("com.polipo.bookshelf:giacomos_bookshelf-1.20.1-1.3.9") // WIP
-
-
 //!! ================================================== IMPORTS ===================================================== \\
-    //!! ONLY FOR TESTING - These modules are in COMMON
+    //!! ONLY FOR TESTING - These mods are in COMMON & can be commented out or enabled
 //    modRuntimeOnly("curse.maven:another-furniture-610492:4034009") //WARNING: version 2.1.2-1.19.2
 //    modRuntimeOnly("curse.maven:backpacked-352835:5401965")
 //    modRuntimeOnly("curse.maven:camp-chair-531744:4579679")
-      modRuntimeOnly("curse.maven:chipped-456956:4634856") // v3.0.1
+//    modRuntimeOnly("curse.maven:chipped-456956:4634856") // v3.0.1
 //    modRuntimeOnly("curse.maven:dawn-of-time-312359:5651249")
 //    modRuntimeOnly("curse.maven:decorative-blocks-362528:3941638")
 //    modRuntimeOnly("curse.maven:exlines-bark-carpets-527296:4094399")
@@ -188,7 +178,15 @@ dependencies {
 //    modRuntimeOnly("curse.maven:twigs-496913:4605097")
 //    modRuntimeOnly("curse.maven:villagersplus-forge-817272:4996995")
 
-    //!! REQUIRED - The modules access libaries from the mod - ONLY IN FORGE
+    //!! REQUIRED - The modules access libraries from below - ONLY IN FORGE
+        // ~/forge/mods LOCAL
+    modCompileOnly("com.stal111.valhelsia_structures:valhelsia_structures-forge-1.20.1-1.1.0")
+    modCompileOnly("net.stehschnitzel.shutter:shutters-2.0.2-1.20.1")
+    modCompileOnly("com.mrcrayfish.furniture.refurbished:refurbished_furniture-forge-1.20.1-1.0.0-beta.4")
+    modCompileOnly("com.tynoxs.buildersdelight:BuildersDelight-1.20.1-v.1.3")
+    modCompileOnly("com.arcanc.bc:Beautiful-Campfires-forge-1.20.1-1.0.2")
+//    modImplementation("com.teamresourceful.bytecodecs:bytecodecs-1.0.2")
+
         // MACAW's
     modCompileOnly("curse.maven:macaws-bridges-351725:5240521")
     modCompileOnly("curse.maven:macaws-doors-378646:4649910")
@@ -201,7 +199,6 @@ dependencies {
     modCompileOnly("curse.maven:macaws-windows-363569:4961142")
     modCompileOnly("curse.maven:macaws-stairs-1119394:5802535")
 
-//    modImplementation("tech.thatgravyboat.cozy:cozy-1.1.1-forge") //Failed to process jar when running jar processor: fabric-loom:access-widener
         // OTHERS
     modCompileOnly("curse.maven:absent-by-design-305840:4616702")
     modCompileOnly("curse.maven:architects-palette-433862:5036133")
@@ -241,10 +238,11 @@ dependencies {
     modCompileOnly("curse.maven:woodworks-543610:5228779")
     modCompileOnly("curse.maven:workshop-for-handsome-adventurer-875843:5713529")
     modCompileOnly("curse.maven:xercamod-341575:4667995")
-    modImplementation("maven.modrinth:building-but-better:zGMhmLYb") // v1.1.1 | MidnightLib
-
+    modCompileOnly("maven.modrinth:building-but-better:zGMhmLYb") // v1.1.1 | MidnightLib
 
     // ======================================== DISABLED FOR A REASON =============================================== \\
+    //modCompileOnly("com.polipo.bookshelf:giacomos_bookshelf-1.20.1-1.3.9") // WIP
+//    modImplementation("tech.thatgravyboat.cozy:cozy-1.1.1-forge") //Failed to process jar when running jar processor: fabric-loom:access-widener
     // implementation fg.deobf("curse.maven:marg-324494:3723497") // LIBRARY
     // implementation fg.deobf("curse.maven:ortuslib-616457:3768197") // LIBRARY
     // implementation fg.deobf("curse.maven:project-brazier-238326:3835038")
