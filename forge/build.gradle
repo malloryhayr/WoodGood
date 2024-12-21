@@ -140,6 +140,7 @@ dependencies {
 //    modRuntimeOnly("curse.maven:lodestone-616457:5712854") // Malum
 //    modRuntimeOnly("maven.modrinth:midnightlib:UhRAdyzr") // Building-But-Better
 //    modRuntimeOnly("curse.maven:geckolib-388172:5460309") //
+//    modRuntimeOnly("curse.maven:patchouli-306770:4636277") // v81 | TFC, Timber-Frames
 
     //!! REQUIRED - The modules access libraries from below - ONLY IN FORGE
     modCompileOnly("com.tterrag.registrate:Registrate:${registrate_version}") // Create, The-Twilight-Forest
@@ -156,10 +157,9 @@ dependencies {
     // REQUIRED - but ONLY FOR TESTING
     modRuntimeOnly("curse.maven:terrablender-563928:5378180") // v3.0.1.7 | BOP, Regions-Unexplored
     modRuntimeOnly("curse.maven:glitchcore-955399:5787839") // v0.0.1.1 | BOP
-    modRuntimeOnly("curse.maven:patchouli-306770:4636277") // v81 | TFC, Timber-Frames
 
 //!! ================================================== IMPORTS ===================================================== \\
-    //!! ONLY FOR TESTING - These mods are in COMMON & can be commented out or enabled
+    //!! ONLY FOR TESTING - can be commented out or enabled
 //    modRuntimeOnly("curse.maven:another-furniture-610492:4034009") //WARNING: version 2.1.2-1.19.2
 //    modRuntimeOnly("curse.maven:backpacked-352835:5401965")
 //    modRuntimeOnly("curse.maven:camp-chair-531744:4579679")
@@ -185,7 +185,7 @@ dependencies {
     modCompileOnly("com.mrcrayfish.furniture.refurbished:refurbished_furniture-forge-1.20.1-1.0.0-beta.4")
     modCompileOnly("com.tynoxs.buildersdelight:BuildersDelight-1.20.1-v.1.3")
     modCompileOnly("com.arcanc.bc:Beautiful-Campfires-forge-1.20.1-1.0.2")
-//    modImplementation("com.teamresourceful.bytecodecs:bytecodecs-1.0.2")
+//    modImplementation("com.teamresourceful.bytecodecs:bytecodecs-1.0.2") // Chipped
 
         // MACAW's
     modCompileOnly("curse.maven:macaws-bridges-351725:5240521")
