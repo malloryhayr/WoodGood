@@ -4,13 +4,16 @@ import net.mehvahdjukaar.moonlight.api.set.leaves.LeavesType;
 import net.mehvahdjukaar.moonlight.api.set.wood.WoodType;
 import org.jetbrains.annotations.Nullable;
 
-// ugly mess. Too coupled with wood types and too many hardcoded exceptions
-public class HardcodedStuff {
+// ugly mess. Too coupled with WoodTypes|LeavesTypes and too many hardcoded exceptions
+public class HardcodedBlockType {
 
     @Nullable
     public static Boolean isWoodBlockAlreadyRegistered(String name, WoodType woodType, String modId, String shortenedId) {
         String woodNamespace = woodType.getNamespace();
-        String woodID = woodType.getId().toString();
+        String woodTypeID = woodType.getId().toString();
+
+        // Unrelated to Quark's ancient_leaves & Alex's Cave (ancient_leaves) should be included
+        if (modId.equals("quark") && woodNamespace.equals("alexscaves") && woodTypeID.equals("ancient")) return false;
 
         // Better Nether & Better End have stripped_bark as stripped_wood but bark from Bewitchment caused EC to skip
         if (woodNamespace.matches("betternether|betterend") && shortenedId.equals("bw")) return false;
@@ -21,7 +24,7 @@ public class HardcodedStuff {
         // Garden-Of-The-dead's whistle must be skipped for branches from Regions-Unexplored
         // Nether's Exoticism & Snifferent already has branches, branches from Regions-Unexplored is not needed
         if ((woodNamespace.matches("gardens_of_the_dead|snifferent") ||
-                woodID.equals("nethers_exoticism:jabuticaba")) && name.contains("branch"))
+                woodTypeID.equals("nethers_exoticism:jabuticaba")) && name.contains("branch"))
             return true;
 
         // Quark & Woodworks have chest & trapped_chest.
@@ -42,11 +45,11 @@ public class HardcodedStuff {
         // check if TerraFirmaCraft (tfc) mod exist, then won't discards wood types
         if (woodNamespace.equals("tfc")) return false;
 
-        if (woodID.equals("ecologics:azalea")) {
+        if (woodTypeID.equals("ecologics:azalea")) {
             if (modId.equals("quark")) return false; //ecologics and quark azalea. tbh not sure why needed
         }
         //also this is wrong
-        if (woodID.equals("twilightforest:mangrove") && name.equals("mangrove_chest")) {
+        if (woodTypeID.equals("twilightforest:mangrove") && name.equals("mangrove_chest")) {
             return false;//mangrove waaa so much pain
         }
 

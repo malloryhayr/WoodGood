@@ -3,7 +3,7 @@ package net.mehvahdjukaar.every_compat.api;
 import net.mehvahdjukaar.every_compat.EveryCompat;
 import net.mehvahdjukaar.every_compat.dynamicpack.ClientDynamicResourcesHandler;
 import net.mehvahdjukaar.every_compat.dynamicpack.ServerDynamicResourcesHandler;
-import net.mehvahdjukaar.every_compat.misc.HardcodedStuff;
+import net.mehvahdjukaar.every_compat.misc.HardcodedBlockType;
 import net.mehvahdjukaar.moonlight.api.events.AfterLanguageLoadEvent;
 import net.mehvahdjukaar.moonlight.api.misc.Registrator;
 import net.mehvahdjukaar.moonlight.api.platform.ClientHelper;
@@ -213,10 +213,10 @@ public class SimpleModule extends CompatModule {
 
         // ugly hardcoded stuff
         if (woodType instanceof WoodType wt) {
-            Boolean hardcoded = HardcodedStuff.isWoodBlockAlreadyRegistered(name, wt, modId, shortenedId());
+            Boolean hardcoded = HardcodedBlockType.isWoodBlockAlreadyRegistered(name, wt, modId, shortenedId());
             if (hardcoded != null) return hardcoded;
         } else if (woodType instanceof LeavesType lt) {
-            Boolean hardcoded = HardcodedStuff.isLeavesBlockAlreadyRegistered(name, lt, modId, shortenedId());
+            Boolean hardcoded = HardcodedBlockType.isLeavesBlockAlreadyRegistered(name, lt, modId, shortenedId());
             if (hardcoded != null) return hardcoded;
         }
 
