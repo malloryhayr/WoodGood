@@ -198,13 +198,13 @@ public class SimpleModule extends CompatModule {
 
     // Default
     //TODO: improve
-    public boolean isEntryAlreadyRegistered(String name, BlockType woodType, Registry<?> registry) {
-        if (woodType.isVanilla()) return true;
+    public boolean isEntryAlreadyRegistered(String name, BlockType blockType, Registry<?> registry) {
+        if (blockType.isVanilla()) return true;
 
         //ec:twigs/bop/willow_table
         name = name.substring(name.lastIndexOf("/") + 1); //gets the base name
 
-        String woodFrom = woodType.getNamespace();
+        String woodFrom = blockType.getNamespace();
 
         String slashConvention = woodFrom + "/" + name; //quark/blossom_chair
         String underscoreConvention = woodFrom + "_" + name; //quark_blossom_chair
@@ -212,10 +212,10 @@ public class SimpleModule extends CompatModule {
         if (this.getAlreadySupportedMods().contains(woodFrom)) return true;
 
         // ugly hardcoded stuff
-        if (woodType instanceof WoodType wt) {
+        if (blockType instanceof WoodType wt) {
             Boolean hardcoded = HardcodedBlockType.isWoodBlockAlreadyRegistered(name, wt, modId, shortenedId());
             if (hardcoded != null) return hardcoded;
-        } else if (woodType instanceof LeavesType lt) {
+        } else if (blockType instanceof LeavesType lt) {
             Boolean hardcoded = HardcodedBlockType.isLeavesBlockAlreadyRegistered(name, lt, modId, shortenedId());
             if (hardcoded != null) return hardcoded;
         }
