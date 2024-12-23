@@ -335,7 +335,7 @@ public class ResourcesUtils {
     }
 
     protected static final String RES_CHARS = "[a-z,A-Z,\\-,_./]*";
-    protected static final Pattern RES_PATTERN = Pattern.compile("\"" + RES_CHARS + ":(" + RES_CHARS + ")\"");
+    protected static final Pattern RES_PATTERN = Pattern.compile("\"(" + RES_CHARS + ":" + RES_CHARS + ")\"");
 
     public static String convertItemIDinText(String text, BlockType fromType, BlockType toType) {
         Matcher matcher = RES_PATTERN.matcher(text);
