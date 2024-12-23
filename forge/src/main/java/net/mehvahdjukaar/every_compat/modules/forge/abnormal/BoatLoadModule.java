@@ -16,6 +16,7 @@ import net.minecraft.world.item.Item;
 import java.util.HashMap;
 import java.util.Map;
 
+//SUPPORT: v5.0.1+
 public class BoatLoadModule extends SimpleModule {
     public final ItemOnlyEntrySet<WoodType, Item> largeBoats;
     public final ItemOnlyEntrySet<WoodType, Item> furnaceBoats;
@@ -28,7 +29,8 @@ public class BoatLoadModule extends SimpleModule {
         largeBoats = ItemOnlyEntrySet.builder(WoodType.class, "boat", "large",
                         getModItem("large_oak_boat"),
                         () -> WoodTypeRegistry.OAK_TYPE,
-                        w -> new LargeBoatItem(getBoatType(w)))
+                        w -> new LargeBoatItem(getBoatType(w))
+                )
                 .setTabKey(tab)
                 .requiresChildren("boat") //REASON: recipes
                 .addTag(ItemTags.BOATS, Registries.ITEM)
@@ -43,7 +45,8 @@ public class BoatLoadModule extends SimpleModule {
         furnaceBoats = ItemOnlyEntrySet.builder(WoodType.class, "furnace_boat",
                         getModItem("oak_furnace_boat"),
                         () -> WoodTypeRegistry.OAK_TYPE,
-                        w -> new FurnaceBoatItem(getBoatType(w)))
+                        w -> new FurnaceBoatItem(getBoatType(w))
+                )
                 .setTabKey(tab)
                 .requiresChildren("boat") //REASON: recipes
                 .addTag(ItemTags.BOATS, Registries.ITEM)

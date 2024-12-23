@@ -374,8 +374,14 @@ public abstract class AbstractSimpleEntrySet<T extends BlockType, B extends Bloc
                     ResourceLocation oldTextureId = re.getKey();
                     String oldPath = oldTextureId.getPath();
 
-                    String newPath = BlockTypeResTransformer.replaceTypeNoNamespace(oldPath, w,
-                            blockId, baseType.get().getTypeName());
+                    //// BlockTypeResTransformer.replaceFullGenericType(oldPath, w, blockId, baseType.get().getTypeName(), null, 2);  Solve Boatload's texture issue
+
+                    // boatload's texture path has 2 folder
+                    String newPath = (oldPath.startsWith("entity/") && module.modId.equals("boatload"))
+                            ? BlockTypeResTransformer.replaceFullGenericType(oldPath, w, blockId, baseType.get().getTypeName(), null, 2)
+                            // Default
+                            : BlockTypeResTransformer.replaceTypeNoNamespace(oldPath, w, blockId, baseType.get().getTypeName());
+
                     String newId = new ResourceLocation(blockId.getNamespace(), newPath).toString();
 
                     boolean isOnAtlas = true;

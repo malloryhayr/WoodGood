@@ -37,9 +37,11 @@ import java.util.*;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+@SuppressWarnings("unused")
 public class ResourcesUtils {
 
 
+    @SuppressWarnings("PointlessBooleanExpression")
     public static <B extends Block, T extends BlockType> void generateStandardBlockModels(
             ResourceManager manager, DynClientResourcesGenerator d,
             Map<T, B> blocks, T baseType,
@@ -123,6 +125,7 @@ public class ResourcesUtils {
 
 
     //same as above just with just item models. a bunch of copy paste here... ugly
+    @SuppressWarnings("PointlessBooleanExpression")
     public static <I extends Item, T extends BlockType> void generateStandardItemModels(
             ResourceManager manager, DynClientResourcesGenerator d,
             Map<T, I> items, T baseType, BlockTypeResTransformer<T> itemModelTransformer) {
@@ -198,6 +201,7 @@ public class ResourcesUtils {
     }
 
     @NotNull
+    @SuppressWarnings("UnusedReturnValue")
     public static <T extends BlockType> BlockTypeResTransformer<T> addBuiltinModelTransformer(
             BlockTypeResTransformer<T> transformer, T baseType) {
         String oldTypeName = baseType.getTypeName();
@@ -276,6 +280,7 @@ public class ResourcesUtils {
         addBlocksRecipes(manager, pack, blocks, new ResourceLocation(modId, oakRecipe), fromType, 0);
     }
 
+    @SuppressWarnings("removal")
     public static <B extends Item, T extends BlockType> void addBlocksRecipes(ResourceManager manager, DynamicDataPack pack,
                                                                               Map<T, B> items, ResourceLocation oakRecipe, T fromType,
                                                                               int index) {
@@ -300,7 +305,7 @@ public class ResourcesUtils {
                     newR = ForgeHelper.addRecipeConditions(newR, template.getConditions());
                     pack.addRecipe(newR);
                 } catch (Exception e) {
-                    EveryCompat.LOGGER.error("Failed to generate recipe for {}: {}", i, e.getMessage());
+                    EveryCompat.LOGGER.error("Failed to generate recipe @ {} for {}: {}", oakRecipe, i, e.getMessage());
                 }
             }
         });

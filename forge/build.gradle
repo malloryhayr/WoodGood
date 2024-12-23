@@ -138,12 +138,15 @@ dependencies {
 //    modRuntimeOnly("curse.maven:supermartijn642s-config-lib-438332:4715408") // Rechiseled
 //    modRuntimeOnly("curse.maven:curios-309927:5680164") // Malum
 //    modRuntimeOnly("curse.maven:lodestone-616457:5712854") // Malum
-//    modRuntimeOnly("maven.modrinth:midnightlib:UhRAdyzr") // Building-But-Better
 //    modRuntimeOnly("curse.maven:geckolib-388172:5460309") //
+//    modRuntimeOnly("curse.maven:patchouli-306770:4636277") // v81 | TFC, Timber-Frames
+
+            //!! Different MAVENS
+//    modRuntimeOnly("maven.modrinth:midnightlib:UhRAdyzr") // Building-But-Better
+//    modRuntimeOnly("com.tterrag.registrate:Registrate:${registrate_version}") // Create, The-Twilight-Forest
+//    modRuntimeOnly("com.jozufozu.flywheel:flywheel-forge-${flywheel_version}") // Create
 
     //!! REQUIRED - The modules access libraries from below - ONLY IN FORGE
-    modCompileOnly("com.tterrag.registrate:Registrate:${registrate_version}") // Create, The-Twilight-Forest
-    modCompileOnly("com.jozufozu.flywheel:flywheel-forge-${flywheel_version}") // Create
     modCompileOnly("curse.maven:athena-841890:5176879") // Chipped
     modCompileOnly("curse.maven:autoreglib-250363:3857246")
     modCompileOnly("curse.maven:blueprint-382216:5292242") // The-Outer-End, Woodworks, Boatload
@@ -153,13 +156,12 @@ dependencies {
     modCompileOnly("curse.maven:titanium-287342:5468426") // v3.8.32 | Functional-Storage
     modCompileOnly("curse.maven:zeta-968868:5597406") // v1.0-24 | Quark
 
-    // REQUIRED - but ONLY FOR TESTING
+            // REQUIRED - but ONLY FOR TESTING
     modRuntimeOnly("curse.maven:terrablender-563928:5378180") // v3.0.1.7 | BOP, Regions-Unexplored
     modRuntimeOnly("curse.maven:glitchcore-955399:5787839") // v0.0.1.1 | BOP
-    modRuntimeOnly("curse.maven:patchouli-306770:4636277") // v81 | TFC, Timber-Frames
 
 //!! ================================================== IMPORTS ===================================================== \\
-    //!! ONLY FOR TESTING - These mods are in COMMON & can be commented out or enabled
+    //!! ONLY FOR TESTING - can be commented out or enabled
 //    modRuntimeOnly("curse.maven:another-furniture-610492:4034009") //WARNING: version 2.1.2-1.19.2
 //    modRuntimeOnly("curse.maven:backpacked-352835:5401965")
 //    modRuntimeOnly("curse.maven:camp-chair-531744:4579679")
@@ -177,6 +179,7 @@ dependencies {
 //    modRuntimeOnly("curse.maven:table-top-craft-467136:5318681")
 //    modRuntimeOnly("curse.maven:twigs-496913:4605097")
 //    modRuntimeOnly("curse.maven:villagersplus-forge-817272:4996995")
+//    modRuntimeOnly("curse.maven:create-328085:5689514") // Registrate, Flywheel
 
     //!! REQUIRED - The modules access libraries from below - ONLY IN FORGE
         // ~/forge/mods LOCAL
@@ -185,7 +188,7 @@ dependencies {
     modCompileOnly("com.mrcrayfish.furniture.refurbished:refurbished_furniture-forge-1.20.1-1.0.0-beta.4")
     modCompileOnly("com.tynoxs.buildersdelight:BuildersDelight-1.20.1-v.1.3")
     modCompileOnly("com.arcanc.bc:Beautiful-Campfires-forge-1.20.1-1.0.2")
-//    modImplementation("com.teamresourceful.bytecodecs:bytecodecs-1.0.2")
+//    modImplementation("com.teamresourceful.bytecodecs:bytecodecs-1.0.2") // Chipped
 
         // MACAW's
     modCompileOnly("curse.maven:macaws-bridges-351725:5240521")
@@ -203,13 +206,12 @@ dependencies {
     modCompileOnly("curse.maven:absent-by-design-305840:4616702")
     modCompileOnly("curse.maven:architects-palette-433862:5036133")
     modCompileOnly("curse.maven:beautify-decorate-633252:4781709")
-    modCompileOnly("curse.maven:boatload-337396:5292325")
+    modCompileOnly("curse.maven:boatload-337396:5292325") // Blueprint
     modCompileOnly("curse.maven:buildersaddition-389697:4660499")
     modCompileOnly("curse.maven:corail-pillar-266228:5073954")
-    modCompileOnly("curse.maven:create-328085:5689514") // v0.5.1f
     modCompileOnly("curse.maven:decoration-delight-687475:5563942")
     modCompileOnly("curse.maven:domum-ornamentum-527361:4174257")
-    modCompileOnly("curse.maven:dramatic-doors-380617:4815647")
+    modCompileOnly("curse.maven:dramatic-doors-380617:5867447")
     modCompileOnly("curse.maven:functional-storage-556861:5373105")
     modCompileOnly("curse.maven:infinity-buttons-661902:4716983")
     modCompileOnly("curse.maven:just-a-raft-mod-274350:5777239")
@@ -255,7 +257,7 @@ dependencies {
 
 //    modRuntimeOnly("curse.maven:endless-biomes-667688:5109705")
 //    modRuntimeOnly("curse.maven:blue-skies-312918:5010316") // structure-gel-api
-    modRuntimeOnly("curse.maven:biomes-o-plenty-220318:5773031") // Terrablender
+    modRuntimeOnly("curse.maven:biomes-o-plenty-220318:5773031") // Terrablender, Glitchcore
 //    modRuntimeOnly("curse.maven:upgrade-aquatic-326895:5296565") // Blueprint
 //    modRuntimeOnly("curse.maven:autumnity-365045:5292346") // Blueprint
 //    modRuntimeOnly("curse.maven:the-outer-end-430404:5043937") // Blueprint

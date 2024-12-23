@@ -3,7 +3,7 @@ package net.mehvahdjukaar.every_compat.api;
 import net.mehvahdjukaar.every_compat.EveryCompat;
 import net.mehvahdjukaar.every_compat.dynamicpack.ClientDynamicResourcesHandler;
 import net.mehvahdjukaar.every_compat.dynamicpack.ServerDynamicResourcesHandler;
-import net.mehvahdjukaar.every_compat.misc.HardcodedStuff;
+import net.mehvahdjukaar.every_compat.misc.HardcodedBlockType;
 import net.mehvahdjukaar.moonlight.api.events.AfterLanguageLoadEvent;
 import net.mehvahdjukaar.moonlight.api.misc.Registrator;
 import net.mehvahdjukaar.moonlight.api.platform.ClientHelper;
@@ -100,6 +100,7 @@ public class SimpleModule extends CompatModule {
         }
     }
 
+    @SuppressWarnings("unchecked")
     private <T extends BlockType> void registerBlocksTyped(Registrator<Block> registry,
                                                            Collection<?> types, EntrySet<T> e) {
         e.registerBlocks(this, registry, (Collection<T>) types);
@@ -186,25 +187,14 @@ public class SimpleModule extends CompatModule {
         return l;
     }
 
-    @Deprecated(forRemoval = true)
-    public boolean isEntryAlreadyRegistered(String name, BlockType woodType, Registry<?> registry, boolean isVanilla) {
-        return isEntryAlreadyRegistered(name, woodType, registry);
-    }
-
-    @Deprecated(forRemoval = true)
-    public boolean isEntryAlreadyRegistered(String name, BlockType woodType, Registry<?> registry, boolean isVanilla, boolean wrong) {
-        return isEntryAlreadyRegistered(name, woodType, registry);
-    }
-
-    // Default
     //TODO: improve
-    public boolean isEntryAlreadyRegistered(String name, BlockType woodType, Registry<?> registry) {
-        if (woodType.isVanilla()) return true;
+    public boolean isEntryAlreadyRegistered(String name, BlockType blockType, Registry<?> registry) {
+        if (blockType.isVanilla()) return true;
 
         //ec:twigs/bop/willow_table
         name = name.substring(name.lastIndexOf("/") + 1); //gets the base name
 
-        String woodFrom = woodType.getNamespace();
+        String woodFrom = blockType.getNamespace();
 
         String slashConvention = woodFrom + "/" + name; //quark/blossom_chair
         String underscoreConvention = woodFrom + "_" + name; //quark_blossom_chair
@@ -212,11 +202,11 @@ public class SimpleModule extends CompatModule {
         if (this.getAlreadySupportedMods().contains(woodFrom)) return true;
 
         // ugly hardcoded stuff
-        if (woodType instanceof WoodType wt) {
-            Boolean hardcoded = HardcodedStuff.isWoodBlockAlreadyRegistered(name, wt, modId, shortenedId());
+        if (blockType instanceof WoodType wt) {
+            Boolean hardcoded = HardcodedBlockType.isWoodBlockAlreadyRegistered(name, wt, modId, shortenedId());
             if (hardcoded != null) return hardcoded;
-        } else if (woodType instanceof LeavesType lt) {
-            Boolean hardcoded = HardcodedStuff.isLeavesBlockAlreadyRegistered(name, lt, modId, shortenedId());
+        } else if (blockType instanceof LeavesType lt) {
+            Boolean hardcoded = HardcodedBlockType.isLeavesBlockAlreadyRegistered(name, lt, modId, shortenedId());
             if (hardcoded != null) return hardcoded;
         }
 
