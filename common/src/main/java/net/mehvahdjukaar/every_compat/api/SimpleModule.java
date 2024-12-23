@@ -100,6 +100,7 @@ public class SimpleModule extends CompatModule {
         }
     }
 
+    @SuppressWarnings("unchecked")
     private <T extends BlockType> void registerBlocksTyped(Registrator<Block> registry,
                                                            Collection<?> types, EntrySet<T> e) {
         e.registerBlocks(this, registry, (Collection<T>) types);
@@ -186,17 +187,6 @@ public class SimpleModule extends CompatModule {
         return l;
     }
 
-    @Deprecated(forRemoval = true)
-    public boolean isEntryAlreadyRegistered(String name, BlockType woodType, Registry<?> registry, boolean isVanilla) {
-        return isEntryAlreadyRegistered(name, woodType, registry);
-    }
-
-    @Deprecated(forRemoval = true)
-    public boolean isEntryAlreadyRegistered(String name, BlockType woodType, Registry<?> registry, boolean isVanilla, boolean wrong) {
-        return isEntryAlreadyRegistered(name, woodType, registry);
-    }
-
-    // Default
     //TODO: improve
     public boolean isEntryAlreadyRegistered(String name, BlockType blockType, Registry<?> registry) {
         if (blockType.isVanilla()) return true;
