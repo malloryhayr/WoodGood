@@ -206,7 +206,7 @@ dependencies {
     modCompileOnly("curse.maven:absent-by-design-305840:4616702")
     modCompileOnly("curse.maven:architects-palette-433862:5036133")
     modCompileOnly("curse.maven:beautify-decorate-633252:4781709")
-    modCompileOnly("curse.maven:boatload-337396:5292325")
+    modCompileOnly("curse.maven:boatload-337396:5292325") // Blueprint
     modCompileOnly("curse.maven:buildersaddition-389697:4660499")
     modCompileOnly("curse.maven:corail-pillar-266228:5073954")
     modCompileOnly("curse.maven:decoration-delight-687475:5563942")
