@@ -46,6 +46,7 @@ public class MacawFencesModule extends SimpleModule {
                 .addTag(ItemTags.FENCES, Registries.ITEM)
                 .setTabKey(tab)
                 .defaultRecipe()
+                .copyParentDrop() //REASON: ensure blocks's dropping when Diagonal Fences is installed
                 .build();
         this.addEntry(picketFences);
 
@@ -59,6 +60,7 @@ public class MacawFencesModule extends SimpleModule {
                 .addTag(ItemTags.FENCES, Registries.ITEM)
                 .setTabKey(tab)
                 .defaultRecipe()
+                .copyParentDrop() //REASON: ensure blocks's dropping when Diagonal Fences is installed
                 .build();
         this.addEntry(stockadeFences);
 
@@ -72,6 +74,7 @@ public class MacawFencesModule extends SimpleModule {
                 .addTag(ItemTags.FENCES, Registries.ITEM)
                 .setTabKey(tab)
                 .defaultRecipe()
+                .copyParentDrop() //REASON: ensure blocks's dropping when Diagonal Fences is installed
                 .build();
         this.addEntry(horseFences);
 
@@ -86,6 +89,7 @@ public class MacawFencesModule extends SimpleModule {
                 .setRenderType(RenderLayer.CUTOUT)
                 .setTabKey(tab)
                 .defaultRecipe()
+                .copyParentDrop() //REASON: ensure blocks's dropping when Diagonal Fences is installed
                 .build();
         this.addEntry(wiredFences);
 
@@ -99,6 +103,7 @@ public class MacawFencesModule extends SimpleModule {
                 .addTag(BlockTags.FENCE_GATES, Registries.BLOCK)
                 .setTabKey(tab)
                 .defaultRecipe()
+                .copyParentDrop() //REASON: ensure blocks's dropping when Diagonal Fences is installed
                 .build();
         this.addEntry(pyramidGates);
 
@@ -112,6 +117,7 @@ public class MacawFencesModule extends SimpleModule {
                 .addTag(BlockTags.FENCE_GATES, Registries.BLOCK)
                 .setTabKey(tab)
                 .defaultRecipe()
+                .copyParentDrop() //REASON: ensure blocks's dropping when Diagonal Fences is installed
                 .build();
         this.addEntry(highleyGates);
 
@@ -250,6 +256,7 @@ public class MacawFencesModule extends SimpleModule {
                     return LeavesPath("", "", s, l);
                 }))
                 .setRenderType(RenderLayer.CUTOUT_MIPPED)
+                .copyParentDrop() //REASON: ensure blocks's dropping when Diagonal Fences is installed
                 .build();
         this.addEntry(hedges);
     }
