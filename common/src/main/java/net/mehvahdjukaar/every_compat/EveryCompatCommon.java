@@ -46,26 +46,30 @@ public class EveryCompatCommon {
     protected void addModules() {
 
 //!! =============================================== Add Other Compat Mods ========================================== \\
-        addOtherCompatMod("compatoplenty", "biomesoplenty", List.of("twigs", "farmersdelight", "quark", "woodworks"));
-        addOtherCompatMod("compat_makeover", "biomemakeover", List.of("habitat", "farmersdelight", "quark", "decorative_blocks"));
-        addOtherCompatMod("decorative_compat", "biomesoplenty", List.of("decorative_blocks"));
-        addOtherCompatMod("storagedrawersunlimited", "biomesoplenty", List.of("storagedrawers"));
-        addOtherCompatMod("lolmcvbop", "biomesoplenty", List.of("lolmcv"));
-        addOtherCompatMod("lolmcvbmo", "biomemakeover", List.of("lolmcv"));
+        addOtherCompatMod("compatoplenty", "biomesoplenty",
+                List.of("twigs", "farmersdelight", "quark", "woodworks"));
+        addOtherCompatMod("compat_makeover", "biomemakeover",
+                List.of("habitat", "farmersdelight", "quark", "decorative_blocks"));
+        addOtherCompatMod("decorative_compat", "biomesoplenty", "decorative_blocks");
+        addOtherCompatMod("storagedrawersunlimited", "biomesoplenty", "storagedrawers");
+        addOtherCompatMod("lolmcvbop", "biomesoplenty", "lolmcv");
+        addOtherCompatMod("lolmcvbmo", "biomemakeover", "lolmcv");
         addOtherCompatMod("natures_delight", "natures_spirit", List.of("farmersdelight"));
-        addOtherCompatMod("arts_and_crafts_compat", "arts_and_crafts", List.of("twigs", "decorative_blocks", "farmersdelight", "dramaticdoors"));
+        addOtherCompatMod("arts_and_crafts_compat", "arts_and_crafts",
+                List.of("twigs", "decorative_blocks", "farmersdelight", "dramaticdoors"));
 
         // Macaw's Addon
-        addOtherCompatMod("macawsbridgesbop", "biomesoplenty", List.of("mcwbridges"));
-        addOtherCompatMod("macawbridgesbyg", "biomeswevegone", List.of("mcwbridges"));
-        addOtherCompatMod("mcwfencesbop", "biomesoplenty", List.of("mcwfences"));
-        addOtherCompatMod("mcwfencesbyg", "biomeswevegone", List.of("mcwfences"));
-        addOtherCompatMod("macawsroofsbop", "biomesoplenty", List.of("mcwroofs"));
-        addOtherCompatMod("macawsroofsbyg", "biomeswevegone", List.of("mcwroofs"));
+        addOtherCompatMod("macawsbridgesbop", "biomesoplenty", "mcwbridges");
+        addOtherCompatMod("macawbridgesbyg", "biomeswevegone", "mcwbridges");
+        addOtherCompatMod("mcwfencesbop", "biomesoplenty", "mcwfences");
+        addOtherCompatMod("mcwfencesbyg", "biomeswevegone", "mcwfences");
+        addOtherCompatMod("macawsroofsbop", "biomesoplenty", "mcwroofs");
+        addOtherCompatMod("macawsroofsbyg", "biomeswevegone", "mcwroofs");
 
         // Abnormals Delight
-        addOtherCompatMod("abnormals_delight", List.of("autumnity", "upgrade_aquatic",
-                "environmental", "atmospheric", "endergetic", "caves_and_chasms"), List.of("farmersdelight"));
+        addOtherCompatMod("abnormals_delight", List.of("autumnity", "upgrade_aquatic", "environmental",
+                /* compatModID */ "atmospheric", "endergetic", "caves_and_chasms"),
+                "farmersdelight");
 
     //!! =========================================== Add Modules ==================================================== \\
         addIfLoaded("another_furniture", () -> AnotherFurnitureModule::new);
