@@ -3,6 +3,7 @@ package net.mehvahdjukaar.every_compat.api;
 import com.google.common.base.Suppliers;
 import com.google.common.collect.ArrayListMultimap;
 import com.google.common.collect.Multimap;
+import com.google.gson.JsonObject;
 import com.mojang.datafixers.util.Pair;
 import net.mehvahdjukaar.every_compat.EveryCompat;
 import net.mehvahdjukaar.every_compat.configs.ModEntriesConfigs;
@@ -15,6 +16,7 @@ import net.mehvahdjukaar.moonlight.api.platform.PlatHelper;
 import net.mehvahdjukaar.moonlight.api.platform.RegHelper;
 import net.mehvahdjukaar.moonlight.api.resources.BlockTypeResTransformer;
 import net.mehvahdjukaar.moonlight.api.resources.RPUtils;
+import net.mehvahdjukaar.moonlight.api.resources.ResType;
 import net.mehvahdjukaar.moonlight.api.resources.SimpleTagBuilder;
 import net.mehvahdjukaar.moonlight.api.resources.pack.DynClientResourcesGenerator;
 import net.mehvahdjukaar.moonlight.api.resources.pack.DynamicDataPack;
@@ -31,6 +33,7 @@ import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.server.packs.resources.Resource;
 import net.minecraft.server.packs.resources.ResourceManager;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.item.BlockItem;
@@ -39,6 +42,8 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
 import org.jetbrains.annotations.Nullable;
 
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.*;
 import java.util.function.BiFunction;
 import java.util.function.Consumer;
@@ -374,32 +379,46 @@ public abstract class AbstractSimpleEntrySet<T extends BlockType, B extends Bloc
                     ResourceLocation oldTextureId = re.getKey();
                     String oldPath = oldTextureId.getPath();
 
-                    //// BlockTypeResTransformer.replaceFullGenericType(oldPath, w, blockId, baseType.get().getTypeName(), null, 2);  Solve Boatload's texture issue
-
                     // boatload's texture path has 2 folder
                     String newPath = (oldPath.startsWith("entity/") && module.modId.equals("boatload"))
                             ? BlockTypeResTransformer.replaceFullGenericType(oldPath, w, blockId, baseType.get().getTypeName(), null, 2)
                             // Default
                             : BlockTypeResTransformer.replaceTypeNoNamespace(oldPath, w, blockId, baseType.get().getTypeName());
 
-                    String newId = new ResourceLocation(blockId.getNamespace(), newPath).toString();
+                    ResourceLocation newId = new ResourceLocation(blockId.getNamespace(), newPath);
 
                     boolean isOnAtlas = true;
 
                     for (var info : infoPerTextures.get(oldTextureId)) {
                         if (info != null) {
                             if (info.keepNamespace()) {
-                                newId = oldTextureId.withPath(newPath).toString();
+                                newId = oldTextureId.withPath(newPath);
                             }
                             isOnAtlas = info.onAtlas();
+
+                            if (info.copyMCMETA()) {
+                                ResourceLocation mcmetaLoc = ResType.MCMETA.getPath(oldTextureId);
+                                Optional<Resource> getMCMETA = manager.getResource(mcmetaLoc);
+
+                                if (getMCMETA.isPresent()) {
+                                    InputStream mcmetaStream = getMCMETA.get().open();
+                                    JsonObject mcmetaFile = RPUtils.deserializeJson(mcmetaStream);
+
+                                    // Adding to the resources next to newtextures
+                                    handler.dynamicPack.addJson(newId, mcmetaFile, ResType.MCMETA);
+                                    mcmetaStream.close();
+                                }
+                                else
+                                    handler.getLogger().error("The MCMETA file may no longer existing, check @ {}", mcmetaLoc);
+                            }
                         }
 
                         Respriter respriter = re.getValue();
 
                         Supplier<TextureImage> textureSupplier = () -> respriter.recolorWithAnimation(finalTargetPalette, finalAnimation);
-                        textureSupplier = postProcessTexture(w, newId, manager, textureSupplier);
+                        textureSupplier = postProcessTexture(w, newId.toString(), manager, textureSupplier);
 
-                        handler.addTextureIfNotPresent(manager, newId, textureSupplier, isOnAtlas);
+                        handler.addTextureIfNotPresent(manager, newId.toString(), textureSupplier, isOnAtlas);
                     }
                 }
             }
