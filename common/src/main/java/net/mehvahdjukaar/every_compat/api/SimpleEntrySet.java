@@ -277,11 +277,12 @@ public class SimpleEntrySet<T extends BlockType, B extends Block> extends Abstra
     protected BlockTypeResTransformer<T> makeLootTableTransformer(SimpleModule module, ResourceManager manager) {
         String oldTypeName = baseType.get().getTypeName();
         return BlockTypeResTransformer.<T>create(module.modId, manager)
+                // Modifying the JSON filenames & path
+                .setIDModifier((text, blockId, type) ->
+                        BlockTypeResTransformer.replaceFullGenericType(text, type, blockId, oldTypeName, null, 2))
+                // Modifying the JSON files' content
                 .addModifier((text, blockId, type) ->
-                        BlockTypeResTransformer.replaceFullGenericType(text, type, blockId, oldTypeName, module.modId, 2))
-                .addModifier((text, blockId, type) ->
-                        ResourcesUtils.convertItemIDinText(text, baseType.get(), type))
-                .IDReplaceType(oldTypeName);
+                        ResourcesUtils.convertItemIDinText(text, baseType.get(), type));
     }
 
     //ok...

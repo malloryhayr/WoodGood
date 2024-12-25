@@ -67,15 +67,23 @@ public abstract class EveryCompat {
         return TYPES_TO_CHILD_KEYS.getOrDefault(type, Set.of());
     }
 
-    public static void addOtherCompatMod(String modId, String woodFrom, List<String> blocksFrom) {
-        addOtherCompatMod(modId, List.of(woodFrom), blocksFrom);
+    public static void addOtherCompatMod(String compatModId, String fromModId, String supportedModId) {
+        addOtherCompatMod(compatModId, List.of(fromModId), List.of(supportedModId));
     }
 
-    public static void addOtherCompatMod(String modId, List<String> woodFrom, List<String> blocksFrom) {
-        COMPAT_MODS.add(new CompatMod(modId, woodFrom, blocksFrom));
-        DEPENDENCIES.add(modId);
-        DEPENDENCIES.addAll(woodFrom);
-        DEPENDENCIES.addAll(blocksFrom);
+    public static void addOtherCompatMod(String compatModId, String fromModId, List<String> supportedModId) {
+        addOtherCompatMod(compatModId, List.of(fromModId), supportedModId);
+    }
+
+    public static void addOtherCompatMod(String compatModId, List<String> fromModId, String supportedModId) {
+        addOtherCompatMod(compatModId, fromModId, List.of(supportedModId));
+    }
+
+    public static void addOtherCompatMod(String compatModId, List<String> fromModId, List<String> supportedModId) {
+        COMPAT_MODS.add(new CompatMod(compatModId, fromModId, supportedModId));
+        DEPENDENCIES.add(compatModId);
+        DEPENDENCIES.addAll(fromModId);
+        DEPENDENCIES.addAll(supportedModId);
     }
 
     public static void addModule(CompatModule module) {

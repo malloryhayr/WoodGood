@@ -4,7 +4,7 @@ import net.minecraft.resources.ResourceLocation;
 import org.jetbrains.annotations.Nullable;
 
 public record TextureInfo(ResourceLocation texture, @Nullable ResourceLocation mask,
-                          boolean keepNamespace, boolean copyTexture, boolean autoMask,
+                          boolean keepNamespace, boolean copyTexture, boolean copyMCMETA, boolean autoMask,
                           boolean onAtlas) {
     public static Builder of(ResourceLocation res) {
         return new Builder(res);
@@ -15,6 +15,7 @@ public record TextureInfo(ResourceLocation texture, @Nullable ResourceLocation m
         private ResourceLocation mask;
         private boolean keepNamespace = false;
         private boolean copyTexture = false;
+        private boolean copyMCMETA = false;
         private boolean autoMask = false;
         private boolean onAtlas;
 
@@ -44,6 +45,11 @@ public record TextureInfo(ResourceLocation texture, @Nullable ResourceLocation m
             return this;
         }
 
+        public Builder copyMCMETA() {
+            this.copyMCMETA = true;
+            return this;
+        }
+
         public Builder autoMask() {
             this.autoMask = true;
             return this;
@@ -51,7 +57,7 @@ public record TextureInfo(ResourceLocation texture, @Nullable ResourceLocation m
 
         public TextureInfo build() {
             return new TextureInfo(texture, mask, keepNamespace,
-                    copyTexture, autoMask, onAtlas);
+                    copyTexture, copyMCMETA, autoMask, onAtlas);
         }
     }
 }
