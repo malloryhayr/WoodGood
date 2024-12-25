@@ -23,7 +23,7 @@ public class HardcodedBlockType {
         supportedBlockName = blockName;
         shortenedIdenfity = shortenedId;
 
-            //!! EXCLUDE ==========
+            /// ========== EXCLUDE ========== \\\
         // Discarding Dynamic Trees and its addons
         if (isWoodRegistryOf("", "", "dynamictrees|dt", "", "")) return true;
 
@@ -37,7 +37,7 @@ public class HardcodedBlockType {
         if (isWoodRegistryOf("", "abnww", "quark", "", "chest")) return true;
 
 
-            //!! INCLUDE ==========
+            /// ========== INCLUDE ========== \\\
         // Better Nether & Better End have stripped_bark as stripped_wood but bark from Bewitchment caused EC to skip
         if (isWoodRegistryOf("", "bw", "betternether|betterend", "", "")) return false;
 
