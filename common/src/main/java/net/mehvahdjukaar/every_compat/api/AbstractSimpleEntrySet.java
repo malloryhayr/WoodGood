@@ -331,7 +331,6 @@ public abstract class AbstractSimpleEntrySet<T extends BlockType, B extends Bloc
                 // skips disabled ones
                 // actually we dont otherwise we get missign texture log spam. TODO: replace models with empty dummy instead
                 // if (!ModConfigs.isEntryEnabled(w, b)) continue;
-
                 ResourceLocation blockId = Utils.getID(b);
 
                 var pal = paletteSupplier.apply(w, manager);
