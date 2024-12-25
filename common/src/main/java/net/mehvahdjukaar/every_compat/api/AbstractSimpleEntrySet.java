@@ -75,7 +75,6 @@ public abstract class AbstractSimpleEntrySet<T extends BlockType, B extends Bloc
     protected final Map<ResourceLocation, Set<ResourceKey<?>>> tags = new HashMap<>();
     protected final Set<Supplier<ResourceLocation>> recipeLocations = new HashSet<>();
     protected final Set<TextureInfo> textures = new HashSet<>();
-    @Nullable
     protected final BiFunction<T, ResourceManager, Pair<List<Palette>, @Nullable AnimationMetadataSection>> paletteSupplier;
     @Nullable
     protected final Consumer<BlockTypeResTransformer<T>> extraModelTransform;
@@ -89,7 +88,7 @@ public abstract class AbstractSimpleEntrySet<T extends BlockType, B extends Bloc
                                      Supplier<T> baseType,
                                      Supplier<ResourceKey<CreativeModeTab>> tab,
                                      TabAddMode tabMode,
-                                     @Nullable BiFunction<T, ResourceManager, Pair<List<Palette>, @Nullable AnimationMetadataSection>> paletteSupplier,
+                                     BiFunction<T, ResourceManager, Pair<List<Palette>, @Nullable AnimationMetadataSection>> paletteSupplier,
                                      @Nullable Consumer<BlockTypeResTransformer<T>> extraTransform,
                                      boolean mergePalette, boolean copyTint,
                                      Predicate<T> condition) {
@@ -335,40 +334,20 @@ public abstract class AbstractSimpleEntrySet<T extends BlockType, B extends Bloc
 
                 ResourceLocation blockId = Utils.getID(b);
 
-                List<Palette> targetPalette = null;
-                AnimationMetadataSection animation = null;
-                if (paletteSupplier != null) {
-                    var pal = paletteSupplier.apply(w, manager);
-                    animation = pal.getSecond();
-                    targetPalette = pal.getFirst();
-                } else {
-                    var m = w.mainChild();
-                    Block mainWoodTypeBlock = null;
-                    if (m instanceof Block bb) mainWoodTypeBlock = bb;
-                    else if (m instanceof BlockItem bii) mainWoodTypeBlock = bii.getBlock();
-                    if (mainWoodTypeBlock == null) {
-                        throw new UnsupportedOperationException("You need to provide a palette supplier for non wood type based blocks");
-                    }
+                var pal = paletteSupplier.apply(w, manager);
+                AnimationMetadataSection animation = pal.getSecond();
+                List<Palette> targetPalette = pal.getFirst();
 
-                    try (TextureImage plankTexture = TextureImage.open(manager,
-                            RPUtils.findFirstBlockTextureLocation(manager, mainWoodTypeBlock))) {
-                        targetPalette = Palette.fromAnimatedImage(plankTexture);
-                        animation = plankTexture.getMetadata();
-                    } catch (Exception ignored) {
-                    }
-                }
                 if (targetPalette == null) {
                     EveryCompat.LOGGER.error("Could not get texture palette for block {} : ", b);
                     continue;
                 }
-                AnimationMetadataSection finalAnimation = animation;
-                List<Palette> finalTargetPalette = targetPalette;
 
                 //sanity check to verity that palette isn't changed. can be removed
-                int oldSize = finalTargetPalette.get(0).size();
+                int oldSize = targetPalette.get(0).size();
 
                 for (var re : respriters.entrySet()) {
-                    if (oldSize != finalTargetPalette.get(0).size()) {
+                    if (oldSize != targetPalette.get(0).size()) {
                         throw new RuntimeException("This should not happen");
                     }
                     ResourceLocation oldTextureId = re.getKey();
@@ -396,7 +375,7 @@ public abstract class AbstractSimpleEntrySet<T extends BlockType, B extends Bloc
 
                         Respriter respriter = re.getValue();
 
-                        Supplier<TextureImage> textureSupplier = () -> respriter.recolorWithAnimation(finalTargetPalette, finalAnimation);
+                        Supplier<TextureImage> textureSupplier = () -> respriter.recolorWithAnimation(targetPalette, animation);
                         textureSupplier = postProcessTexture(w, newId, manager, textureSupplier);
 
                         handler.addTextureIfNotPresent(manager, newId, textureSupplier, isOnAtlas);
@@ -426,6 +405,25 @@ public abstract class AbstractSimpleEntrySet<T extends BlockType, B extends Bloc
         return textureSupplier;
     }
 
+    private static Pair<List<Palette>, @Nullable AnimationMetadataSection> getPaletteFromMainChild(BlockType w, ResourceManager manager) {
+        var mainChild = w.mainChild();
+        Block mainWoodTypeBlock = null;
+        if (mainChild instanceof Block bb) mainWoodTypeBlock = bb;
+        else if (mainChild instanceof BlockItem bii) mainWoodTypeBlock = bii.getBlock();
+        if (mainWoodTypeBlock == null) {
+            throw new UnsupportedOperationException("You need to provide a palette supplier for non block main child");
+        }
+
+        try (TextureImage plankTexture = TextureImage.open(manager,
+                RPUtils.findFirstBlockTextureLocation(manager, mainWoodTypeBlock))) {
+            var targetPalette = Palette.fromAnimatedImage(plankTexture);
+            var animation = plankTexture.getMetadata();
+            return Pair.of(targetPalette, animation);
+        } catch (Exception ignored) {
+        }
+        return Pair.of(null, null);
+    }
+
 
     @SuppressWarnings("unchecked")
     protected static class Builder<BL extends Builder<BL, T, B, I>, T extends BlockType, B extends Block, I extends Item> {
@@ -436,8 +434,7 @@ public abstract class AbstractSimpleEntrySet<T extends BlockType, B extends Bloc
         protected final String prefix;
         protected Supplier<ResourceKey<CreativeModeTab>> tab = null;
         protected TabAddMode tabMode = TabAddMode.AFTER_SAME_TYPE;
-        @Nullable
-        protected BiFunction<T, ResourceManager, Pair<List<Palette>, @Nullable AnimationMetadataSection>> palette = null;
+        protected BiFunction<T, ResourceManager, Pair<List<Palette>, @Nullable AnimationMetadataSection>> palette = AbstractSimpleEntrySet::getPaletteFromMainChild;
         protected final Map<ResourceLocation, Set<ResourceKey<?>>> tags = new HashMap<>();
         protected final Set<Supplier<ResourceLocation>> recipes = new HashSet<>();
         protected final Set<TextureInfo> textures = new HashSet<>();
@@ -485,7 +482,7 @@ public abstract class AbstractSimpleEntrySet<T extends BlockType, B extends Bloc
             regexBuilder.append(modId).append(":(");
             for (int i = 0; i < ids.length; i++) {
                 regexBuilder.append(ids[i]);
-                if ( i != (ids.length - 1) ) regexBuilder.append("|"); // Don't append "|" to the last word's
+                if (i != (ids.length - 1)) regexBuilder.append("|"); // Don't append "|" to the last word's
             }
             regexBuilder.append(")");
 
@@ -596,7 +593,8 @@ public abstract class AbstractSimpleEntrySet<T extends BlockType, B extends Bloc
         }
 
         public BL createPaletteFromOak() {
-            return createPaletteFromOak(p -> {});
+            return createPaletteFromOak(p -> {
+            });
         }
 
         public BL createPaletteFromChild(Consumer<Palette> paletteTransform, String childKey) {
@@ -604,11 +602,13 @@ public abstract class AbstractSimpleEntrySet<T extends BlockType, B extends Bloc
         }
 
         public BL createPaletteFromChild(String childKey, Predicate<String> whichSide) {
-            return createPaletteFromChild(p -> {}, childKey, whichSide);
+            return createPaletteFromChild(p -> {
+            }, childKey, whichSide);
         }
 
         public BL createPaletteFromChild(String childKey) {
-            return createPaletteFromChild(p -> {}, childKey, null);
+            return createPaletteFromChild(p -> {
+            }, childKey, null);
         }
 
         public BL createPaletteFromChild(Consumer<Palette> paletteTransform, String childKey, Predicate<String> whichSide) {
