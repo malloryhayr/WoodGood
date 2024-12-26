@@ -3,6 +3,7 @@ package net.mehvahdjukaar.every_compat.api;
 import com.google.common.base.Suppliers;
 import com.google.common.collect.ArrayListMultimap;
 import com.google.common.collect.Multimap;
+import com.google.gson.JsonObject;
 import com.mojang.datafixers.util.Pair;
 import net.mehvahdjukaar.every_compat.EveryCompat;
 import net.mehvahdjukaar.every_compat.configs.ModEntriesConfigs;
@@ -15,6 +16,7 @@ import net.mehvahdjukaar.moonlight.api.platform.PlatHelper;
 import net.mehvahdjukaar.moonlight.api.platform.RegHelper;
 import net.mehvahdjukaar.moonlight.api.resources.BlockTypeResTransformer;
 import net.mehvahdjukaar.moonlight.api.resources.RPUtils;
+import net.mehvahdjukaar.moonlight.api.resources.ResType;
 import net.mehvahdjukaar.moonlight.api.resources.SimpleTagBuilder;
 import net.mehvahdjukaar.moonlight.api.resources.pack.DynClientResourcesGenerator;
 import net.mehvahdjukaar.moonlight.api.resources.pack.DynamicDataPack;
@@ -31,6 +33,7 @@ import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.server.packs.resources.Resource;
 import net.minecraft.server.packs.resources.ResourceManager;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.item.BlockItem;
@@ -39,6 +42,7 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
 import org.jetbrains.annotations.Nullable;
 
+import java.io.InputStream;
 import java.util.*;
 import java.util.function.BiFunction;
 import java.util.function.Consumer;
@@ -277,6 +281,7 @@ public abstract class AbstractSimpleEntrySet<T extends BlockType, B extends Bloc
                 try {
                     ResourceLocation maskId = textureInfo.mask();
                     TextureImage main = TextureImage.open(manager, textureId);
+                    main.getMetadata();
 
                     infoPerTextures.put(textureId, textureInfo);
 
@@ -333,8 +338,8 @@ public abstract class AbstractSimpleEntrySet<T extends BlockType, B extends Bloc
                 // if (!ModConfigs.isEntryEnabled(w, b)) continue;
                 ResourceLocation blockId = Utils.getID(b);
 
-                var pal = paletteSupplier.apply(w, manager);
-                AnimationMetadataSection animation = pal.getSecond();
+                var pal = paletteSupplier.apply(w, manager); // return the texture of: WoodType: Planks, StoneType: stone, LeavesType: leaves
+                AnimationMetadataSection targetAnimation = pal.getSecond();
                 List<Palette> targetPalette = pal.getFirst();
 
                 if (targetPalette == null) {
@@ -370,11 +375,28 @@ public abstract class AbstractSimpleEntrySet<T extends BlockType, B extends Bloc
                                 newId = oldTextureId.withPath(newPath).toString();
                             }
                             isOnAtlas = info.onAtlas();
+
+                            /// TEMP: do not remove this until the mcmeta problem is fixed.
+                            if (info.copyMCMETA()) {
+                                ResourceLocation mcmetaLoc = ResType.MCMETA.getPath(oldTextureId);
+                                Optional<Resource> getMCMETA = manager.getResource(mcmetaLoc);
+
+                                if (getMCMETA.isPresent()) {
+                                    InputStream mcmetaStream = getMCMETA.get().open();
+                                    JsonObject mcmetaFile = RPUtils.deserializeJson(mcmetaStream);
+
+                                    // Adding to the resources next to newtextures
+                                    handler.dynamicPack.addJson(ResourceLocation.tryParse(newId), mcmetaFile, ResType.MCMETA);
+                                    mcmetaStream.close();
+                                }
+                                else
+                                    handler.getLogger().error("The MCMETA file may no longer existing, check @ {}", mcmetaLoc);
+                            }
                         }
 
                         Respriter respriter = re.getValue();
 
-                        Supplier<TextureImage> textureSupplier = () -> respriter.recolorWithAnimation(targetPalette, animation);
+                        Supplier<TextureImage> textureSupplier = () -> respriter.recolorWithAnimation(targetPalette, targetAnimation);
                         textureSupplier = postProcessTexture(w, newId, manager, textureSupplier);
 
                         handler.addTextureIfNotPresent(manager, newId, textureSupplier, isOnAtlas);
