@@ -490,8 +490,13 @@ public abstract class AbstractSimpleEntrySet<T extends BlockType, B extends Bloc
         }
 
         //exclusive with addCondition
-        public BL requiresFromMap(Map<T, ?> entrySet) {
-            this.addCondition(blockType -> Objects.nonNull(entrySet.get(blockType)));
+        public BL requiresFromMap(Map<?, ?>... entrySets) {
+            this.addCondition(blockType -> {
+                for (Map<?, ?> entrySet : entrySets) {
+                    if (Objects.isNull(entrySet.get(blockType))) return false;
+                }
+                return true;
+            });
             return (BL) this;
         }
 
