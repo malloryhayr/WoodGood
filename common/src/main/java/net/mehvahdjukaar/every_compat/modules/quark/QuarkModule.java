@@ -60,9 +60,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
-import java.util.function.Supplier;
 
-import static net.mehvahdjukaar.every_compat.common_classes.TagUtility.*;
+import static net.mehvahdjukaar.every_compat.common_classes.TagUtility.createAndAddDefaultTags;
+import static net.mehvahdjukaar.every_compat.common_classes.TagUtility.getATagOrCreateANew;
 
 //SUPPORT: v4.0-435+
 public class QuarkModule extends SimpleModule {
@@ -334,20 +334,25 @@ public class QuarkModule extends SimpleModule {
         TRAPPED_CHEST_TILE = trappedChests.getTile(ChestBlockEntity.class);
     }
 
-    @Environment(EnvType.CLIENT)
     @Override
+    @Environment(EnvType.CLIENT)
     public void onClientSetup() {
         super.onClientSetup();
-
-        for (var b : chests.blocks.values())
-            QuarkClient.ZETA_CLIENT.setBlockEntityWithoutLevelRenderer(b.asItem(), new SimpleWithoutLevelRenderer(CHEST_TILE, b.defaultBlockState()));
-        for (var b : trappedChests.blocks.values())
-            QuarkClient.ZETA_CLIENT.setBlockEntityWithoutLevelRenderer(b.asItem(), new SimpleWithoutLevelRenderer(TRAPPED_CHEST_TILE, b.defaultBlockState()));
-
+        QuarkClientModule.initClient(this);
     }
 
     @Environment(EnvType.CLIENT)
+    public class QuarkClientModule {
+        private static void initClient(QuarkModule module) {
+            for (var b : module.chests.blocks.values())
+                QuarkClient.ZETA_CLIENT.setBlockEntityWithoutLevelRenderer(b.asItem(), new SimpleWithoutLevelRenderer(CHEST_TILE, b.defaultBlockState()));
+            for (var b : module.trappedChests.blocks.values())
+                QuarkClient.ZETA_CLIENT.setBlockEntityWithoutLevelRenderer(b.asItem(), new SimpleWithoutLevelRenderer(TRAPPED_CHEST_TILE, b.defaultBlockState()));
+        }
+    }
+
     @Override
+    @Environment(EnvType.CLIENT)
     public void registerBlockEntityRenderers(ClientHelper.BlockEntityRendererEvent event) {
         super.registerBlockEntityRenderers(event);
         event.register(CHEST_TILE, context -> new VariantChestRenderer(context, false));
