@@ -1,8 +1,6 @@
 package net.mehvahdjukaar.every_compat.modules.another_furniture;
 
 import com.starfish_studios.another_furniture.block.*;
-import com.starfish_studios.another_furniture.registry.AFBlockEntityTypes;
-import com.starfish_studios.another_furniture.registry.AFBlocks;
 import net.mehvahdjukaar.every_compat.EveryCompat;
 import net.mehvahdjukaar.every_compat.api.RenderLayer;
 import net.mehvahdjukaar.every_compat.api.SimpleEntrySet;
@@ -17,6 +15,7 @@ import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.block.Block;
 
+//SUPPORT: v3.0.1+
 public class AnotherFurnitureModule extends SimpleModule {
 
     public final SimpleEntrySet<WoodType, Block> tables;
@@ -34,13 +33,13 @@ public class AnotherFurnitureModule extends SimpleModule {
                 modRes(modId) : modRes("tab");
 
         flowerBoxes = SimpleEntrySet.builder(WoodType.class, "flower_box",
-                        AFBlocks.OAK_FLOWER_BOX, () -> WoodTypeRegistry.OAK_TYPE,
+                       getModBlock("oak_flower_box"), () -> WoodTypeRegistry.OAK_TYPE,
                         w -> new FlowerBoxBlock(Utils.copyPropertySafe(w.planks)))
                 .addTag(modRes("flower_boxes"), Registries.BLOCK)
                 .addTag(modRes("flower_boxes"), Registries.ITEM)
                 .copyParentDrop()
                 .defaultRecipe()
-                .addTile(AFBlockEntityTypes.FLOWER_BOX)
+                .addTile(getModTile("planter_box"))
                 .setTabKey(tabKey)
                 .addTexture(modRes("block/flower_box/oak_bottom"))
                 .addTexture(modRes("block/flower_box/oak_supports"))
@@ -50,7 +49,7 @@ public class AnotherFurnitureModule extends SimpleModule {
         this.addEntry(flowerBoxes);
 
         shutters = SimpleEntrySet.builder(WoodType.class, "shutter",
-                        AFBlocks.OAK_SHUTTER, () -> WoodTypeRegistry.OAK_TYPE,
+                       getModBlock("oak_shutter"), () -> WoodTypeRegistry.OAK_TYPE,
                         w -> new ShutterBlock(1, Utils.copyPropertySafe(w.planks).noOcclusion()))
                 .addTag(modRes("shutters"), Registries.BLOCK)
                 .addTag(modRes("shutters"), Registries.ITEM)
@@ -107,7 +106,7 @@ public class AnotherFurnitureModule extends SimpleModule {
         this.addEntry(shutters);
 
         tables = SimpleEntrySet.builder(WoodType.class, "table",
-                        AFBlocks.OAK_TABLE, () -> WoodTypeRegistry.OAK_TYPE,
+                       getModBlock("oak_table"), () -> WoodTypeRegistry.OAK_TYPE,
                         w -> new TableBlock(Utils.copyPropertySafe(w.planks)))
                 .addTag(modRes("tables"), Registries.BLOCK)
                 .addTag(modRes("tables"), Registries.ITEM)
@@ -126,7 +125,7 @@ public class AnotherFurnitureModule extends SimpleModule {
         this.addEntry(tables);
 
         chairs = SimpleEntrySet.builder(WoodType.class, "chair",
-                        AFBlocks.OAK_CHAIR, () -> WoodTypeRegistry.OAK_TYPE,
+                       getModBlock("oak_chair"), () -> WoodTypeRegistry.OAK_TYPE,
                         w -> new ChairBlock(1, Utils.copyPropertySafe(w.planks)))
                 .addTag(modRes("chairs"), Registries.BLOCK)
                 .addTag(modRes("chairs"), Registries.ITEM)
@@ -152,11 +151,11 @@ public class AnotherFurnitureModule extends SimpleModule {
         this.addEntry(chairs);
 
         shelves = SimpleEntrySet.builder(WoodType.class, "shelf",
-                        AFBlocks.OAK_SHELF, () -> WoodTypeRegistry.OAK_TYPE,
+                       getModBlock("oak_shelf"), () -> WoodTypeRegistry.OAK_TYPE,
                         w -> new ShelfBlock(Utils.copyPropertySafe(w.planks)))
                 .addTag(modRes("shelves"), Registries.BLOCK)
                 .addTag(modRes("shelves"), Registries.ITEM)
-                .addTile(AFBlockEntityTypes.SHELF)
+                .addTile(getModTile("shelf"))
                 .defaultRecipe()
                 .setTabKey(tabKey)
                 .useMergedPalette()
@@ -169,11 +168,11 @@ public class AnotherFurnitureModule extends SimpleModule {
         this.addEntry(shelves);
 
         drawers = SimpleEntrySet.builder(WoodType.class, "drawer",
-                        AFBlocks.OAK_DRAWER, () -> WoodTypeRegistry.OAK_TYPE,
+                       getModBlock("oak_drawer"), () -> WoodTypeRegistry.OAK_TYPE,
                         w -> new DrawerBlock(Utils.copyPropertySafe(w.planks)))
                 .addTag(modRes("drawers"), Registries.BLOCK)
                 .addTag(modRes("drawers"), Registries.ITEM)
-                .addTile(AFBlockEntityTypes.DRAWER)
+                .addTile(getModTile("drawer"))
                 .defaultRecipe()
                 .setTabKey(tabKey)
                 .setRenderType(RenderLayer.CUTOUT_MIPPED)
@@ -186,7 +185,7 @@ public class AnotherFurnitureModule extends SimpleModule {
         this.addEntry(drawers);
 
         benches = SimpleEntrySet.builder(WoodType.class, "bench",
-                        AFBlocks.OAK_BENCH, () -> WoodTypeRegistry.OAK_TYPE,
+                       getModBlock("oak_bench"), () -> WoodTypeRegistry.OAK_TYPE,
                         w -> new BenchBlock(Utils.copyPropertySafe(w.planks)))
                 .addTag(modRes("benches"), Registries.BLOCK)
                 .addTag(modRes("benches"), Registries.ITEM)

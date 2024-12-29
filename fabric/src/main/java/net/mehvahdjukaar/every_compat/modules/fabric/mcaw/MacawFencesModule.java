@@ -51,8 +51,10 @@ public class MacawFencesModule extends SimpleModule {
                 .addTag(BlockTags.FENCES, Registries.ITEM)
                 .setTabKey(tab)
                 .defaultRecipe()
+                .copyParentDrop() //REASON: ensure blocks's dropping when Diagonal Fences is installed
                 //REASON: take a look at their //TEXTURES, you'll see why. Excluded!
-                .addCondition(w -> !w.getId().toString().matches("terrestria:(sakura|yucca_palm)|betternether:(nether_mushroom|nether_reed)"))
+                .excludeBlockTypes("terrestria", "sakura", "yucca_palm")
+                .excludeBlockTypes("betternether", "nether_mushroom", "nether_reed")
                 .build();
         this.addEntry(picketFences);
 
@@ -67,8 +69,10 @@ public class MacawFencesModule extends SimpleModule {
                 .addTag(BlockTags.FENCES, Registries.ITEM)
                 .setTabKey(tab)
                 .defaultRecipe()
+                .copyParentDrop() //REASON: ensure blocks's dropping when Diagonal Fences is installed
                 //REASON: take a look at their //TEXTURES, you'll see why. Excluded!
-                .addCondition(w -> !w.getId().toString().matches("terrestria:(sakura|yucca_palm)|betternether:(nether_mushroom|nether_reed)"))
+                .excludeBlockTypes("terrestria", "sakura", "yucca_palm")
+                .excludeBlockTypes("betternether", "nether_mushroom", "nether_reed")
                 .build();
         this.addEntry(stockadeFences);
 
@@ -83,8 +87,10 @@ public class MacawFencesModule extends SimpleModule {
                 .addTag(BlockTags.FENCES, Registries.ITEM)
                 .setTabKey(tab)
                 .defaultRecipe()
+                .copyParentDrop() //REASON: ensure blocks's dropping when Diagonal Fences is installed
                 //REASON: take a look at their //TEXTURES, you'll see why. Excluded!
-                .addCondition(w -> !w.getId().toString().matches("terrestria:(sakura|yucca_palm)|betternether:(nether_mushroom|nether_reed)"))
+                .excludeBlockTypes("terrestria", "sakura", "yucca_palm")
+                .excludeBlockTypes("betternether", "nether_mushroom", "nether_reed")
                 .build();
         this.addEntry(horseFences);
 
@@ -100,8 +106,10 @@ public class MacawFencesModule extends SimpleModule {
                 .setTabKey(tab)
                 .defaultRecipe()
                 .setRenderType(RenderLayer.CUTOUT)
+                .copyParentDrop() //REASON: ensure blocks's dropping when Diagonal Fences is installed
                 //REASON: take a look at their //TEXTURES, you'll see why. Excluded!
-                .addCondition(w -> !w.getId().toString().matches("terrestria:(sakura|yucca_palm)|betternether:(nether_mushroom|nether_reed)"))
+                .excludeBlockTypes("terrestria", "sakura", "yucca_palm")
+                .excludeBlockTypes("betternether", "nether_mushroom", "nether_reed")
                 .build();
         this.addEntry(wiredFences);
 
@@ -115,8 +123,10 @@ public class MacawFencesModule extends SimpleModule {
                 .addTag(BlockTags.UNSTABLE_BOTTOM_CENTER, Registries.BLOCK)
                 .setTabKey(tab)
                 .defaultRecipe()
+                .copyParentDrop() //REASON: ensure blocks's dropping when Diagonal Fences is installed
                 //REASON: take a look at their //TEXTURES, you'll see why. Excluded!
-                .addCondition(w -> !w.getId().toString().matches("terrestria:(sakura|yucca_palm)|betternether:(nether_mushroom|nether_reed)"))
+                .excludeBlockTypes("terrestria", "sakura", "yucca_palm")
+                .excludeBlockTypes("betternether", "nether_mushroom", "nether_reed")
                 .build();
         this.addEntry(pyramidGates);
 
@@ -131,8 +141,10 @@ public class MacawFencesModule extends SimpleModule {
                 .addTag(BlockTags.MINEABLE_WITH_AXE, Registries.BLOCK)
                 .setTabKey(tab)
                 .defaultRecipe()
+                .copyParentDrop() //REASON: ensure blocks's dropping when Diagonal Fences is installed
                 //REASON: take a look at their //TEXTURES, you'll see why. Excluded!
-                .addCondition(w -> !w.getId().toString().matches("terrestria:(sakura|yucca_palm)|betternether:(nether_mushroom|nether_reed)"))
+                .excludeBlockTypes("terrestria", "sakura", "yucca_palm")
+                .excludeBlockTypes("betternether", "nether_mushroom", "nether_reed")
                 .build();
         this.addEntry(highleyGates);
 
@@ -219,6 +231,7 @@ public class MacawFencesModule extends SimpleModule {
                     return LeavesPath("", "", s, l);
                 }))
                 .setRenderType(RenderLayer.CUTOUT_MIPPED)
+                .copyParentDrop() //REASON: ensure blocks's dropping when Diagonal Fences is installed
                 .build();
         this.addEntry(hedges);
     }

@@ -1,5 +1,5 @@
 ### UPDATED:
-- **Handcrafted** (COMMON): Removed 3 blocks that don't need BlockEntity: _table_, _couch_, and _bench_
+- **Every Compat** (COMMON): Minor changes in the code to support Stone Zone. StoneZone will be requiring this version from onward
 
 ---
 
