@@ -169,13 +169,15 @@ dependencies {
 //    modRuntimeOnly("curse.maven:furnish-547069:4821511")
 //    modRuntimeOnly("curse.maven:handcrafted-538214:5118729")
 //    modRuntimeOnly("curse.maven:friends-and-foes-forge-602059:4712044")
-//    modRuntimeOnly("maven.modrinth:stylish-stiles:l9FFA4BK")
 //    modRuntimeOnly("curse.maven:storage-drawers-223852:5915486")
 //    modRuntimeOnly("curse.maven:valhelsia-furniture-694349:5189602")
 //    modRuntimeOnly("curse.maven:table-top-craft-467136:5318681")
 //    modRuntimeOnly("curse.maven:twigs-496913:4605097")
 //    modRuntimeOnly("curse.maven:villagersplus-forge-817272:4996995")
 //    modRuntimeOnly("curse.maven:create-328085:5689514") // Registrate, Flywheel
+
+            //!! OTHER MAVENs
+//    modRuntimeOnly("maven.modrinth:stylish-stiles:l9FFA4BK")
 
     //!! REQUIRED - The modules access libraries from below - ONLY IN FORGE
         // ~/forge/mods LOCAL
@@ -208,7 +210,7 @@ dependencies {
     modCompileOnly("curse.maven:decoration-delight-687475:5563942")
     modCompileOnly("curse.maven:domum-ornamentum-527361:4174257")
     modCompileOnly("curse.maven:dramatic-doors-380617:5867447")
-    modCompileOnly("curse.maven:functional-storage-556861:5373105")
+    modCompileOnly("curse.maven:functional-storage-556861:5373105") // Titanium
     modCompileOnly("curse.maven:infinity-buttons-661902:4716983")
     modCompileOnly("curse.maven:just-a-raft-mod-274350:5777239")
     modCompileOnly("curse.maven:lightmans-currency-472521:5763615")
