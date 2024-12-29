@@ -275,6 +275,7 @@ public abstract class AbstractSimpleEntrySet<T extends BlockType, B extends Bloc
 
             Multimap<ResourceLocation, TextureInfo> infoPerTextures = ArrayListMultimap.create();
 
+            /// Adding multiple textures from one block into Respriter without/with mask & infoPerTextures
             for (var textureInfo : textures) {
                 ResourceLocation textureId = textureInfo.texture();
 
@@ -329,7 +330,7 @@ public abstract class AbstractSimpleEntrySet<T extends BlockType, B extends Bloc
             for (var e : partialRespriters.entrySet()) {
                 respriters.put(e.getKey(), Respriter.ofPalette(e.getValue(), globalPalette));
             }
-
+            /// Swapping out the old palettes of the texture with new plattes
             for (var entry : getDefaultEntries().entrySet()) {
                 var b = entry.getValue();
                 T w = entry.getKey();
@@ -350,6 +351,7 @@ public abstract class AbstractSimpleEntrySet<T extends BlockType, B extends Bloc
                 //sanity check to verity that palette isn't changed. can be removed
                 int oldSize = targetPalette.get(0).size();
 
+                /// Creating new Path to add the new textures via the resources
                 for (var re : respriters.entrySet()) {
                     if (oldSize != targetPalette.get(0).size()) {
                         throw new RuntimeException("This should not happen");
@@ -357,23 +359,27 @@ public abstract class AbstractSimpleEntrySet<T extends BlockType, B extends Bloc
                     ResourceLocation oldTextureId = re.getKey();
                     String oldPath = oldTextureId.getPath();
 
-                    //// BlockTypeResTransformer.replaceFullGenericType(oldPath, w, blockId, baseType.get().getTypeName(), null, 2);  Solve Boatload's texture issue
-
                     // boatload's texture path has 2 folder
                     String newPath = (oldPath.startsWith("entity/") && module.modId.equals("boatload"))
                             ? BlockTypeResTransformer.replaceFullGenericType(oldPath, w, blockId, baseType.get().getTypeName(), null, 2)
                             // Default
                             : BlockTypeResTransformer.replaceTypeNoNamespace(oldPath, w, blockId, baseType.get().getTypeName());
 
-                    String newId = new ResourceLocation(blockId.getNamespace(), newPath).toString();
+                    String newId = "";
 
                     boolean isOnAtlas = true;
 
+                    /// Adding the textures to the resource
                     for (var info : infoPerTextures.get(oldTextureId)) {
                         if (info != null) {
-                            if (info.keepNamespace()) {
-                                newId = oldTextureId.withPath(newPath).toString();
+                            if (info.keepNamespace()) newId = oldTextureId.withPath(newPath).toString();
+                            else newId = new ResourceLocation(blockId.getNamespace(), newPath).toString();
+
+                            if (newId.isEmpty()) {
+                                EveryCompat.LOGGER.error("The path of new texture is empty for: {}", info.texture());
+                                continue;
                             }
+
                             isOnAtlas = info.onAtlas();
 
                             /// TEMP: do not remove this until the mcmeta problem is fixed.
