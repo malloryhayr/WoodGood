@@ -140,7 +140,7 @@ dependencies {
     modCompileOnly("maven.modrinth:wilder-wild:3.0.7-mc1.20.1")
     modCompileOnly("curse.maven:wooden-hoppers-406021:4796143")
 
-    modCompileOnly("curse.maven:regions-unexplored-659110:5151837")
+    modImplementation("curse.maven:regions-unexplored-659110:5558172") // Forge-Config-Api-Port
 
     // ======================================== DISABLED FOR A REASON =============================================== \\
 

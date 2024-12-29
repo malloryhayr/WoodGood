@@ -38,7 +38,7 @@ import java.util.Map;
 
 import static net.mehvahdjukaar.every_compat.common_classes.TagUtility.createAndAddCustomTags;
 
-// SUPPORT: v0.5.5+
+// SUPPORT: v0.5.6+
 public class RegionsUnexploredModule extends SimpleModule {
     public final SimpleEntrySet<WoodType, Block> branchs;
     public final SimpleEntrySet<LeavesType, Block> shrubs;
