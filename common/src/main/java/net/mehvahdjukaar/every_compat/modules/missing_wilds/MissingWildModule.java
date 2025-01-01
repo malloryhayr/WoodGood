@@ -1,6 +1,5 @@
-package net.mehvahdjukaar.every_compat.modules.fabric.missing_wilds;
+package net.mehvahdjukaar.every_compat.modules.missing_wilds;
 
-import me.ultrusmods.missingwilds.MissingWildsFabric;
 import me.ultrusmods.missingwilds.block.FallenLogBlock;
 import me.ultrusmods.missingwilds.register.MissingWildsBlocks;
 import net.mehvahdjukaar.every_compat.api.RenderLayer;
@@ -26,9 +25,11 @@ public class MissingWildModule extends SimpleModule {
                         w -> new FallenLogBlock(Utils.copyPropertySafe(w.log).noOcclusion()))
                 .addTag(modRes("fallen_logs"), Registries.BLOCK)
                 .addTag(modRes("fallen_logs"), Registries.ITEM)
-                .setTab(() -> MissingWildsFabric.MISSING_WILD_ITEMS)
+                .setTabKey(modRes("items"))
                 .defaultRecipe()
                 .setRenderType(RenderLayer.CUTOUT_MIPPED)
+                //REASON: The top texture is not a standard 16x16. Take a look, you'll see why
+                .excludeBlockTypes("terrestria", "(yucca_palm|sakura)")
                 .build();
         this.addEntry(fallenLogs);
     }
