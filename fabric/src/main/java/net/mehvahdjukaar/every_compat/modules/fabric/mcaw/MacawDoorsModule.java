@@ -8,6 +8,7 @@ import net.mehvahdjukaar.every_compat.EveryCompat;
 import net.mehvahdjukaar.every_compat.api.RenderLayer;
 import net.mehvahdjukaar.every_compat.api.SimpleEntrySet;
 import net.mehvahdjukaar.every_compat.api.SimpleModule;
+import net.mehvahdjukaar.every_compat.misc.SpriteHelper;
 import net.mehvahdjukaar.moonlight.api.resources.textures.Palette;
 import net.mehvahdjukaar.moonlight.api.set.wood.WoodType;
 import net.mehvahdjukaar.moonlight.api.set.wood.WoodTypeRegistry;
@@ -73,6 +74,7 @@ public class MacawDoorsModule extends SimpleModule {
                 .copyParentDrop()
                 .defaultRecipe()
                 .setRenderType(RenderLayer.CUTOUT)
+                .createPaletteFromChild("log", SpriteHelper.LOOKS_LIKE_SIDE_LOG_TEXTURE)
                 .addTextureM(modRes("item/oak_bark_glass_door"), EveryCompat.res("item/mcw/doors/oak_bark_glass_door_m"))
                 .build();
 
