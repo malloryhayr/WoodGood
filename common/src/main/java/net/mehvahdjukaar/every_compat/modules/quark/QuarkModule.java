@@ -342,7 +342,7 @@ public class QuarkModule extends SimpleModule {
     }
 
     @Environment(EnvType.CLIENT)
-    public class QuarkClientModule {
+    public static class QuarkClientModule {
         private static void initClient(QuarkModule module) {
             for (var b : module.chests.blocks.values())
                 QuarkClient.ZETA_CLIENT.setBlockEntityWithoutLevelRenderer(b.asItem(), new SimpleWithoutLevelRenderer(CHEST_TILE, b.defaultBlockState()));
