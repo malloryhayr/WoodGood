@@ -1844,15 +1844,21 @@ public class ChippedModule extends SimpleModule {
 
     // TYPE: methods
     private void dullPalette(Palette p) {
-        p.increaseInner();
-        p.remove(p.getLightest());
-        p.remove(p.getDarkest());
-        p.remove(p.getDarkest());
-        p.remove(p.getDarkest());
+        int leftover = p.size() - 3;
+
+        if (leftover > 6) {
+            p.increaseInner();
+            p.remove(p.getLightest());
+            p.remove(p.getDarkest());
+            p.remove(p.getDarkest());
+            p.remove(p.getDarkest());
+        }
     }
 
     private void dullerPalette(Palette p) {
-        if (p.size() > 6) {
+        int leftover = p.size() - 4;
+
+        if (leftover > 6) {
             p.remove(p.getLightest());
             p.remove(p.getLightest());
             p.remove(p.getDarkest());
