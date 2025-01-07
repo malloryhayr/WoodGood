@@ -45,6 +45,18 @@ public class SpriteHelper {
         addOptional("minecraft:mushroom_stem", "_side", "minecraft:block/mushroom_stem");
         addOptional("minecraft:mushroom_stem", "_top", "minecraft:block/mushroom_stem");
 
+        // The Midnight
+        addOptional("midnight:bogshroom_stem", "_side", "midnight:block/bogshroom_cap");
+        addOptional("midnight:bogshroom_stem", "_top", "midnight:block/bogshroom_cap");
+        addOptional("midnight:moonshroom_stem", "_side", "midnight:block/moonshroom_cap");
+        addOptional("midnight:moonshroom_stem", "_top", "midnight:block/moonshroom_cap");
+        addOptional("midnight:nightshroom_stem", "_side", "midnight:block/nightshroom_cap");
+        addOptional("midnight:nightshroom_stem", "_top", "midnight:block/nightshroom_cap");
+        addOptional("midnight:viridshroom_stem", "_side", "midnight:block/viridshroom_cap");
+        addOptional("midnight:viridshroom_stem", "_top", "midnight:block/viridshroom_cap");
+        addOptional("midnight:dewshroom_stem", "_side", "midnight:block/dewshroom_cap");
+        addOptional("midnight:dewshroom_stem", "_top", "midnight:block/dewshroom_cap");
+
         // Advent Of Ascension
         addOptional("aoa3:stranglewood_log", "_side", "aoa3:block/stranglewood_log");
         addOptional("aoa3:stranglewood_log", "_top", "aoa3:block/stranglewood_log_top");
