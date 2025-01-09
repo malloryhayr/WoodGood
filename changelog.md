@@ -1,5 +1,5 @@
 ### UPDATED:
-- **Every Compat** (COMMON): Minor changes in the code to support Stone Zone. StoneZone will be requiring this version from onward
+- **Every Compat** (COMMON): Fixed the crash with **Stone Zone**
 
 ---
 

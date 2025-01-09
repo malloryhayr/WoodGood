@@ -70,8 +70,8 @@ public class RegionsUnexploredModule extends SimpleModule {
             .addTag(modRes("branches_can_survive_on"), Registries.BLOCK)
             .addTag(modRes("branches"), Registries.BLOCK)
             .addTag(modRes("branches"), Registries.ITEM)
-            .addRecipe(modRes("oak_branch_from_oak_log"))
             .setTabKey(tab)
+            .addRecipe(modRes("oak_branch_from_oak_log"))
             .build();
         this.addEntry(branchs);
 
@@ -91,37 +91,14 @@ public class RegionsUnexploredModule extends SimpleModule {
                 .addTag(modRes("shrubs"), Registries.BLOCK)
                 .addTag(modRes("shrub_can_survive_on"), Registries.BLOCK)
                 .addTag(modRes("shrubs"), Registries.ITEM)
-                .addRecipe(modRes("dark_oak_shrub"))
-                .addRecipe(modRes("dark_oak_sapling_from_dark_oak_shrub"))
                 .addTexture(EveryCompat.res("block/dark_oak_shrub_top"))
-                .copyParentDrop()
                 .setTabKey(tab)
+                .addRecipe(modRes("dark_oak_sapling_from_dark_oak_shrub"))
+                .addRecipe(modRes("dark_oak_shrub"))
+                .copyParentDrop()
+                .copyParentTint()
                 .build();
         this.addEntry(shrubs);
-    }
-
-    @Override
-    public void registerItemColors(ClientHelper.ItemColorEvent event) {
-        super.registerItemColors(event);
-        for (Map.Entry<LeavesType, Block> entry : shrubs.blocks.entrySet()) {
-            LeavesType type = entry.getKey();
-            Block block = entry.getValue();
-            event.register((stack, tintIndex) -> {
-                if (tintIndex > 0) return 0xFFFFFFFF;
-                return event.getColor(new ItemStack(type.leaves), tintIndex);
-            }, block);
-        }
-    }
-
-    @Override
-    public void registerBlockColors(ClientHelper.BlockColorEvent event) {
-        super.registerBlockColors(event);
-        for (Map.Entry<LeavesType, Block> entry : shrubs.blocks.entrySet()) {
-            LeavesType type = entry.getKey();
-            Block b = entry.getValue();
-            event.register((blockState, tintGetter, pos, index) ->
-                    event.getColor(type.leaves.defaultBlockState(), tintGetter, pos, index), b);
-        }
     }
 
     @Override

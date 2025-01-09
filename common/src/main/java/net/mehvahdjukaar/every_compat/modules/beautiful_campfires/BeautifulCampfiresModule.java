@@ -7,6 +7,7 @@ import net.mehvahdjukaar.every_compat.api.SimpleEntrySet;
 import net.mehvahdjukaar.every_compat.api.SimpleModule;
 import net.mehvahdjukaar.every_compat.dynamicpack.ClientDynamicResourcesHandler;
 import net.mehvahdjukaar.every_compat.dynamicpack.ServerDynamicResourcesHandler;
+import net.mehvahdjukaar.every_compat.misc.SpriteHelper;
 import net.mehvahdjukaar.moonlight.api.resources.BlockTypeResTransformer;
 import net.mehvahdjukaar.moonlight.api.resources.RPUtils;
 import net.mehvahdjukaar.moonlight.api.resources.ResType;
@@ -158,7 +159,7 @@ public class BeautifulCampfiresModule extends SimpleModule {
                         TextureImage plankTexture = TextureImage.open(manager,
                                 RPUtils.findFirstBlockTextureLocation(manager, wood.planks));
                         TextureImage logTexture = TextureImage.open(manager,
-                                RPUtils.findFirstBlockTextureLocation(manager, wood.log))
+                                RPUtils.findFirstBlockTextureLocation(manager, wood.log, SpriteHelper.LOOKS_LIKE_SIDE_LOG_TEXTURE))
                 ) {
                     ResourceLocation newResLoc = EveryCompat.res(BlockTypeResTransformer.replaceTypeNoNamespace(campfirePath, wood, id, "acacia"));
 

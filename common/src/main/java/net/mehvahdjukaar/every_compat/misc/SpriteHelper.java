@@ -45,6 +45,32 @@ public class SpriteHelper {
         addOptional("minecraft:mushroom_stem", "_side", "minecraft:block/mushroom_stem");
         addOptional("minecraft:mushroom_stem", "_top", "minecraft:block/mushroom_stem");
 
+        // Dawn Of The Time: Builder Edition
+            //REASON: the planks is actually being treated as a log instead of a planks
+        addOptional("dawnoftimebuilder:waxed_oak_planks", "_side", "dawnoftimebuilder:block/waxed_oak_planks");
+        addOptional("dawnoftimebuilder:waxed_oak_planks", "_top", "dawnoftimebuilder:block/waxed_oak_planks");
+        addOptional("dawnoftimebuilder:charred_spruce_planks", "_side", "dawnoftimebuilder:block/charred_spruce_planks");
+        addOptional("dawnoftimebuilder:charred_spruce_planks", "_top", "dawnoftimebuilder:block/charred_spruce_planks");
+
+        // Shadowlands
+        addOptional("shadowlands:vellium_log", "_side", "shadowlands:block/velliumlogside");
+        addOptional("shadowlands:vellium_log", "_top", "shadowlands:block/log");
+        addOptional("shadowlands:vellium_planks", "_all", "shadowlands:block/velliumplanks");
+            // Leaves
+        addOptional("shadowlands:vellium_leaves", "_top", "shadowlands:block/velliumleaves");
+
+        // The Midnight
+        addOptional("midnight:bogshroom_stem", "_side", "midnight:block/bogshroom_cap");
+        addOptional("midnight:bogshroom_stem", "_top", "midnight:block/bogshroom_cap");
+        addOptional("midnight:moonshroom_stem", "_side", "midnight:block/moonshroom_cap");
+        addOptional("midnight:moonshroom_stem", "_top", "midnight:block/moonshroom_cap");
+        addOptional("midnight:nightshroom_stem", "_side", "midnight:block/nightshroom_cap");
+        addOptional("midnight:nightshroom_stem", "_top", "midnight:block/nightshroom_cap");
+        addOptional("midnight:viridshroom_stem", "_side", "midnight:block/viridshroom_cap");
+        addOptional("midnight:viridshroom_stem", "_top", "midnight:block/viridshroom_cap");
+        addOptional("midnight:dewshroom_stem", "_side", "midnight:block/dewshroom_cap");
+        addOptional("midnight:dewshroom_stem", "_top", "midnight:block/dewshroom_cap");
+
         // Advent Of Ascension
         addOptional("aoa3:stranglewood_log", "_side", "aoa3:block/stranglewood_log");
         addOptional("aoa3:stranglewood_log", "_top", "aoa3:block/stranglewood_log_top");
@@ -74,6 +100,8 @@ public class SpriteHelper {
         // Ad Astra
         addOptional("ad_astra:strophar_stem", "_side", "ad_astra:block/strophar_stem");
         addOptional("ad_astra:strophar_stem", "_top", "ad_astra:block/strophar_stem");
+        addOptional("ad_astra:aeronos_stem", "_side", "ad_astra:block/aeronos_stem");
+        addOptional("ad_astra:aeronos_stem", "_top", "ad_astra:block/aeronos_stem");
 
         // Terrestria
         addOptional("terrestria:sakura_log", "_top", "terrestria:block/sakura_log_section");
@@ -96,7 +124,7 @@ public class SpriteHelper {
         addOptional("dreamy_cottage:stripped_white_oak_log", "_side", "dreamy_cottage:block/strippedwhiteoakside");
         addOptional("dreamy_cottage:stripped_white_oak_log", "_top", "dreamy_cottage:block/strippedwhiteoak");
 
-// Leaves
+            // Leaves
         addOptional("dreamy_cottage:strawberry_leaves", "_leaves", "dreamy_cottage:block/whiteoakleaves");
         addOptional("dreamy_cottage:white_oak_leaves", "_leaves", "dreamy_cottage:block/whiteoakleaves");
 
@@ -141,7 +169,7 @@ public class SpriteHelper {
         addOptional("nue:stripped_frosted_stem", "_top", "nue:block/strippedfrozenstemtop");
 
         // Fruitful Fun
-        // Leaves
+            // Leaves
         addOptional("fruitfulfun:apple_leaves", "_leaves", "minecraft:block/oak_leaves");
         addOptional("fruitfulfun:cherry_leaves", "_leaves", "fruitfulfun:block/cherry_leaves_2");
         addOptional("fruitfulfun:citron_leaves", "_leaves", "fruitfulfun:block/citron_leaves");
@@ -167,19 +195,19 @@ public class SpriteHelper {
         addOptional("extendedmushrooms:honey_fungus_stem_stripped", "_top", "extendedmushrooms:block/honey_fungus_stem_stripped");
 
         // Let's Do - Vinery
-        // Leaves
+            // Leaves
         addOptional("vinery:apple_leaves", "_leaves", "vinery:block/apple_leaves_0");
         addOptional("vinery:dark_cherry", "_leaves", "vinery:block/dark_cherry_leaves");
 
         // The Twilight Forest
-        // Leaves
+            // Leaves
         addOptional("twilightforest:beanstalk_leaves", "_leaves", "minecraft:block/azalea_leaves");
         addOptional("twilightforest:thorn_leaves", "_leaves", "minecraft:block/oak_leaves");
 
         // Regions Unexplored
         addOptional("regions_unexplored:eucalyptus_log", "_side", EveryCompat.MOD_ID + ":block/regions_unexplored/eucalyptus_log");
 
-// Leaves
+            // Leaves
         addOptional("regions_unexplored:alpha_leaves", "_leaves", "regions_unexplored:block/alpha_oak_leaves");
         addOptional("regions_unexplored:apple_oak_leaves", "_leaves", "regions_unexplored:block/apple_oak_leaves_stage_0");
         addOptional("regions_unexplored:flowering_leaves", "_leaves", "regions_unexplored:item/flowering_leaves");

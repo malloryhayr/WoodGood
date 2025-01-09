@@ -14,6 +14,7 @@ import net.mehvahdjukaar.every_compat.modules.friendsandfoes.FriendsAndFoesModul
 import net.mehvahdjukaar.every_compat.modules.furnish.FurnishModule;
 import net.mehvahdjukaar.every_compat.modules.handcrafted.HandcraftedModule;
 import net.mehvahdjukaar.every_compat.modules.hearth_and_home.HearthAndHomeModule;
+import net.mehvahdjukaar.every_compat.modules.missing_wilds.MissingWildModule;
 import net.mehvahdjukaar.every_compat.modules.mrcrayfish.BackpackedModule;
 import net.mehvahdjukaar.every_compat.modules.mrcrayfish.RefurbishedFurnitureModule;
 import net.mehvahdjukaar.every_compat.modules.quark.QuarkModule;
@@ -94,6 +95,7 @@ public class EveryCompatCommon {
         addIfLoaded("table_top_craft", () -> TableTopCraftModule::new);
         addIfLoaded("storagedrawers", () -> StorageDrawersModule::new);
         addIfLoaded("stylishstiles", () -> StylishStilesModule::new);
+        addIfLoaded("missingwilds", () -> MissingWildModule::new);
 
 //!! =================================================== OTHERS ===================================================== \\
         forAllModules(m -> EveryCompat.LOGGER.info("Loaded {}", m.toString()));

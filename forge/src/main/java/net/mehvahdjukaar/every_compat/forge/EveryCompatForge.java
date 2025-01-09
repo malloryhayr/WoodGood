@@ -26,7 +26,6 @@ import net.mehvahdjukaar.every_compat.modules.forge.lieonlion.MoreChestVariantsM
 import net.mehvahdjukaar.every_compat.modules.forge.lieonlion.MoreCraftingTablesModule;
 import net.mehvahdjukaar.every_compat.modules.forge.lightmans_currency.LightmansCurrencyModule;
 import net.mehvahdjukaar.every_compat.modules.forge.mcaw.*;
-import net.mehvahdjukaar.every_compat.modules.forge.missing_wilds.MissingWildModule;
 import net.mehvahdjukaar.every_compat.modules.forge.more.MoreCraftingTablesForForgeModule;
 import net.mehvahdjukaar.every_compat.modules.forge.mosaic_carpentry.MosaicCarpentryModule;
 import net.mehvahdjukaar.every_compat.modules.forge.mrcrayfish_furniture.MightyMailModule;
@@ -102,7 +101,6 @@ public class EveryCompatForge extends EveryCompatCommon {
         addIfLoaded("lolmcv", () -> MoreChestVariantsModule::new);
         addIfLoaded("mctb", () -> MoreCraftingTablesForForgeModule::new);
         addIfLoaded("mighty_mail", () -> MightyMailModule::new);
-        addIfLoaded("missingwilds", () -> MissingWildModule::new);
         addIfLoaded("mosaic_carpentry", () -> MosaicCarpentryModule::new);
         addIfLoaded("oreberriesreplanted", () -> OreberriesReplantedModule::new);
         addIfLoaded("lightmanscurrency", () -> LightmansCurrencyModule::new);
@@ -121,10 +119,11 @@ public class EveryCompatForge extends EveryCompatCommon {
         addIfLoaded("woodworks", () -> WoodworksModule::new);
         addIfLoaded("workshop_for_handsome_adventurer", () -> WorkshopForHandsomeAdventurerModule::new);
         addIfLoaded("xercamod", () -> XercaModule::new);
+        addIfLoaded("lolmct", () -> MoreCraftingTablesModule::new);
+
         if (PlatHelper.isModLoaded("mcwdoors")) {
             addIfLoaded("dramaticdoors", () -> DramaticDoorsMacawModule::new);
         }
-        addIfLoaded("lolmct", () -> MoreCraftingTablesModule::new);
 
         // ========================================= Macaw's ======================================================== \\
         addIfLoaded("mcwbridges", () -> MacawBridgesModule::new);

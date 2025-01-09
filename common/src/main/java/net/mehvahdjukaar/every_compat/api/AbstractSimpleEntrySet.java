@@ -411,8 +411,8 @@ public abstract class AbstractSimpleEntrySet<T extends BlockType, B extends Bloc
             }
 
         } catch (Exception e) {
-            EveryCompat.LOGGER.error("Could not generate any block texture for entry set {} : ",
-                    module == null ? "dummy" : module.modRes(this.getName()), e);
+            EveryCompat.LOGGER.error("Could not generate any block texture for entry set {} with {} : ",
+                    module == null ? "dummy" : module.modRes(this.getName()), baseType.get().getId(), e);
         } finally {
             for (var t : images) {
                 t.close();
@@ -496,13 +496,8 @@ public abstract class AbstractSimpleEntrySet<T extends BlockType, B extends Bloc
         }
 
         //exclusive with addCondition
-        public BL requiresFromMap(Map<?, ?>... entrySets) {
-            this.addCondition(blockType -> {
-                for (Map<?, ?> entrySet : entrySets) {
-                    if (Objects.isNull(entrySet.get(blockType))) return false;
-                }
-                return true;
-            });
+        public BL requiresFromMap(Map<T, ?> entrySet) {
+            this.addCondition(blockType -> !Objects.isNull(entrySet.get(blockType)));
             return (BL) this;
         }
 
@@ -679,7 +674,7 @@ public abstract class AbstractSimpleEntrySet<T extends BlockType, B extends Bloc
                         throw new RuntimeException(String.format("Failed to generate palette for %s : %s", w, e));
                     }
                 }
-                throw new RuntimeException("No child with key " + childKey + "found");
+                throw new RuntimeException("No child with key " + childKey + " found");
             });
         }
     }
