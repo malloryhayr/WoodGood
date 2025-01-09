@@ -119,10 +119,11 @@ public class EveryCompatForge extends EveryCompatCommon {
         addIfLoaded("woodworks", () -> WoodworksModule::new);
         addIfLoaded("workshop_for_handsome_adventurer", () -> WorkshopForHandsomeAdventurerModule::new);
         addIfLoaded("xercamod", () -> XercaModule::new);
+        addIfLoaded("lolmct", () -> MoreCraftingTablesModule::new);
+
         if (PlatHelper.isModLoaded("mcwdoors")) {
             addIfLoaded("dramaticdoors", () -> DramaticDoorsMacawModule::new);
         }
-        addIfLoaded("lolmct", () -> MoreCraftingTablesModule::new);
 
         // ========================================= Macaw's ======================================================== \\
         addIfLoaded("mcwbridges", () -> MacawBridgesModule::new);
