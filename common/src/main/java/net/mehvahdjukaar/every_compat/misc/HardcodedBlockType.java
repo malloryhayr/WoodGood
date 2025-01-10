@@ -38,6 +38,9 @@ public class HardcodedBlockType {
 
 
             /// ========== INCLUDE ========== \\\
+        // chests & ladders from Quark aren't generated with Abnormal's Wood mods
+        if (isWoodRegistryOf("quark", "", "upgrade_aquatic|autumnity|atmospheric|environmental", "", "")) return false;
+
         // Better Nether & Better End have stripped_bark as stripped_wood but bark from Bewitchment caused EC to skip
         if (isWoodRegistryOf("", "bw", "betternether|betterend", "", "")) return false;
 
