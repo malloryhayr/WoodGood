@@ -32,7 +32,7 @@ public class SpriteHelper {
     };
     public static final @NotNull Predicate<String> LOOKS_LIKE_LEAF_TEXTURE = (s) -> {
         s = (new ResourceLocation(s)).getPath();
-        return !s.contains("_bushy") && !s.contains("_snow") && !s.contains("_overlay") && !s.contains("/snow");
+        return !s.contains("_top") && !s.contains("_bushy") && !s.contains("_snow") && !s.contains("_overlay") && !s.contains("/snow");
     };
 
     public static void addHardcodedSprites() {
@@ -44,6 +44,12 @@ public class SpriteHelper {
 
         addOptional("minecraft:mushroom_stem", "_side", "minecraft:block/mushroom_stem");
         addOptional("minecraft:mushroom_stem", "_top", "minecraft:block/mushroom_stem");
+
+        // Environmental
+        addOptional("environmental:pink_wisteria_leaves", "_leaves", "environmental:block/pink_wisteria_leaves");
+        addOptional("environmental:blue_wisteria_leaves", "_leaves", "environmental:block/blue_wisteria_leaves");
+        addOptional("environmental:purple_wisteria_leaves", "_leaves", "environmental:block/purple_wisteria_leaves");
+        addOptional("environmental:white_wisteria_leaves", "_leaves", "environmental:block/white_wisteria_leaves");
 
         // Dawn Of The Time: Builder Edition
             //REASON: the planks is actually being treated as a log instead of a planks
