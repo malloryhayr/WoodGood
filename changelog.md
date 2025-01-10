@@ -2,7 +2,7 @@
 - **MULTIPLE SUPPORTED MODs**: Fixed the texture not being generated for **Mo' Shiz Mod** 
   - **Chipped** (COMMON)
   - **Macaw's Windows** (COMMON)
-- **Create** (COMMON): Fixed the _window_pane_ not dropped when **Diagonal Fences** is installed
+- **Create** (COMMON): Fixed the _window_pane_ not dropped when **Diagonal Windows** is installed
 - **Furnish** (COMMON): 
   - Added a children check for other blocks:
     - bench and a few more blocks requres _stripped_log_ 
@@ -20,6 +20,7 @@
   - NOTE: ensure the generated blcoks are using the correct textures, not wrong textures
   - Added **The Midnight**'s texture of stems
   - Added **Environmental**'s leaves to Spritehelper so the correct textures are used for leaves blocks & Fixed [#769](https://github.com/MehVahdJukaar/WoodGood/issues/769)
+- **OTHERS** (COMMON): Fixed Blocks not being generated from **The Twilight Forest**'s _mangrove_ with Supported Mods: **Quark**, **Chipped**, **Valhelsia Furniture**, **Hearth And Home**
 
 ---
 
