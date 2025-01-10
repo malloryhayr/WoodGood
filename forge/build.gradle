@@ -114,7 +114,7 @@ dependencies {
 //    modImplementation("net.mehvahdjukaar:moonlight:${moonlight_testVersion}-forge")
 
     //!! MAVEN
-    modImplementation("maven.modrinth:moonlight:forge_${moonlight_mavenVersion}") // v2.13.40
+    modImplementation("maven.modrinth:moonlight:forge_${moonlight_mavenVersion}") // v2.13.47
 
 //!! TOOLS ========================================================================================================== \\
     modRuntimeOnly("curse.maven:worldedit-225608:4586218")
