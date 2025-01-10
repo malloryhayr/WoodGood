@@ -16,9 +16,10 @@
   - **Upgrade Aquatic**
   - **Autumnity**
 - **LANG**: zh_cn - @ChuijkYahus
-- **OTHERS** (COMMON):
-  - **NOTE-** 
-  - **The Midnight**: Added the resourceLocation of stems' texture
+- **EveryCompat** (COMMON):
+  - NOTE: ensure the generated blcoks are using the correct textures, not wrong textures
+  - Added **The Midnight**'s texture of stems
+  - Added **Environmental**'s leaves to Spritehelper so the correct textures are used for leaves blocks & Fixed [#769](https://github.com/MehVahdJukaar/WoodGood/issues/769)
 
 ---
 
