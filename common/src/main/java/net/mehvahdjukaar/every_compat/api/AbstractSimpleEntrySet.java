@@ -620,8 +620,7 @@ public abstract class AbstractSimpleEntrySet<T extends BlockType, B extends Bloc
         }
 
         public BL createPaletteFromPlanks() {
-            return createPaletteFromPlanks(p -> {
-            });
+            return createPaletteFromPlanks(p -> {});
         }
 
         public BL createPaletteFromChild(Consumer<Palette> paletteTransform, String childKey) {
@@ -629,13 +628,11 @@ public abstract class AbstractSimpleEntrySet<T extends BlockType, B extends Bloc
         }
 
         public BL createPaletteFromChild(String childKey, Predicate<String> whichSide) {
-            return createPaletteFromChild(p -> {
-            }, childKey, whichSide);
+            return createPaletteFromChild(p -> {}, childKey, whichSide);
         }
 
         public BL createPaletteFromChild(String childKey) {
-            return createPaletteFromChild(p -> {
-            }, childKey, null);
+            return createPaletteFromChild(p -> {}, childKey, null);
         }
 
         public BL createPaletteFromChild(Consumer<Palette> paletteTransform, String childKey, Predicate<String> whichSide) {
