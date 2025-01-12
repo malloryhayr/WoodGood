@@ -243,7 +243,7 @@ public class MacawWindowsModule extends SimpleModule {
                 .addTag(BlockTags.MINEABLE_WITH_AXE, Registries.BLOCK)
                 .addTexture(modRes("block/oak_louvered_shutter"))
                 .setTabKey(tab)
-                .createPaletteFromOak(this::shutterPalette)
+                .createPaletteFromPlanks(this::shutterPalette)
                 .setRenderType(RenderLayer.CUTOUT)
                 .defaultRecipe()
                 .build();

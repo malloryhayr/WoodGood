@@ -1,6 +1,5 @@
 package net.mehvahdjukaar.every_compat.modules.fabric.architect_palette;
 
-import com.slomaxonical.architectspalette.blocks.BoardBlock;
 import com.slomaxonical.architectspalette.blocks.RailingBlock;
 import net.mehvahdjukaar.every_compat.api.SimpleEntrySet;
 import net.mehvahdjukaar.every_compat.api.SimpleModule;
@@ -9,11 +8,8 @@ import net.mehvahdjukaar.moonlight.api.resources.textures.PaletteColor;
 import net.mehvahdjukaar.moonlight.api.set.wood.WoodType;
 import net.mehvahdjukaar.moonlight.api.set.wood.WoodTypeRegistry;
 import net.mehvahdjukaar.moonlight.api.util.Utils;
-import net.minecraft.core.Registry;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.tags.BlockTags;
-import net.minecraft.world.item.CreativeModeTab;
-import net.minecraft.world.item.CreativeModeTabs;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.SlabBlock;
 import net.minecraft.world.level.block.WallBlock;
@@ -48,7 +44,7 @@ public class ArchitectsPaletteModule extends SimpleModule {
                 .defaultRecipe()
                 .copyParentDrop()
                 //.setTabKey(() -> CreativeModeTabs.BUILDING_BLOCKS)
-                .createPaletteFromOak(p -> {
+                .createPaletteFromPlanks(p -> {
 
                     while (p.size() > 7) {
                         p.remove(p.getDarkest());

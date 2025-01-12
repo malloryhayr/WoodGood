@@ -30,7 +30,7 @@ public class TwigsModule extends SimpleModule {
                 .setTabKey(modRes("twig"))
                 .setTabMode(TabAddMode.AFTER_SAME_TYPE)
                 .setRenderType(RenderLayer.CUTOUT_MIPPED)
-                .createPaletteFromOak((p) -> p.remove(p.getDarkest()))
+                .createPaletteFromPlanks((p) -> p.remove(p.getDarkest()))
                 .addTexture(modRes("block/oak_table"))
                 .addTexture(modRes("block/oak_table_top"))
                 .addTexture(modRes("block/oak_table_bottom"))

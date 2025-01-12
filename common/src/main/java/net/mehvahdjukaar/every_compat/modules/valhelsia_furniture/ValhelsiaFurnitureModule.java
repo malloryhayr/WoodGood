@@ -129,7 +129,7 @@ public class ValhelsiaFurnitureModule extends SimpleModule {
                 * while the other texture for table is 7 color palettes. Below will only remove one darkest from
                 * Planks' 7 color palettes to ensure the texture is not darkened
                 */
-                .createPaletteFromOak(p -> p.remove(p.getDarkest()))
+                .createPaletteFromPlanks(p -> p.remove(p.getDarkest()))
                 .addTexture(modRes("block/table/oak/oak_table_connected"))
                 .setTabKey(tab)
                 .build();

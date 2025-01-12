@@ -1,7 +1,6 @@
 package net.mehvahdjukaar.every_compat.modules.forge.architect_palette;
 
 import architectspalette.content.blocks.RailingBlock;
-import architectspalette.core.ArchitectsPalette;
 import net.mehvahdjukaar.every_compat.api.SimpleEntrySet;
 import net.mehvahdjukaar.every_compat.api.SimpleModule;
 import net.mehvahdjukaar.moonlight.api.block.ModStairBlock;
@@ -14,7 +13,6 @@ import net.minecraft.tags.BlockTags;
 import net.minecraft.world.item.CreativeModeTabs;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.SlabBlock;
-import net.minecraft.world.level.block.StairBlock;
 import net.minecraft.world.level.block.WallBlock;
 
 //SUPPORT v1.3.6+
@@ -47,7 +45,7 @@ public class ArchitectsPaletteModule extends SimpleModule {
                 .defaultRecipe()
                 .copyParentDrop()
                 .setTabKey(CreativeModeTabs.BUILDING_BLOCKS)
-                .createPaletteFromOak(p -> {
+                .createPaletteFromPlanks(p -> {
 
                     while (p.size() > 7) {
                         p.remove(p.getDarkest());

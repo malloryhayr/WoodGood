@@ -238,7 +238,7 @@ public class MacawWindowsModule extends SimpleModule {
                 .addTag(modRes("shutters"), Registries.BLOCK)
                 .addTexture(modRes("block/oak_shutter"))
                 .setTabKey(tab)
-                .createPaletteFromOak(this::shutterPalette)
+                .createPaletteFromPlanks(this::shutterPalette)
                 .setRenderType(RenderLayer.CUTOUT)
                 .defaultRecipe()
                 .build();
@@ -252,7 +252,7 @@ public class MacawWindowsModule extends SimpleModule {
                 .addTag(modRes("shutters"), Registries.BLOCK)
                 .addTexture(modRes("block/oak_louvered_shutter"))
                 .setTabKey(tab)
-                .createPaletteFromOak(this::shutterPalette)
+                .createPaletteFromPlanks(this::shutterPalette)
                 .setRenderType(RenderLayer.CUTOUT)
                 .defaultRecipe()
                 .build();

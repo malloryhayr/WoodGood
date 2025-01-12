@@ -43,7 +43,7 @@ public class CreateModule extends SimpleModule {
                 .setTabKey(tab)
                 .defaultRecipe()
                 .setRenderType(RenderLayer.CUTOUT_MIPPED)
-                .createPaletteFromOak(p -> p.remove(p.getDarkest()))
+                .createPaletteFromPlanks(p -> p.remove(p.getDarkest()))
                 .addTextureM(modRes("block/palettes/oak_window"), EveryCompat.res("block/palettes/oak_window_m"))
                 .addTextureM(modRes("block/palettes/oak_window_connected"), EveryCompat.res("block/palettes/oak_window_connected_m"))
                 .build();

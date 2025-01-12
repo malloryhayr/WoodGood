@@ -28,8 +28,6 @@ import org.dawnoftimebuilder.block.templates.PergolaBlock;
 import org.dawnoftimebuilder.block.templates.PlateBlock;
 import org.dawnoftimebuilder.block.templates.SupportBeamBlock;
 import org.dawnoftimebuilder.block.templates.SupportSlabBlock;
-import org.dawnoftimebuilder.registry.DoTBBlockEntitiesRegistry;
-import org.dawnoftimebuilder.registry.DoTBCreativeModeTabsRegistry;
 import org.dawnoftimebuilder.util.VoxelShapes;
 
 
@@ -77,7 +75,7 @@ public class DawnOfTimeModule extends SimpleModule {
                         w -> new PergolaBlock(Utils.copyPropertySafe(w.log).ignitedByLava()))
                 .addTextureM(modRes("block/oak_pergola"), EveryCompat.res("block/dot/oak_pergola_m"))
                 .addTag(BlockTags.MINEABLE_WITH_AXE, Registries.BLOCK)
-                .createPaletteFromOak(this::dullPalette)
+                .createPaletteFromPlanks(this::dullPalette)
                 .setRenderType(RenderLayer.CUTOUT_MIPPED)
                 .defaultRecipe()
                 .setTabKey(tab)
@@ -100,7 +98,7 @@ public class DawnOfTimeModule extends SimpleModule {
                         w -> new BeamBlock(Utils.copyPropertySafe(w.log).ignitedByLava()))
                 .addTextureM(modRes("block/oak_beam"), EveryCompat.res("block/dot/oak_beam_m"))
                 .addTag(BlockTags.MINEABLE_WITH_AXE, Registries.BLOCK)
-                .createPaletteFromOak(this::dullPalette)
+                .createPaletteFromPlanks(this::dullPalette)
                 .setRenderType(RenderLayer.CUTOUT_MIPPED)
                 .defaultRecipe()
                 .setTabKey(tab)
@@ -115,7 +113,7 @@ public class DawnOfTimeModule extends SimpleModule {
                 .addTag(BlockTags.WALLS, Registries.BLOCK)
                 .addTag(ItemTags.WALLS, Registries.ITEM)
                 .addTag(ItemTags.WALLS, Registries.ITEM)
-                .createPaletteFromOak(this::dullPalette)
+                .createPaletteFromPlanks(this::dullPalette)
                 .defaultRecipe()
                 .setTabKey(tab)
                 .build();
@@ -125,7 +123,7 @@ public class DawnOfTimeModule extends SimpleModule {
                         getModBlock("oak_support_beam"), () -> WoodTypeRegistry.OAK_TYPE,
                         w -> new SupportBeamBlock(Utils.copyPropertySafe(w.planks).ignitedByLava()))
                 .addTag(BlockTags.MINEABLE_WITH_AXE, Registries.BLOCK)
-                .createPaletteFromOak(this::dullPalette)
+                .createPaletteFromPlanks(this::dullPalette)
                 .defaultRecipe()
                 .setTabKey(tab)
                 .build();
@@ -180,7 +178,7 @@ public class DawnOfTimeModule extends SimpleModule {
                 .addTag(BlockTags.MINEABLE_WITH_AXE, Registries.BLOCK)
                 .addTexture(modRes("block/spruce_low_table"))
                 .addTile(getModTile("displayer"))
-                .createPaletteFromOak(this::dullPalette)
+                .createPaletteFromPlanks(this::dullPalette)
                 .defaultRecipe()
                 .setTabKey(tab)
                 .build();
@@ -193,7 +191,7 @@ public class DawnOfTimeModule extends SimpleModule {
                                 VoxelShapes.SPRUCE_LEGLESS_CHAIR_SHAPES))
                 .addTextureM(modRes("block/spruce_legless_chair"), EveryCompat.res("block/dot/spruce_legless_chair_m"))
                 .addTag(BlockTags.MINEABLE_WITH_AXE, Registries.BLOCK)
-                .createPaletteFromOak(this::dullPalette)
+                .createPaletteFromPlanks(this::dullPalette)
                 .defaultRecipe()
                 .setTabKey(tab)
                 .build();
