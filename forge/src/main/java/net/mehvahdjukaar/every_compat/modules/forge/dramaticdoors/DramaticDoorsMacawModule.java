@@ -73,7 +73,6 @@ public class DramaticDoorsMacawModule extends SimpleModule {
                 .setRenderType(RenderLayer.CUTOUT)
                 .setTabKey(tab)
                 .copyParentDrop()
-                .defaultRecipe()
                 .build();
         this.addEntry(tallBarnDoors);
 
@@ -97,7 +96,6 @@ public class DramaticDoorsMacawModule extends SimpleModule {
                 .setRenderType(RenderLayer.CUTOUT)
                 .setTabKey(tab)
                 .copyParentDrop()
-                .defaultRecipe()
                 .build();
         this.addEntry(tallBarnGlassDoors);
 
@@ -121,7 +119,6 @@ public class DramaticDoorsMacawModule extends SimpleModule {
                 .setRenderType(RenderLayer.CUTOUT)
                 .setTabKey(tab)
                 .copyParentDrop()
-                .defaultRecipe()
                 .build();
         this.addEntry(tallStableDoors);
 
@@ -145,7 +142,6 @@ public class DramaticDoorsMacawModule extends SimpleModule {
                 .setRenderType(RenderLayer.CUTOUT)
                 .setTabKey(tab)
                 .copyParentDrop()
-                .defaultRecipe()
                 .build();
         this.addEntry(tallStableHeadDoors);
 
@@ -167,7 +163,6 @@ public class DramaticDoorsMacawModule extends SimpleModule {
                 .setRenderType(RenderLayer.CUTOUT)
                 .setTabKey(tab)
                 .copyParentDrop()
-                .defaultRecipe()
                 .build();
         this.addEntry(tallBarkGlassDoors);
 
@@ -191,7 +186,6 @@ public class DramaticDoorsMacawModule extends SimpleModule {
                 .setRenderType(RenderLayer.CUTOUT)
                 .setTabKey(tab)
                 .copyParentDrop()
-                .defaultRecipe()
                 .build();
         this.addEntry(tallGlassDoors);
 
@@ -215,7 +209,6 @@ public class DramaticDoorsMacawModule extends SimpleModule {
                 .setRenderType(RenderLayer.CUTOUT)
                 .setTabKey(tab)
                 .copyParentDrop()
-                .defaultRecipe()
                 .build();
         this.addEntry(tallModernDoors);
 
@@ -239,7 +232,6 @@ public class DramaticDoorsMacawModule extends SimpleModule {
                 .setRenderType(RenderLayer.CUTOUT)
                 .setTabKey(tab)
                 .copyParentDrop()
-                .defaultRecipe()
                 .build();
         this.addEntry(tallShojiDoors);
 
@@ -263,7 +255,6 @@ public class DramaticDoorsMacawModule extends SimpleModule {
                 .setRenderType(RenderLayer.CUTOUT)
                 .setTabKey(tab)
                 .copyParentDrop()
-                .defaultRecipe()
                 .build();
         this.addEntry(tallShojiWholeDoors);
 
@@ -287,7 +278,6 @@ public class DramaticDoorsMacawModule extends SimpleModule {
                 .setRenderType(RenderLayer.CUTOUT)
                 .setTabKey(tab)
                 .copyParentDrop()
-                .defaultRecipe()
                 .build();
         this.addEntry(tallClassicDoors);
 
@@ -311,7 +301,6 @@ public class DramaticDoorsMacawModule extends SimpleModule {
                 .setRenderType(RenderLayer.CUTOUT)
                 .setTabKey(tab)
                 .copyParentDrop()
-                .defaultRecipe()
                 .build();
         this.addEntry(tallCottageDoors);
 
@@ -335,7 +324,6 @@ public class DramaticDoorsMacawModule extends SimpleModule {
                 .setRenderType(RenderLayer.CUTOUT)
                 .setTabKey(tab)
                 .copyParentDrop()
-                .defaultRecipe()
                 .build();
         this.addEntry(tallPaperDoors);
 
@@ -359,7 +347,6 @@ public class DramaticDoorsMacawModule extends SimpleModule {
                 .setRenderType(RenderLayer.CUTOUT)
                 .setTabKey(tab)
                 .copyParentDrop()
-                .defaultRecipe()
                 .build();
         this.addEntry(tallBeachDoors);
 
@@ -383,7 +370,6 @@ public class DramaticDoorsMacawModule extends SimpleModule {
                 .setRenderType(RenderLayer.CUTOUT)
                 .setTabKey(tab)
                 .copyParentDrop()
-                .defaultRecipe()
                 .build();
         this.addEntry(tallTropicalDoors);
 
@@ -407,7 +393,6 @@ public class DramaticDoorsMacawModule extends SimpleModule {
                 .setRenderType(RenderLayer.CUTOUT)
                 .setTabKey(tab)
                 .copyParentDrop()
-                .defaultRecipe()
                 .build();
         this.addEntry(tallFourPanelDoors);
 
@@ -432,7 +417,6 @@ public class DramaticDoorsMacawModule extends SimpleModule {
                 .setRenderType(RenderLayer.CUTOUT)
                 .setTabKey(tab)
                 .copyParentDrop()
-                .defaultRecipe()
                 .build();
         this.addEntry(tallSwampDoors);
 
@@ -456,7 +440,6 @@ public class DramaticDoorsMacawModule extends SimpleModule {
                 .setRenderType(RenderLayer.CUTOUT)
                 .setTabKey(tab)
                 .copyParentDrop()
-                .defaultRecipe()
                 .build();
         this.addEntry(tallNetherDoors);
 
@@ -480,7 +463,6 @@ public class DramaticDoorsMacawModule extends SimpleModule {
                 .setRenderType(RenderLayer.CUTOUT)
                 .setTabKey(tab)
                 .copyParentDrop()
-                .defaultRecipe()
                 .build();
         this.addEntry(tallMysticDoors);
     }
