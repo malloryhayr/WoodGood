@@ -155,6 +155,9 @@ dependencies {
             // REQUIRED - but ONLY FOR TESTING
     modRuntimeOnly("curse.maven:terrablender-563928:5378180") // v3.0.1.7 | BOP, Regions-Unexplored
     modRuntimeOnly("curse.maven:glitchcore-955399:5787839") // v0.0.1.1 | BOP
+    modRuntimeOnly("curse.maven:aether-255308:5889509") // v0.0.1.1 | BOP
+    modRuntimeOnly("curse.maven:ancient-aether-886751:6013933") // v0.0.1.1 | BOP
+    modRuntimeOnly("curse.maven:aeroblender-879879:4789008") // v0.0.1.1 | BOP
 
 //!! ================================================== IMPORTS ===================================================== \\
     //!! ONLY FOR TESTING - can be commented out or enabled
