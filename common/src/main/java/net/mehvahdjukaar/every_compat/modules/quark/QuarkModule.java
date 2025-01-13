@@ -242,7 +242,7 @@ public class QuarkModule extends SimpleModule {
                 .addTag(BlockTags.MINEABLE_WITH_AXE, Registries.BLOCK)
                 .addTag(new ResourceLocation("quark:revertable_chests"), Registries.ITEM)
                 .addTile(CompatChestBlockTile::new)
-                .addCondition(w -> !w.getId().toString().equals("twilightforest:dark"))
+                .excludeBlockTypes("twilightforest", "dark")
                 .addRecipe(modRes("building/crafting/chests/oak_chest"))
                 .build();
         this.addEntry(chests);

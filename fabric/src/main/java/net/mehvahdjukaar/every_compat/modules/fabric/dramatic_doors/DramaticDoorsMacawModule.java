@@ -413,7 +413,7 @@ public class DramaticDoorsMacawModule extends SimpleModule {
                 .addTag(modRes("tall_doors"), Registries.ITEM)
                 .addTag(modRes("tall_wooden_doors"), Registries.ITEM)
                 .addTag(modRes("categories/tall_macaw_doors"), Registries.ITEM)
-                .createPaletteFromOak(this::swampDoorPalette)
+                .createPaletteFromPlanks(this::swampDoorPalette)
                 .setRenderType(RenderLayer.CUTOUT)
                 .setTabKey(tab)
                 .copyParentDrop()

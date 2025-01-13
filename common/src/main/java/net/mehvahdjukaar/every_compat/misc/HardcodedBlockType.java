@@ -38,6 +38,12 @@ public class HardcodedBlockType {
 
 
             /// ========== INCLUDE ========== \\\
+        // blocks of The-Twilight-Forest's Mangrove aren't generated from Multiple SupportedMods
+        if (isWoodRegistryOf("", "q|c|hnhome|vf", "", "twilightforest:mangrove", "")) return false;
+
+        // chests & ladders from Quark aren't generated with Abnormal's Wood mods
+        if (isWoodRegistryOf("quark", "", "upgrade_aquatic|autumnity|atmospheric|environmental", "", "")) return false;
+
         // Better Nether & Better End have stripped_bark as stripped_wood but bark from Bewitchment caused EC to skip
         if (isWoodRegistryOf("", "bw", "betternether|betterend", "", "")) return false;
 
@@ -56,9 +62,6 @@ public class HardcodedBlockType {
 
         //ecologics and quark azalea. tbh not sure why needed
         if (isWoodRegistryOf("quark", "", "", "ecologics:azalea", "")) return false;
-
-        //also this is wrong & //mangrove waaa so much pain (mehvahdjukaar
-        if (isWoodRegistryOf("", "", "", "twilightforest:mangrove", "mangrove_chest")) return false;
 
         // what's the reason for below? | hardcoding
         if (isWoodRegistryOf("", "af", "", "", "")) return false;

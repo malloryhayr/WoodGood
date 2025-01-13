@@ -616,13 +616,12 @@ public abstract class AbstractSimpleEntrySet<T extends BlockType, B extends Bloc
         }
 
         //only works for oak type. Will fail if its used on leaves
-        public BL createPaletteFromOak(Consumer<Palette> paletteTransform) {
+        public BL createPaletteFromPlanks(Consumer<Palette> paletteTransform) {
             return createPaletteFromChild(paletteTransform, "planks");
         }
 
-        public BL createPaletteFromOak() {
-            return createPaletteFromOak(p -> {
-            });
+        public BL createPaletteFromPlanks() {
+            return createPaletteFromPlanks(p -> {});
         }
 
         public BL createPaletteFromChild(Consumer<Palette> paletteTransform, String childKey) {
@@ -630,23 +629,21 @@ public abstract class AbstractSimpleEntrySet<T extends BlockType, B extends Bloc
         }
 
         public BL createPaletteFromChild(String childKey, Predicate<String> whichSide) {
-            return createPaletteFromChild(p -> {
-            }, childKey, whichSide);
+            return createPaletteFromChild(p -> {}, childKey, whichSide);
         }
 
         public BL createPaletteFromChild(String childKey) {
-            return createPaletteFromChild(p -> {
-            }, childKey, null);
+            return createPaletteFromChild(p -> {}, childKey, null);
         }
 
         public BL createPaletteFromChild(Consumer<Palette> paletteTransform, String childKey, Predicate<String> whichSide) {
-            return this.setPalette((w, m) -> makePaletteFromChild(paletteTransform, childKey, whichSide, w, m));
+            return this.setPalette((blockType, m) -> makePaletteFromChild(paletteTransform, childKey, whichSide, w, m));
         }
     }
 
     // utility function
     public static <T extends BlockType> @NotNull Pair<List<Palette>, @Nullable AnimationMetadataSection> makePaletteFromChild(Consumer<Palette> paletteTransform, String childKey, Predicate<String> whichSide, T w, ResourceManager m) {
-        var c = w.getChild(childKey);
+        var c = blockType.getChild(childKey);
         if (c instanceof Block b) {
             if (whichSide != null) {
                 try (TextureImage blockTexture = TextureImage.open(m,
@@ -656,7 +653,7 @@ public abstract class AbstractSimpleEntrySet<T extends BlockType, B extends Bloc
                     targetPalette.forEach(paletteTransform);
                     return Pair.of(targetPalette, blockTexture.getMetadata());
                 } catch (Exception e) {
-                    throw new RuntimeException(String.format("Failed to generate palette for %s : %s", w, e));
+                    throw new RuntimeException(String.format("Failed to generate palette for %s : %s", blockType, e));
                 }
             } else { // whichSide should be defaulted to use top_texture -Xelbayria's assumption
                 try (TextureImage plankTexture = TextureImage.open(m,
@@ -666,7 +663,7 @@ public abstract class AbstractSimpleEntrySet<T extends BlockType, B extends Bloc
                     targetPalette.forEach(paletteTransform);
                     return Pair.of(targetPalette, plankTexture.getMetadata());
                 } catch (Exception e) {
-                    throw new RuntimeException(String.format("Failed to generate palette for %s : %s", w, e));
+                    throw new RuntimeException(String.format("Failed to generate palette for %s : %s", blockType, e));
                 }
             }
         } else if (c instanceof Item i) {
@@ -677,17 +674,16 @@ public abstract class AbstractSimpleEntrySet<T extends BlockType, B extends Bloc
                 targetPalette.forEach(paletteTransform);
                 return Pair.of(targetPalette, plankTexture.getMetadata());
             } catch (Exception e) {
-                throw new RuntimeException(String.format("Failed to generate palette for %s : %s", w, e));
+                throw new RuntimeException(String.format("Failed to generate palette for %s : %s", blockType, e));
             }
         }
         throw new RuntimeException("No child with key " + childKey + " found");
     }
 
 
-    //for null tab
-
     @Nullable
     @Override
+    //for null tab
     public Item getItemForECTab(T type) {
         if (tab == null) {
             if (PlatHelper.isDev()) {

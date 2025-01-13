@@ -151,12 +151,16 @@ public class BuildingButBetterModule extends SimpleModule {
                 .build();
         this.addEntry(supports);
 
-        ResourceLocation frameTexture = (Objects.equals(PlatHelper.getModVersion("bbb"), "1.1.1"))
-                ? modRes("block/frame/oak")
-                : modRes("block/frame/oak_frame");
-        ResourceLocation stickTexture = (Objects.equals(PlatHelper.getModVersion("bbb"), "1.1.1"))
-                ? modRes("block/frame/oak_sticks")
-                : modRes("block/frame/oak_frame_sticks");
+        ResourceLocation frameTexture;
+        ResourceLocation stickTexture;
+        if (PlatHelper.getModVersion("bbb").contains("1.0.1")) {
+            frameTexture = modRes("block/frame/oak_frame");
+            stickTexture = modRes("block/frame/oak_frame_sticks");
+        }
+        else { // v1.1.1
+            frameTexture = modRes("block/frame/oak");
+            stickTexture = modRes("block/frame/oak_sticks");
+        }
 
         frames = SimpleEntrySet.builder(WoodType.class, "frame",
                         getModBlock("oak_frame"), () -> WoodTypeRegistry.OAK_TYPE,

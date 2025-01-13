@@ -50,7 +50,7 @@ public class XercaModule extends SimpleModule {
                 .addTexture(modRes("block/carved_wood/carved_warped_1_side_abcd"))
                 .addRecipe(modRes("carving/carved_warped_1_from_warped_log_carving"))
                 .addRecipe(modRes("carving/carved_warped_1_from_stripped_warped_log_carving"))
-                .createPaletteFromOak(this::darkestPalette)
+                .createPaletteFromPlanks(this::darkestPalette)
                 .setTabKey(tab)
                 .build();
         this.addEntry(carved1);
@@ -64,7 +64,7 @@ public class XercaModule extends SimpleModule {
                 .addTexture(modRes("block/carved_wood/carved_warped_2_side_abcd"))
                 .addRecipe(modRes("carving/carved_warped_2_from_warped_log_carving"))
                 .addRecipe(modRes("carving/carved_warped_2_from_stripped_warped_log_carving"))
-                .createPaletteFromOak(this::darkestestPalette)
+                .createPaletteFromPlanks(this::darkestestPalette)
                 .setTabKey(tab)
                 .build();
         this.addEntry(carved2);
@@ -78,7 +78,7 @@ public class XercaModule extends SimpleModule {
                 .addTexture(modRes("block/carved_wood/carved_warped_3_side_abcd"))
                 .addRecipe(modRes("carving/carved_warped_3_from_warped_log_carving"))
                 .addRecipe(modRes("carving/carved_warped_3_from_stripped_warped_log_carving"))
-                .createPaletteFromOak(this::darkestestPalette)
+                .createPaletteFromPlanks(this::darkestestPalette)
                 .setTabKey(tab)
                 .build();
         this.addEntry(carved3);
@@ -92,7 +92,7 @@ public class XercaModule extends SimpleModule {
                 .addTexture(modRes("block/carved_wood/carved_warped_4_side_abcd"))
                 .addRecipe(modRes("carving/carved_warped_4_from_warped_log_carving"))
                 .addRecipe(modRes("carving/carved_warped_4_from_stripped_warped_log_carving"))
-                .createPaletteFromOak(this::darkestestPalette)
+                .createPaletteFromPlanks(this::darkestestPalette)
                 .setTabKey(tab)
                 .build();
         this.addEntry(carved4);
@@ -107,7 +107,7 @@ public class XercaModule extends SimpleModule {
                 .addTexture(modRes("block/carved_wood/carved_warped_5_side_cd"))
                 .addRecipe(modRes("carving/carved_warped_5_from_warped_log_carving"))
                 .addRecipe(modRes("carving/carved_warped_5_from_stripped_warped_log_carving"))
-                .createPaletteFromOak(this::darkestestPalette)
+                .createPaletteFromPlanks(this::darkestestPalette)
                 .setTabKey(tab)
                 .build();
         this.addEntry(carved5);
@@ -125,7 +125,7 @@ public class XercaModule extends SimpleModule {
                 .addTexture(modRes("block/carved_wood/carved_warped_6_side_d"))
                 .addRecipe(modRes("carving/carved_warped_6_from_warped_log_carving"))
                 .addRecipe(modRes("carving/carved_warped_6_from_stripped_warped_log_carving"))
-                .createPaletteFromOak(this::darkerPalette)
+                .createPaletteFromPlanks(this::darkerPalette)
                 .setTabKey(tab)
                 .build();
         this.addEntry(carved6);
@@ -140,7 +140,7 @@ public class XercaModule extends SimpleModule {
                 .addTexture(modRes("block/carved_wood/carved_warped_7_side_bcd"))
                 .addRecipe(modRes("carving/carved_warped_7_from_warped_log_carving"))
                 .addRecipe(modRes("carving/carved_warped_7_from_stripped_warped_log_carving"))
-                .createPaletteFromOak(this::nuetralPalette)
+                .createPaletteFromPlanks(this::nuetralPalette)
                 .setTabKey(tab)
                 .build();
         this.addEntry(carved7);
@@ -154,7 +154,7 @@ public class XercaModule extends SimpleModule {
                 .addTexture(modRes("block/carved_wood/carved_warped_8_side_abcd"))
                 .addRecipe(modRes("carving/carved_warped_8_from_warped_log_carving"))
                 .addRecipe(modRes("carving/carved_warped_8_from_stripped_warped_log_carving"))
-                .createPaletteFromOak(this::nuetralPalette)
+                .createPaletteFromPlanks(this::nuetralPalette)
                 .setTabKey(tab)
                 .build();
         this.addEntry(carved8);

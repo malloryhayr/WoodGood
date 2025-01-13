@@ -174,7 +174,7 @@ public class MacawTrapdoorsModule extends SimpleModule {
                 .setTabKey(tab)
                 .defaultRecipe()
                 .setRenderType(RenderLayer.CUTOUT)
-                .createPaletteFromOak(p -> p.remove(p.getDarkest()))
+                .createPaletteFromPlanks(p -> p.remove(p.getDarkest()))
                 .addTextureM(modRes("block/glass/oak_glass_trapdoor"), EveryCompat.res("block/mcw/trapdoors/oak_glass_trapdoor_m"))
                 .build();
         this.addEntry(GLASS_TRAPDOORS);
@@ -191,7 +191,7 @@ public class MacawTrapdoorsModule extends SimpleModule {
                 .addTag(ItemTags.WOODEN_TRAPDOORS, Registries.ITEM)
                 .setTabKey(tab)
                 .addTexture(modRes("block/bamboo/oak_bamboo_trapdoor"))
-                .createPaletteFromOak(p -> p.remove(p.getDarkest()))
+                .createPaletteFromPlanks(p -> p.remove(p.getDarkest()))
                 .setRenderType(RenderLayer.CUTOUT)
                 .defaultRecipe()
                 .build();
@@ -227,7 +227,7 @@ public class MacawTrapdoorsModule extends SimpleModule {
                 .setTabKey(tab)
                 .defaultRecipe()
                 .setRenderType(RenderLayer.CUTOUT)
-                .createPaletteFromOak(p -> p.remove(p.getDarkest()))
+                .createPaletteFromPlanks(p -> p.remove(p.getDarkest()))
                 .addTextureM(modRes("block/paper/oak_paper_trapdoor"), EveryCompat.res("block/mcw/trapdoors/oak_paper_trapdoor_m"))
                 .build();
         this.addEntry(PAPER_TRAPDOORS);
@@ -263,7 +263,7 @@ public class MacawTrapdoorsModule extends SimpleModule {
                 .setTabKey(tab)
                 .defaultRecipe()
                 .setRenderType(RenderLayer.CUTOUT)
-                .createPaletteFromOak(this::swampTrapdoorPalette)
+                .createPaletteFromPlanks(this::swampTrapdoorPalette)
                 .addTexture(modRes("block/swamp/oak_swamp_trapdoor"))
                 .build();
         this.addEntry(SWAMP_TRAPDOORS);

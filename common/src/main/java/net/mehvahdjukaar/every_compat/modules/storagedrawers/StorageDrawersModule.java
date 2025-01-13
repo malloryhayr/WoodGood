@@ -4,7 +4,6 @@ import com.jaquadro.minecraft.storagedrawers.ModConstants;
 import com.jaquadro.minecraft.storagedrawers.block.BlockDrawers;
 import com.jaquadro.minecraft.storagedrawers.block.BlockStandardDrawers;
 import com.jaquadro.minecraft.storagedrawers.block.BlockTrim;
-import com.jaquadro.minecraft.storagedrawers.core.ModBlocks;
 import net.mehvahdjukaar.every_compat.api.SimpleEntrySet;
 import net.mehvahdjukaar.every_compat.api.SimpleModule;
 import net.mehvahdjukaar.every_compat.dynamicpack.ClientDynamicResourcesHandler;
@@ -49,7 +48,7 @@ public class StorageDrawersModule extends SimpleModule {
                 .setTabKey(tab)
                 .defaultRecipe()
                 .addTile(getModTile("standard_drawers_1"))
-                .createPaletteFromOak(this::drawersPalette)
+                .createPaletteFromPlanks(this::drawersPalette)
                 .addTexture(modRes("block/drawers_oak_front_1"))
                 .addTexture(modRes("block/drawers_oak_side"))
                 .addTexture(modRes("block/drawers_oak_sort"))
@@ -68,7 +67,7 @@ public class StorageDrawersModule extends SimpleModule {
                 .setTabKey(tab)
                 .defaultRecipe()
                 .addTile(getModTile("standard_drawers_2"))
-                .createPaletteFromOak(this::drawersPalette)
+                .createPaletteFromPlanks(this::drawersPalette)
                 .addTexture(modRes("block/drawers_oak_front_2"))
                 .addTexture(modRes("block/drawers_oak_side"))
                 .addTexture(modRes("block/drawers_oak_sort"))
@@ -87,7 +86,7 @@ public class StorageDrawersModule extends SimpleModule {
                 .setTabKey(tab)
                 .defaultRecipe()
                 .addTile(getModTile("standard_drawers_4"))
-                .createPaletteFromOak(this::drawersPalette)
+                .createPaletteFromPlanks(this::drawersPalette)
                 .addTexture(modRes("block/drawers_oak_front_4"))
                 .addTexture(modRes("block/drawers_oak_side"))
                 .addTexture(modRes("block/drawers_oak_sort"))
@@ -107,7 +106,7 @@ public class StorageDrawersModule extends SimpleModule {
                 .setTabKey(tab)
                 .defaultRecipe()
                 .addTile(getModTile("standard_drawers_1"))
-                .createPaletteFromOak(this::drawersPalette)
+                .createPaletteFromPlanks(this::drawersPalette)
                 .addTexture(modRes("block/drawers_oak_front_1"))
                 .addTexture(modRes("block/drawers_oak_side"))
                 .addTexture(modRes("block/drawers_oak_side_h"))
@@ -128,7 +127,7 @@ public class StorageDrawersModule extends SimpleModule {
                 .setTabKey(tab)
                 .defaultRecipe()
                 .addTile(getModTile("standard_drawers_2"))
-                .createPaletteFromOak(this::drawersPalette)
+                .createPaletteFromPlanks(this::drawersPalette)
                 .addTexture(modRes("block/drawers_oak_front_2"))
                 .addTexture(modRes("block/drawers_oak_side"))
                 .addTexture(modRes("block/drawers_oak_side_h"))
@@ -149,7 +148,7 @@ public class StorageDrawersModule extends SimpleModule {
                 .setTabKey(tab)
                 .defaultRecipe()
                 .addTile(getModTile("standard_drawers_4"))
-                .createPaletteFromOak(this::drawersPalette)
+                .createPaletteFromPlanks(this::drawersPalette)
                 .addTexture(modRes("block/drawers_oak_front_4"))
                 .addTexture(modRes("block/drawers_oak_side"))
                 .addTexture(modRes("block/drawers_oak_side_h"))
@@ -165,7 +164,7 @@ public class StorageDrawersModule extends SimpleModule {
                 .addTag(BlockTags.MINEABLE_WITH_AXE, Registries.BLOCK)
                 .setTabKey(tab)
                 .defaultRecipe()
-                .createPaletteFromOak(this::trimPalette)
+                .createPaletteFromPlanks(this::trimPalette)
                 .addTexture(modRes("block/drawers_oak_trim"))
                 .build();
         this.addEntry(TRIMS);

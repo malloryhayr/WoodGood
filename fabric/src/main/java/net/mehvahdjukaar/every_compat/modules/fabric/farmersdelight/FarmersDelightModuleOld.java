@@ -40,7 +40,7 @@ public class FarmersDelightModuleOld extends SimpleModule {
                 .defaultRecipe()
                 .addTile(BlockEntityTypesRegistry.CABINET::get)
                 .setTabKey(FarmersDelightMod.ITEM_GROUP)
-                .createPaletteFromOak(Palette::increaseDown)
+                .createPaletteFromPlanks(Palette::increaseDown)
                 .addTexture(EveryCompat.res("block/oak_cabinet_front"))
                 .addTexture(EveryCompat.res("block/oak_cabinet_side"))
                 .addTexture(EveryCompat.res("block/oak_cabinet_top"))
