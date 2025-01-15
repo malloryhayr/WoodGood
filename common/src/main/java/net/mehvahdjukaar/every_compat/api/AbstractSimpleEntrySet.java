@@ -53,7 +53,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 //contrary to popular belief this class is indeed not simple. Its usage however is
-@SuppressWarnings("unused")
+@SuppressWarnings({"unused", "removal"})
 public abstract class AbstractSimpleEntrySet<T extends BlockType, B extends Block, I extends Item> implements EntrySet<T> {
 
     protected static final ResourceLocation NO_TAB_MARKER = new ResourceLocation("none");
@@ -637,14 +637,14 @@ public abstract class AbstractSimpleEntrySet<T extends BlockType, B extends Bloc
         }
 
         public BL createPaletteFromChild(Consumer<Palette> paletteTransform, String childKey, Predicate<String> whichSide) {
-            return this.setPalette((blockType, m) -> makePaletteFromChild(paletteTransform, childKey, whichSide, w, m));
+            return this.setPalette((blockType, m) -> makePaletteFromChild(paletteTransform, childKey, whichSide, blockType, m));
         }
     }
 
     // utility function
-    public static <T extends BlockType> @NotNull Pair<List<Palette>, @Nullable AnimationMetadataSection> makePaletteFromChild(Consumer<Palette> paletteTransform, String childKey, Predicate<String> whichSide, T w, ResourceManager m) {
-        var c = blockType.getChild(childKey);
-        if (c instanceof Block b) {
+    public static <T extends BlockType> @NotNull Pair<List<Palette>, @Nullable AnimationMetadataSection> makePaletteFromChild(Consumer<Palette> paletteTransform, String childKey, Predicate<String> whichSide, T blockType, ResourceManager m) {
+        var child = blockType.getChild(childKey);
+        if (child instanceof Block b) {
             if (whichSide != null) {
                 try (TextureImage blockTexture = TextureImage.open(m,
                         RPUtils.findFirstBlockTextureLocation(m, b, whichSide))) {
@@ -655,7 +655,7 @@ public abstract class AbstractSimpleEntrySet<T extends BlockType, B extends Bloc
                 } catch (Exception e) {
                     throw new RuntimeException(String.format("Failed to generate palette for %s : %s", blockType, e));
                 }
-            } else { // whichSide should be defaulted to use top_texture -Xelbayria's assumption
+            } else { // whichSide should be defaulted to use all_texture (like planks)  -Xelbayria's assumption
                 try (TextureImage plankTexture = TextureImage.open(m,
                         RPUtils.findFirstBlockTextureLocation(m, b))) {
 
@@ -666,7 +666,7 @@ public abstract class AbstractSimpleEntrySet<T extends BlockType, B extends Bloc
                     throw new RuntimeException(String.format("Failed to generate palette for %s : %s", blockType, e));
                 }
             }
-        } else if (c instanceof Item i) {
+        } else if (child instanceof Item i) {
             try (TextureImage plankTexture = TextureImage.open(m,
                     RPUtils.findFirstItemTextureLocation(m, i))) {
 
