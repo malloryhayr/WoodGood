@@ -3,7 +3,6 @@ package net.mehvahdjukaar.every_compat.modules.mrcrayfish;
 import com.mrcrayfish.backpacked.block.ShelfBlock;
 import com.mrcrayfish.backpacked.core.ModBlockEntities;
 import com.mrcrayfish.backpacked.core.ModBlocks;
-import com.mrcrayfish.backpacked.core.ModCreativeTabs;
 import net.mehvahdjukaar.every_compat.api.RenderLayer;
 import net.mehvahdjukaar.every_compat.api.SimpleEntrySet;
 import net.mehvahdjukaar.every_compat.api.SimpleModule;
@@ -27,7 +26,7 @@ public class BackpackedModule extends SimpleModule {
                         w -> new ShelfBlock(Utils.copyPropertySafe(w.planks)))
                 .requiresChildren("stripped_log")
                 .addTag(BlockTags.MINEABLE_WITH_AXE, Registries.BLOCK)
-                .setTab(ModCreativeTabs.MAIN::get)
+                .setTabKey(modRes("creative_tab"))
                 .addRecipe(modRes("oak_backpack_shelf"))
                 .addTile(ModBlockEntities.SHELF::get)
                 .setRenderType(RenderLayer.CUTOUT)
