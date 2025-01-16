@@ -38,8 +38,8 @@ public class HardcodedBlockType {
 
 
             /// ========== INCLUDE ========== \\\
-        // blocks of The-Twilight-Forest's Mangrove aren't generated from Multiple SupportedMods
-        if (isWoodRegistryOf("", "q|c|hnhome|vf", "", "twilightforest:mangrove", "")) return false;
+        // Minecraft has "mangrove" that caused the generation of blocks with The-Twilight-Forest's mangrove to be skipped.
+        if (isWoodRegistryOf("", "", "", "twilightforest:mangrove", "")) return false;
 
         // chests & ladders from Quark aren't generated with Abnormal's Wood mods
         if (isWoodRegistryOf("quark", "", "upgrade_aquatic|autumnity|atmospheric|environmental", "", "")) return false;
