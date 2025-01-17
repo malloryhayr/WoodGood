@@ -45,6 +45,10 @@ public class SpriteHelper {
         addOptional("minecraft:mushroom_stem", "_side", "minecraft:block/mushroom_stem");
         addOptional("minecraft:mushroom_stem", "_top", "minecraft:block/mushroom_stem");
 
+        // Biomes O' Plenty
+            // Leaves
+        addOptional("biomesoplenty:null_leaves", "_leaves", "biomesoplenty:block/null_overlay");
+
         // Environmental
         addOptional("environmental:pink_wisteria_leaves", "_leaves", "environmental:block/pink_wisteria_leaves");
         addOptional("environmental:blue_wisteria_leaves", "_leaves", "environmental:block/blue_wisteria_leaves");
