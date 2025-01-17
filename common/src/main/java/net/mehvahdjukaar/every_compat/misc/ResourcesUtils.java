@@ -63,44 +63,48 @@ public class ResourcesUtils {
 
         Set<String> modelsLoc = new HashSet<>();
 
-        //blockstate
+        // Blockstate & Models
         try {
             StaticResource oakBlockstate = StaticResource.getOrFail(manager, ResType.BLOCKSTATES.getPath(oakId));
-            //models
-            JsonElement json = RPUtils.deserializeJson(new ByteArrayInputStream(oakBlockstate.data));
 
-            modelsLoc.addAll(RPUtils.findAllResourcesInJsonRecursive(json, s -> s.equals("model")));
+            JsonElement insideBlockstates = RPUtils.deserializeJson(new ByteArrayInputStream(oakBlockstate.data));
+
+            modelsLoc.addAll(RPUtils.findAllResourcesInJsonRecursive(insideBlockstates, s -> s.equals("model")));
 
             List<StaticResource> oakBlockModels = gatherNonVanillaModels(manager, modelsLoc);
 
-            blocks.forEach((w, b) -> {
-                ResourceLocation id = Utils.getID(b);
+            blocks.forEach((blockType, block) -> {
+                ResourceLocation blockId = Utils.getID(block);
                 try {
-                    if (true || ModEntriesConfigs.isEntryEnabled(w, b)) { //generating all the times otherwise we get log spam
+                    if (true || ModEntriesConfigs.isEntryEnabled(blockType, block)) { //generating all the times otherwise we get log spam
                         //creates blockstate
-                        StaticResource newBlockState = blockStateTransformer.transform(oakBlockstate, id, w);
+                        StaticResource newBlockState = blockStateTransformer.transform(oakBlockstate, blockId, blockType);
                         Preconditions.checkArgument(newBlockState.location != oakBlockstate.location,
                                 "ids cant be the same: " + newBlockState.location);
+                        //Adding to the resources
                         d.addResourceIfNotPresent(manager, newBlockState);
 
                         //creates block model
                         for (StaticResource model : oakBlockModels) {
                             try {
-                                StaticResource newModel = modelTransformer.transform(model, id, w);
+                                // Modifying models' contents & path
+                                StaticResource newModel = modelTransformer.transform(model, blockId, blockType);
+
                                 Preconditions.checkArgument(newModel.location != model.location,
                                         "ids cant be the same: " + newModel.location);
+                                //Adding to the resources
                                 d.addResourceIfNotPresent(manager, newModel);
                             } catch (Exception exception) {
-                                EveryCompat.LOGGER.error("Failed to add {} model json file:", b, exception);
+                                EveryCompat.LOGGER.error("Failed to add {} model json file:", block, exception);
                             }
                         }
                     } else {
                         //dummy blockstate so we don't generate models for this
-                        d.getPack().addJson(id, DUMMY_BLOCKSTATE, ResType.BLOCKSTATES);
+                        d.getPack().addJson(blockId, DUMMY_BLOCKSTATE, ResType.BLOCKSTATES);
                     }
 
                 } catch (Exception e) {
-                    EveryCompat.LOGGER.error("Failed to add {} blockstate json file:", b, e);
+                    EveryCompat.LOGGER.error("Failed to add {} blockstate json file:", block, e);
                 }
             });
         } catch (Exception e) {
@@ -206,7 +210,7 @@ public class ResourcesUtils {
             BlockTypeResTransformer<T> transformer, T baseType) {
         String oldTypeName = baseType.getTypeName();
 
-        // Modifying the filename of model files and its ResourceLocation
+        // Modifying models' filename & ResourceLocation
         transformer.setIDModifier((text, id, w) ->
                 BlockTypeResTransformer.replaceFullGenericType(text, w, id, oldTypeName, null, 2));
 
