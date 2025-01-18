@@ -477,24 +477,24 @@ public class DramaticDoorsMacawModule extends SimpleModule {
     public void addDynamicServerResources(ServerDynamicResourcesHandler handler, ResourceManager manager) {
 
         String recipe = """
-                {
-                  "type": "minecraft:crafting_shaped",
-                  "group": "tall_wooden_door",
-                  "pattern": [
-                    "#",
-                    "#",
-                    "#"
-                  ],
-                  "key": {
-                    "#": {
-                      "item": "[mcwdoors]"
-                    }
-                  },
-                  "result": {
-                    "id": "[ddm_doors]",
-                    "count": 2
-                  }
-                }
+        {
+          "type": "minecraft:crafting_shaped",
+          "group": "tall_wooden_door",
+          "pattern": [
+            "#",
+            "#",
+            "#"
+          ],
+          "key": {
+            "#": {
+              "item": "[mcwdoors]"
+            }
+          },
+          "result": {
+            "item": "[ddm_doors]",
+            "count": 2
+          }
+        }
         """;
 
         for (WoodType woodType : WoodTypeRegistry.getTypes()) {
