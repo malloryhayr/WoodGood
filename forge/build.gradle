@@ -121,6 +121,7 @@ dependencies {
     modRuntimeOnly("curse.maven:jade-324717:5672013")
     modRuntimeOnly("curse.maven:emi-580555:5704396")
     modRuntimeOnly("curse.maven:configured-457570:5180902")
+//    modRuntimeOnly("curse.maven:crafttweaker-239197:6082752")
 //    modRuntimeOnly("curse.maven:jei-238222:5718385")
 
 //!! ================================================ DEPENDENCIES ================================================== \\
@@ -132,9 +133,11 @@ dependencies {
 //    modRuntimeOnly("curse.maven:flib-661261:5495793") // Absent-By-Design
 //    modRuntimeOnly("curse.maven:supermartijn642s-core-lib-454372:5668859") // Rechiseled
 //    modRuntimeOnly("curse.maven:supermartijn642s-config-lib-438332:4715408") // Rechiseled
-//    modRuntimeOnly("curse.maven:curios-309927:5680164") // Malum
+//    modRuntimeOnly("curse.maven:curios-309927:5680164") // Malum, Aether
 //    modRuntimeOnly("curse.maven:lodestone-616457:5712854") // Malum
 //    modRuntimeOnly("curse.maven:geckolib-388172:5460309") //
+//    modRuntimeOnly("curse.maven:citadel-331936:5633260") // Alex's Cave, Rats
+//    modRuntimeOnly("curse.maven:structure-gel-api-378802:5188368") // Blue-Skies
 //    modRuntimeOnly("curse.maven:patchouli-306770:4636277") // v81 | TFC, Timber-Frames
 
             //!! Different MAVENS
@@ -155,9 +158,8 @@ dependencies {
             // REQUIRED - but ONLY FOR TESTING
     modRuntimeOnly("curse.maven:terrablender-563928:5378180") // v3.0.1.7 | BOP, Regions-Unexplored
     modRuntimeOnly("curse.maven:glitchcore-955399:5787839") // v0.0.1.1 | BOP
-    modRuntimeOnly("curse.maven:aether-255308:5889509") // v0.0.1.1 | BOP
-    modRuntimeOnly("curse.maven:ancient-aether-886751:6013933") // v0.0.1.1 | BOP
-    modRuntimeOnly("curse.maven:aeroblender-879879:4789008") // v0.0.1.1 | BOP
+//    modRuntimeOnly("curse.maven:aeroblender-879879:4789008") // Aether
+
 
 //!! ================================================== IMPORTS ===================================================== \\
     //!! ONLY FOR TESTING - can be commented out or enabled
@@ -170,7 +172,7 @@ dependencies {
 //    modRuntimeOnly("curse.maven:exlines-bark-carpets-527296:4094399")
 //    modRuntimeOnly("curse.maven:farmersdelight-398521:4679319")
 //    modRuntimeOnly("curse.maven:furnish-547069:4821511")
-//    modRuntimeOnly("curse.maven:handcrafted-538214:5118729")
+//    modRuntimeOnly("curse.maven:handcrafted-538214:5118729") // Resourceful-Lib
 //    modRuntimeOnly("curse.maven:friends-and-foes-forge-602059:4712044")
 //    modRuntimeOnly("curse.maven:missing-wilds-forge-634277:5053677")
 //    modRuntimeOnly("curse.maven:storage-drawers-223852:5915486")
@@ -266,11 +268,11 @@ dependencies {
 //    modRuntimeOnly("curse.maven:the-outer-end-430404:5043937") // Blueprint
 //    modRuntimeOnly("curse.maven:alexs-caves-924854:5162617") // citadel
 //    modRuntimeOnly("curse.maven:rats-323596:5904296")
-    modRuntimeOnly("curse.maven:mo-shiz-mod-62536:5587177")
+//    modRuntimeOnly("curse.maven:mo-shiz-mod-
+//    modRuntimeOnly("curse.maven:aether-255308:5889509") // Curios
+//    modRuntimeOnly("curse.maven:ancient-aether-886751:6013933") // Aether
+//    modRuntimeOnly("curse.maven:pfw-aesthetic-gems-906404:6023817")
 
 //    modRuntimeOnly("curse.maven:terrafirmacraft-302973:4862659") // patchouli
 
-    //!! Dependencies
-//    modRuntimeOnly("curse.maven:citadel-331936:5633260") // Alex's Cave, Rats
-//    modRuntimeOnly("curse.maven:structure-gel-api-378802:5188368") // Blue-Skies
 }
