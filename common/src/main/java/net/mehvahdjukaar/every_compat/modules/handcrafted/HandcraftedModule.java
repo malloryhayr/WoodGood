@@ -286,6 +286,7 @@ public class HandcraftedModule extends SimpleModule {
                 .setTabKey(tab)
                 .addCustomItem((w, b, p) -> new BlockItem(b, p))
                 .defaultRecipe()
+                .setRenderType(RenderLayer.CUTOUT)
                 .build();
         this.addEntry(shelf);
 
