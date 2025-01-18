@@ -352,7 +352,7 @@ public class ChippedModule extends SimpleModule {
                 .addTag(BlockTags.MINEABLE_WITH_AXE, Registries.BLOCK)
                 .addTag(BlockTags.PLANKS, Registries.BLOCK)
                 .addTag(ItemTags.PLANKS, Registries.ITEM)
-                .createPaletteFromPlanks(this::darkestPalette)
+                .createPaletteFromPlanks(p -> p.matchSize(15, 0.4F))
                 .setTabKey(tab)
                 .build();
         this.addEntry(doubleHerringbonePlanks);
@@ -420,7 +420,7 @@ public class ChippedModule extends SimpleModule {
                 .addTag(BlockTags.MINEABLE_WITH_AXE, Registries.BLOCK)
                 .addTag(BlockTags.PLANKS, Registries.BLOCK)
                 .addTag(ItemTags.PLANKS, Registries.ITEM)
-                .createPaletteFromPlanks(this::darkestPalette)
+                .createPaletteFromPlanks(p -> p.matchSize(15, 0.4F))
                 .setTabKey(tab)
                 .build();
         this.addEntry(herringbonePlanks);
@@ -535,7 +535,7 @@ public class ChippedModule extends SimpleModule {
                 .addTag(BlockTags.MINEABLE_WITH_AXE, Registries.BLOCK)
                 .addTag(BlockTags.PLANKS, Registries.BLOCK)
                 .addTag(ItemTags.PLANKS, Registries.ITEM)
-                .createPaletteFromPlanks(this::darkestPalette)
+                .createPaletteFromPlanks(p -> p.matchSize(15, 0.4F))
                 .setTabKey(tab)
                 .build();
         this.addEntry(slantedPlanks);
@@ -1892,9 +1892,12 @@ public class ChippedModule extends SimpleModule {
     }
 
     private void darkestPalette(Palette p) {
-        p.remove(p.getLightest());
-        p.remove(p.getLightest());
-        p.remove(p.getDarkest());
+        int leftover = p.size() - 4;
+        if (leftover > 6) {
+            p.remove(p.getLightest());
+            p.remove(p.getLightest());
+            p.remove(p.getDarkest());
+        }
     }
 
     private void panelPalette(Palette p) {
