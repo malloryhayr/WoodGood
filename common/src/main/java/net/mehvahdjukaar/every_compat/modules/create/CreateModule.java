@@ -99,6 +99,7 @@ public class CreateModule extends SimpleModule {
         super.addDynamicServerResources(handler, manager);
         if (!PlatHelper.isModLoaded("sawmill")) {
             for (WoodType w : WoodTypeRegistry.getTypes()) {
+                if (w.isVanilla()) continue;
                 if (w.getBlockOfThis("slab") != null)
                     sawRecipe(2, w.planks.asItem(), Objects.requireNonNull(w.getBlockOfThis("slab")).asItem(), null, w, handler);
 
