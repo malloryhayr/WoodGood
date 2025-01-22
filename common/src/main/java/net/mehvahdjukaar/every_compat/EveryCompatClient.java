@@ -32,7 +32,7 @@ public class EveryCompatClient {
         ClientHelper.addBlockEntityRenderersRegistration(EveryCompatClient::registerBlockEntityRenderers);
         ClientHelper.addBlockColorsRegistration(EveryCompatClient::registerBlockColors);
         ClientHelper.addItemColorsRegistration(EveryCompatClient::registerItemColors);
-        ClientDynamicResourcesHandler.INSTANCE.register();
+        ClientDynamicResourcesHandler.init();
     }
 
     private static void registerBlockColors(ClientHelper.BlockColorEvent event) {
