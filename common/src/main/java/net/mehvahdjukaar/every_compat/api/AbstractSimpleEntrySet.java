@@ -375,7 +375,8 @@ public abstract class AbstractSimpleEntrySet<T extends BlockType, B extends Bloc
                     for (var info : infoPerTextures.get(oldTextureId)) {
                         if (info != null) {
                             if (info.keepNamespace()) newId = oldTextureId.withPath(newPath).toString();
-                            else newId = new ResourceLocation(blockId.getNamespace(), newPath).toString();
+                            else
+                                newId = new ResourceLocation(blockId.getNamespace(), newPath).toString();
 
                             if (newId.isEmpty()) {
                                 EveryCompat.LOGGER.error("The path of new texture is empty for: {}", info.texture());
@@ -396,8 +397,7 @@ public abstract class AbstractSimpleEntrySet<T extends BlockType, B extends Bloc
                                     // Adding to the resources next to newtextures
                                     handler.dynamicPack.addJson(ResourceLocation.tryParse(newId), mcmetaFile, ResType.MCMETA);
                                     mcmetaStream.close();
-                                }
-                                else
+                                } else
                                     handler.getLogger().error("The MCMETA file may no longer existing, check @ {}", mcmetaLoc);
                             }
                         }
@@ -580,12 +580,14 @@ public abstract class AbstractSimpleEntrySet<T extends BlockType, B extends Bloc
         }
 
         public BL addTexture(TextureInfo.Builder textureLoc) {
-            TextureInfo info = textureLoc.build();
-            this.textures.add(info);
-            if (info.keepNamespace()) {
-                //hack so we assure namespace has been added since it could be NOT Ec one
-                ClientDynamicResourcesHandler.getInstance().dynamicPack
-                        .addNamespaces(info.texture().getNamespace());
+            if (PlatHelper.getPhysicalSide().isClient()) {
+                TextureInfo info = textureLoc.build();
+                this.textures.add(info);
+                if (info.keepNamespace()) {
+                    //hack so we assure namespace has been added since it could be NOT Ec one
+                    ClientDynamicResourcesHandler.getInstance().dynamicPack
+                            .addNamespaces(info.texture().getNamespace());
+                }
             }
             return (BL) this;
         }
@@ -622,7 +624,8 @@ public abstract class AbstractSimpleEntrySet<T extends BlockType, B extends Bloc
         }
 
         public BL createPaletteFromPlanks() {
-            return createPaletteFromPlanks(p -> {});
+            return createPaletteFromPlanks(p -> {
+            });
         }
 
         public BL createPaletteFromChild(Consumer<Palette> paletteTransform, String childKey) {
@@ -630,11 +633,13 @@ public abstract class AbstractSimpleEntrySet<T extends BlockType, B extends Bloc
         }
 
         public BL createPaletteFromChild(String childKey, Predicate<String> whichSide) {
-            return createPaletteFromChild(p -> {}, childKey, whichSide);
+            return createPaletteFromChild(p -> {
+            }, childKey, whichSide);
         }
 
         public BL createPaletteFromChild(String childKey) {
-            return createPaletteFromChild(p -> {}, childKey, null);
+            return createPaletteFromChild(p -> {
+            }, childKey, null);
         }
 
         public BL createPaletteFromChild(Consumer<Palette> paletteTransform, String childKey, Predicate<String> whichSide) {
