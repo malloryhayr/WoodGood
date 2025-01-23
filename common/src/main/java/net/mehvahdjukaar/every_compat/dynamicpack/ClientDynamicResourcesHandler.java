@@ -6,8 +6,6 @@ import net.mehvahdjukaar.every_compat.misc.SpriteHelper;
 import net.mehvahdjukaar.moonlight.api.events.AfterLanguageLoadEvent;
 import net.mehvahdjukaar.moonlight.api.platform.PlatHelper;
 import net.mehvahdjukaar.moonlight.api.resources.pack.DynClientResourcesGenerator;
-import net.mehvahdjukaar.moonlight.api.resources.pack.DynResourceGenerator;
-import net.mehvahdjukaar.moonlight.api.resources.pack.DynamicResourcePack;
 import net.mehvahdjukaar.moonlight.api.resources.pack.DynamicTexturePack;
 import net.minecraft.server.packs.resources.ResourceManager;
 import org.apache.logging.log4j.Logger;
@@ -24,14 +22,13 @@ public class ClientDynamicResourcesHandler extends DynClientResourcesGenerator {
         return INSTANCE;
     }
 
-    private static boolean init = false;
+    private boolean firstInit = false;
 
     public ClientDynamicResourcesHandler() {
         super(new DynamicTexturePack(EveryCompat.res("generated_pack")));
         //since we place chests textures in its namespace to use its renderer
         if (PlatHelper.isModLoaded("quark")) getPack().addNamespaces("quark");
     }
-
 
     @Override
     public Logger getLogger() {
@@ -52,9 +49,9 @@ public class ClientDynamicResourcesHandler extends DynClientResourcesGenerator {
 
     @Override
     public void regenerateDynamicAssets(ResourceManager manager) {
-        if (!init) {
+        if (!firstInit) {
             SpriteHelper.addHardcodedSprites();
-            init = true;
+            firstInit = true;
         }
         this.dynamicPack.setGenerateDebugResources(PlatHelper.isDev() || ECConfigs.DEBUG_RESOURCES.get());
         EveryCompat.forAllModules(m -> {
