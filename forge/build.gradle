@@ -195,7 +195,7 @@ dependencies {
 //    modImplementation("com.teamresourceful.bytecodecs:bytecodecs-1.0.2") // Chipped
 
         // MACAW's
-    modCompileOnly("curse.maven:macaws-bridges-351725:5240521")
+    modImplementation("curse.maven:macaws-bridges-351725:5240521")
     modCompileOnly("curse.maven:macaws-doors-378646:4649910")
     modCompileOnly("curse.maven:macaws-fences-and-walls-453925:5442217")
     modCompileOnly("curse.maven:macaws-furniture-359540:4726300")

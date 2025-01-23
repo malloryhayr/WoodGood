@@ -95,7 +95,7 @@ public abstract class EveryCompat {
             ServerDynamicResourcesHandler.INSTANCE.getPack()
                     .addNamespaces(module.getServerResourcesNamespaces());
             if (PlatHelper.getPhysicalSide().isClient()) {
-                ClientDynamicResourcesHandler.INSTANCE.getPack()
+                ClientDynamicResourcesHandler.getInstance().getPack()
                         .addNamespaces(module.getClientResourcesNamespaces());
             }
 
