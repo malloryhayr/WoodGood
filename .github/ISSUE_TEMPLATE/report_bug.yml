@@ -81,7 +81,7 @@ body:
       label: "OPTIONAL: Latest.log | Crash-report Attachment"
       description: |
         If your Minecraft crashes, it creates a crash-report file which is located in ~/.minecraft/crash-report/
-      placeholder: Attach log files (latest.log or crash-report) here by clicking this area to highlight it and then dragging files in.
+      placeholder: "Use https://mclo.gs/ to share the full content of the file. Copy the uRL and paste it here"
     validations:
       required: false
 
