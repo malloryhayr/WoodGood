@@ -1,7 +1,7 @@
 name: Suggest Mod
 description: Suggest mods to be added to Every Compat
 title: "[📦]: "
-labels: "📦Module"
+labels: ["Module"]
 body:
   - type: markdown
     attributes:
@@ -9,11 +9,13 @@ body:
         MOD SUGGESTION
 
   - type: checkboxes
-    id: pre-report-bug
+    id: code-of-conduct
     attributes:
-      label: "Before Continuing:"
+      label: "Code Of Conduct"
       options:
         - label: "See [EC Backlog](https://github.com/users/MehVahdJukaar/projects/1/views/1) if someone already suggested a mod that you are going to suggest."
+          required: true
+        - label: "The mod MUST contain variant WoodType: OAK or other vanilla WoodTypes for ITEM or BLOCK"
           required: true
 
   - type: input
@@ -35,28 +37,17 @@ body:
       required: false
 
   - type: checkboxes
-    id: fabric-version-availability
+    id: version-loader-availability
     attributes:
-      label: FABRIC Version Availability
-      description: "Multiple Selection: which version is the mod available in FABRIC?"
+      label: Version Loader Availability
+      description: "Multiple Selection: which version & loader is the mod available in?"
       options:
-        - label: 1.18.2
-        - label: 1.19.2
-        - label: 1.20.1
-    validations:
-      required: false
-
-  - type: checkboxes
-    id: forge-version-availability
-    attributes:
-      label: FORGE Version Availability
-      description: "Multiple Selection: which version is the mod available in FORGE?"
-      options:
-        - label: 1.18.2
-        - label: 1.19.2
-        - label: 1.20.1
-    validations:
-      required: false
+        - label: "1.19.2 | FABRIC"
+        - label: "1.20.1 | FABRIC"
+        - label: "1.21.1 | FABRIC"
+        - label: "1.19.2 | FORGE"
+        - label: "1.20.1 | FORGE"
+        - label: "1.21.1 | NEOFORGE"
 
   - type: input
     id: modid
@@ -78,7 +69,7 @@ body:
 
   - type: textarea
     attributes:
-      label: Optional Details
+      label: Optional Information
       description: |
         A note that we should keep in mind regarding the mod
       placeholder: "ex: Giacomo's Bookshelf can store books and, configurably, other items. Updates front texture\nthrough 4 stages (empty, slightly full, more full, completely full) depending on if 0, 1, 2, or 3+ books are stored"

@@ -38,6 +38,7 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.material.MapColor;
 import net.minecraft.world.level.material.PushReaction;
 import net.regions_unexplored.block.RuBlocks;
+import net.regions_unexplored.item.tab.RuTabs;
 import net.regions_unexplored.world.level.block.plant.branch.BranchBlock;
 import net.regions_unexplored.world.level.block.plant.tall.ShrubBlock;
 
@@ -50,13 +51,16 @@ import java.util.Map;
 import java.util.Objects;
 import java.util.function.Function;
 
-// SUPPORT: v0.5.5+
+import static net.mehvahdjukaar.every_compat.common_classes.TagUtility.createAndAddCustomTags;
+
+// SUPPORT: v0.5.6+
 public class RegionsUnexploredModule extends SimpleModule {
     public final SimpleEntrySet<WoodType, Block> branchs;
     public final SimpleEntrySet<LeavesType, Block> shrubs;
 
     public RegionsUnexploredModule(String modId) {
         super(modId, "ru");
+        var tab = modRes("ru_main");
 
         branchs = SimpleEntrySet.builder(WoodType.class, "branch",
             getModBlock("oak_branch"), () -> WoodTypeRegistry.OAK_TYPE,
@@ -66,6 +70,7 @@ public class RegionsUnexploredModule extends SimpleModule {
             .addTag(modRes("branches_can_survive_on"), Registries.BLOCK)
             .addTag(modRes("branches"), Registries.BLOCK)
             .addTag(modRes("branches"), Registries.ITEM)
+            .setTabKey(tab)
             .addRecipe(modRes("oak_branch_from_oak_log"))
             .build();
         this.addEntry(branchs);
@@ -78,50 +83,42 @@ public class RegionsUnexploredModule extends SimpleModule {
                                 .offsetType(BlockBehaviour.OffsetType.XZ))
                 )
                 .addCondition(l -> {
-                    boolean log = l.getWoodType().log != null; // for textures
-                    boolean leave = l.leaves != null; // for textures
-                    boolean sapling = l.getItemOfThis("sapling") != null; // for recipes
-                    return log && leave && sapling;
+                    boolean log = l.getWoodType() != null; //REASON: textures
+                    boolean sapling = l.getItemOfThis("sapling") != null; //REASON: recipes
+                    return log && sapling;
                 })
                 .addTag(BlockTags.MINEABLE_WITH_AXE, Registries.BLOCK)
                 .addTag(modRes("shrubs"), Registries.BLOCK)
                 .addTag(modRes("shrub_can_survive_on"), Registries.BLOCK)
                 .addTag(modRes("shrubs"), Registries.ITEM)
-                .addRecipe(modRes("dark_oak_shrub"))
-                .addRecipe(modRes("dark_oak_sapling_from_dark_oak_shrub"))
                 .addTexture(EveryCompat.res("block/dark_oak_shrub_top"))
+                .setTabKey(tab)
+                .addRecipe(modRes("dark_oak_sapling_from_dark_oak_shrub"))
+                .addRecipe(modRes("dark_oak_shrub"))
                 .copyParentDrop()
+                .copyParentTint()
                 .build();
         this.addEntry(shrubs);
     }
 
     @Override
-    public void registerItemColors(ClientHelper.ItemColorEvent event) {
-        super.registerItemColors(event);
-        for (Map.Entry<LeavesType, Block> entry : shrubs.blocks.entrySet()) {
-            LeavesType type = entry.getKey();
-            Block block = entry.getValue();
-            event.register((stack, tintIndex) -> {
-                if (tintIndex > 0) return 0xFFFFFFFF;
-                return event.getColor(new ItemStack(type.leaves), tintIndex);
-            }, block);
-        }
-    }
-
-    @Override
-    public void registerBlockColors(ClientHelper.BlockColorEvent event) {
-        super.registerBlockColors(event);
-        for (Map.Entry<LeavesType, Block> entry : shrubs.blocks.entrySet()) {
-            LeavesType type = entry.getKey();
-            Block b = entry.getValue();
-            event.register((blockState, tintGetter, pos, index) ->
-                    event.getColor(type.leaves.defaultBlockState(), tintGetter, pos, index), b);
-        }
-    }
-
-    @Override
     public void onModSetup() {
         branchs.blocks.forEach((woodType, block) -> ComposterBlock.COMPOSTABLES.put(block, 0.3F));
+    }
+
+    @Override
+    // Tags
+    public void addDynamicServerResources(ServerDynamicResourcesHandler handler, ResourceManager manager) {
+        super.addDynamicServerResources(handler, manager);
+
+        for (WoodType woodType : WoodTypeRegistry.getTypes()) {
+            if (woodType.isVanilla() || woodType.getNamespace().equals("regions_unexplored")) continue;
+
+            //Tagging the planks as ingredient to get painted_planks
+            createAndAddCustomTags(new ResourceLocation("planks"), handler, woodType.planks);
+            createAndAddCustomTags(new ResourceLocation("forge:planks"), handler, woodType.planks);
+        }
+
     }
 
     @Override

@@ -28,13 +28,16 @@
   "depends": {
     "fabric": "*",
     "minecraft": ">=1.20",
-    "moonlight": ">=1.20-2.8.4"
+    "moonlight": ">=1.20-2.13.40"
   },
   "recommends": {
     "sawmill": "*"
   },
   "breaks": {
     "mcwbridges": "<3.0.0",
-    "mcwfences": "<1.1.2"
+    "mcwfences": "<1.1.2",
+    "mcwlights": "<1.1.0",
+    "dawnoftimebuilder": "<1.5.7",
+    "clutter": "<0.5.11"
   }
 }

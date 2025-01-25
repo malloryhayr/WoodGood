@@ -1,12 +1,14 @@
 package net.mehvahdjukaar.every_compat.modules.hearth_and_home;
 
+import com.starfish_studios.hearth_and_home.HearthAndHome;
 import com.starfish_studios.hearth_and_home.block.LatticeBlock;
+import net.mehvahdjukaar.every_compat.api.RenderLayer;
 import net.mehvahdjukaar.every_compat.api.SimpleEntrySet;
 import net.mehvahdjukaar.every_compat.api.SimpleModule;
+import net.mehvahdjukaar.moonlight.api.platform.PlatHelper;
 import net.mehvahdjukaar.moonlight.api.set.wood.WoodType;
 import net.mehvahdjukaar.moonlight.api.set.wood.WoodTypeRegistry;
 import net.mehvahdjukaar.moonlight.api.util.Utils;
-import net.minecraft.client.renderer.RenderType;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.BlockTags;
@@ -23,6 +25,7 @@ public class HearthAndHomeModule extends SimpleModule {
 
     public HearthAndHomeModule(String modId) {
         super(modId, "hnhome");
+        var tab = (PlatHelper.getPlatform().isForge()) ? modRes(HearthAndHome.MOD_ID) : modRes("tab");
 
         sanded_wood = SimpleEntrySet.builder(WoodType.class, "sanded_wood",
                         getModBlock("oak_sanded_wood"), () -> WoodTypeRegistry.getValue(new ResourceLocation("oak")),
@@ -32,8 +35,8 @@ public class HearthAndHomeModule extends SimpleModule {
                 .addTag(modRes("sanded_wood"), Registries.ITEM)
                 .addTexture(modRes("block/sanded_wood/oak"))
                 .defaultRecipe()
+                .setTabKey(tab)
                 .build();
-
         this.addEntry(sanded_wood);
 
         parquet = SimpleEntrySet.builder(WoodType.class, "parquet",
@@ -44,8 +47,8 @@ public class HearthAndHomeModule extends SimpleModule {
                 .addTag(modRes("parquet"), Registries.ITEM)
                 .addTexture(modRes("block/parquet/oak"))
                 .defaultRecipe()
+                .setTabKey(tab)
                 .build();
-
         this.addEntry(parquet);
 
         trim = SimpleEntrySet.builder(WoodType.class, "trim",
@@ -57,8 +60,8 @@ public class HearthAndHomeModule extends SimpleModule {
                 .addTexture(modRes("block/trim/oak"))
                 .defaultRecipe()
                 .addRecipe(modRes("oak_trim_from_oak_vertical_trim"))
+                .setTabKey(tab)
                 .build();
-
         this.addEntry(trim);
 
         vertical_trim = SimpleEntrySet.builder(WoodType.class, "vertical_trim",
@@ -69,8 +72,8 @@ public class HearthAndHomeModule extends SimpleModule {
                 .addTag(modRes("trims"), Registries.ITEM)
                 .addTexture(modRes("block/trim/oak"))
                 .defaultRecipe()
+                .setTabKey(tab)
                 .build();
-
         this.addEntry(vertical_trim);
 
         lattice = SimpleEntrySet.builder(WoodType.class, "lattice",
@@ -79,12 +82,12 @@ public class HearthAndHomeModule extends SimpleModule {
                 .addTag(BlockTags.MINEABLE_WITH_AXE, Registries.BLOCK)
                 .addTag(modRes("lattices"), Registries.BLOCK)
                 .addTag(modRes("lattices"), Registries.ITEM)
-                .setRenderType(() -> RenderType::cutout)
+                .setRenderType(RenderLayer.CUTOUT_MIPPED)
                 .addTexture(modRes("block/lattice/oak"))
                 .addTexture(modRes("block/lattice/oak_bar"))
                 .defaultRecipe()
+                .setTabKey(tab)
                 .build();
-
         this.addEntry(lattice);
     }
 }

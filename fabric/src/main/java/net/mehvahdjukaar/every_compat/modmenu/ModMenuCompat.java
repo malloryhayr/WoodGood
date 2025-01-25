@@ -3,7 +3,7 @@ package net.mehvahdjukaar.every_compat.modmenu;
 import com.terraformersmc.modmenu.api.ConfigScreenFactory;
 import com.terraformersmc.modmenu.api.ModMenuApi;
 import net.mehvahdjukaar.every_compat.EveryCompat;
-import net.mehvahdjukaar.every_compat.configs.ModConfigs;
+import net.mehvahdjukaar.every_compat.configs.ECConfigs;
 import net.mehvahdjukaar.moonlight.api.platform.configs.fabric.FabricConfigListScreen;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
@@ -15,6 +15,6 @@ public class ModMenuCompat implements ModMenuApi {
     public ConfigScreenFactory<?> getModConfigScreenFactory() {
         return p -> new FabricConfigListScreen(EveryCompat.MOD_ID, Items.OAK_PLANKS.getDefaultInstance(),
                 Component.literal("§6Every Compat Configs"), new ResourceLocation("textures/block/oak_planks.png"),
-                p, ModConfigs.SPEC);
+                p, ECConfigs.SPEC);
     }
 }

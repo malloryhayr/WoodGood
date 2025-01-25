@@ -1,29 +1,23 @@
 package net.mehvahdjukaar.every_compat.modules.forge.mcaw;
 
 import com.mcwfences.kikoz.init.BlockInit;
-import com.mcwfences.kikoz.init.TabInit;
 import com.mcwfences.kikoz.objects.FenceHitbox;
 import com.mcwfences.kikoz.objects.WiredFence;
+import net.mehvahdjukaar.every_compat.api.RenderLayer;
 import net.mehvahdjukaar.every_compat.api.SimpleEntrySet;
 import net.mehvahdjukaar.every_compat.api.SimpleModule;
-import net.mehvahdjukaar.moonlight.api.platform.ClientHelper;
 import net.mehvahdjukaar.moonlight.api.set.leaves.LeavesType;
 import net.mehvahdjukaar.moonlight.api.set.leaves.LeavesTypeRegistry;
 import net.mehvahdjukaar.moonlight.api.set.wood.WoodType;
 import net.mehvahdjukaar.moonlight.api.set.wood.WoodTypeRegistry;
 import net.mehvahdjukaar.moonlight.api.util.Utils;
-import net.minecraft.client.renderer.RenderType;
 import net.minecraft.core.registries.Registries;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.tags.ItemTags;
-import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.FenceBlock;
 import net.minecraft.world.level.block.FenceGateBlock;
-import net.minecraft.world.level.block.WallBlock;
-import net.minecraft.world.level.material.MapColor;
-
-import java.util.Map;
 
 
 //SUPPORT v1.1.1+
@@ -40,73 +34,90 @@ public class MacawFencesModule extends SimpleModule {
     public MacawFencesModule(String modId) {
         super(modId, "mcf");
 
-        var tab = TabInit.FENCEITEMGROUP;
+        ResourceLocation tab = modRes("fenceitemgroup");
 
         picketFences = SimpleEntrySet.builder(WoodType.class, "picket_fence",
                         BlockInit.OAK_PICKET_FENCE, () -> WoodTypeRegistry.OAK_TYPE,
-                        w -> new FenceBlock(Utils.copyPropertySafe(w.planks)))
+                        w -> new FenceBlock(Utils.copyPropertySafe(w.planks))
+                )
+                //TEXTURES: logs, planks
                 .addTag(BlockTags.MINEABLE_WITH_AXE, Registries.BLOCK)
                 .addTag(BlockTags.FENCES, Registries.BLOCK)
                 .addTag(ItemTags.FENCES, Registries.ITEM)
-                .setTab(tab)
+                .setTabKey(tab)
                 .defaultRecipe()
+                .copyParentDrop() //REASON: ensure blocks's dropping when Diagonal Fences is installed
                 .build();
         this.addEntry(picketFences);
 
         stockadeFences = SimpleEntrySet.builder(WoodType.class, "stockade_fence",
                         BlockInit.OAK_STOCKADE_FENCE, () -> WoodTypeRegistry.OAK_TYPE,
-                        w -> new FenceBlock(Utils.copyPropertySafe(w.planks)))
+                        w -> new FenceBlock(Utils.copyPropertySafe(w.planks))
+                )
+                //TEXTURES: logs, planks
                 .addTag(BlockTags.MINEABLE_WITH_AXE, Registries.BLOCK)
                 .addTag(BlockTags.FENCES, Registries.BLOCK)
                 .addTag(ItemTags.FENCES, Registries.ITEM)
-                .setTab(tab)
+                .setTabKey(tab)
                 .defaultRecipe()
+                .copyParentDrop() //REASON: ensure blocks's dropping when Diagonal Fences is installed
                 .build();
         this.addEntry(stockadeFences);
 
         horseFences = SimpleEntrySet.builder(WoodType.class, "horse_fence",
                         BlockInit.OAK_HORSE_FENCE, () -> WoodTypeRegistry.OAK_TYPE,
-                        w -> new FenceBlock(Utils.copyPropertySafe(w.planks)))
+                        w -> new FenceBlock(Utils.copyPropertySafe(w.planks))
+                )
+                //TEXTURES: logs
                 .addTag(BlockTags.MINEABLE_WITH_AXE, Registries.BLOCK)
                 .addTag(BlockTags.FENCES, Registries.BLOCK)
                 .addTag(ItemTags.FENCES, Registries.ITEM)
-                .setTab(tab)
+                .setTabKey(tab)
                 .defaultRecipe()
+                .copyParentDrop() //REASON: ensure blocks's dropping when Diagonal Fences is installed
                 .build();
         this.addEntry(horseFences);
 
         wiredFences = SimpleEntrySet.builder(WoodType.class, "wired_fence",
                         BlockInit.OAK_WIRED_FENCE, () -> WoodTypeRegistry.OAK_TYPE,
-                        w -> new WiredFence(Utils.copyPropertySafe(w.planks)))
+                        w -> new WiredFence(Utils.copyPropertySafe(w.planks))
+                )
+                //TEXTURES: logs
                 .addTag(BlockTags.MINEABLE_WITH_AXE, Registries.BLOCK)
                 .addTag(BlockTags.FENCES, Registries.BLOCK)
                 .addTag(ItemTags.FENCES, Registries.ITEM)
-                .setRenderType(() -> RenderType::cutout)
-                .setTab(tab)
+                .setRenderType(RenderLayer.CUTOUT)
+                .setTabKey(tab)
                 .defaultRecipe()
+                .copyParentDrop() //REASON: ensure blocks's dropping when Diagonal Fences is installed
                 .build();
         this.addEntry(wiredFences);
 
-
         pyramidGates = SimpleEntrySet.builder(WoodType.class, "pyramid_gate",
                         BlockInit.OAK_PYRAMID_GATE, () -> WoodTypeRegistry.OAK_TYPE,
-                        w -> new FenceGateBlock(Utils.copyPropertySafe(w.planks), w.toVanillaOrOak()))
+                        w -> new FenceGateBlock(Utils.copyPropertySafe(w.planks), w.toVanillaOrOak())
+                )
+                //TEXTURES: logs, planks
                 .addTag(BlockTags.MINEABLE_WITH_AXE, Registries.BLOCK)
                 .addTag(BlockTags.UNSTABLE_BOTTOM_CENTER, Registries.BLOCK)
                 .addTag(BlockTags.FENCE_GATES, Registries.BLOCK)
-                .setTab(tab)
+                .setTabKey(tab)
                 .defaultRecipe()
+                .copyParentDrop() //REASON: ensure blocks's dropping when Diagonal Fences is installed
                 .build();
         this.addEntry(pyramidGates);
 
         highleyGates = SimpleEntrySet.builder(WoodType.class, "highley_gate",
                         BlockInit.OAK_HIGHLEY_GATE, () -> WoodTypeRegistry.OAK_TYPE,
-                        w -> new FenceGateBlock(Utils.copyPropertySafe(w.planks),w.toVanillaOrOak()))
+                        w -> new FenceGateBlock(Utils.copyPropertySafe(w.planks),w.toVanillaOrOak())
+                )
+                //TEXTURES: logs
                 .addTag(BlockTags.MINEABLE_WITH_AXE, Registries.BLOCK)
                 .addTag(BlockTags.UNSTABLE_BOTTOM_CENTER, Registries.BLOCK)
                 .addTag(BlockTags.FENCE_GATES, Registries.BLOCK)
-                .setTab(tab)
+                .setTabKey(tab)
                 .defaultRecipe()
+                .copyParentDrop() //REASON: ensure blocks's dropping when Diagonal Fences is installed
                 .build();
         this.addEntry(highleyGates);
 
@@ -115,12 +126,14 @@ public class MacawFencesModule extends SimpleModule {
                         l -> new FenceHitbox(Utils.copyPropertySafe(l.leaves).lightLevel((s) -> 0)
                                 .mapColor(l.leaves.defaultMapColor()))
                 )
-                .requiresChildren("leaves") // Textures & Recipes
+                //TEXTURES: leaves
+                .requiresChildren("leaves") // Reason: Recipes
+//                .addCondition(l -> !l.getId().toString().equals("regions_unexplored:apple_oak")) // there should be a way to fix the color of the leave being grey
                 .addTag(BlockTags.MINEABLE_WITH_HOE, Registries.BLOCK)
                 .addTag(BlockTags.FENCES, Registries.BLOCK)
                 .addTag(BlockTags.WALLS, Registries.BLOCK)
                 .addTag(ItemTags.WALLS, Registries.ITEM)
-                .setTab(tab)
+                .setTabKey(tab)
                 .copyParentTint()
                 .defaultRecipe()
                 .addModelTransform(m -> m.addModifier((s, id, l) -> {
@@ -236,10 +249,14 @@ public class MacawFencesModule extends SimpleModule {
                                 }
                             }
                         }
+                        case "integrateddynamics" -> {
+                            return LeavesPath("menril_leaves_fancy", "", s, l);
+                        }
                     }
                     return LeavesPath("", "", s, l);
                 }))
-                .setRenderType(() -> RenderType::cutout)
+                .setRenderType(RenderLayer.CUTOUT_MIPPED)
+                .copyParentDrop() //REASON: ensure blocks's dropping when Diagonal Fences is installed
                 .build();
         this.addEntry(hedges);
     }

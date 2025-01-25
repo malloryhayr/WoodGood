@@ -4,18 +4,21 @@ import com.fizzware.dramaticdoors.fabric.blocks.ShortDoorBlock;
 import com.fizzware.dramaticdoors.fabric.blocks.TallDoorBlock;
 import com.fizzware.dramaticdoors.fabric.DDRegistry;
 import net.mehvahdjukaar.every_compat.EveryCompat;
+import net.mehvahdjukaar.every_compat.api.RenderLayer;
 import net.mehvahdjukaar.every_compat.api.SimpleEntrySet;
 import net.mehvahdjukaar.every_compat.api.SimpleModule;
 import net.mehvahdjukaar.moonlight.api.set.wood.WoodType;
 import net.mehvahdjukaar.moonlight.api.set.wood.WoodTypeRegistry;
-import net.minecraft.client.renderer.RenderType;
 import net.minecraft.core.registries.Registries;
+import net.minecraft.resources.ResourceKey;
 import net.minecraft.tags.BlockTags;
+import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 
 import java.util.List;
 
+//SUPPORT: v3.2.8+
 public class DramaticDoorsModule extends SimpleModule {
 
     public final SimpleEntrySet<WoodType, Block> shortDoors;
@@ -23,6 +26,7 @@ public class DramaticDoorsModule extends SimpleModule {
 
     public DramaticDoorsModule(String modId) {
         super(modId, "dd");
+        ResourceKey<CreativeModeTab> tab = DDRegistry.MAIN_TAB;
 
         tallDoors = SimpleEntrySet.builder(WoodType.class, "door", "tall",
                         getModBlock("tall_oak_door"), () -> WoodTypeRegistry.OAK_TYPE, w -> new TallDoorBlock(Blocks.OAK_DOOR,
@@ -34,12 +38,11 @@ public class DramaticDoorsModule extends SimpleModule {
                 .addTag(modRes("tall_wooden_doors"), Registries.BLOCK)
                 .addTag(modRes("tall_wooden_doors"), Registries.ITEM)
                 .addTag(BlockTags.MINEABLE_WITH_AXE, Registries.BLOCK)
-                .setRenderType(() -> RenderType::cutout)
-                .setTabKey(() -> DDRegistry.MAIN_TAB)
+                .setRenderType(RenderLayer.CUTOUT)
+                .setTabKey(tab)
                 .copyParentDrop()
                 .defaultRecipe()
                 .build();
-
         this.addEntry(tallDoors);
 
         shortDoors = SimpleEntrySet.builder(WoodType.class, "door", "short",
@@ -50,12 +53,11 @@ public class DramaticDoorsModule extends SimpleModule {
                 .addTag(modRes("short_wooden_doors"), Registries.BLOCK)
                 .addTag(modRes("short_wooden_doors"), Registries.ITEM)
                 .addTag(BlockTags.MINEABLE_WITH_AXE, Registries.BLOCK)
-                .setRenderType(() -> RenderType::cutout)
-                .setTabKey(() -> DDRegistry.MAIN_TAB)
+                .setRenderType(RenderLayer.CUTOUT)
+                .setTabKey(tab)
                 .copyParentDrop()
                 .defaultRecipe()
                 .build();
-
         this.addEntry(shortDoors);
     }
 
@@ -67,7 +69,7 @@ public class DramaticDoorsModule extends SimpleModule {
                 "aurorasdeco", "automaticdoors", "bambooeverything", "betterarcheology",
                 "betterend", "betternether", "bewitchment", "biomancy",
                 "biomemakeover", "biomesoplenty", "blocksplus", "blockus",
-                "byg", "caupona", "ceilands", "charm",
+                "biomeswevegone", "caupona", "ceilands", "charm",
                 "chipped", "cinderscapes", "cobblemon", "colorfulazaleas",
                 "copperoverhaul", "couplings", "create_things_and_misc", "createdeco",
                 "darkerdepths", "deep_aether", "deeperdarker", "desolation",

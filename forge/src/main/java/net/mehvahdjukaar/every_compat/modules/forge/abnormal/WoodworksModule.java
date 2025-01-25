@@ -6,6 +6,7 @@ import com.teamabnormals.blueprint.common.block.LeafPileBlock;
 import com.teamabnormals.blueprint.core.registry.BlueprintBlockEntityTypes;
 import com.teamabnormals.woodworks.core.registry.WoodworksBlocks;
 import net.mehvahdjukaar.every_compat.EveryCompat;
+import net.mehvahdjukaar.every_compat.api.RenderLayer;
 import net.mehvahdjukaar.every_compat.api.SimpleEntrySet;
 import net.mehvahdjukaar.every_compat.api.SimpleModule;
 import net.mehvahdjukaar.every_compat.common_classes.*;
@@ -19,8 +20,8 @@ import net.mehvahdjukaar.moonlight.api.set.leaves.LeavesTypeRegistry;
 import net.mehvahdjukaar.moonlight.api.set.wood.WoodType;
 import net.mehvahdjukaar.moonlight.api.set.wood.WoodTypeRegistry;
 import net.mehvahdjukaar.moonlight.api.util.Utils;
-import net.minecraft.client.renderer.RenderType;
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.packs.resources.ResourceManager;
@@ -43,6 +44,7 @@ import java.io.InputStream;
 import java.util.Objects;
 
 import static net.mehvahdjukaar.every_compat.common_classes.CompatChestTexture.generateChestTexture;
+import static net.mehvahdjukaar.every_compat.common_classes.TagUtility.getATagOrCreateANew;
 
 //SUPPORT: v3.0.0+
 public class WoodworksModule extends SimpleModule {
@@ -107,6 +109,7 @@ public class WoodworksModule extends SimpleModule {
                         () -> WoodTypeRegistry.getValue(new ResourceLocation("spruce")),
                         w -> new LadderBlock(WoodworksBlocks.WoodworksProperties.SPRUCE_WOOD.ladder()))
                 .setTabKey(tab)
+                .addTag(BlockTags.MINEABLE_WITH_AXE, Registries.BLOCK)
                 .addTag(BlockTags.CLIMBABLE, Registries.BLOCK)
                 .addTag(new ResourceLocation("quark:ladders"), Registries.BLOCK)
                 .addTag(new ResourceLocation("quark:ladders"), Registries.ITEM)
@@ -175,7 +178,7 @@ public class WoodworksModule extends SimpleModule {
                 .addTag(BlockTags.MINEABLE_WITH_HOE, Registries.BLOCK)
                 .addTag(modRes("leaf_piles"), Registries.BLOCK)
                 .setTabKey(tab)
-                .setRenderType(() -> RenderType::cutout)
+                .setRenderType(RenderLayer.CUTOUT_MIPPED)
                 .copyParentDrop()
                 .defaultRecipe()
                 .copyParentTint()
@@ -220,12 +223,17 @@ public class WoodworksModule extends SimpleModule {
         super.addDynamicServerResources(handler, manager);
 
         bookshelves.items.forEach((wood, item) -> {
+            // The generation of ladders get skipped due to some mods already have ladders and will be used as an alt
+            Item getLadder = ladders.items.get(wood);
+            Item ladder = (getLadder != null) ? getLadder : BuiltInRegistries.ITEM.get(
+                    new ResourceLocation(wood.getNamespace(), wood.getTypeName() +"_ladder"));
+
             // sawmill recipes - from LOGS
             sawmillRecipe("oak_planks_from_oak_logs_sawing", wood.log.asItem(), wood.planks.asItem(),
                     handler, manager, wood);
             sawmillRecipe("oak_boards_from_oak_logs_sawing", wood.log.asItem(), boards.items.get(wood),
                     handler, manager, wood);
-            sawmillRecipe("spruce_ladder_from_spruce_logs_sawing", wood.log.asItem(), ladders.items.get(wood),
+            sawmillRecipe("spruce_ladder_from_spruce_logs_sawing", wood.log.asItem(), ladder,
                     handler, manager, wood);
             createRecipeIfNotNull("oak_button_from_oak_logs_sawing", true, "button",
                     handler, manager, wood);
@@ -249,7 +257,7 @@ public class WoodworksModule extends SimpleModule {
             // - from PLANKS
             sawmillRecipe("oak_boards_from_oak_planks_sawing", wood.planks.asItem(), boards.items.get(wood),
                     handler, manager, wood);
-            sawmillRecipe("spruce_ladder_from_spruce_planks_sawing", wood.planks.asItem(), ladders.items.get(wood),
+            sawmillRecipe("spruce_ladder_from_spruce_planks_sawing", wood.planks.asItem(), ladder,
                     handler, manager, wood);
             createRecipeIfNotNull("oak_button_from_oak_planks_sawing", false, "button",
                     handler, manager, wood);
@@ -259,7 +267,6 @@ public class WoodworksModule extends SimpleModule {
                     handler, manager, wood);
             createRecipeIfNotNull("oak_stairs_from_oak_planks_sawing", false, "stairs",
                     handler, manager, wood);
-
         });
     }
 
@@ -267,6 +274,7 @@ public class WoodworksModule extends SimpleModule {
     public void createRecipeIfNotNull(String recipeName, boolean usingLog, String output,
                                       ServerDynamicResourcesHandler handler, ResourceManager manager, WoodType wood) {
         Item input = (usingLog) ? wood.log.asItem() : wood.planks.asItem();
+
         if (Objects.nonNull(wood.getItemOfThis(output))) {
             sawmillRecipe(recipeName, input, wood.getItemOfThis(output), handler, manager, wood);
         } else if (Objects.nonNull(wood.getBlockOfThis(output))) {
@@ -292,7 +300,8 @@ public class WoodworksModule extends SimpleModule {
 
             // Editing the JSON recipe
             if (getIngredient.has("tag")) {
-                getIngredient.addProperty("tag", wood.getNamespace() + ":" + wood.getTypeName() + "_logs");
+                getIngredient.addProperty("tag",
+                        getATagOrCreateANew("logs", "caps", wood, handler, manager).toString());
             } else { // getIngredient.has("item")
                 getIngredient.addProperty("item", Utils.getID(input).toString());
             }
@@ -309,6 +318,7 @@ public class WoodworksModule extends SimpleModule {
         handler.dynamicPack.addJson(EveryCompat.res(this.shortenedId() + "/" + wood.getAppendableId() + filenameBuilder), recipe, ResType.RECIPES);
     }
 
+    @Override
     // Textures
     public void addDynamicClientResources(ClientDynamicResourcesHandler handler, ResourceManager manager) {
         super.addDynamicClientResources(handler, manager);

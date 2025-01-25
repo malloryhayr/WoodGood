@@ -5,18 +5,16 @@ import com.mrcrayfish.furniture.common.ModTags;
 import com.mrcrayfish.furniture.core.ModBlockEntities;
 import com.mrcrayfish.furniture.core.ModBlocks;
 import com.mrcrayfish.furniture.core.ModCreativeTabs;
+import net.mehvahdjukaar.every_compat.api.RenderLayer;
 import net.mehvahdjukaar.every_compat.api.SimpleEntrySet;
 import net.mehvahdjukaar.every_compat.api.SimpleModule;
-import net.mehvahdjukaar.moonlight.api.platform.ClientHelper;
 import net.mehvahdjukaar.moonlight.api.set.leaves.LeavesType;
 import net.mehvahdjukaar.moonlight.api.set.leaves.LeavesTypeRegistry;
 import net.mehvahdjukaar.moonlight.api.set.wood.WoodType;
 import net.mehvahdjukaar.moonlight.api.set.wood.WoodTypeRegistry;
 import net.mehvahdjukaar.moonlight.api.util.Utils;
-import net.minecraft.client.renderer.RenderType;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.tags.BlockTags;
-import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.block.Block;
 
 public class MrCrayfishFurnitureModule extends SimpleModule {
@@ -69,9 +67,8 @@ public class MrCrayfishFurnitureModule extends SimpleModule {
                 .setTab(ModCreativeTabs.MAIN)
                 .addTile(ModBlockEntities.BEDSIDE_CABINET)
                 .defaultRecipe()
-                .setRenderType(() -> RenderType::cutout)
+                .setRenderType(RenderLayer.CUTOUT)
                 .build();
-
         this.addEntry(bedsideCabinets);
 
         strippedBedsideCabinets = SimpleEntrySet.builder(WoodType.class, "bedside_cabinet", "stripped",
@@ -84,9 +81,8 @@ public class MrCrayfishFurnitureModule extends SimpleModule {
                 .requiresChildren("stripped_log")
                 .addTile(ModBlockEntities.BEDSIDE_CABINET)
                 .defaultRecipe()
-                .setRenderType(() -> RenderType::cutout)
+                .setRenderType(RenderLayer.CUTOUT)
                 .build();
-
         this.addEntry(strippedBedsideCabinets);
 
         benches = SimpleEntrySet.builder(WoodType.class, "park_bench",
@@ -97,9 +93,8 @@ public class MrCrayfishFurnitureModule extends SimpleModule {
                 .addTag(ModTags.Items.STORAGE, Registries.ITEM)
                 .setTab(ModCreativeTabs.MAIN)
                 .defaultRecipe()
-                .setRenderType(() -> RenderType::cutout)
+                .setRenderType(RenderLayer.CUTOUT)
                 .build();
-
         this.addEntry(benches);
 
         strippedBenches = SimpleEntrySet.builder(WoodType.class, "park_bench", "stripped",
@@ -111,9 +106,8 @@ public class MrCrayfishFurnitureModule extends SimpleModule {
                 .requiresChildren("stripped_log")
                 .setTab(ModCreativeTabs.MAIN)
                 .defaultRecipe()
-                .setRenderType(() -> RenderType::cutout)
+                .setRenderType(RenderLayer.CUTOUT)
                 .build();
-
         this.addEntry(strippedBenches);
 
         blinds = SimpleEntrySet.builder(WoodType.class, "blinds",
@@ -125,7 +119,6 @@ public class MrCrayfishFurnitureModule extends SimpleModule {
                 .setTab(ModCreativeTabs.MAIN)
                 .defaultRecipe()
                 .build();
-
         this.addEntry(blinds);
 
         strippedBlinds = SimpleEntrySet.builder(WoodType.class, "blinds", "stripped",
@@ -137,7 +130,6 @@ public class MrCrayfishFurnitureModule extends SimpleModule {
                 .setTab(ModCreativeTabs.MAIN)
                 .defaultRecipe()
                 .build();
-
         this.addEntry(strippedBlinds);
 
         cabinets = SimpleEntrySet.builder(WoodType.class, "cabinet",
@@ -148,9 +140,8 @@ public class MrCrayfishFurnitureModule extends SimpleModule {
                 .setTab(ModCreativeTabs.MAIN)
                 .addTile(ModBlockEntities.CABINET)
                 .defaultRecipe()
-                .setRenderType(() -> RenderType::cutout)
+                .setRenderType(RenderLayer.CUTOUT)
                 .build();
-
         this.addEntry(cabinets);
 
         strippedCabinets = SimpleEntrySet.builder(WoodType.class, "cabinet", "stripped",
@@ -162,9 +153,8 @@ public class MrCrayfishFurnitureModule extends SimpleModule {
                 .setTab(ModCreativeTabs.MAIN)
                 .addTile(ModBlockEntities.CABINET)
                 .defaultRecipe()
-                .setRenderType(() -> RenderType::cutout)
+                .setRenderType(RenderLayer.CUTOUT)
                 .build();
-
         this.addEntry(strippedCabinets);
 
         chairs = SimpleEntrySet.builder(WoodType.class, "chair",
@@ -174,9 +164,8 @@ public class MrCrayfishFurnitureModule extends SimpleModule {
                 .addTag(ModTags.Items.GENERAL, Registries.ITEM)
                 .setTab(ModCreativeTabs.MAIN)
                 .defaultRecipe()
-                .setRenderType(() -> RenderType::cutout)
+                .setRenderType(RenderLayer.CUTOUT)
                 .build();
-
         this.addEntry(chairs);
 
         strippedChairs = SimpleEntrySet.builder(WoodType.class, "chair", "stripped",
@@ -187,9 +176,8 @@ public class MrCrayfishFurnitureModule extends SimpleModule {
                 .addTag(ModTags.Items.GENERAL, Registries.ITEM)
                 .setTab(ModCreativeTabs.MAIN)
                 .defaultRecipe()
-                .setRenderType(() -> RenderType::cutout)
+                .setRenderType(RenderLayer.CUTOUT)
                 .build();
-
         this.addEntry(strippedChairs);
 
         coffeeTables = SimpleEntrySet.builder(WoodType.class, "coffee_table",
@@ -199,9 +187,8 @@ public class MrCrayfishFurnitureModule extends SimpleModule {
                 .addTag(ModTags.Items.GENERAL, Registries.ITEM)
                 .setTab(ModCreativeTabs.MAIN)
                 .defaultRecipe()
-                .setRenderType(() -> RenderType::cutout)
+                .setRenderType(RenderLayer.CUTOUT)
                 .build();
-
         this.addEntry(coffeeTables);
 
         strippedCoffeeTables = SimpleEntrySet.builder(WoodType.class, "coffee_table", "stripped",
@@ -212,9 +199,8 @@ public class MrCrayfishFurnitureModule extends SimpleModule {
                 .addTag(ModTags.Items.GENERAL, Registries.ITEM)
                 .setTab(ModCreativeTabs.MAIN)
                 .defaultRecipe()
-                .setRenderType(() -> RenderType::cutout)
+                .setRenderType(RenderLayer.CUTOUT)
                 .build();
-
         this.addEntry(strippedCoffeeTables);
 
         crates = SimpleEntrySet.builder(WoodType.class, "crate",
@@ -225,9 +211,8 @@ public class MrCrayfishFurnitureModule extends SimpleModule {
                 .setTab(ModCreativeTabs.MAIN)
                 .addTile(ModBlockEntities.CRATE)
                 .defaultRecipe()
-                .setRenderType(() -> RenderType::cutout)
+                .setRenderType(RenderLayer.CUTOUT)
                 .build();
-
         this.addEntry(crates);
 
         strippedCrates = SimpleEntrySet.builder(WoodType.class, "crate", "stripped",
@@ -239,9 +224,8 @@ public class MrCrayfishFurnitureModule extends SimpleModule {
                 .setTab(ModCreativeTabs.MAIN)
                 .addTile(ModBlockEntities.CRATE)
                 .defaultRecipe()
-                .setRenderType(() -> RenderType::cutout)
+                .setRenderType(RenderLayer.CUTOUT)
                 .build();
-
         this.addEntry(strippedCrates);
 
         desks = SimpleEntrySet.builder(WoodType.class, "desk",
@@ -251,9 +235,8 @@ public class MrCrayfishFurnitureModule extends SimpleModule {
                 .addTag(ModTags.Items.BEDROOM, Registries.ITEM)
                 .setTab(ModCreativeTabs.MAIN)
                 .defaultRecipe()
-                .setRenderType(() -> RenderType::cutout)
+                .setRenderType(RenderLayer.CUTOUT)
                 .build();
-
         this.addEntry(desks);
 
         strippedDesks = SimpleEntrySet.builder(WoodType.class, "desk", "stripped",
@@ -264,9 +247,8 @@ public class MrCrayfishFurnitureModule extends SimpleModule {
                 .addTag(ModTags.Items.BEDROOM, Registries.ITEM)
                 .setTab(ModCreativeTabs.MAIN)
                 .defaultRecipe()
-                .setRenderType(() -> RenderType::cutout)
+                .setRenderType(RenderLayer.CUTOUT)
                 .build();
-
         this.addEntry(strippedDesks);
 
         deskCabinets = SimpleEntrySet.builder(WoodType.class, "desk_cabinet",
@@ -278,9 +260,8 @@ public class MrCrayfishFurnitureModule extends SimpleModule {
                 .setTab(ModCreativeTabs.MAIN)
                 .addTile(ModBlockEntities.DESK_CABINET)
                 .defaultRecipe()
-                .setRenderType(() -> RenderType::cutout)
+                .setRenderType(RenderLayer.CUTOUT)
                 .build();
-
         this.addEntry(deskCabinets);
 
         strippedDeskCabinets = SimpleEntrySet.builder(WoodType.class, "desk_cabinet", "stripped",
@@ -292,9 +273,8 @@ public class MrCrayfishFurnitureModule extends SimpleModule {
                 .setTab(ModCreativeTabs.MAIN)
                 .addTile(ModBlockEntities.DESK_CABINET)
                 .defaultRecipe()
-                .setRenderType(() -> RenderType::cutout)
+                .setRenderType(RenderLayer.CUTOUT)
                 .build();
-
         this.addEntry(strippedDeskCabinets);
 
         kitchenCounters = SimpleEntrySet.builder(WoodType.class, "kitchen_counter",
@@ -304,9 +284,8 @@ public class MrCrayfishFurnitureModule extends SimpleModule {
                 .addTag(ModTags.Items.KITCHEN, Registries.ITEM)
                 .setTab(ModCreativeTabs.MAIN)
                 .defaultRecipe()
-                .setRenderType(() -> RenderType::cutout)
+                .setRenderType(RenderLayer.CUTOUT)
                 .build();
-
         this.addEntry(kitchenCounters);
 
         strippedKitchenCounters = SimpleEntrySet.builder(WoodType.class, "kitchen_counter", "stripped",
@@ -316,9 +295,8 @@ public class MrCrayfishFurnitureModule extends SimpleModule {
                 .addTag(ModTags.Items.KITCHEN, Registries.ITEM)
                 .setTab(ModCreativeTabs.MAIN)
                 .defaultRecipe()
-                .setRenderType(() -> RenderType::cutout)
+                .setRenderType(RenderLayer.CUTOUT)
                 .build();
-
         this.addEntry(strippedKitchenCounters);
 
         kitchenDrawers = SimpleEntrySet.builder(WoodType.class, "kitchen_drawer",
@@ -330,9 +308,8 @@ public class MrCrayfishFurnitureModule extends SimpleModule {
                 .addTile(ModBlockEntities.KITCHEN_DRAWER)
                 .setTab(ModCreativeTabs.MAIN)
                 .defaultRecipe()
-                .setRenderType(() -> RenderType::cutout)
+                .setRenderType(RenderLayer.CUTOUT)
                 .build();
-
         this.addEntry(kitchenDrawers);
 
         strippedKitchenDrawers = SimpleEntrySet.builder(WoodType.class, "kitchen_drawer", "stripped",
@@ -345,9 +322,8 @@ public class MrCrayfishFurnitureModule extends SimpleModule {
                 .setTab(ModCreativeTabs.MAIN)
                 .addTile(ModBlockEntities.KITCHEN_DRAWER)
                 .defaultRecipe()
-                .setRenderType(() -> RenderType::cutout)
+                .setRenderType(RenderLayer.CUTOUT)
                 .build();
-
         this.addEntry(strippedKitchenDrawers);
 
         kitchenSinkDark = SimpleEntrySet.builder(WoodType.class, "kitchen_sink_dark",
@@ -358,9 +334,8 @@ public class MrCrayfishFurnitureModule extends SimpleModule {
                 .setTab(ModCreativeTabs.MAIN)
                 .addTile(ModBlockEntities.KITCHEN_SINK)
                 .defaultRecipe()
-                .setRenderType(() -> RenderType::cutout)
+                .setRenderType(RenderLayer.CUTOUT)
                 .build();
-
         this.addEntry(kitchenSinkDark);
 
         strippedKitchenSinkDark = SimpleEntrySet.builder(WoodType.class, "kitchen_sink_dark", "stripped",
@@ -372,9 +347,8 @@ public class MrCrayfishFurnitureModule extends SimpleModule {
                 .setTab(ModCreativeTabs.MAIN)
                 .addTile(ModBlockEntities.KITCHEN_SINK)
                 .defaultRecipe()
-                .setRenderType(() -> RenderType::cutout)
+                .setRenderType(RenderLayer.CUTOUT)
                 .build();
-
         this.addEntry(strippedKitchenSinkDark);
 
         kitchenSinkLight = SimpleEntrySet.builder(WoodType.class, "kitchen_sink_light",
@@ -385,9 +359,8 @@ public class MrCrayfishFurnitureModule extends SimpleModule {
                 .setTab(ModCreativeTabs.MAIN)
                 .addTile(ModBlockEntities.KITCHEN_SINK)
                 .defaultRecipe()
-                .setRenderType(() -> RenderType::cutout)
+                .setRenderType(RenderLayer.CUTOUT)
                 .build();
-
         this.addEntry(kitchenSinkLight);
 
         strippedKitchenSinkLight = SimpleEntrySet.builder(WoodType.class, "kitchen_sink_light", "stripped",
@@ -399,9 +372,8 @@ public class MrCrayfishFurnitureModule extends SimpleModule {
                 .setTab(ModCreativeTabs.MAIN)
                 .addTile(ModBlockEntities.KITCHEN_SINK)
                 .defaultRecipe()
-                .setRenderType(() -> RenderType::cutout)
+                .setRenderType(RenderLayer.CUTOUT)
                 .build();
-
         this.addEntry(strippedKitchenSinkLight);
 
         mailBoxes = SimpleEntrySet.builder(WoodType.class, "mail_box",
@@ -413,9 +385,8 @@ public class MrCrayfishFurnitureModule extends SimpleModule {
                 .setTab(ModCreativeTabs.MAIN)
                 .addTile(ModBlockEntities.MAIL_BOX)
                 .defaultRecipe()
-                .setRenderType(() -> RenderType::cutout)
+                .setRenderType(RenderLayer.CUTOUT)
                 .build();
-
         this.addEntry(mailBoxes);
 
         strippedMailBoxes = SimpleEntrySet.builder(WoodType.class, "mail_box", "stripped",
@@ -428,9 +399,8 @@ public class MrCrayfishFurnitureModule extends SimpleModule {
                 .setTab(ModCreativeTabs.MAIN)
                 .addTile(ModBlockEntities.MAIL_BOX)
                 .defaultRecipe()
-                .setRenderType(() -> RenderType::cutout)
+                .setRenderType(RenderLayer.CUTOUT)
                 .build();
-
         this.addEntry(strippedMailBoxes);
 
         strippedTables = SimpleEntrySet.builder(WoodType.class, "table", "stripped",
@@ -441,9 +411,8 @@ public class MrCrayfishFurnitureModule extends SimpleModule {
                 .addTag(ModTags.Items.GENERAL, Registries.ITEM)
                 .setTab(ModCreativeTabs.MAIN)
                 .defaultRecipe()
-                .setRenderType(() -> RenderType::cutout)
+                .setRenderType(RenderLayer.CUTOUT)
                 .build();
-
         this.addEntry(strippedTables);
 
         tables = SimpleEntrySet.builder(WoodType.class, "table",
@@ -453,9 +422,8 @@ public class MrCrayfishFurnitureModule extends SimpleModule {
                 .addTag(ModTags.Items.GENERAL, Registries.ITEM)
                 .setTab(ModCreativeTabs.MAIN)
                 .defaultRecipe()
-                .setRenderType(() -> RenderType::cutout)
+                .setRenderType(RenderLayer.CUTOUT)
                 .build();
-
         this.addEntry(tables);
 
         upgradedFences = SimpleEntrySet.builder(WoodType.class, "upgraded_fence",
@@ -468,9 +436,8 @@ public class MrCrayfishFurnitureModule extends SimpleModule {
                 .addTag(ModTags.Items.UPGRADED_FENCES, Registries.ITEM)
                 .setTab(ModCreativeTabs.MAIN)
                 .defaultRecipe()
-                .setRenderType(() -> RenderType::cutout)
+                .setRenderType(RenderLayer.CUTOUT)
                 .build();
-
         this.addEntry(upgradedFences);
 
         strippedUpgradedFences = SimpleEntrySet.builder(WoodType.class, "upgraded_fence", "stripped",
@@ -483,9 +450,8 @@ public class MrCrayfishFurnitureModule extends SimpleModule {
                 .addTag(ModTags.Items.UPGRADED_FENCES, Registries.ITEM)
                 .setTab(ModCreativeTabs.MAIN)
                 .defaultRecipe()
-                .setRenderType(() -> RenderType::cutout)
+                .setRenderType(RenderLayer.CUTOUT)
                 .build();
-
         this.addEntry(strippedUpgradedFences);
 
         upgradedGates = SimpleEntrySet.builder(WoodType.class, "upgraded_gate",
@@ -499,9 +465,8 @@ public class MrCrayfishFurnitureModule extends SimpleModule {
                 .addTag(ModTags.Items.UPGRADED_FENCE_GATES, Registries.ITEM)
                 .setTab(ModCreativeTabs.MAIN)
                 .defaultRecipe()
-                .setRenderType(() -> RenderType::cutout)
+                .setRenderType(RenderLayer.CUTOUT)
                 .build();
-
         this.addEntry(upgradedGates);
 
         strippedUpgradedGates = SimpleEntrySet.builder(WoodType.class, "upgraded_gate", "stripped",
@@ -515,9 +480,8 @@ public class MrCrayfishFurnitureModule extends SimpleModule {
                 .addTag(ModTags.Items.UPGRADED_FENCE_GATES, Registries.ITEM)
                 .setTab(ModCreativeTabs.MAIN)
                 .defaultRecipe()
-                .setRenderType(() -> RenderType::cutout)
+                .setRenderType(RenderLayer.CUTOUT)
                 .build();
-
         this.addEntry(strippedUpgradedGates);
 
         hedges = SimpleEntrySet.builder(LeavesType.class, "hedge",
@@ -527,6 +491,7 @@ public class MrCrayfishFurnitureModule extends SimpleModule {
                             if (l == null) return null;
                             return new HedgeBlock(Utils.copyPropertySafe(l).lightLevel((s) -> 0));
                         })
+                .requiresChildren("leaves") // Reason: RECIPES
                 .addTag(ModTags.Blocks.HEDGES, Registries.BLOCK)
                 .addTag(ModTags.Items.HEDGES, Registries.ITEM)
                 .addTag(ModTags.Items.OUTDOORS, Registries.ITEM)
@@ -535,9 +500,8 @@ public class MrCrayfishFurnitureModule extends SimpleModule {
                 .setTab(ModCreativeTabs.MAIN)
                 .defaultRecipe()
                 .copyParentTint()
-                .setRenderType(() -> RenderType::cutout)
+                .setRenderType(RenderLayer.CUTOUT_MIPPED)
                 .build();
-
         this.addEntry(hedges);
     }
 }

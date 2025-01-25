@@ -4,7 +4,7 @@ import com.google.common.base.Preconditions;
 import com.mojang.datafixers.util.Pair;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
-import net.mehvahdjukaar.every_compat.EveryCompat;
+import net.mehvahdjukaar.every_compat.EveryCompatClient;
 import net.mehvahdjukaar.every_compat.misc.ResourcesUtils;
 import net.mehvahdjukaar.moonlight.api.events.AfterLanguageLoadEvent;
 import net.mehvahdjukaar.moonlight.api.item.BlockTypeBasedBlockItem;
@@ -19,10 +19,7 @@ import net.mehvahdjukaar.moonlight.api.resources.pack.DynamicDataPack;
 import net.mehvahdjukaar.moonlight.api.resources.textures.Palette;
 import net.mehvahdjukaar.moonlight.api.set.BlockSetAPI;
 import net.mehvahdjukaar.moonlight.api.set.BlockType;
-import net.mehvahdjukaar.moonlight.api.set.leaves.LeavesType;
-import net.mehvahdjukaar.moonlight.api.set.wood.WoodType;
 import net.mehvahdjukaar.moonlight.api.util.Utils;
-import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.blockentity.BlockEntityRendererProvider;
 import net.minecraft.client.resources.metadata.animation.AnimationMetadataSection;
 import net.minecraft.core.BlockPos;
@@ -61,7 +58,7 @@ public class SimpleEntrySet<T extends BlockType, B extends Block> extends Abstra
 
     protected final LootTableMode lootMode;
     @Nullable
-    protected final Supplier<Supplier<RenderType>> renderType;
+    protected final Object renderType;
 
 
     public SimpleEntrySet(Class<T> type,
@@ -69,13 +66,13 @@ public class SimpleEntrySet<T extends BlockType, B extends Block> extends Abstra
                           Function<T, B> blockSupplier,
                           Supplier<@Nullable B> baseBlock,
                           Supplier<T> baseType,
-                          @Nullable Supplier<ResourceKey<CreativeModeTab>> tab,
+                          @NotNull Supplier<ResourceKey<CreativeModeTab>> tab,
                           TabAddMode tabMode,
                           LootTableMode lootMode,
                           @Nullable TriFunction<T, B, Item.Properties, Item> itemFactory,
                           @Nullable SimpleEntrySet.ITileHolder<?> tileFactory,
-                          @Nullable Supplier<Supplier<RenderType>> renderType,
-                          @Nullable BiFunction<T, ResourceManager, Pair<List<Palette>, @Nullable AnimationMetadataSection>> paletteSupplier,
+                          @Nullable Object renderType,
+                          BiFunction<T, ResourceManager, Pair<List<Palette>, @Nullable AnimationMetadataSection>> paletteSupplier,
                           @Nullable Consumer<BlockTypeResTransformer<T>> extraTransform,
                           boolean mergedPalette, boolean copyTint,
                           Predicate<T> condition) {
@@ -109,34 +106,22 @@ public class SimpleEntrySet<T extends BlockType, B extends Block> extends Abstra
         return baseBlock.get();
     }
 
-    public void addTranslations(CompatModule module, AfterLanguageLoadEvent lang) {
+    public void addTranslations(SimpleModule module, AfterLanguageLoadEvent lang) {
         blocks.forEach((w, v) -> LangBuilder.addDynamicEntry(lang, "block_type." + module.getModId() + "." + typeName, w, v));
     }
 
-    public void registerWoodBlocks(CompatModule module, Registrator<Block> registry, Collection<WoodType> woodTypes) {
-        if (WoodType.class == getTypeClass()) {
-            registerBlocks(module, registry, (Collection<T>) woodTypes);
-        }
-    }
-
-    public void registerLeavesBlocks(CompatModule module, Registrator<Block> registry, Collection<LeavesType> leavesTypes) {
-        if (LeavesType.class == getTypeClass()) {
-            registerBlocks(module, registry, (Collection<T>) leavesTypes);
-        }
-    }
-
     @Override
-    public void registerBlocks(CompatModule module, Registrator<Block> registry, Collection<T> woodTypes) {
+    public void registerBlocks(SimpleModule module, Registrator<Block> registry, Collection<T> types) {
         Block base = getBaseBlock();
         if (base == null || base == Blocks.AIR)
             //?? wtf im using disabled to allow for null??
             throw new UnsupportedOperationException("Base block cant be null (" + this.typeName + " for " + module.modId + " module)");
 
         String childKey = getChildKey(module);
-        for (T w : woodTypes) {
+        for (T w : types) {
             String name = getBlockName(w);
             String fullName = module.shortenedId() + "/" + w.getNamespace() + "/" + name;
-            if (w.isVanilla() || module.isEntryAlreadyRegistered(name, w, BuiltInRegistries.BLOCK)) continue;
+            if (module.isEntryAlreadyRegistered(name, w, BuiltInRegistries.BLOCK)) continue;
 
             if (condition.test(w)) {
                 B block = blockFactory.apply(w);
@@ -144,7 +129,7 @@ public class SimpleEntrySet<T extends BlockType, B extends Block> extends Abstra
                 if (block != null) {
                     this.blocks.put(w, block);
 
-                    registry.register(EveryCompat.res(fullName), block);
+                    registry.register(module.makeMyRes(fullName), block);
                     w.addChild(childKey, block);
 
                     if (lootMode == LootTableMode.DROP_SELF && YEET_JSONS) {
@@ -205,7 +190,7 @@ public class SimpleEntrySet<T extends BlockType, B extends Block> extends Abstra
     }
 
     @Override
-    public void registerItems(CompatModule module, Registrator<Item> registry) {
+    public void registerItems(SimpleModule module, Registrator<Item> registry) {
         blocks.forEach((w, value) -> {
             Item i;
 
@@ -218,16 +203,15 @@ public class SimpleEntrySet<T extends BlockType, B extends Block> extends Abstra
             if (i != null) {
                 this.items.put(w, i);
                 registry.register(Utils.getID(value), i);
-                EveryCompat.ITEMS_TO_MODULES.put(i, module);
             }
         });
     }
 
     @Override
-    public void registerTiles(CompatModule module, Registrator<BlockEntityType<?>> registry) {
+    public void registerTiles(SimpleModule module, Registrator<BlockEntityType<?>> registry) {
         if (tileHolder instanceof NewTileHolder<?> nt) {
             var tile = nt.createInstance(blocks.values().toArray(Block[]::new));
-            registry.register(EveryCompat.res(module.shortenedId() + "_" + this.getName()), tile);
+            registry.register(module.makeMyRes(module.shortenedId() + "_" + this.getName()), tile);
         }
     }
 
@@ -241,16 +225,20 @@ public class SimpleEntrySet<T extends BlockType, B extends Block> extends Abstra
 
     @Override
     public void setRenderLayer() {
-        if (renderType != null) {
-            blocks.values().forEach(t -> ClientHelper.registerRenderType(t, renderType.get().get()));
+        for (var e : blocks.entrySet()) {
+            var w = e.getKey();
+            var v = e.getValue();
+            if (renderType != null || w.toString().equals("rats:pirat"))
+                EveryCompatClient.registerRenderType(v, w, renderType);
         }
     }
 
     @Override
-    public void generateLootTables(CompatModule module, DynamicDataPack pack, ResourceManager manager) {
+    public void generateLootTables(SimpleModule module, DynamicDataPack pack, ResourceManager manager) {
         if (lootMode == LootTableMode.COPY_FROM_PARENT) {
             ResourceLocation reg = Utils.getID(getBaseBlock());
-            ResourcesUtils.addBlockResources(module.getModId(), manager, pack, blocks, baseType.get().getTypeName(),
+            ResourcesUtils.addBlockResources(manager, pack, blocks,
+                    makeLootTableTransformer(module, manager),
                     ResType.BLOCK_LOOT_TABLES.getPath(reg));
 
         } else if (lootMode == LootTableMode.DROP_SELF) {
@@ -262,8 +250,39 @@ public class SimpleEntrySet<T extends BlockType, B extends Block> extends Abstra
     }
 
     @Override
-    public void generateModels(CompatModule module, DynClientResourcesGenerator handler, ResourceManager manager) {
-        ResourcesUtils.addStandardResources(module.getModId(), manager, handler, blocks, baseType.get(), extraTransform);
+    public void generateModels(SimpleModule module, DynClientResourcesGenerator handler, ResourceManager manager) {
+        ResourcesUtils.generateStandardBlockModels(manager, handler, blocks, baseType.get(),
+                makeModelTransformer(module, manager), makeBlockStateTransformer(module, manager));
+        ResourcesUtils.generateStandardItemModels(manager, handler, items, baseType.get(),
+                makeModelTransformer(module, manager));
+    }
+
+    // items and blocks
+    protected BlockTypeResTransformer<T> makeModelTransformer(SimpleModule module, ResourceManager manager) {
+        BlockTypeResTransformer<T> modelTransformer = BlockTypeResTransformer.create(module.modId, manager);
+        if (extraModelTransform != null) extraModelTransform.accept(modelTransformer);
+
+        ResourcesUtils.addBuiltinModelTransformer(modelTransformer, baseType.get());
+
+        return modelTransformer;
+    }
+
+    protected BlockTypeResTransformer<T> makeBlockStateTransformer(SimpleModule module, ResourceManager manager) {
+        String baseBlockName = baseType.get().getTypeName();
+        return BlockTypeResTransformer.<T>create(module.modId, manager)
+                .replaceBlockType(baseBlockName)
+                .IDReplaceType(baseBlockName);
+    }
+
+    protected BlockTypeResTransformer<T> makeLootTableTransformer(SimpleModule module, ResourceManager manager) {
+        String oldTypeName = baseType.get().getTypeName();
+        return BlockTypeResTransformer.<T>create(module.modId, manager)
+                // Modifying the JSON filenames & path
+                .setIDModifier((text, blockId, type) ->
+                        BlockTypeResTransformer.replaceFullGenericType(text, type, blockId, oldTypeName, null, 2))
+                // Modifying the JSON files' content
+                .addModifier((text, blockId, type) ->
+                        ResourcesUtils.convertItemIDinText(text, baseType.get(), type));
     }
 
     //ok...
@@ -282,16 +301,8 @@ public class SimpleEntrySet<T extends BlockType, B extends Block> extends Abstra
     @Environment(EnvType.CLIENT)
     @SuppressWarnings({"rawtypes"})
     public void registerTileRenderer(ClientHelper.BlockEntityRendererEvent event, BlockEntityRendererProvider aNew) {
-        var tile = getTileHolder();
-        if (tile != null) {
-            tile.registerRenderer(event, aNew);
-        }
-    }
-
-    @Override
-    public void registerEntityRenderers(CompatModule simpleModule, ClientHelper.BlockEntityRendererEvent event) {
-        if (this.tileHolder != null) {
-            //this.tileHolder.registerRenderer(event);
+        if (tileHolder != null) {
+            tileHolder.registerRenderer(event, aNew);
         }
     }
 
@@ -303,8 +314,9 @@ public class SimpleEntrySet<T extends BlockType, B extends Block> extends Abstra
         protected TriFunction<T, B, Item.Properties, Item> itemFactory;
         @Nullable
         protected SimpleEntrySet.ITileHolder<?> tileHolder;
+
         @Nullable
-        protected Supplier<Supplier<RenderType>> renderType = null;
+        protected Object renderType = null;
 
         protected Builder(Class<T> type, String name, @Nullable String prefix, Supplier<T> baseType, Supplier<B> baseBlock, Function<T, B> blockFactory) {
             super(type, name, prefix, baseType);
@@ -313,6 +325,9 @@ public class SimpleEntrySet<T extends BlockType, B extends Block> extends Abstra
         }
 
         public SimpleEntrySet<T, B> build() {
+            if (tab == null && PlatHelper.isDev()) {
+                throw new IllegalStateException("Tab for module " + name + " was null!");
+            }
             var e = new SimpleEntrySet<>(type, name, prefix, blockFactory, baseBlock, baseType, tab, tabMode, lootMode,
                     itemFactory, tileHolder, renderType, palette, extraModelTransform, useMergedPalette, copyTint, condition);
             e.recipeLocations.addAll(this.recipes);
@@ -360,7 +375,13 @@ public class SimpleEntrySet<T extends BlockType, B extends Block> extends Abstra
             return this;
         }
 
-        public Builder<T, B> setRenderType(Supplier<Supplier<RenderType>> renderType) {
+        @Deprecated(forRemoval = true)
+        public Builder<T, B> setRenderType(Supplier<Supplier<Object>> renderType) {
+            this.renderType = renderType;
+            return this;
+        }
+
+        public Builder<T, B> setRenderType(RenderLayer renderType) {
             this.renderType = renderType;
             return this;
         }
@@ -427,4 +448,6 @@ public class SimpleEntrySet<T extends BlockType, B extends Block> extends Abstra
         COPY_FROM_PARENT,
         NO_LOOT
     }
+
+
 }

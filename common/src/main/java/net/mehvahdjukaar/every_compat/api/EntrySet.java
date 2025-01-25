@@ -7,8 +7,6 @@ import net.mehvahdjukaar.moonlight.api.platform.RegHelper;
 import net.mehvahdjukaar.moonlight.api.resources.pack.DynClientResourcesGenerator;
 import net.mehvahdjukaar.moonlight.api.resources.pack.DynamicDataPack;
 import net.mehvahdjukaar.moonlight.api.set.BlockType;
-import net.mehvahdjukaar.moonlight.api.set.leaves.LeavesType;
-import net.mehvahdjukaar.moonlight.api.set.wood.WoodType;
 import net.minecraft.server.packs.resources.ResourceManager;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
@@ -24,53 +22,38 @@ public interface EntrySet<T extends BlockType> {
     String getName();
 
     @NotNull
-    default String getChildKey(CompatModule module) {
+    default String getChildKey(SimpleModule module) {
         return module.getModId() + ":" + getName();
     }
 
     Class<T> getTypeClass();
 
-    void addTranslations(CompatModule module, AfterLanguageLoadEvent lang);
+    void addTranslations(SimpleModule module, AfterLanguageLoadEvent lang);
 
-    default void registerWoodBlocks(CompatModule module, Registrator<Block> registry, Collection<WoodType> woodTypes) {
-        if (WoodType.class == getTypeClass()) {
-            registerBlocks(module, registry, (Collection<T>) woodTypes);
-        }
-    }
+    void registerBlocks(SimpleModule module, Registrator<Block> registry, Collection<T> woodTypes);
 
-    default void registerLeavesBlocks(CompatModule module, Registrator<Block> registry, Collection<LeavesType> leavesTypes) {
-        if (LeavesType.class == getTypeClass()) {
-            registerBlocks(module, registry, (Collection<T>) leavesTypes);
-        }
-    }
+    void registerItems(SimpleModule module, Registrator<Item> registry);
 
-    void registerBlocks(CompatModule module, Registrator<Block> registry, Collection<T> woodTypes);
-
-    void registerItems(CompatModule module, Registrator<Item> registry);
-
-    void registerTiles(CompatModule module, Registrator<BlockEntityType<?>> registry);
+    void registerTiles(SimpleModule module, Registrator<BlockEntityType<?>> registry);
 
     void setRenderLayer();
 
-    void generateTags(CompatModule module, DynamicDataPack pack, ResourceManager manager);
+    void generateTags(SimpleModule module, DynamicDataPack pack, ResourceManager manager);
 
-    void generateLootTables(CompatModule module, DynamicDataPack pack, ResourceManager manager);
+    void generateLootTables(SimpleModule module, DynamicDataPack pack, ResourceManager manager);
 
-    void generateRecipes(CompatModule module, DynamicDataPack pack, ResourceManager manager);
+    void generateRecipes(SimpleModule module, DynamicDataPack pack, ResourceManager manager);
 
-    void generateModels(CompatModule module, DynClientResourcesGenerator handler, ResourceManager manager);
+    void generateModels(SimpleModule module, DynClientResourcesGenerator handler, ResourceManager manager);
 
-    void generateTextures(CompatModule module, DynClientResourcesGenerator handler, ResourceManager manager);
-
-
-    void registerEntityRenderers(CompatModule simpleModule, ClientHelper.BlockEntityRendererEvent event);
+    void generateTextures(SimpleModule module, DynClientResourcesGenerator handler, ResourceManager manager);
 
     default void setupExistingTiles() {
     }
 
     //used for tabs
     @Nullable
-    default Item getItemOf(T type){
+    default Item getItemOf(T type) {
         return null;
     }
 
@@ -78,5 +61,12 @@ public interface EntrySet<T extends BlockType> {
 
     void registerBlockColors(ClientHelper.BlockColorEvent event);
 
-    void registerItemsToExistingTabs(CompatModule module, RegHelper.ItemToTabEvent event);
+    void registerItemsToExistingTabs(SimpleModule module, RegHelper.ItemToTabEvent event);
+
+    @Nullable
+    default Item getItemForECTab(T type) {
+        return this.getItemOf(type);
+    }
+
+    int getBlockCount();
 }

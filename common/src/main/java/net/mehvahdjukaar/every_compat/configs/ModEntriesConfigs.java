@@ -24,10 +24,13 @@ public class ModEntriesConfigs {
     private static final Map<Class<? extends BlockType>, Map<String, Supplier<Boolean>>> CHILD_CONFIGS = new HashMap<>();
 
     public static ConfigSpec SPEC;
+    private static boolean wasInit = false;
 
     // default as we are initializing it late
 
-  public static void initEarlyButNotSuperEarly(){
+    public static void initEarlyButNotSuperEarly() {
+        if (wasInit) return;
+        wasInit = true;
         ConfigBuilder builder = ConfigBuilder.create(EveryCompat.res("entries"), ConfigType.COMMON);
 
         builder.comment("Disables certain types. Note that all these configs, like in any other mod, only hide stuff from tabs and disable their recipes")
@@ -51,7 +54,7 @@ public class ModEntriesConfigs {
         for (var reg : BlockSetAPI.getRegistries()) {
             if (reg.getType() == WoodType.class || reg.getType() == LeavesType.class) {
                 builder.push(reg.typeName().replace(" ", "_"));
-                for (var c : EveryCompat.ENTRY_TYPES.getOrDefault(reg.getType(), Set.of())) {
+                for (var c : EveryCompat.getChildKeys(reg.getType())) {
                     String key = c.replace(":", ".");
                     var config = builder.define(key, true);
                     var map = CHILD_CONFIGS.computeIfAbsent(reg.getType(), s -> new HashMap<>());

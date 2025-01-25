@@ -1,24 +1,28 @@
 package net.mehvahdjukaar.every_compat.dynamicpack;
 
 import net.mehvahdjukaar.every_compat.EveryCompat;
-import net.mehvahdjukaar.every_compat.configs.ModConfigs;
-import net.mehvahdjukaar.every_compat.misc.ResourcesUtils;
+import net.mehvahdjukaar.every_compat.configs.ECConfigs;
 import net.mehvahdjukaar.every_compat.misc.SpriteHelper;
 import net.mehvahdjukaar.moonlight.api.events.AfterLanguageLoadEvent;
 import net.mehvahdjukaar.moonlight.api.platform.PlatHelper;
 import net.mehvahdjukaar.moonlight.api.resources.pack.DynClientResourcesGenerator;
 import net.mehvahdjukaar.moonlight.api.resources.pack.DynamicTexturePack;
-import net.mehvahdjukaar.moonlight.api.set.wood.WoodType;
-import net.mehvahdjukaar.moonlight.api.set.wood.WoodTypeRegistry;
 import net.minecraft.server.packs.resources.ResourceManager;
 import org.apache.logging.log4j.Logger;
 
 
 public class ClientDynamicResourcesHandler extends DynClientResourcesGenerator {
 
-    public static final ClientDynamicResourcesHandler INSTANCE = new ClientDynamicResourcesHandler();
+    private static ClientDynamicResourcesHandler INSTANCE;
 
-    private static boolean init = false;
+    public static ClientDynamicResourcesHandler getInstance() {
+        if (INSTANCE == null) {
+            INSTANCE = new ClientDynamicResourcesHandler();
+        }
+        return INSTANCE;
+    }
+
+    private boolean firstInit = false;
 
     public ClientDynamicResourcesHandler() {
         super(new DynamicTexturePack(EveryCompat.res("generated_pack")));
@@ -33,7 +37,7 @@ public class ClientDynamicResourcesHandler extends DynClientResourcesGenerator {
 
     @Override
     public boolean dependsOnLoadedPacks() {
-        return ModConfigs.SPEC == null || ModConfigs.DEPEND_ON_PACKS.get();
+        return ECConfigs.SPEC == null || ECConfigs.DEPEND_ON_PACKS.get();
     }
 
     @Override
@@ -45,21 +49,22 @@ public class ClientDynamicResourcesHandler extends DynClientResourcesGenerator {
 
     @Override
     public void regenerateDynamicAssets(ResourceManager manager) {
-        if (!init) {
+        if (!firstInit) {
             SpriteHelper.addHardcodedSprites();
-            init = true;
+            firstInit = true;
         }
-        this.dynamicPack.setGenerateDebugResources(PlatHelper.isDev() || ModConfigs.DEBUG_RESOURCES.get());
+        this.dynamicPack.setGenerateDebugResources(PlatHelper.isDev() || ECConfigs.DEBUG_RESOURCES.get());
         EveryCompat.forAllModules(m -> {
             try {
                 m.addDynamicClientResources(this, manager);
             } catch (Exception e) {
                 getLogger().error("Failed to generate client dynamic assets for module {}:", m, e);
+                if (PlatHelper.isDev()) throw e;
             }
         });
 
         ExtraTextureGenerator.generateExtraTextures(this, manager);
-        
+
     }
 
 }

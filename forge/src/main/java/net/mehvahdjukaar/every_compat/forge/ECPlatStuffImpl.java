@@ -10,6 +10,7 @@ import net.minecraftforge.common.ForgeHooks;
 import java.util.List;
 
 public class ECPlatStuffImpl {
+
     public static List<ItemStack> modifyLoot(ResourceLocation id, List<ItemStack> stacks, LootParams lootContext) {
         ItemStack[] array = stacks.toArray(ItemStack[]::new);
         return ForgeHooks.modifyLoot(id, ObjectArrayList.wrap(array),

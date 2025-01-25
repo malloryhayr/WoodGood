@@ -4,11 +4,11 @@ import com.fizzware.dramaticdoors.forge.DDRegistry;
 import com.fizzware.dramaticdoors.forge.blocks.ShortDoorBlock;
 import com.fizzware.dramaticdoors.forge.blocks.TallDoorBlock;
 import net.mehvahdjukaar.every_compat.EveryCompat;
+import net.mehvahdjukaar.every_compat.api.RenderLayer;
 import net.mehvahdjukaar.every_compat.api.SimpleEntrySet;
 import net.mehvahdjukaar.every_compat.api.SimpleModule;
 import net.mehvahdjukaar.moonlight.api.set.wood.WoodType;
 import net.mehvahdjukaar.moonlight.api.set.wood.WoodTypeRegistry;
-import net.minecraft.client.renderer.RenderType;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.world.level.block.Block;
@@ -16,6 +16,7 @@ import net.minecraft.world.level.block.Blocks;
 
 import java.util.List;
 
+//SUPPORT: v3.2.8+
 public class DramaticDoorsModule extends SimpleModule {
 
     public final SimpleEntrySet<WoodType, Block> shortDoors;
@@ -34,8 +35,8 @@ public class DramaticDoorsModule extends SimpleModule {
                 .addTag(modRes("tall_wooden_doors"), Registries.BLOCK)
                 .addTag(modRes("tall_wooden_doors"), Registries.ITEM)
                 .addTag(BlockTags.MINEABLE_WITH_AXE, Registries.BLOCK)
-                .setRenderType(() -> RenderType::cutout)
-                .setTabKey(() -> DDRegistry.MAIN_TAB)
+                .setRenderType(RenderLayer.CUTOUT)
+                .setTabKey(DDRegistry.MAIN_TAB)
                 .copyParentDrop()
                 .defaultRecipe()
                 .build();
@@ -50,8 +51,8 @@ public class DramaticDoorsModule extends SimpleModule {
                 .addTag(modRes("short_wooden_doors"), Registries.BLOCK)
                 .addTag(modRes("short_wooden_doors"), Registries.ITEM)
                 .addTag(BlockTags.MINEABLE_WITH_AXE, Registries.BLOCK)
-                .setRenderType(() -> RenderType::cutout)
-                .setTabKey(() -> DDRegistry.MAIN_TAB)
+                .setRenderType(RenderLayer.CUTOUT)
+                .setTabKey(DDRegistry.MAIN_TAB)
                 .copyParentDrop()
                 .defaultRecipe()
                 .build();
@@ -67,7 +68,7 @@ public class DramaticDoorsModule extends SimpleModule {
                 "aurorasdeco", "automaticdoors", "bambooeverything", "betterarcheology",
                 "betterend", "betternether", "bewitchment", "biomancy",
                 "biomemakeover", "biomesoplenty", "blocksplus", "blockus",
-                "byg", "caupona", "ceilands", "charm",
+                "biomeswevegone", "caupona", "ceilands", "charm",
                 "chipped", "cinderscapes", "cobblemon", "colorfulazaleas",
                 "copperoverhaul", "couplings", "create_things_and_misc", "createdeco",
                 "darkerdepths", "deep_aether", "deeperdarker", "desolation",

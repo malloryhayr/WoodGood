@@ -3,8 +3,9 @@ package net.mehvahdjukaar.every_compat.common_classes;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
 import com.mojang.math.Axis;
-import it.unimi.dsi.fastutil.floats.Float2FloatFunction;
 import it.unimi.dsi.fastutil.ints.Int2IntFunction;
+import net.fabricmc.api.EnvType;
+import net.fabricmc.api.Environment;
 import net.mehvahdjukaar.every_compat.EveryCompat;
 import net.mehvahdjukaar.moonlight.api.platform.ClientHelper;
 import net.mehvahdjukaar.moonlight.api.set.wood.WoodType;
@@ -18,11 +19,11 @@ import net.minecraft.client.renderer.blockentity.BrightnessCombiner;
 import net.minecraft.client.renderer.blockentity.ChestRenderer;
 import net.minecraft.client.resources.model.Material;
 import net.minecraft.core.Direction;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.entity.ChestBlockEntity;
-import net.minecraft.world.level.block.entity.LidBlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.properties.ChestType;
 import org.jetbrains.annotations.NotNull;
@@ -30,7 +31,9 @@ import org.jetbrains.annotations.NotNull;
 import java.util.HashMap;
 import java.util.Map;
 
+@Environment(EnvType.CLIENT)
 public class CompatChestBlockRenderer extends ChestRenderer<CompatChestBlockEntity> {
+    public static final ResourceLocation CHEST_SHEET = new ResourceLocation("textures/atlas/chest.png");
     private final Map<WoodType, Material> single = new HashMap<>();
     private final Map<WoodType, Material> left = new HashMap<>();
     private final Map<WoodType, Material> right = new HashMap<>();
@@ -46,12 +49,12 @@ public class CompatChestBlockRenderer extends ChestRenderer<CompatChestBlockEnti
             String path = "entity/chest/" + shortenedId + "/" + w.getAppendableId() + "_chest";
             String trapped_path = "entity/chest/" + shortenedId + "/" + w.getAppendableId() + "_trapped_chest";
             if (!w.isVanilla()) {
-                single.put(w, new Material(Sheets.CHEST_SHEET, EveryCompat.res(path)));
-                left.put(w, new Material(Sheets.CHEST_SHEET, EveryCompat.res(path + "_left")));
-                right.put(w, new Material(Sheets.CHEST_SHEET, EveryCompat.res(path + "_right")));
-                trapped.put(w, new Material(Sheets.CHEST_SHEET, EveryCompat.res(trapped_path)));
-                trapped_left.put(w, new Material(Sheets.CHEST_SHEET, EveryCompat.res(trapped_path + "_left")));
-                trapped_right.put(w, new Material(Sheets.CHEST_SHEET, EveryCompat.res(trapped_path + "_right")));
+                single.put(w, new Material(CHEST_SHEET, EveryCompat.res(path)));
+                left.put(w, new Material(CHEST_SHEET, EveryCompat.res(path + "_left")));
+                right.put(w, new Material(CHEST_SHEET, EveryCompat.res(path + "_right")));
+                trapped.put(w, new Material(CHEST_SHEET, EveryCompat.res(trapped_path)));
+                trapped_left.put(w, new Material(CHEST_SHEET, EveryCompat.res(trapped_path + "_left")));
+                trapped_right.put(w, new Material(CHEST_SHEET, EveryCompat.res(trapped_path + "_right")));
             }
         }
     }

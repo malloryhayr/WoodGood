@@ -8,45 +8,68 @@ loom {
 
 dependencies {
     modImplementation "net.fabricmc:fabric-loader:${fabric_loader_version}"
+    modApi "net.fabricmc.fabric-api:fabric-api:${rootProject.fabric_api_version}"
 
-    //    modImplementation "net.fabricmc:fabric-loader:${fabric_loader_version}"
-    //modImplementation("net.mehvahdjukaar:moonlight:${moonlight_version}")
-    modImplementation("curse.maven:selene-499980:5556626") // v2.12.9
 
     annotationProcessor 'net.fabricmc:sponge-mixin:0.12.5+mixin.0.8.5'
 
     //common. Fabric version that works on both
-    modCompileOnly("curse.maven:resourceful-lib-570073:5361261") // v2.1.25
+    modCompileOnly("curse.maven:resourceful-lib-570073:5659872") // v2.1.29
     modCompileOnly("curse.maven:architectury-api-419699:5137936") // v9.2.14
 
-// =============================================== DEPENDENCIES ========================================================
-    modCompileOnly("curse.maven:framework-549225:5388228") // Furniture Refurbished
+//!! MOONLIGHT LIB (REQUIRED) --------------------------------------------------------------------------------------- \\
+    //!! Repository LOCAL
+    String path = System.getenv('REPOS20_1')
+//    modImplementation(files(path  + "\\Moonlight\\fabric\\build\\libs\\moonlight-${moonlight_testVersion}-fabric.jar"))
 
-        // LOCAL
+    //!! ~/fabric/mods LOCAL
+//    modImplementation("net.mehvahdjukaar:moonlight:${moonlight_testVersion}")
+
+    //!! MAVEN
+    modImplementation("maven.modrinth:moonlight:fabric_${moonlight_mavenVersion}") // v2.13.47
+
+//!! ============================================ DEPENDENCIES ====================================================== \\
+    //!! REQUIRED - The modules access libaries from below
+    modCompileOnly("com.tterrag.registrate_fabric:Registrate:${registrate_fabric_version}") // Create
+    modCompileOnly("curse.maven:framework-549225:5680025") // Furniture Refurbished
+    modCompileOnly("curse.maven:valhelsia-core-416935:5376599") // Valhelsia-Furniture
+    modCompileOnly("curse.maven:zeta-968868:5078215") // v1.0-13 | Quark
+
+    //!! ~/common/mods LOCAL
 //    modCompileOnly("net.stehschnitzel.shutter:shutter-2.0.2-1.20.1")
     modCompileOnly("com.mrcrayfish.furniture.refurbished:refurbished_furniture-fabric-1.20.1-1.0.0-beta.4")
     modCompileOnly("net.heccomc.bountifulfares:bountifulfares-1.3.0-1.20.1")
+    modCompileOnly("com.arcanc.bc:Beautiful-Campfires-fabric-1.20.1-1.0.3")
 
-// ================================================== IMPORTS ==========================================================
+//!! ================================================== IMPORTS ===================================================== \\
+    //!! REQUIRED - The modules access libaries from below
     modCompileOnly("curse.maven:another-furniture-610492:4815126")
+    modCompileOnly("curse.maven:backpacked-352835:5401968")
     modCompileOnly("curse.maven:camp-chair-531744:4579679")
     modCompileOnly("curse.maven:chipped-456956:4634858") // v3.0.1
     modCompileOnly("curse.maven:create-624165:5168511")
+    modCompileOnly("curse.maven:dawn-of-time-312359:5651253")
     modCompileOnly("curse.maven:decorative-blocks-362528:3941637")
     modCompileOnly("curse.maven:exlines-bark-carpets-527296:4661550")
+    modCompileOnly("curse.maven:farmersdelight-398521:4679319")
     modCompileOnly("curse.maven:friends-and-foes-551364:4639311")
     modCompileOnly("curse.maven:furnish-547069:4821511")
     modCompileOnly("curse.maven:handcrafted-538214:5118730")
-    modCompileOnly("curse.maven:the-twilight-forest-227639:4653704") // not available for 1.20.1
-    modCompileOnly("curse.maven:twigs-496913:4605097")
-    modCompileOnly("curse.maven:dramatic-doors-380617:4815647")
     modCompileOnly("curse.maven:hearth-and-home-849364:4828281")
     modCompileOnly("curse.maven:quark-243121:5093415")
-    modCompileOnly("curse.maven:zeta-968868:5078215")
-    modCompileOnly("curse.maven:farmersdelight-398521:4679319")
+    modCompileOnly("curse.maven:storage-drawers-223852:5915606")
+    modCompileOnly("curse.maven:table-top-craft-fabric-729535:5319819")
+    modCompileOnly("curse.maven:twigs-496913:4605097")
+    modCompileOnly("curse.maven:valhelsia-furniture-694349:5189603")
+    modCompileOnly("curse.maven:villagersplus-fabric-809542:4996993")
+    modCompileOnly("maven.modrinth:stylish-stiles:zLlRqz68")
+    modCompileOnly("curse.maven:missing-wilds-622590:5053651")
 
-    // ======================================== DISABLED FOR A REASON =============================================== \\
-//     modCompileOnly("curse.maven:missing-wilds-622590:3891602")
+//!! ========================================== DISABLED FOR A REASON =============================================== \\
+
+//    modCompileOnly("curse.maven:the-twilight-forest-227639:4653704") //!! NOT AVAILABLE
+//    modCompileOnly("curse.maven:missing-wilds-622590:3891602")
+
 }
 
 publishing {

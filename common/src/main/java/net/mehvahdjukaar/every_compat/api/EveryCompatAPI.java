@@ -1,7 +1,6 @@
 package net.mehvahdjukaar.every_compat.api;
 
 import net.mehvahdjukaar.every_compat.EveryCompat;
-import net.mehvahdjukaar.every_compat.dynamicpack.ServerDynamicResourcesHandler;
 
 /**
  * Use this to register new wood type blocks and module
@@ -14,10 +13,10 @@ public class EveryCompatAPI {
      *
      * @param module your module instance. Can be a custom implementation
      */
-    public static void registerModule(CompatModule module) {
-        EveryCompat.ACTIVE_MODULES.put(module.getModId(), module);
-        ServerDynamicResourcesHandler.INSTANCE.getPack().addNamespaces(module.getModId());
+    public static synchronized void registerModule(CompatModule module) {
+        EveryCompat.addModule(module);
     }
+
 
     //for each entry that you register you will need to add "block_type.everycomp.your_type" translation string to your lang file
 
