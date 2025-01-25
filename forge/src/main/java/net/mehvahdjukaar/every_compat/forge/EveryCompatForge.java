@@ -84,7 +84,7 @@ public class EveryCompatForge extends EveryCompat {
         addModule("dramaticdoors", () -> DramaticDoorsModule::new);
         addModule("farmersdelight", () -> FarmersDelightModule::new);
         addModule("infinitybuttons", () -> InfinityButtonsModule::new);
-        addModule("kubejs", () -> KubeJSModule::new);
+//        addModule("kubejs", () -> KubeJSModule::new);
         addModule("lolmcv", () -> MoreChestVariantsModule::new);
         addModule("mctb", () -> MoreCraftingTablesForForgeModule::new);
         addModule("mighty_mail", () -> MightyMailModule::new);
